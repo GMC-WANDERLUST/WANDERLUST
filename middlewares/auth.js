@@ -22,7 +22,7 @@ exports.register = async (req, res) => {
     // Checking in the user is already in the database
     const emailExist = await User.findOne({ email });
     if (emailExist) {
-        return res.status(400).json({ message: "email already exists" });
+        return res.status(400).json({ message: "Email already exists! Please check again" });
     }
 
     // Hash the password
@@ -42,7 +42,7 @@ exports.register = async (req, res) => {
     try {
         const savedUser = await newUser.save();
         res.status(201).json({
-            message: `Hello ${FirstName}!, Welcome to WANDERLUST`,
+            message: `Hello ${FirstName} ${LastName}!, Welcome to WANDERLUST`,
             savedUser,
         });
     } catch (error) {
@@ -55,12 +55,12 @@ exports.login = async (req, res) => {
     // Checking in the email exists
     const user = await User.findOne({ email });
     if (!user)
-        return res.status(400).json({ message: "email or password is wrong" });
+        return res.status(400).json({ message: "Email or password is wrong! Please check again" });
 
     // Check if password is correct
     const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword)
-        return res.status(400).json({ message: "Invalid password" });
+        return res.status(400).json({ message: "Invalid password, please check again" });
 
     // Create and assign a token
 
@@ -72,7 +72,7 @@ exports.login = async (req, res) => {
         status: 200,
         token: token,
         id: user._id,
-        message: `WELCOME ${user.FirstName} !`,
+        message: `WELCOME ${user.FirstName}! GOOD TO SEE YOU AGAIN`,
     });
     
 };
