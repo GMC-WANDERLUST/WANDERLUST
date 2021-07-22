@@ -20,6 +20,8 @@ app.use("/api/profile", require("./routes/api"));
 app.use("/api/posts", require("./routes/posts"));
 // Manage Hosting
 app.use("/api/host", require("./routes/hosting"));
+//Admin management
+app.use("/api/admin", require("./routes/admin"));
 
 // Upload
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
@@ -31,5 +33,5 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Start the server
 app.listen(process.env.PORT, () => {
-    console.log("Server up and Running");
+  console.log("Server up and Running");
 });
