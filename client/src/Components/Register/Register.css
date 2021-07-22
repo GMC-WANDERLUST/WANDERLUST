@@ -1,0 +1,9 @@
+.register-container 
+{
+    border: 1px black solid;
+    width: 30%;
+    margin: auto;
+    margin-top: 3%;
+    padding: 20px;
+    border-radius: 5%;
+}
