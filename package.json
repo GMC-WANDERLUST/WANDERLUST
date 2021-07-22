@@ -8,7 +8,7 @@
     "client": "cd client && npm start",
     "mern": "concurrently \"npm run server\" \"npm run client\" "
   },
-  "author": "anwer",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
