@@ -88,10 +88,10 @@ function UserEditProfil({ match }) {
                             maxLength="100"
                         />
                     </li>
-            
+
                     <li>
                         <label>About Me</label>
-                        <textarea name="text" name="AboutMe"></textarea>
+                        <textarea type="text" name="AboutMe"></textarea>
                     </li>
                     <li>
                         <input

@@ -2,6 +2,7 @@ const services = require("../../services");
 module.exports = {
     async UpdateUser(req, res) {
         try {
+            
             let  body  = req.body;
             let { id } = req.params;
             const updatedUser =
