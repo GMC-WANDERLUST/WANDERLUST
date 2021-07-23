@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import { userId, getToken } from "../../utils";
 // import { fillUserProfile } from "../../redux/actions/userActions";
 // import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
 const customStyles = {
@@ -32,6 +32,7 @@ function ModalEditPhoto({ action, data }) {
     }
     function closeModal() {
         setIsOpen(false);
+        window.location.reload();
     }
     let id = userId();
 
@@ -43,7 +44,7 @@ function ModalEditPhoto({ action, data }) {
     };
     // const dispatch = useDispatch();
     // const userObject = useSelector((state) => state.userReducer.user);
-    const history = useHistory();
+    // const history = useHistory();
 
     // Photo Upload
     const submitForm = (e) => {
@@ -87,9 +88,9 @@ function ModalEditPhoto({ action, data }) {
 
         // history.push(`/profile/${id}`);
     };
-    const handleForward = () => {
-        history.push(`/profile/${id}`);
-    };
+    // const handleForward = () => {
+    //     history.push(`/profile/${id}`);
+    // };
     return (
         <div>
             <button onClick={openModal}>{action}</button>

@@ -41,16 +41,24 @@ const RegisterValidation = (data) => {
     // console.log("result", result);
     return result;
 };
-// const LoginValidation = (data) => {
-//     const schema = Joi.object({
-//         email: Joi.string().min(6).required().email(),
-//         password: Joi.string()
-//             .min(8)
-//             .required()
-//             .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
-//     });
-//     return  schema.validate(data);
-// };
+const NewPasswordValidation = (data) => {
+    const schema = Joi.object({
+        newpassword: Joi.string()
+            .min(8)
+            .required()
+            .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
+        repeat_newpassword: Joi.any()
+            .equal(Joi.ref("password"))
+            .required()
+            .label("Confirm password")
+            .options({
+                messages: { "any.only": "Confirm password does not match" },
+            }),
+    });
+    const result = schema.validate(data);
+    // console.log("result", result);
+    return result;
+};
 
 module.exports.RegisterValidation = RegisterValidation;
-// module.exports.LoginValidation = LoginValidation;
+module.exports.NewPasswordValidation = NewPasswordValidation;

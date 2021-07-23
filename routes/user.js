@@ -4,6 +4,8 @@ const User = require("../model/User");
 const UserInfos = require("../model/UserInfos");
 const verify = require("../middlewares/verifyToken");
 const userAccess = require("../middlewares/verifyUserAccess");
+const bcrypt = require("bcryptjs");
+const { NewPasswordValidation } = require("../config/validation");
 
 // REGISTER
 router.post("/register", register);
@@ -63,20 +65,43 @@ router.put("/editUserLastName/:id", verify, userAccess, async (req, res) => {
 // EDIT LOGIN PASSWORD
 router.put("/editPassword/:id", verify, userAccess, async (req, res) => {
     try {
-        let { password } = req.body;
+        let { oldPassword, newpassword } = req.body;
         let { id } = req.params;
-        await User.findByIdAndUpdate(id, {
-            $set: { password },
-        });
-        let newPassword = await User.findById(id);
-        res.status(201).json({
-            message: "Password was updated successfully",
-            newPassword,
-        });
+
+        let user = await User.findById(id);
+
+        const validPassword = await bcrypt.compare(oldPassword, user.password);
+        const { error } = NewPasswordValidation(req.body);
+        if (!validPassword) {
+            res.status(401).json({
+                status: false,
+                message: "Please enter your Password again",
+            });
+        } else if (error) {
+            return res.status(400).json({ message: error.details[0].message });
+        } else {
+            //  hash the new password
+            const salt = await bcrypt.genSalt(10);
+            const newHashedPassword = await bcrypt.hash(newpassword, salt);
+
+            await User.findByIdAndUpdate(id, {
+                $set: { password: newHashedPassword },
+            });
+
+            let userUpdated = await User.findOne({
+                password: newHashedPassword,
+            });
+            res.status(201).json({
+                status: true,
+                message: "Password was updated successfully",
+                userUpdated,
+            });
+        }
     } catch (err) {
         res.status(500).json(err);
     }
 });
+
 // EDIT LOGIN EMAIL
 
 router.put("/editEmail/:id", verify, userAccess, async (req, res) => {

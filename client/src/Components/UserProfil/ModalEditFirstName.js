@@ -46,6 +46,7 @@ function ModalEditFirstName({ action, data }) {
             .then((response) => console.log(response))
             .catch((error) => console.dir(error));
         closeModal();
+        window.location.reload();
     };
     return (
         <div>

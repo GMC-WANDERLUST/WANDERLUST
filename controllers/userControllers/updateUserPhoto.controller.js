@@ -17,7 +17,6 @@ module.exports = {
                 { $set: { photo: photoUrl } }
             );
             const updatedUser = await UserInfos.findOne({ user: id });
-            console.log(updatedUser);
             res.status(206).json({
                 status: true,
                 message: "Your profile photo was updated seccussfully",

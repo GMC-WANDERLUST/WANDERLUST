@@ -1,2 +1,3 @@
 export const GET_USER_PROFILE = "GET_USER_PROFILE";
-export const CHECK_EXISTED_USER = "CHECK_EXISTED_USER";
+export const CLOSE_MODAL = "CLOSE_MODAL";
+export const OPEN_MODAL = "OPEN_MODAL";

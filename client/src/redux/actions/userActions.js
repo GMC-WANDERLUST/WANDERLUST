@@ -1,6 +1,7 @@
 import {
     GET_USER_PROFILE,
-    CHECK_EXISTED_USER,
+    CLOSE_MODAL,
+    OPEN_MODAL,
 } from "../constants/action-types";
 import axios from "axios";
 // import Swal from "sweetalert2";
@@ -14,14 +15,18 @@ export const getUserProfile = (payload) => (dispatch) => {
             },
         })
         .then((response) => {
-            console.log("response : ", response);
             dispatch({ type: GET_USER_PROFILE, payload: response.data.data });
         })
         .catch((err) => console.dir(err));
 };
-export function verifyExistedUser() {
+export function close() {
     return {
-        type: CHECK_EXISTED_USER,
+        type: CLOSE_MODAL,
+    };
+}
+export function openModal() {
+    return {
+        type: OPEN_MODAL,
     };
 }
 // export const createUser = (payload) => (dispatch) => {

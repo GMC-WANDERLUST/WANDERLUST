@@ -18,7 +18,7 @@ function UserProfile() {
         dispatch(getUserProfile({ id, token }));
     }, [id, token, dispatch]);
     const user = useSelector((state) => state.userReducer.user);
-    console.log("user", user);
+    // console.log("user", user);
     return (
         <React.Fragment>
             <NavBar />
