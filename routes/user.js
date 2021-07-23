@@ -7,41 +7,59 @@ const userAccess = require("../middlewares/verifyUserAccess");
 
 // REGISTER
 router.post("/register", register);
-
 // LOGIN
 router.post("/login", login);
 
-// EDIT FIRSTNAME AND LASTNAME
-router.put(
-    "/editUserFirstName&LastName/:id",
-    verify,
-    userAccess,
-    async (req, res) => {
-        try {
-            let { FirstName, LastName } = req.body;
-            let { id } = req.params;
-            await User.findByIdAndUpdate(id, {
-                $set: { FirstName, LastName },
-            });
-            let newFNameAndLName = await User.findById(id);
-            await UserInfos.findOneAndUpdate(
-                { user: id },
-                {
-                    $set: {
-                        FirstName: newFNameAndLName.FirstName,
-                        LastName: newFNameAndLName.LastName,
-                    },
-                }
-            );
-            res.status(201).json({
-                message: "Updated successfully",
-                newFNameAndLName,
-            });
-        } catch (err) {
-            res.status(500).json(err);
-        }
+// EDIT FIRSTNAME
+router.put("/editUserFirstName/:id", verify, userAccess, async (req, res) => {
+    try {
+        let { FirstName } = req.body;
+        let { id } = req.params;
+        await User.findByIdAndUpdate(id, {
+            $set: { FirstName },
+        });
+        let newFNameAndLName = await User.findById(id);
+        await UserInfos.findOneAndUpdate(
+            { user: id },
+            {
+                $set: {
+                    FirstName: newFNameAndLName.FirstName,
+                },
+            }
+        );
+        res.status(201).json({
+            message: "Updated successfully",
+            newFNameAndLName,
+        });
+    } catch (err) {
+        res.status(500).json(err);
     }
-);
+});
+// EDIT LASTNAME
+router.put("/editUserLastName/:id", verify, userAccess, async (req, res) => {
+    try {
+        let { LastName } = req.body;
+        let { id } = req.params;
+        await User.findByIdAndUpdate(id, {
+            $set: { LastName },
+        });
+        let newFNameAndLName = await User.findById(id);
+        await UserInfos.findOneAndUpdate(
+            { user: id },
+            {
+                $set: {
+                    LastName: newFNameAndLName.LastName,
+                },
+            }
+        );
+        res.status(201).json({
+            message: "Updated successfully",
+            newFNameAndLName,
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 // EDIT LOGIN PASSWORD
 router.put("/editPassword/:id", verify, userAccess, async (req, res) => {
     try {

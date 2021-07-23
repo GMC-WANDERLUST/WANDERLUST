@@ -1,4 +1,7 @@
-import { GET_USER_PROFILE } from "../constants/action-types";
+import {
+    GET_USER_PROFILE,
+    CHECK_EXISTED_USER,
+} from "../constants/action-types";
 import axios from "axios";
 // import Swal from "sweetalert2";
 
@@ -16,6 +19,11 @@ export const getUserProfile = (payload) => (dispatch) => {
         })
         .catch((err) => console.dir(err));
 };
+export function verifyExistedUser() {
+    return {
+        type: CHECK_EXISTED_USER,
+    };
+}
 // export const createUser = (payload) => (dispatch) => {
 //     axios
 //         .post(`/api/profile/addUserInfos/${payload.newUserId}`, {})

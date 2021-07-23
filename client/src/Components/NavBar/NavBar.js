@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { logout } from "../../utils";
 import { useHistory } from "react-router-dom";
-import { userId, getToken } from "../../utils";
+import { userId } from "../../utils";
 
 function NavBar() {
     let id = userId();

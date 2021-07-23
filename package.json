@@ -24,6 +24,7 @@
     "react-alert": "^7.0.3",
     "react-alert-template-basic": "^1.0.2",
     "react-bootstrap": "^1.6.1",
+    "react-modal": "^3.14.3",
     "sweetalert2": "^11.0.18"
   }
 }
