@@ -41,6 +41,7 @@ const userInfosSchema = new Schema(
         },
         Country: {
             type: "string",
+            required: true
         },
         PhoneNumber: {
             type: "string",

@@ -9,7 +9,7 @@ module.exports = {
             let { id } = req.params;
             // let userData = await User.findById(id);
             // console.log(userData);
-            await services.userService.updateUser.UpdateUser(body, userData, id);
+            await services.userService.updateUser.UpdateUser(body, id);
             let updatedUser = await UserInfos.findOne({ user: id });
             res.status(206);
             res.json({

@@ -1,6 +1,6 @@
 const UserInfos = require("../../model/UserInfos");
 module.exports = {
-    async UpdateUser(body, userData, id) {
+    async UpdateUser(body, id) {
         try {
             return await UserInfos.findOneAndUpdate(
                 { user: id },
