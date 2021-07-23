@@ -7,6 +7,7 @@ import { userId, getToken } from "../../utils";
 import ModalEditFirstName from "./ModalEditFirstName";
 import ModalEditLastName from "./ModalEditLastName";
 import ModalEditPhoto from "./ModalEditPhoto";
+import DropDown from "./DropDown";
 
 function UserProfile() {
     let id = userId();
@@ -21,6 +22,7 @@ function UserProfile() {
     return (
         <React.Fragment>
             <NavBar />
+            <DropDown />
             <h1>This is the user Profile</h1>
             <div key={user._id}>
                 <img src={user.photo} alt="profile_photo" width="250px" />
