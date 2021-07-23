@@ -8,6 +8,7 @@ import FirstPage from "./Components/FirstPage/FirstPage";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import AddProfilePhoto from "./Components/UserProfil/AddProfilePhoto";
 import UserProfile from "./Components/UserProfil/UserProfile";
+import UserUpdateProfile from "./Components/UserProfil/UserUpdateProfile";
 
 function App() {
     return (
@@ -28,6 +29,10 @@ function App() {
                 <PrivateRoute
                     path="/editprofile/:id"
                     component={UserEditProfil}
+                />
+                <PrivateRoute
+                    path="/updateprofile/:id"
+                    component={UserUpdateProfile}
                 />
                 <PrivateRoute path="/profile/:id" component={UserProfile} />
             </Switch>

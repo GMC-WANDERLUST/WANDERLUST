@@ -85,6 +85,7 @@ exports.login = async (req, res) => {
         status: 200,
         token: token,
         id: user._id,
+        isHost: user.isHost,
         check,
         msg: `WELCOME ${user.FirstName}! HAVE A NICE TIME `,
         message: `HI ${user.FirstName}! GOOD TO SEE YOU AGAIN`,

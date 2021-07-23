@@ -35,10 +35,10 @@ function ModalEditPhoto({ action, data }) {
         window.location.reload();
     }
     let id = userId();
+    let token = getToken();
 
     const [uploadFile, setUploadFile] = useState();
     const [url, setUrl] = useState("");
-    let token = getToken();
     const handelChange = (e) => {
         setUploadFile(e.target.files[0]);
     };

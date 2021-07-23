@@ -129,19 +129,31 @@ router.put("/editEmail/:id", verify, userAccess, async (req, res) => {
 });
 // SWITCH TO HOST
 router.put("/editStatus/:id", verify, userAccess, async (req, res) => {
+    let { id } = req.params;
     try {
-        let { isHost } = req.body;
-        let { id } = req.params;
-        await User.findByIdAndUpdate(id, {
-            $set: { isHost },
-        });
-        let newLoginInformation = await User.findById(id);
-        res.status(201).json({
-            message: "GREAT! ENJOY! ",
-            newLoginInformation,
-        });
+        let user = await User.findById(id);
+        if (user.isHost) {
+            await User.findByIdAndUpdate(id, {
+                $set: { isHost: false },
+            });
+            let newLoginInformation = await User.findById(id);
+            res.status(201).json({
+                message: "GREAT! ENJOY! ",
+                new: newLoginInformation,
+            });
+        } else {
+            await User.findByIdAndUpdate(id, {
+                $set: { isHost: true },
+            });
+            let newLoginInformation = await User.findById(id);
+            res.status(201).json({
+                message: "Your are a Host now! ENJOY! ",
+                new: newLoginInformation,
+            });
+        }
     } catch (err) {
         res.status(500).json(err);
     }
 });
+
 module.exports = router;
