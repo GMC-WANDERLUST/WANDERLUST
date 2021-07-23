@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import userReducer from "./user";
-import checkExistedUser from "./checkExistedUser";
+import modalReducer from "./modalReducer";
 
-const rootReducer = combineReducers({ userReducer, checkExistedUser });
+const rootReducer = combineReducers({ userReducer, modalReducer });
 
 export default rootReducer;
