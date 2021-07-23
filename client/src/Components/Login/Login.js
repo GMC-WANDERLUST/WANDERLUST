@@ -8,6 +8,7 @@ import NavBarExt from "../NavBar/NavBarExt";
 import Swal from "sweetalert2";
 
 function Login() {
+    // eslint-disable-next-line
     const [user, setUser] = useState({});
     const handleChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value });
@@ -20,15 +21,25 @@ function Login() {
             .then((response) => {
                 saveId(response.data.id);
                 login(response.data.token);
-                Swal.fire({
-                    title: response.data.message.toUpperCase(),
-                    icon: "success",
-                    confirmButtonText: "Let's Go!",
-                    onBeforeOpen: () => {
-                        Swal.showLoading();
-                    },
-                });
-                history.push(`/editProfile/${response.data.id}`);
+                {
+                    response.data.check
+                        ? Swal.fire({
+                              title: response.data.message.toUpperCase(),
+                              icon: "success",
+                              confirmButtonText: "Let's Go!",
+                          })
+                        : Swal.fire({
+                              title: response.data.msg,
+                              icon: "success",
+                              confirmButtonText: "Let's Go!",
+                          });
+                }
+
+                {
+                    response.data.check
+                        ? history.push(`/profile/${response.data.id}`)
+                        : history.push(`/editProfile/${response.data.id}`);
+                }
             })
             .catch((error) =>
                 Swal.fire({ title: error.response.data.message, icon: "error" })
