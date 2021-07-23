@@ -1,3 +1,4 @@
 module.exports={
-getUserServices:require('./getUsers.service')
+getUserServices:require('./getUsers.service'),
+addAdminServices:require('./addAdmin.service')
 }

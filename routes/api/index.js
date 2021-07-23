@@ -10,6 +10,7 @@ router.get(
     "/UserInfos/:id", verify, userAccess,
     controllers.userControllers.read.ReadUser
 );
+//Add User info
 router.post(
     "/addUserInfos/:id",
     verify,
