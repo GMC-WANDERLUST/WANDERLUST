@@ -3,7 +3,10 @@ import Modal from "react-modal";
 import axios from "axios";
 import { userId, getToken } from "../../utils";
 import { useSelector } from "react-redux";
-import { close, openModal } from "../../redux/actions/userActions";
+import {
+    openEmailModal,
+    closeEmailModal,
+} from "../../redux/actions/userActions";
 import { useDispatch } from "react-redux";
 import { logout } from "../../utils";
 import { useHistory } from "react-router";
@@ -23,15 +26,14 @@ const customStyles = {
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement("#root");
 
-function ModalEditPassword({ open }) {
+function ModalEditEmail({ open }) {
     ///////////////////////////////////////////////////////////////////////////////////
     // DECLARATIONS
     let id = userId();
     let token = getToken();
     let subtitle;
     const [newData, setNewData] = useState("");
-    const [show, setShow] = useState(false);
-    const test = useSelector((state) => state.modalReducer.test);
+    const testEmail = useSelector((state) => state.modalEmailReducer.testEmail);
     const dispatch = useDispatch();
     const history = useHistory();
     ///////////////////////////////////////////////////////////////////////////////////
@@ -41,7 +43,7 @@ function ModalEditPassword({ open }) {
         // subtitle.style.color = "#f00";
     }
     function handleclose() {
-        dispatch(close());
+        dispatch(closeEmailModal());
     }
     const handleChange = (e) => {
         setNewData({ ...newData, [e.target.name]: e.target.value });
@@ -51,7 +53,7 @@ function ModalEditPassword({ open }) {
     // SAVE CHANGES
     const saveNewData = () => {
         // axios
-        //     .put(`/api/user/editPassword/${id}`, newData, {
+        //     .put(`/api/user/editEmail/${id}`, newData, {
         //         headers: {
         //             jwt: token,
         //         },
@@ -61,9 +63,9 @@ function ModalEditPassword({ open }) {
         //         //     title: response.data.data.message,
         //         //     icon: "error",
         //         // });
-        //         console.log(response);
+        //         console.log(response.data.message);
         //     })
-        //     .catch((err) => console.log(err.response.data.message));
+        //     .catch((err) => console.dir(err.response.data.message));
         Swal.fire({
             title: "Do you want to save the changes?",
             showDenyButton: true,
@@ -74,7 +76,7 @@ function ModalEditPassword({ open }) {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
                 axios
-                    .put(`/api/user/editPassword/${id}`, newData, {
+                    .put(`/api/user/editEmail/${id}`, newData, {
                         headers: {
                             jwt: token,
                         },
@@ -84,7 +86,7 @@ function ModalEditPassword({ open }) {
                             title: response.data.message,
                             icon: "success",
                         });
-                        dispatch(close());
+                        dispatch(closeEmailModal());
                         logout();
                         history.push("/login");
                     })
@@ -92,14 +94,11 @@ function ModalEditPassword({ open }) {
                         Swal.fire(error.response.data.message, "", "error")
                     );
                 // Swal.fire("Saved!", "", "success");
-                dispatch(openModal());
+                dispatch(openEmailModal());
             } else if (result.isDenied) {
                 Swal.fire("Changes are not saved", "", "info");
             }
         });
-    };
-    const showPasswords = () => {
-        setShow(!show);
     };
     // window.onload = (e) => {
     //     const myInput = document.getElementById("myInput");
@@ -110,7 +109,7 @@ function ModalEditPassword({ open }) {
     return (
         <div>
             <Modal
-                isOpen={test}
+                isOpen={testEmail}
                 onAfterOpen={afterOpenModal}
                 onRequestClose={handleclose}
                 style={customStyles}
@@ -119,27 +118,11 @@ function ModalEditPassword({ open }) {
                 {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>EDIT</h2> */}
                 <button onClick={handleclose}>Close</button>
                 <form>
-                    <input type="button" value="Show" onClick={showPasswords} />
                     <input
-                        type={show ? "text" : "password"}
-                        autoComplete="password"
-                        name="oldPassword"
+                        type="text"
+                        name="email"
                         id="myInput"
-                        placeholder="Old Password"
-                        onChange={handleChange}
-                    />
-                    <input
-                        type={show ? "text" : "password"}
-                        name="newpassword"
-                        autoComplete="newpassword"
-                        placeholder="New Password"
-                        onChange={handleChange}
-                    />
-                    <input
-                        type={show ? "text" : "password"}
-                        name="repeat_newpassword"
-                        autoComplete="repeat_newpassword"
-                        placeholder="New Password"
+                        placeholder="New Email"
                         onChange={handleChange}
                     />
                     <button type="button" onClick={saveNewData}>
@@ -151,4 +134,4 @@ function ModalEditPassword({ open }) {
     );
 }
 
-export default ModalEditPassword;
+export default ModalEditEmail;

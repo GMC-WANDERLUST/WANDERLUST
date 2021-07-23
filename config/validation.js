@@ -59,6 +59,19 @@ const NewPasswordValidation = (data) => {
     // console.log("result", result);
     return result;
 };
+const NewEmailValidation = (data) => {
+    const schema = Joi.object({
+        email: Joi.string().min(6).required().email().messages({
+            "string.empty": "email cannot be an empty field",
+            "string.email": "email must be a valid email",
+            "any.required": "email is a required field",
+        }),
+    });
+    const result = schema.validate(data);
+    // console.log("result", result);
+    return result;
+};
 
 module.exports.RegisterValidation = RegisterValidation;
 module.exports.NewPasswordValidation = NewPasswordValidation;
+module.exports.NewEmailValidation = NewEmailValidation;
