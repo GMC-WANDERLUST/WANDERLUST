@@ -5,7 +5,6 @@ module.exports = {
         let { id } = req.params;
         try {
             const usersInfos = await UserInfos.findOne({ user: id });
-            console.log(usersInfos);
             res.status(200).json({
                 status: true,
                 message: "users",

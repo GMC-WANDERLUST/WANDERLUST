@@ -11,7 +11,7 @@ const userReducer = (state = initialState, action) => {
         case GET_USER_PROFILE:
             return {
                 ...state,
-                user: payload.data,
+                user: payload,
             };
         default:
             return state;

@@ -1,11 +1,16 @@
 const services = require("../../services");
+const UserInfos = require("../../model/UserInfos");
+const User = require('../../model/User')
+
 module.exports = {
     async UpdateUser(req, res) {
         try {
-            let  body  = req.body;
+            let body = req.body;
             let { id } = req.params;
-            const updatedUser =
-                await services.userService.updateUser.UpdateUser(body, id);
+            // let userData = await User.findById(id);
+            // console.log(userData);
+            await services.userService.updateUser.UpdateUser(body, userData, id);
+            let updatedUser = await UserInfos.findOne({ user: id });
             res.status(206);
             res.json({
                 status: true,

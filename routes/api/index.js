@@ -7,7 +7,7 @@ const userAccess = require("../../middlewares/verifyUserAccess");
 // Manage USER Profil
 // router.get("/UserInfos", controllers.userControllers.read.ReadUser);
 router.get(
-    "/UserInfos/:id", verify,
+    "/UserInfos/:id", verify, userAccess,
     controllers.userControllers.read.ReadUser
 );
 //Add User info

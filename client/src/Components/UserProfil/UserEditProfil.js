@@ -5,9 +5,6 @@ import { userId, getToken } from "../../utils";
 import "./UserEditProfile.css";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
-// import { useDispatch, useSelector } from "react-redux";
-// import { getUserInfos } from "../../redux/actions/userActions";
-
 function UserEditProfil({ match }) {
     // eslint-disable-next-line
     const history = useHistory();
@@ -36,10 +33,6 @@ function UserEditProfil({ match }) {
             })
             .catch((error) => console.dir(error));
     };
-    // useEffect(() => {
-    //     dispatch(getUserInfos({ id }));
-    //     // eslint-disable-next-line
-    // }, []);
 
     return (
         // eslint-disable-next-line
@@ -88,10 +81,10 @@ function UserEditProfil({ match }) {
                             maxLength="100"
                         />
                     </li>
-            
+
                     <li>
                         <label>About Me</label>
-                        <textarea name="text" name="AboutMe"></textarea>
+                        <textarea type="text" name="AboutMe"></textarea>
                     </li>
                     <li>
                         <input
