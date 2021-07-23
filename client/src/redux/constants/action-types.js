@@ -1,3 +1,5 @@
 export const GET_USER_PROFILE = "GET_USER_PROFILE";
 export const CLOSE_MODAL = "CLOSE_MODAL";
 export const OPEN_MODAL = "OPEN_MODAL";
+export const OPEN_EMAIL_MODAL = "OPEN_EMAIL_MODAL";
+export const CLOSE_EMAIL_MODAL = "CLOSE_EMAIL_MODAL";

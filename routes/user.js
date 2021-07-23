@@ -5,7 +5,10 @@ const UserInfos = require("../model/UserInfos");
 const verify = require("../middlewares/verifyToken");
 const userAccess = require("../middlewares/verifyUserAccess");
 const bcrypt = require("bcryptjs");
-const { NewPasswordValidation } = require("../config/validation");
+const {
+    NewPasswordValidation,
+    NewEmailValidation,
+} = require("../config/validation");
 
 // REGISTER
 router.post("/register", register);
@@ -105,9 +108,13 @@ router.put("/editPassword/:id", verify, userAccess, async (req, res) => {
 // EDIT LOGIN EMAIL
 
 router.put("/editEmail/:id", verify, userAccess, async (req, res) => {
+    let { email } = req.body;
+    let { id } = req.params;
+    const { error } = NewEmailValidation(req.body);
+    if (error) {
+        return res.status(400).json({ message: error.details[0].message });
+    }
     try {
-        let { email } = req.body;
-        let { id } = req.params;
         await User.findByIdAndUpdate(id, {
             $set: { email },
         });
