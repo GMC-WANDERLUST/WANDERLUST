@@ -3,7 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import "./Login.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { login, saveId } from "../../utils";
+import { login, saveId, saveIsHost } from "../../utils";
 import NavBarExt from "../NavBar/NavBarExt";
 import Swal from "sweetalert2";
 
@@ -22,6 +22,7 @@ function Login() {
                 console.log(response);
                 saveId(response.data.id);
                 login(response.data.token);
+                saveIsHost(response.data.isHost);
                 {
                     response.data.check
                         ? Swal.fire({

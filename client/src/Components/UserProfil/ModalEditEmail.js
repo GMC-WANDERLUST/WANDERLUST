@@ -52,20 +52,6 @@ function ModalEditEmail({ open }) {
     ///////////////////////////////////////////////////////////////////////////////////
     // SAVE CHANGES
     const saveNewData = () => {
-        // axios
-        //     .put(`/api/user/editEmail/${id}`, newData, {
-        //         headers: {
-        //             jwt: token,
-        //         },
-        //     })
-        //     .then((response) => {
-        //         // Swal.fire({
-        //         //     title: response.data.data.message,
-        //         //     icon: "error",
-        //         // });
-        //         console.log(response.data.message);
-        //     })
-        //     .catch((err) => console.dir(err.response.data.message));
         Swal.fire({
             title: "Do you want to save the changes?",
             showDenyButton: true,

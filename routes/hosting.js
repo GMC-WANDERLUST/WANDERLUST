@@ -3,39 +3,32 @@ const Hosting = require("../model/Hosting");
 const User = require("../model/User");
 const UserInfos = require("../model/UserInfos");
 const verify = require("../middlewares/verifyToken");
+const HostAccess = require("../middlewares/HostAccess");
 
 // ADDING NEW HOSTING AS A HOST
 router.post("/newHosting/:id", verify, async (req, res) => {
-    let { nbreOfRooms, nbreOfBeds, price, description } = req.body;
-    let { id } = req.params;
     try {
-        let host = req.user;
-        // console.log(host.user.isHost);
-        if (host.user.isHost) {
-            const user = await User.findById(id);
-            const userinfos = await UserInfos.findOne({ user: id });
-            const hosting = new Hosting({
-                host: user._id,
-                firstName: user.FirstName,
-                lastName: user.LastName,
-                residence: userinfos.Country,
-                languages: userinfos.Languages,
-                nbreOfRooms,
-                nbreOfBeds,
-                price,
-                description,
-            });
-            const newHosting = await hosting.save();
-            res.status(201).json({
-                message: "Hosting Post was added successfully",
-                newHosting,
-            });
-        } else {
-            res.status(401).json({
-                status: false,
-                message: "You should be a Host",
-            });
-        }
+        let { nbreOfRooms, nbreOfBeds, price, description } = req.body;
+        let { id } = req.params;
+        const user = await User.findById(id);
+        const userinfos = await UserInfos.findOne({ user: id });
+        const hosting = new Hosting({
+            host: user._id,
+            firstName: user.FirstName,
+            lastName: user.LastName,
+            residence: userinfos.Country,
+            languages: userinfos.Languages,
+            nbreOfRooms,
+            nbreOfBeds,
+            price,
+            description,
+        });
+
+        const newHosting = await hosting.save();
+        res.status(201).json({
+            message: "Hosting Post was added successfully",
+            newHosting,
+        });
     } catch (err) {
         res.status(500).send(err);
         console.log(err);
@@ -43,25 +36,17 @@ router.post("/newHosting/:id", verify, async (req, res) => {
 });
 
 // UPDATING HOSTING
-router.put("/editHosting/:id", verify, async (req, res) => {
+router.put("/editHosting/:id", verify, HostAccess, async (req, res) => {
     let body = req.body;
     let { id } = req.params;
     try {
-        let host = req.user;
-        if (host.user.isHost) {
-            let editedHosting = await Hosting.findByIdAndUpdate(id, {
-                $set: { ...body },
-            });
-            res.status(201).json({
-                message: "Hosting offer was updated successfully",
-                editedHosting,
-            });
-        } else {
-            res.status(401).json({
-                status: false,
-                message: "You should be a Host",
-            });
-        }
+        let editedHosting = await Hosting.findByIdAndUpdate(id, {
+            $set: { ...body },
+        });
+        res.status(201).json({
+            message: "Hosting offer was updated successfully",
+            editedHosting,
+        });
     } catch (err) {
         res.status(500).send('Cant" \'t " find the Hosting offer ', err);
     }
@@ -99,22 +84,16 @@ router.get("/allHosting/:residence", verify, async (req, res) => {
     }
 });
 // DELETE HOSTING
-router.delete("/deleteHosting/:id", verify, async (req, res) => {
+router.delete("/deleteHosting/:id", verify, HostAccess, async (req, res) => {
     let { id } = req.params;
     try {
         let host = req.user;
-        if (host.user.isHost) {
-            let deletedHosting = await Hosting.findByIdAndRemove(id);
-            res.status(201).json({
-                message: "Hosting Post was deleted successfully",
-                deletedHosting,
-            });
-        } else {
-            res.status(401).json({
-                status: false,
-                message: "You should be a Host",
-            });
-        }
+
+        let deletedHosting = await Hosting.findByIdAndRemove(id);
+        res.status(201).json({
+            message: "Hosting Post was deleted successfully",
+            deletedHosting,
+        });
     } catch (err) {
         res.send(500).send(err);
         console.log(err);

@@ -55,7 +55,7 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
     let { email, password } = req.body;
 
-    // Checking in the email exists
+    // Checking if the email exists
     const user = await User.findOne({ email });
     if (!user)
         return res.status(400).json({
@@ -71,9 +71,13 @@ exports.login = async (req, res) => {
 
     // Create and assign a token
 
-    const token = jwt.sign({ user }, process.env.TOKEN_SECRET, {
-        expiresIn: "1d",
-    });
+    const token = jwt.sign(
+        { id: user._id, email: user.email, password: user.password },
+        process.env.TOKEN_SECRET,
+        {
+            expiresIn: "1d",
+        }
+    );
     let id = user._id;
     let registeredUser = await UserInfos.findOne({ user: id });
     let check;
