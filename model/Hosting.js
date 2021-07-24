@@ -21,15 +21,15 @@ const hostingSchema = new mongoose.Schema({
         required : true,
     },
     nbreOfRooms: {
-        type: "number",
+        type: "string",
         required: true,
     },
     nbreOfBeds: {
-        type: "number",
+        type: "string",
         required: true,
     },
     price: {
-        type: "number",
+        type: "string",
         required: true,
     },
     description: {

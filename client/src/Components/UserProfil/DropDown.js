@@ -2,16 +2,22 @@ import React, { useState } from "react";
 import { Dropdown, Button, ButtonGroup } from "react-bootstrap";
 import ModalEditPassword from "./ModalEditPassword";
 import ModalEditEmail from "./ModalEditEmail";
+import ModalAddHosting from "./ModalAddHosting";
 import { useDispatch } from "react-redux";
-import { openModal, openEmailModal } from "../../redux/actions/userActions";
-import { userId, getToken } from "../../utils";
+import {
+    openModal,
+    openEmailModal,
+    openHostingModal,
+} from "../../redux/actions/userActions";
+import { userId, getToken, getIsHost, saveIsHost } from "../../utils";
 import axios from "axios";
 import Swal from "sweetalert2";
 
 function DropDown() {
     let id = userId();
     let token = getToken();
-    const [host, setHost] = useState()
+    let isHost = getIsHost();
+    console.log(typeof isHost);
     const dispatch = useDispatch();
     const handleopenModal = () => {
         dispatch(openModal());
@@ -19,59 +25,62 @@ function DropDown() {
     const handleopenEmailModal = () => {
         dispatch(openEmailModal());
     };
-    const acceptGests = () => {
-        // axios
-        //     .put(
-        //         `/api/user/editStatus/${id}`,
-        //         {},
-        //         {
-        //             headers: {
-        //                 jwt: token,
-        //             },
-        //         }
-        //     )
-        //     .then((response) => {
-        //         console.log(response);
-        //     })
-        //     .catch((error) => console.dir(error));
-        Swal.fire({
-            title: host ?  "Stop accepting Guests? ":" You want to start Hosting!",
-            text: "Are you sure?",
-            icon: "info",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, CONTINUE!",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                axios
-                    .put(
-                        `/api/user/editStatus/${id}`,
-                        {},
-                        {
-                            headers: {
-                                jwt: token,
-                            },
+    const openHosting = () => {
+        dispatch(openHostingModal());
+    };
+   
+
+    const acceptGuests = () => {
+        if (isHost == "true") {
+            axios
+                .put(
+                    `/api/user/editStatus/${id}`,
+                    {},
+                    {
+                        headers: {
+                            jwt: token,
+                        },
+                    }
+                )
+                .then((response) => {
+                    console.log(response);
+                    saveIsHost(false);
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "You won't to stop accepting guests!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, Continue!",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                           Swal.fire({
+                               title: `${response.data.message}`,
+                               showDenyButton: false,
+                               showCancelButton: false,
+                               confirmButtonText: `Ok`,
+                               icon: "success",
+                           }).then((result) => {
+                               if (result.isConfirmed) {
+                                   window.location.reload();
+                               }
+                           });
                         }
-                    )
-                    .then((response) => {
-                        console.log(response)
-                        Swal.fire({
-                            title: response.data.message,
-                            icon: "success",
-                        });
-                        setHost(response.data.new.isHost)
-                    })
-                    .catch((error) =>
-                        Swal.fire(error.response.data.message, "error")
-                    );
-            }
-        });
+                    });
+                })
+                .catch((error) => {
+                     Swal.fire(error.data.data.message, "", "error");
+                });
+        } else {
+            openHosting();
+        }
     };
     return (
         <React.Fragment>
             <ModalEditPassword />
             <ModalEditEmail />
+            <ModalAddHosting />
             <Dropdown as={ButtonGroup}>
                 <Button variant="success">Profile Settings</Button>
                 <Dropdown.Toggle
@@ -96,8 +105,10 @@ function DropDown() {
                     >
                         Change Email
                     </Dropdown.Item>
-                    <Dropdown.Item href="#/action-3" onClick={acceptGests}>
-                        Accept Guests
+                    <Dropdown.Item href="#/action-3" onClick={acceptGuests}>
+                        {isHost == "true"
+                            ? "Stop Accepting Guests"
+                            : "Accept Guests"}
                     </Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>

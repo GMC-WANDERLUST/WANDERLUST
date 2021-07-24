@@ -25,3 +25,9 @@ export function savePhotoUrl(url) {
 export function getPhotoUrl() {
     return localStorage.getItem("photoUrl");
 }
+export function saveIsHost(data) {
+    localStorage.setItem("isHost", data);
+}
+export function getIsHost() {
+    return localStorage.getItem("isHost");
+}

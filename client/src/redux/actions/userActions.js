@@ -4,6 +4,8 @@ import {
     OPEN_MODAL,
     OPEN_EMAIL_MODAL,
     CLOSE_EMAIL_MODAL,
+    OPEN_HOSTING_MODAL,
+    CLOSE_HOSTING_MODAL,
 } from "../constants/action-types";
 import axios from "axios";
 // import Swal from "sweetalert2";
@@ -39,6 +41,16 @@ export function openEmailModal() {
 export function closeEmailModal() {
     return {
         type: CLOSE_EMAIL_MODAL,
+    };
+}
+export function openHostingModal() {
+    return {
+        type: OPEN_HOSTING_MODAL,
+    };
+}
+export function closeHostingModal() {
+    return {
+        type: CLOSE_HOSTING_MODAL,
     };
 }
 // export const createUser = (payload) => (dispatch) => {
