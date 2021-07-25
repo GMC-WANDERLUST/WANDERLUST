@@ -2,6 +2,8 @@ const router = require("express").Router();
 const { register, login } = require("../middlewares/auth");
 const User = require("../model/User");
 const UserInfos = require("../model/UserInfos");
+const Posts = require("../model/Posts");
+const Host = require("../model/Hosting");
 const verify = require("../middlewares/verifyToken");
 const userAccess = require("../middlewares/verifyUserAccess");
 const bcrypt = require("bcryptjs");
@@ -23,12 +25,28 @@ router.put("/editUserFirstName/:id", verify, userAccess, async (req, res) => {
         await User.findByIdAndUpdate(id, {
             $set: { FirstName },
         });
-        let newFNameAndLName = await User.findById(id);
+        let newFName = await User.findById(id);
         await UserInfos.findOneAndUpdate(
             { user: id },
             {
                 $set: {
-                    FirstName: newFNameAndLName.FirstName,
+                    FirstName: newFName.FirstName,
+                },
+            }
+        );
+        await Posts.updateMany(
+            { user: id },
+            {
+                $set: {
+                    firstName: newFName.FirstName,
+                },
+            }
+        );
+        await Host.updateMany(
+            { host: id },
+            {
+                $set: {
+                    firstName: newFName.FirstName,
                 },
             }
         );
@@ -48,12 +66,28 @@ router.put("/editUserLastName/:id", verify, userAccess, async (req, res) => {
         await User.findByIdAndUpdate(id, {
             $set: { LastName },
         });
-        let newFNameAndLName = await User.findById(id);
+        let newLName = await User.findById(id);
         await UserInfos.findOneAndUpdate(
             { user: id },
             {
                 $set: {
-                    LastName: newFNameAndLName.LastName,
+                    LastName: newLName.LastName,
+                },
+            }
+        );
+        await Posts.updateMany(
+            { user: id },
+            {
+                $set: {
+                    lastName: newLName.LastName,
+                },
+            }
+        );
+        await Host.updateMany(
+            { host: id },
+            {
+                $set: {
+                    lastName: newLName.LastName,
                 },
             }
         );
@@ -68,38 +102,40 @@ router.put("/editUserLastName/:id", verify, userAccess, async (req, res) => {
 // EDIT LOGIN PASSWORD
 router.put("/editPassword/:id", verify, userAccess, async (req, res) => {
     try {
-        let { oldPassword, newpassword } = req.body;
+        let { oldPassword, newpassword, repeat_newpassword } = req.body;
+
         let { id } = req.params;
-
         let user = await User.findById(id);
-
         const validPassword = await bcrypt.compare(oldPassword, user.password);
         const { error } = NewPasswordValidation(req.body);
+
         if (!validPassword) {
             res.status(401).json({
                 status: false,
-                message: "Please enter your Password again",
-            });
-        } else if (error) {
-            return res.status(400).json({ message: error.details[0].message });
-        } else {
-            //  hash the new password
-            const salt = await bcrypt.genSalt(10);
-            const newHashedPassword = await bcrypt.hash(newpassword, salt);
-
-            await User.findByIdAndUpdate(id, {
-                $set: { password: newHashedPassword },
-            });
-
-            let userUpdated = await User.findOne({
-                password: newHashedPassword,
-            });
-            res.status(201).json({
-                status: true,
-                message: "Password was updated successfully",
-                userUpdated,
+                message: "Passwords are not the same",
             });
         }
+        if (error) {
+            console.log("error", error.details[0].message);
+            return res.status(400).json({ message: error.details[0].message });
+        }
+
+        //  hash the new password
+        const salt = await bcrypt.genSalt(10);
+        const newHashedPassword = await bcrypt.hash(newpassword, salt);
+
+        await User.findByIdAndUpdate(id, {
+            $set: { password: newHashedPassword },
+        });
+
+        let userUpdated = await User.findOne({
+            password: newHashedPassword,
+        });
+        res.status(201).json({
+            status: true,
+            message: "Password was updated successfully",
+            userUpdated,
+        });
     } catch (err) {
         res.status(500).json(err);
     }

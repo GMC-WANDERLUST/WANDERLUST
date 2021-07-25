@@ -5,6 +5,8 @@ module.exports = async function (req, res, next) {
     try {
     let {id} = req.params;
     let user = await User.findById(id);
+    console.log("USER",User)
+    console.log(user)
     if (user.isUser) {
         // res.status(201).json({status: true, message:'Authorized'});
         next();

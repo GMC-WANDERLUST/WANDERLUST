@@ -3,6 +3,7 @@ import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { logout } from "../../utils";
 import { useHistory } from "react-router-dom";
 import { userId } from "../../utils";
+import DropDown from "../../Components/UserProfil/DropDown";
 
 function NavBar() {
     let id = userId();
@@ -17,6 +18,7 @@ function NavBar() {
                 <Navbar.Brand href="/home">Home</Navbar.Brand>
                 <Navbar.Brand href={`/profile/${id}`}>Profile</Navbar.Brand>
                 <Nav className="me-auto">
+                    <DropDown />
                     <Button
                         variant="danger"
                         type="button"

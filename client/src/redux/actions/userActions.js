@@ -4,8 +4,9 @@ import {
     OPEN_MODAL,
     OPEN_EMAIL_MODAL,
     CLOSE_EMAIL_MODAL,
-    OPEN_HOSTING_MODAL,
-    CLOSE_HOSTING_MODAL,
+    CLOSE_ADD_POST,
+    ADD_POST,
+    GET_USER_POSTS,
 } from "../constants/action-types";
 import axios from "axios";
 // import Swal from "sweetalert2";
@@ -20,6 +21,20 @@ export const getUserProfile = (payload) => (dispatch) => {
         })
         .then((response) => {
             dispatch({ type: GET_USER_PROFILE, payload: response.data.data });
+        })
+        .catch((err) => console.dir(err));
+};
+export const getUserPosts = (payload) => (dispatch) => {
+    axios
+        .get(`/api/posts/myPosts/${payload.id}`, {
+            headers: {
+                // "Content-Type": "multipart/form-data",
+                jwt: payload.token,
+            },
+        })
+        .then((response) => {
+            console.log(response)
+            dispatch({ type: GET_USER_POSTS, payload: response.data.data });
         })
         .catch((err) => console.dir(err));
 };
@@ -43,14 +58,15 @@ export function closeEmailModal() {
         type: CLOSE_EMAIL_MODAL,
     };
 }
-export function openHostingModal() {
+
+export function addPost() {
     return {
-        type: OPEN_HOSTING_MODAL,
+        type: ADD_POST,
     };
 }
-export function closeHostingModal() {
+export function closeAddPost() {
     return {
-        type: CLOSE_HOSTING_MODAL,
+        type: CLOSE_ADD_POST,
     };
 }
 // export const createUser = (payload) => (dispatch) => {

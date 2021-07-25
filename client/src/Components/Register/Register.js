@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { Button } from "react-bootstrap";
 import "./Register.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import NavBarExt from "../NavBar/NavBarExt";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 // import { createUser } from "../../redux/actions/userActions";
 // import { useDispatch } from "react-redux";
 // import { userId } from "../../utils";
@@ -36,9 +38,6 @@ function Register() {
             );
         // setnewUserId(userId());
         // dispatch(createUser({ newUserId,  }));
-    };
-    const handleAlert = () => {
-        Swal.showLoading(Swal.getDenyButton());
     };
 
     return (
@@ -126,13 +125,15 @@ function Register() {
                     onChange={handelChange}
                 />
                 <br />
-
                 <button type="button" onClick={handleRegister}>
                     Register
                 </button>
-                <button type="button" onClick={handleAlert}>
-                    Alert
-                </button>
+                <p>Or you can login</p>
+                <Link to="/login" target="_blank">
+                    <Button variant="secondary" type="button">
+                        Log in
+                    </Button>
+                </Link>
             </form>
         </div>
     );

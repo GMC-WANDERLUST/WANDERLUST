@@ -1,6 +1,8 @@
 const services = require("../../services");
 const UserInfos = require("../../model/UserInfos");
-const User = require('../../model/User')
+const User = require("../../model/User");
+const Post = require("../../model/Posts");
+const Host = require("../../model/Hosting");
 
 module.exports = {
     async UpdateUser(req, res) {
@@ -9,7 +11,12 @@ module.exports = {
             let { id } = req.params;
             // let userData = await User.findById(id);
             // console.log(userData);
-            await services.userService.updateUser.UpdateUser(body, id);
+            await UserInfos.findOneAndUpdate(
+                { user: id },
+                { $set: { ...body } }
+            );
+            await Post.updateMany({ user: id }, { $set: { ...body } });
+            await Host.updateMany({ user: id }, { $set: { ...body } });
             let updatedUser = await UserInfos.findOne({ user: id });
             res.status(206);
             res.json({

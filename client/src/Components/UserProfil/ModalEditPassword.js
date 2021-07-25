@@ -38,7 +38,7 @@ function ModalEditPassword({ open }) {
     // FUNCTIONS
     function afterOpenModal() {
         // references are now sync'd and can be accessed.
-        // subtitle.style.color = "#f00";
+        subtitle.style.color = "#f00";
     }
     function handleclose() {
         dispatch(close());
@@ -50,20 +50,6 @@ function ModalEditPassword({ open }) {
     ///////////////////////////////////////////////////////////////////////////////////
     // SAVE CHANGES
     const saveNewData = () => {
-        // axios
-        //     .put(`/api/user/editPassword/${id}`, newData, {
-        //         headers: {
-        //             jwt: token,
-        //         },
-        //     })
-        //     .then((response) => {
-        //         // Swal.fire({
-        //         //     title: response.data.data.message,
-        //         //     icon: "error",
-        //         // });
-        //         console.log(response);
-        //     })
-        //     .catch((err) => console.log(err.response.data.message));
         Swal.fire({
             title: "Do you want to save the changes?",
             showDenyButton: true,
@@ -116,7 +102,9 @@ function ModalEditPassword({ open }) {
                 style={customStyles}
                 contentLabel="Example Modal"
             >
-                {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>EDIT</h2> */}
+                <h2 ref={(_subtitle) => (subtitle = _subtitle)}>
+                    EDIT PASSWORD
+                </h2>
                 <button onClick={handleclose}>Close</button>
                 <form>
                     <input type="button" value="Show" onClick={showPasswords} />

@@ -6,9 +6,8 @@ import { useSelector } from "react-redux";
 import {
     openHostingModal,
     closeHostingModal,
-} from "../../redux/actions/userActions";
+} from "../../redux/actions/hostActions";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
 import Swal from "sweetalert2";
 
 const customStyles = {
@@ -36,7 +35,6 @@ function ModalAddHosting({ open }) {
         (state) => state.addHostingReducer.openHosting
     );
     const dispatch = useDispatch();
-    const history = useHistory();
     ///////////////////////////////////////////////////////////////////////////////////
     // FUNCTIONS
     function afterOpenModal() {
@@ -90,7 +88,7 @@ function ModalAddHosting({ open }) {
                                     if (result.isConfirmed) {
                                         window.location.reload();
                                     }
-                                })
+                                });
                             })
                             .catch((error) => console.dir(error));
                     } else if (result.isDenied) {
@@ -121,7 +119,9 @@ function ModalAddHosting({ open }) {
                 style={customStyles}
                 contentLabel="Example Modal"
             >
-                <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Add a new HOSTING post</h2>
+                <h2 ref={(_subtitle) => (subtitle = _subtitle)}>
+                    Add a new HOSTING post
+                </h2>
                 <button onClick={handleclose}>Close</button>
                 <form>
                     <input
