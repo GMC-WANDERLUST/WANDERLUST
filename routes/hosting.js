@@ -16,6 +16,7 @@ router.post("/newHosting/:id", verify, async (req, res) => {
             host: user._id,
             firstName: user.FirstName,
             lastName: user.LastName,
+            img: userinfos.photo,
             residence: userinfos.Country,
             languages: userinfos.Languages,
             nbreOfRooms,

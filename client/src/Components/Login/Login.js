@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./Login.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
@@ -48,6 +49,7 @@ function Login() {
             );
         //
     };
+
     return (
         <div>
             <NavBarExt />
@@ -62,7 +64,6 @@ function Login() {
                             onChange={handleChange}
                         />
                     </Form.Group>
-
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
                         <Form.Control
@@ -80,6 +81,11 @@ function Login() {
                     >
                         Login
                     </Button>
+                    <Link to="/register" >
+                        <Button variant="secondary" type="button">
+                            Sign up
+                        </Button>
+                    </Link>
                 </Form>
             </div>
         </div>

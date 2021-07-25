@@ -41,17 +41,17 @@ const userInfosSchema = new Schema(
         },
         Country: {
             type: "string",
-            required: true
+            required: true,
         },
         PhoneNumber: {
             type: "string",
         },
         Languages: ["string"],
-        Education: ["string"],
+        Education: "string",
         Occupation: "string",
-        Hobbies: ["string"],
+        Hobbies: "string",
         AboutMe: "string",
-        CountriesIvisited: ["string"],
+        CountriesIvisited: "string",
         date: {
             type: Date,
             dafault: Date.now,

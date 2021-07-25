@@ -1,20 +1,32 @@
 const router = require("express").Router();
 const verify = require("../middlewares/verifyToken");
 const User = require("../model/User");
+const UserInfos = require("../model/UserInfos");
 const Posts = require("../model/Posts");
 const verifyUserAccess = require("../middlewares/verifyUserAccess");
 // ADD NEW POST
 router.post("/addnewpost/:id", verify, verifyUserAccess, async (req, res) => {
-    let { destination, check_in, check_out, nbreOfGuests, description } =
-        req.body;
-    let { id } = req.params;
     try {
+        let {
+            destination,
+            city,
+            check_in,
+            check_out,
+            nbreOfGuests,
+            description,
+        } = req.body;
+        let { id } = req.params;
         const user = await User.findById(id);
+        const userInfos = await UserInfos.findOne({ user: id });
+        console.log("user infos :", userInfos);
         const newPost = new Posts({
             user: user.id,
             firstName: user.FirstName,
             lastName: user.LastName,
+            img: userInfos.photo,
+            languages: userInfos.Languages,
             destination,
+            city,
             check_in,
             check_out,
             nbreOfGuests,
@@ -22,7 +34,7 @@ router.post("/addnewpost/:id", verify, verifyUserAccess, async (req, res) => {
         });
         const post = await newPost.save();
         res.status(201).json({
-            message: "post was added successfully",
+            message: "YOUR POST WAS ADDED SUCCESSFULLY",
             post,
         });
     } catch (err) {
@@ -61,6 +73,22 @@ router.get("/allPosts", verify, verifyUserAccess, async (req, res) => {
     }
 });
 
+// SHOW POST BY ID
+
+router.get("/myPosts/:id", verify, verifyUserAccess, async (req, res) => {
+    try {
+        let { id } = req.params;
+        const postsList = await Posts.find({ user: id });
+        res.status(201).json({
+            status: true,
+            message: "Your Post list",
+            data: postsList,
+        });
+    } catch (err) {
+        res.status(500).send(err);
+        console.log(err);
+    }
+});
 // SHOW POST BY DESTINATION
 
 router.get(
@@ -82,6 +110,22 @@ router.get(
         }
     }
 );
+// SHOW POST BY CITY
+
+router.get("/allPosts/:city", verify, verifyUserAccess, async (req, res) => {
+    try {
+        let { city } = req.params;
+        const postsList = await Posts.find({ city });
+        res.status(201).json({
+            status: true,
+            message: "posts list",
+            data: postsList,
+        });
+    } catch (err) {
+        res.status(500).send(err);
+        console.log(err);
+    }
+});
 
 // DELETE POST
 router.delete("/deletePost/:id", verify, verifyUserAccess, async (req, res) => {

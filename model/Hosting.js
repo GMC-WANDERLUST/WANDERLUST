@@ -13,6 +13,9 @@ const hostingSchema = new mongoose.Schema({
         type: "string",
         required: true,
     },
+    img: {
+        type:"string"
+    },
     residence: {
         type: "string",
     },

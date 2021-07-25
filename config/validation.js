@@ -42,13 +42,18 @@ const RegisterValidation = (data) => {
     return result;
 };
 const NewPasswordValidation = (data) => {
+    console.log("data",data)
     const schema = Joi.object({
+        oldPassword: Joi.string()
+            .min(8)
+            .required()
+            .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
         newpassword: Joi.string()
             .min(8)
             .required()
             .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
         repeat_newpassword: Joi.any()
-            .equal(Joi.ref("password"))
+            .equal(Joi.ref("newpassword"))
             .required()
             .label("Confirm password")
             .options({
@@ -56,7 +61,7 @@ const NewPasswordValidation = (data) => {
             }),
     });
     const result = schema.validate(data);
-    // console.log("result", result);
+    console.log("result", result);
     return result;
 };
 const NewEmailValidation = (data) => {

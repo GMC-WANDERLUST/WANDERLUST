@@ -3,13 +3,8 @@ import Modal from "react-modal";
 import axios from "axios";
 import { userId, getToken } from "../../utils";
 import { useSelector } from "react-redux";
-import {
-    openEmailModal,
-    closeEmailModal,
-} from "../../redux/actions/userActions";
+import {  closeAddPost } from "../../redux/actions/userActions";
 import { useDispatch } from "react-redux";
-import { logout } from "../../utils";
-import { useHistory } from "react-router";
 import Swal from "sweetalert2";
 
 const customStyles = {
@@ -26,16 +21,15 @@ const customStyles = {
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement("#root");
 
-function ModalEditEmail({ open }) {
+function ModalAddPost({ open }) {
     ///////////////////////////////////////////////////////////////////////////////////
     // DECLARATIONS
     let id = userId();
     let token = getToken();
     let subtitle;
     const [newData, setNewData] = useState("");
-    const testEmail = useSelector((state) => state.modalEmailReducer.testEmail);
+    const openPost = useSelector((state) => state.postReducer.openPost);
     const dispatch = useDispatch();
-    const history = useHistory();
     ///////////////////////////////////////////////////////////////////////////////////
     // FUNCTIONS
     function afterOpenModal() {
@@ -43,7 +37,7 @@ function ModalEditEmail({ open }) {
         subtitle.style.color = "#f00";
     }
     function handleclose() {
-        dispatch(closeEmailModal());
+        dispatch(closeAddPost());
     }
     const handleChange = (e) => {
         setNewData({ ...newData, [e.target.name]: e.target.value });
@@ -61,24 +55,30 @@ function ModalEditEmail({ open }) {
         }).then((result) => {
             if (result.isConfirmed) {
                 axios
-                    .put(`/api/user/editEmail/${id}`, newData, {
+                    .post(`/api/posts/addnewpost/${id}`, newData, {
                         headers: {
                             jwt: token,
                         },
                     })
                     .then((response) => {
-                        Swal.fire({
-                            title: response.data.message,
-                            icon: "success",
-                        });
-                        dispatch(closeEmailModal());
-                        logout();
-                        history.push("/login");
+                        console.log(response)
+                         Swal.fire({
+                             title: `${response.data.message}`,
+                             showDenyButton: false,
+                             showCancelButton: false,
+                             confirmButtonText: `Ok`,
+                             icon: "success",
+                         }).then((result) => {
+                             if (result.isConfirmed) {
+                                 handleclose();
+                                 window.location.reload();
+                             }
+                         });
                     })
-                    .catch((error) =>
-                        Swal.fire(error.response.data.message, "", "error")
-                    );
-                dispatch(openEmailModal());
+                    .catch((error) => {
+                        console.dir(error);
+                        Swal.fire(error.response.data.message, "", "error");
+                    });
             } else if (result.isDenied) {
                 Swal.fire("Changes are not saved", "", "info");
             }
@@ -88,22 +88,57 @@ function ModalEditEmail({ open }) {
     return (
         <div>
             <Modal
-                isOpen={testEmail}
+                isOpen={openPost}
                 onAfterOpen={afterOpenModal}
                 onRequestClose={handleclose}
                 style={customStyles}
                 contentLabel="Example Modal"
             >
-                <h2 ref={(_subtitle) => (subtitle = _subtitle)}>EDIT EMAIL</h2>
+                <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Let's GO!</h2>
                 <button onClick={handleclose}>Close</button>
                 <form>
                     <input
                         type="text"
-                        name="email"
-                        id="myInput"
-                        placeholder="New Email"
+                        name="destination"
+                        placeholder="Destination"
                         onChange={handleChange}
                     />
+                    <br />
+                    <input
+                        type="text"
+                        name="city"
+                        placeholder="City"
+                        onChange={handleChange}
+                    />
+                    <br />
+                    <input
+                        type="date"
+                        name="check_in"
+                        placeholder="From"
+                        onChange={handleChange}
+                    />
+                    <br />
+                    <input
+                        type="date"
+                        name="check_out"
+                        placeholder="To"
+                        onChange={handleChange}
+                    />
+                    <br />
+                    <input
+                        type="text"
+                        name="nbreOfGuests"
+                        placeholder="Nombre of Guests"
+                        onChange={handleChange}
+                    />
+                    <br />
+                    <input
+                        type="text"
+                        name="description"
+                        placeholder="A brief description"
+                        onChange={handleChange}
+                    />
+                    <br />
                     <button type="button" onClick={saveNewData}>
                         Save
                     </button>
@@ -113,4 +148,4 @@ function ModalEditEmail({ open }) {
     );
 }
 
-export default ModalEditEmail;
+export default ModalAddPost;
