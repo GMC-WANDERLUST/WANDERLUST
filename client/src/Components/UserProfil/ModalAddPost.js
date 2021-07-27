@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import axios from "axios";
 import { userId, getToken } from "../../utils";
 import { useSelector } from "react-redux";
-import {  closeAddPost } from "../../redux/actions/userActions";
+import { closeAddPost } from "../../redux/actions/userActions";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 
@@ -61,19 +61,19 @@ function ModalAddPost({ open }) {
                         },
                     })
                     .then((response) => {
-                        console.log(response)
-                         Swal.fire({
-                             title: `${response.data.message}`,
-                             showDenyButton: false,
-                             showCancelButton: false,
-                             confirmButtonText: `Ok`,
-                             icon: "success",
-                         }).then((result) => {
-                             if (result.isConfirmed) {
-                                 handleclose();
-                                 window.location.reload();
-                             }
-                         });
+                        console.log("post :", response);
+                        Swal.fire({
+                            title: `${response.data.message}`,
+                            showDenyButton: false,
+                            showCancelButton: false,
+                            confirmButtonText: `Ok`,
+                            icon: "success",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                handleclose();
+                                window.location.reload();
+                            }
+                        });
                     })
                     .catch((error) => {
                         console.dir(error);

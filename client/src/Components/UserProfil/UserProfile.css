@@ -1,5 +1,12 @@
-article {
-    border: 1px black solid;
-    width: 30%;
+.postItem {
+    border: 1px red solid;
+    padding: 10px;
+    width: 80%;
+    margin: auto;
+}
+.post {
+    border: 3px black solid;
+    padding: 5px;
+    width: 50%;
     margin: auto;
 }

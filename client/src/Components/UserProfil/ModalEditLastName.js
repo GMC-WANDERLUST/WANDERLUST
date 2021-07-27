@@ -60,7 +60,12 @@ function ModalEditLastName({ action, data }) {
             >
                 <h2 ref={(_subtitle) => (subtitle = _subtitle)}>EDIT</h2>
                 <button onClick={closeModal}>close</button>
-                <input type="text" name="LastName" onChange={handleChange} />
+                <input
+                    type="text"
+                    name="LastName"
+                    defaultValue={data}
+                    onChange={handleChange}
+                />
                 <button onClick={saveNewData}>OK</button>
             </Modal>
         </div>

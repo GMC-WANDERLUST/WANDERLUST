@@ -18,7 +18,6 @@ router.post("/addnewpost/:id", verify, verifyUserAccess, async (req, res) => {
         let { id } = req.params;
         const user = await User.findById(id);
         const userInfos = await UserInfos.findOne({ user: id });
-        console.log("user infos :", userInfos);
         const newPost = new Posts({
             user: user.id,
             firstName: user.FirstName,
@@ -44,11 +43,11 @@ router.post("/addnewpost/:id", verify, verifyUserAccess, async (req, res) => {
 // UPDATE POST
 router.put("/editPost/:id", verify, verifyUserAccess, async (req, res) => {
     try {
-        let body = req.body;
-        let { id } = req.params;
-        let editedPost = await Posts.findByIdAndUpdate(id, {
-            $set: { ...body },
+        let { editPost, _id } = req.body;
+        await Posts.findByIdAndUpdate(_id, {
+            $set: { ...editPost },
         });
+        let editedPost = await Posts.findById(_id);
         res.status(201).json({
             message: "Post was updated successfully",
             editedPost,
@@ -91,25 +90,23 @@ router.get("/myPosts/:id", verify, verifyUserAccess, async (req, res) => {
 });
 // SHOW POST BY DESTINATION
 
-router.get(
-    "/allPosts/:destination",
-    verify,
-    verifyUserAccess,
-    async (req, res) => {
-        try {
-            let { destination } = req.params;
-            const postsList = await Posts.find({ destination });
-            res.status(201).json({
-                status: true,
-                message: "posts list",
-                data: postsList,
-            });
-        } catch (err) {
-            res.status(500).send(err);
-            console.log(err);
-        }
+router.get("/allPosts/:id", verify, verifyUserAccess, async (req, res) => {
+    let destinationData = req.header("data");
+    try {
+        const postsList = await Posts.find({
+            destination: destinationData,
+        });
+        // console.log(postsList)
+        res.status(201).json({
+            status: true,
+            message: "posts list",
+            data: postsList,
+        });
+    } catch (err) {
+        res.status(500).send(err);
+        console.log(err);
     }
-);
+});
 // SHOW POST BY CITY
 
 router.get("/allPosts/:city", verify, verifyUserAccess, async (req, res) => {
@@ -129,15 +126,15 @@ router.get("/allPosts/:city", verify, verifyUserAccess, async (req, res) => {
 
 // DELETE POST
 router.delete("/deletePost/:id", verify, verifyUserAccess, async (req, res) => {
-    let { id } = req.params;
     try {
-        let deletedPost = await Posts.findByIdAndRemove(id);
+        let _id = req.header("_id");
+        let deletedPost = await Posts.findByIdAndRemove(_id);
         res.status(201).json({
             message: "Post was deleted successfully",
             deletedPost,
         });
     } catch (err) {
-        res.send(500).send(err);
+        res.status(500).send(err);
         console.log(err);
     }
 });

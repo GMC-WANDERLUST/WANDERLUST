@@ -13,6 +13,7 @@ import ModalEditLastName from "./ModalEditLastName";
 import ModalEditPhoto from "./ModalEditPhoto";
 import ModalAddPost from "./ModalAddPost";
 import "./UserProfile.css";
+import PostItem from "./PostItem";
 
 function UserProfile() {
     let id = userId();
@@ -25,11 +26,10 @@ function UserProfile() {
     }, [id, token, dispatch]);
     const user = useSelector((state) => state.userReducer.user);
     const userPost = useSelector((state) => state.postReducer.userPosts);
-    console.log("user post: ", userPost);
     const openPostModal = () => {
         dispatch(addPost());
     };
-    // console.log("user", user);
+
     return (
         <React.Fragment>
             <NavBar />
@@ -62,23 +62,7 @@ function UserProfile() {
                 <article>
                     {userPost.map((post) => (
                         <div key={post._id}>
-                            <h6>
-                                {post.firstName} {post.lastName}
-                            </h6>
-                            <img
-                                src={post.img}
-                                alt="profil_photo"
-                                width="60px"
-                            />
-                            <h6>Destination : {post.destination}</h6>
-                            <h6> City :{post.city}</h6>
-                            <p>
-                                from {post.check_in} to {post.check_out}
-                            </p>
-                            <h6>Speaks : {post.languages}</h6>
-
-                            <h6>Nombres of Guests: {post.nbreOfGuests[0]} </h6>
-                            <p>{post.description}</p>
+                            <PostItem post={post} />
                         </div>
                     ))}
                 </article>

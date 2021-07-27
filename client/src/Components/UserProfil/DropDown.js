@@ -38,7 +38,6 @@ function DropDown() {
                     }
                 )
                 .then((response) => {
-                    console.log(response);
                     saveIsHost(false);
                     Swal.fire({
                         title: "Are you sure?",
