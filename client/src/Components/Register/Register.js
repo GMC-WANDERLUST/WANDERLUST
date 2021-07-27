@@ -129,7 +129,7 @@ function Register() {
                     Register
                 </button>
                 <p>Or you can login</p>
-                <Link to="/login" target="_blank">
+                <Link to="/login">
                     <Button variant="secondary" type="button">
                         Log in
                     </Button>

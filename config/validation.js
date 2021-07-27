@@ -38,11 +38,9 @@ const RegisterValidation = (data) => {
             }),
     });
     const result = schema.validate(data);
-    // console.log("result", result);
     return result;
 };
 const NewPasswordValidation = (data) => {
-    console.log("data",data)
     const schema = Joi.object({
         oldPassword: Joi.string()
             .min(8)
@@ -61,7 +59,17 @@ const NewPasswordValidation = (data) => {
             }),
     });
     const result = schema.validate(data);
-    console.log("result", result);
+    return result;
+};
+const NewFirstNameValidation = (data) => {
+    const schema = Joi.object({
+        FirstName: Joi.string().required().messages({
+            "string.empty": "First Name cannot be an empty field",
+            "string.base": "First Name should be a type of text",
+            "any.required": "First Name is a required field",
+        }),
+    });
+    const result = schema.validate(data);
     return result;
 };
 const NewEmailValidation = (data) => {
@@ -73,10 +81,10 @@ const NewEmailValidation = (data) => {
         }),
     });
     const result = schema.validate(data);
-    // console.log("result", result);
     return result;
 };
 
 module.exports.RegisterValidation = RegisterValidation;
 module.exports.NewPasswordValidation = NewPasswordValidation;
+module.exports.NewFirstNameValidation = NewFirstNameValidation;
 module.exports.NewEmailValidation = NewEmailValidation;

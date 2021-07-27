@@ -63,6 +63,7 @@ function ModalEditFirstName({ action, data }) {
                 <input
                     type="text"
                     name="FirstName"
+                    defaultValue={data}
                     onChange={handleChange}
                 />
                 <button onClick={saveNewData}>OK</button>

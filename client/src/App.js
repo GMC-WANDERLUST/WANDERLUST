@@ -9,6 +9,7 @@ import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import AddProfilePhoto from "./Components/UserProfil/AddProfilePhoto";
 import UserProfile from "./Components/UserProfil/UserProfile";
 import UserUpdateProfile from "./Components/UserProfil/UserUpdateProfile";
+import PostsList from "./Components/Posts/PostsList"
 
 function App() {
     return (
@@ -35,6 +36,7 @@ function App() {
                     component={UserUpdateProfile}
                 />
                 <PrivateRoute path="/profile/:id" component={UserProfile} />
+                <PrivateRoute path="/postsList" component={PostsList} />
             </Switch>
         </div>
     );

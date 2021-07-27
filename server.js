@@ -33,5 +33,5 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Start the server
 app.listen(process.env.PORT, () => {
-  console.log("Server up and Running");
+    console.log("Server up and Running");
 });

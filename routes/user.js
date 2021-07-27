@@ -10,6 +10,7 @@ const bcrypt = require("bcryptjs");
 const {
     NewPasswordValidation,
     NewEmailValidation,
+    NewFirstNameValidation,
 } = require("../config/validation");
 
 // REGISTER
@@ -22,6 +23,10 @@ router.put("/editUserFirstName/:id", verify, userAccess, async (req, res) => {
     try {
         let { FirstName } = req.body;
         let { id } = req.params;
+        let {error} = await NewFirstNameValidation(req.body)
+         if (error) {
+             return res.status(400).json({ message: error.details[0].message });
+         }
         await User.findByIdAndUpdate(id, {
             $set: { FirstName },
         });
@@ -116,7 +121,6 @@ router.put("/editPassword/:id", verify, userAccess, async (req, res) => {
             });
         }
         if (error) {
-            console.log("error", error.details[0].message);
             return res.status(400).json({ message: error.details[0].message });
         }
 
