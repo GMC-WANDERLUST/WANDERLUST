@@ -10,22 +10,26 @@ import {
 } from "react-bootstrap";
 import { logout } from "../../utils";
 import { useHistory } from "react-router-dom";
-import { userId, getToken } from "../../utils";
 import DropDown from "../../Components/UserProfil/DropDown";
-import axios from "axios";
+import { userId, getToken } from "../../utils";
+// import { Link } from "react-router-dom";
+// import axios from "axios";
+// import { useDispatch } from "react-redux";
+// import { SET_POSTS_BY_DESTINATION } from "../../redux/constants/action-types";
 
 function NavBar() {
-    let id = userId();
-    let token = getToken();
     const history = useHistory();
+    // const dispatch = useDispatch();
+    let id = userId();
+    // let token = getToken();
     const handleLogout = () => {
         logout();
         history.push("/login");
     };
+    const [destinationData, setDestinationData] = useState("");
     const [travellerSelected, setTravellerSelected] = useState(false);
     const [hostSelected, setHostSelected] = useState(false);
     const [discoverSelected, setDiscoverSelected] = useState(true);
-    const [destinationData, setDestinationData] = useState("");
 
     const initialStates = () => {
         setTravellerSelected(false);
@@ -49,21 +53,31 @@ function NavBar() {
         setDestinationData(e.target.value);
     };
     const handleSearch = () => {
+        sessionStorage.removeItem("city");
+        sessionStorage.setItem("destination", destinationData);
+        history.push("/postsList");
+        window.location.reload();
+
+        // if (travellerSelected) {
+        //     axios
+        //         .get(`/api/posts/allPosts/${id}`, {
+        //             headers: {
+        //                 jwt: token,
+        //                 data: destinationData,
+        //             },
+        //         })
+        //         .then((response) => {
+        //             console.log(response);
+        //              dispatch({
+        //                  type: SET_POSTS_BY_DESTINATION,
+        //                  payload: response.data.data,
+        //              });
+        //         })
+        //         .catch((error) => console.dir(error));
+        // }
         // console.log(destinationData);
-        if (travellerSelected) {
-        axios
-            .get(`/api/posts/allPosts/${id}`, {
-                headers: {
-                    jwt: token,
-                    data: destinationData,
-                },
-            })
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => console.dir(error));
-            history.push("/postsList");
-        }
+        // console.log("destination data 1:", destinationData);
+        // dispatch(getPostsList())
     };
     return (
         <Navbar bg="dark" variant="dark">
@@ -141,6 +155,7 @@ function NavBar() {
                     </Button>
                 </Nav>
             </Container>
+            {/* <PostList destinationData={destinationData} /> */}
         </Navbar>
     );
 }

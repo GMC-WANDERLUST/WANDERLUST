@@ -42,6 +42,10 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: true,
     },
+    isReported : {
+        type : "number",
+        default : 0
+    },
     date: {
         type: Date,
         default: Date.now,

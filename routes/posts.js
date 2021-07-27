@@ -24,8 +24,8 @@ router.post("/addnewpost/:id", verify, verifyUserAccess, async (req, res) => {
             lastName: user.LastName,
             img: userInfos.photo,
             languages: userInfos.Languages,
-            destination,
-            city,
+            destination: destination.toLowerCase(),
+            city: city.toLowerCase(),
             check_in,
             check_out,
             nbreOfGuests,
@@ -90,39 +90,56 @@ router.get("/myPosts/:id", verify, verifyUserAccess, async (req, res) => {
 });
 // SHOW POST BY DESTINATION
 
-router.get("/allPosts/:id", verify, verifyUserAccess, async (req, res) => {
-    let destinationData = req.header("data");
-    try {
-        const postsList = await Posts.find({
-            destination: destinationData,
-        });
-        // console.log(postsList)
-        res.status(201).json({
-            status: true,
-            message: "posts list",
-            data: postsList,
-        });
-    } catch (err) {
-        res.status(500).send(err);
-        console.log(err);
+router.get(
+    "/allPosts/destination/:id",
+    verify,
+    verifyUserAccess,
+    async (req, res) => {
+        let destinationData = req.header("data");
+        try {
+            const PostsList = ([] = await Posts.find({
+                destination: destinationData.toLowerCase(),
+            }));
+
+            // console.log(typeof PostsList.length)
+
+            res.status(201).json({
+                status: true,
+                data: PostsList,
+                message: "posts list",
+                length: PostsList.length,
+            });
+        } catch (err) {
+            res.status(500).send(err);
+            console.log(err);
+        }
     }
-});
+);
 // SHOW POST BY CITY
 
-router.get("/allPosts/:city", verify, verifyUserAccess, async (req, res) => {
-    try {
-        let { city } = req.params;
-        const postsList = await Posts.find({ city });
-        res.status(201).json({
-            status: true,
-            message: "posts list",
-            data: postsList,
-        });
-    } catch (err) {
-        res.status(500).send(err);
-        console.log(err);
+router.get(
+    "/allPosts/destination/city/:id",
+    verify,
+    verifyUserAccess,
+    async (req, res) => {
+        let cityData = req.header("data");
+        try {
+            const PostsList = ([] = await Posts.find({
+                city: cityData.toLowerCase(),
+            }));
+
+            res.status(201).json({
+                status: true,
+                data: PostsList,
+                message: "posts list",
+                length: PostsList.length,
+            });
+        } catch (err) {
+            res.status(500).send(err);
+            console.log(err);
+        }
     }
-});
+);
 
 // DELETE POST
 router.delete("/deletePost/:id", verify, verifyUserAccess, async (req, res) => {

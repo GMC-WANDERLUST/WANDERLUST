@@ -20,7 +20,6 @@ function Login() {
         axios
             .post("/api/user/login", user)
             .then((response) => {
-                console.log(response);
                 saveId(response.data.id);
                 login(response.data.token);
                 saveIsHost(response.data.isHost);

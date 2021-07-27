@@ -103,8 +103,8 @@ function PostItem({ post }) {
                             {post.firstName} {post.lastName}
                         </h6>
                         <img src={post.img} alt="profil_photo" width="60px" />
-                        <h6>Destination : {post.destination}</h6>
-                        <h6> City :{post.city}</h6>
+                        <h6>Destination : {post.destination.toUpperCase()}</h6>
+                        <h6> City :{post.city.toUpperCase()}</h6>
                         <p>
                             from {post.check_in} to {post.check_out}
                         </p>
