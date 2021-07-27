@@ -8,3 +8,4 @@ export const CLOSE_HOSTING_MODAL = "CLOSE_HOSTING_MODAL";
 export const CLOSE_ADD_POST = "CLOSE_ADD_POST";
 export const ADD_POST = "ADD_POST";
 export const GET_USER_POSTS = "GET_USER_POSTS";
+export const GET_ADMIN_PROFILE = "GET_ADMIN_PROFILE";

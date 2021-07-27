@@ -1,10 +1,11 @@
+/* eslint-disable no-lone-blocks */
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { login, saveId, saveIsHost } from "../../utils";
+import { login, saveId, saveIsHost,saveIsAdmin } from "../../utils";
 import NavBarExt from "../NavBar/NavBarExt";
 import Swal from "sweetalert2";
 
@@ -24,6 +25,7 @@ function Login() {
                 saveId(response.data.id);
                 login(response.data.token);
                 saveIsHost(response.data.isHost);
+                saveIsAdmin(response.data.isAdmin)
                 {
                     response.data.check
                         ? Swal.fire({

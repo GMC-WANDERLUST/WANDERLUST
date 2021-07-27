@@ -69,6 +69,7 @@ export function closeAddPost() {
         type: CLOSE_ADD_POST,
     };
 }
+
 // export const createUser = (payload) => (dispatch) => {
 //     axios
 //         .post(`/api/profile/addUserInfos/${payload.newUserId}`, {})
