@@ -9,7 +9,8 @@ import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import AddProfilePhoto from "./Components/UserProfil/AddProfilePhoto";
 import UserProfile from "./Components/UserProfil/UserProfile";
 import UserUpdateProfile from "./Components/UserProfil/UserUpdateProfile";
-import PostsList from "./Components/Posts/PostsList"
+import PostsList from "./Components/Posts/PostsList";
+import { useState } from "react";
 
 function App() {
     return (

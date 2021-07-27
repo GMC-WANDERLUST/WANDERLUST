@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import NavBar from "../../Components/NavBar/NavBar";
 import { useDispatch, useSelector } from "react-redux";
-// import { useHistory } from "react-router-dom";
 import {
     getUserProfile,
     getUserPosts,
@@ -18,7 +17,6 @@ import PostItem from "./PostItem";
 function UserProfile() {
     let id = userId();
     let token = getToken();
-    // const history = useHistory();
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getUserProfile({ id, token }));
@@ -32,7 +30,8 @@ function UserProfile() {
 
     return (
         <React.Fragment>
-            <NavBar />
+            <NavBar
+            />
             <h1>This is the user Profile</h1>
             <div key={user._id}>
                 <img src={user.photo} alt="profile_photo" width="250px" />
@@ -67,9 +66,6 @@ function UserProfile() {
                     ))}
                 </article>
             </div>
-            {/* {user.map((info) => (
-               
-            ))} */}
         </React.Fragment>
     );
 }
