@@ -4,6 +4,7 @@ import modalReducer from "./modalReducer";
 import addHostingReducer from "./addHostingReducer";
 import modalEmailReducer from "./emailReducer";
 import postReducer from "./postReducer";
+import adminReducer from "./adminReducer"
 
 const rootReducer = combineReducers({
     userReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     modalEmailReducer,
     addHostingReducer,
     postReducer,
+    adminReducer,
 });
 
 export default rootReducer;

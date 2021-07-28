@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import NavBar from "../../Components/NavBar/NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import {
-    getUserProfile,
-    getUserPosts,
-    addPost,
+  getUserProfile,
+  getUserPosts,
+  addPost,
 } from "../../redux/actions/userActions";
 import { userId, getToken } from "../../utils";
 import ModalEditFirstName from "./ModalEditFirstName";

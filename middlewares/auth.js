@@ -91,6 +91,7 @@ exports.login = async (req, res) => {
         id: user._id,
         isHost: user.isHost,
         check,
+        isAdmin:user.isAdmin,
         msg: `WELCOME ${user.FirstName}! HAVE A NICE TIME `,
         message: `HI ${user.FirstName}! GOOD TO SEE YOU AGAIN`,
     });
