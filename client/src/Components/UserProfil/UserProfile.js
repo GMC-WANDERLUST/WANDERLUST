@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import NavBar from "../../Components/NavBar/NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import {
-    getUserProfile,
-    getUserPosts,
-    addPost,
+  getUserProfile,
+  getUserPosts,
+  addPost,
 } from "../../redux/actions/userActions";
 import { getUserHosts } from "../../redux/actions/hostActions";
 import { userId, getToken } from "../../utils";

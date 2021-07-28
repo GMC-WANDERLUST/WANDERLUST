@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 import {
-    Navbar,
-    Nav,
-    Container,
-    Button,
-    Form,
-    FormControl,
-    NavDropdown,
+  Navbar,
+  Nav,
+  Container,
+  Button,
+  Form,
+  FormControl,
+  NavDropdown,
 } from "react-bootstrap";
 import { logout } from "../../utils";
 import { useHistory } from "react-router-dom";
+import { userId, getToken, getIsAdmin } from "../../utils";
 import DropDown from "../../Components/UserProfil/DropDown";
-import { userId, getToken } from "../../utils";
 // import { Link } from "react-router-dom";
-// import axios from "axios";
+ import axios from "axios";
 // import { useDispatch } from "react-redux";
 // import { SET_POSTS_BY_DESTINATION } from "../../redux/constants/action-types";
 
 function NavBar() {
+
     const history = useHistory();
     // const dispatch = useDispatch();
     let id = userId();
@@ -149,4 +150,64 @@ function NavBar() {
     );
 }
 
+        <Navbar.Brand href={`/adminUi/${id}`}>
+          {isAdmin === "true" ? "Admin" : null}{" "}
+        </Navbar.Brand>
+        
+        <Nav className="me-auto">
+          <NavDropdown
+            title={
+              travellerSelected
+                ? "Find Travellers"
+                : hostSelected
+                ? "Find Hosts"
+                : discoverSelected
+                ? "Discover"
+                : null
+            }
+            id="collasible-nav-dropdown"
+          >
+            <NavDropdown.Item href="#action/3.1" onClick={handelDiscover}>
+              Discover
+            </NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.1" onClick={findTravellers}>
+              Find Travellers
+            </NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.2" onClick={findHosts}>
+              Find Hosts
+            </NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item href="#action/3.4">
+              Separated link
+            </NavDropdown.Item>
+          </NavDropdown>
+          <Form className="d-flex">
+            <FormControl
+              type="search"
+              placeholder={
+                travellerSelected
+                  ? "Enter your residence"
+                  : hostSelected
+                  ? "Enter your destination"
+                  : "Search"
+              }
+              className="mr-2"
+              aria-label="Search"
+              name="destination"
+              onChange={handelChange}
+            />
+            <Button variant="outline-success" onClick={handleSearch}>
+              Search
+            </Button>
+          </Form>
+          <DropDown />
+          <Button variant="danger" type="button" onClick={handleLogout}>
+            Log Out
+          </Button>
+        </Nav>
+      </Container>
+    </Navbar>
+  );
+}
 export default NavBar;

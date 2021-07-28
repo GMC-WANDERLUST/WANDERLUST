@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getUserProfile } from "../../redux/actions/userActions";
 
-function UserUpdateProfile({ match }) {
+function    UserUpdateProfile({ match }) {
     // eslint-disable-next-line
     const history = useHistory();
     // const dispatch = useDispatch();
