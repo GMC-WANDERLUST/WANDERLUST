@@ -30,13 +30,17 @@ router.get(
 router.put("/addAdmin/:id", verify, verifyAdmin, async (req, res) => {
   try {
     let { isAdmin } = req.body;
-    let { id } = req.params;
+
+    let id = req.header("data");
+    
+
     let newAdmin = await User.findByIdAndUpdate(id, {
       $set: { isAdmin },
     });
+    
     res.status(201).json({
       message: "Admin was added successfully",
-      newAdmin,
+      newAdmin
     });
   } catch (err) {
     res.status(500).json(err);
