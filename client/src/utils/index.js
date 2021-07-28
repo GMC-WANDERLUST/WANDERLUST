@@ -11,7 +11,8 @@ export function userId() {
   return localStorage.getItem("userId");
 }
 export function logout() {
-  localStorage.clear();
+    localStorage.clear();
+    sessionStorage.clear();
 }
 export function isLoggedIn() {
   if (localStorage.getItem("jwt")) {

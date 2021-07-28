@@ -2,11 +2,15 @@ import {
     ADD_POST,
     CLOSE_ADD_POST,
     GET_USER_POSTS,
+    GET_POSTS_BY_DESTINATION,
+    GET_POSTS_BY_CITY,
 } from "../constants/action-types";
 
 const initialState = {
     openPost: false,
     userPosts: [],
+    postsByDestination : [],
+    postsByCity : []
 };
 
 const postReducer = (state = initialState, action) => {
@@ -26,6 +30,16 @@ const postReducer = (state = initialState, action) => {
             return {
                 ...state,
                 userPosts: payload,
+            };
+        case GET_POSTS_BY_DESTINATION:
+            return {
+                ...state,
+                postsByDestination: payload,
+            };
+        case GET_POSTS_BY_CITY:
+            return {
+                ...state,
+                postsByCity: payload,
             };
 
         default:

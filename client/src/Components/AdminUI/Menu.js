@@ -6,16 +6,55 @@ import React, { useEffect } from "react";
 import { userId, getToken } from "../../utils";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserProfile } from "../../redux/actions/userActions";
+import { useHistory } from "react-router-dom";
+import { getAllUsers } from "../../redux/actions/adminActions";
+import axios from "axios";
 
 function Menu() {
   const id = userId();
   const dispatch = useDispatch();
   const token = getToken();
+  const user = useSelector((state) => state.userReducer.user);
+
+  const history = useHistory();
+
   useEffect(() => {
     dispatch(getUserProfile({ id, token }));
   }, [id, token, dispatch]);
-  const user = useSelector((state) => state.userReducer.user);
-  console.log(user);
+
+  //Admin GET all Users
+  const handleUsers = () => {
+    dispatch(getAllUsers({id,token}))
+    history.push("admin/usersList");
+    // axios
+    //   .get(`/api/admin/usersList/${id}`, {
+    //     headers: {
+    //       jwt: token,
+    //     },
+    //   })
+    //   .then((response) => {
+    //     let usersList = response.data.data;
+    //     console.log(usersList);
+    //   })
+    //   .catch((error) => console.dir(error));
+    // history.push("admin/usersList");
+  };
+
+  //Admin Get all Posts
+  const handlePosts = () => {
+    axios
+      .get(`/api/admin/allPosts/${id}`, {
+        headers: {
+          jwt: token,
+        },
+      })
+      .then((response) => {
+        let postsList = response.data.data;
+        console.log(postsList);
+      })
+      .catch((error) => console.dir(error));
+    history.push("admin/allPosts");
+  };
 
   return (
     <div>
@@ -29,9 +68,7 @@ function Menu() {
               className="brand-image img-circle elevation-3"
               style={{ opacity: ".8" }}
             />
-            <span className="brand-text font-weight-light">
-              Admin Panel
-            </span>
+            <span className="brand-text font-weight-light">Admin Panel</span>
           </a>
           {/* Sidebar */}
           <div className="sidebar">
@@ -86,15 +123,20 @@ function Menu() {
                   </a>
                   <ul className="nav nav-treeview">
                     <li className="nav-item">
-                      <a href="./index.html" className="nav-link">
+                      <a className="nav-link" onClick={handleUsers}>
                         <i className="far fa-circle nav-icon" />
                         <p>All Users</p>
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a href="./index2.html" className="nav-link active">
+                      <a className="nav-link active">
                         <i className="far fa-circle nav-icon" />
-                        <p>All Posts</p>
+                        <button
+                          // onClick={handleUsers}
+                          onClick={handlePosts}
+                        >
+                          All Posts
+                        </button>
                       </a>
                     </li>
                     <li className="nav-item">

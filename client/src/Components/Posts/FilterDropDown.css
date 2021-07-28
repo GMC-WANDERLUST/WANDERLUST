@@ -1,0 +1,10 @@
+.cityFilter {
+    width: 50%;
+    margin: auto;
+}
+.cityFilterBox {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    align-items: baseline;
+}

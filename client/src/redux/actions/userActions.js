@@ -7,6 +7,8 @@ import {
     CLOSE_ADD_POST,
     ADD_POST,
     GET_USER_POSTS,
+    GET_POSTS_BY_DESTINATION,
+    GET_POSTS_BY_CITY,
 } from "../constants/action-types";
 import axios from "axios";
 // import Swal from "sweetalert2";
@@ -33,10 +35,44 @@ export const getUserPosts = (payload) => (dispatch) => {
             },
         })
         .then((response) => {
-            console.log(response)
             dispatch({ type: GET_USER_POSTS, payload: response.data.data });
         })
         .catch((err) => console.dir(err));
+};
+export const getPostsByDestination = (payload) => (dispatch) => {
+    // console.log("action :", payload.travellerSelected);
+        axios
+            .get(`/api/posts/allPosts/destination/${payload.id}`, {
+                headers: {
+                    jwt: payload.token,
+                    data: payload.destination,
+                },
+            })
+            .then((response) => {
+                dispatch({
+                    type: GET_POSTS_BY_DESTINATION,
+                    payload: response.data.data,
+                });
+            })
+            .catch((error) => console.dir(error));
+};
+export const getPostsByCity = (payload) => (dispatch) => {
+    // console.log("action :", payload.travellerSelected);
+        axios
+            .get(`/api/posts/allPosts/destination/city/${payload.id}`, {
+                headers: {
+                    jwt: payload.token,
+                    data: payload.city,
+                },
+            })
+            .then((response) => {
+                console.log(response);
+                dispatch({
+                    type: GET_POSTS_BY_CITY,
+                    payload: response.data.data,
+                });
+            })
+            .catch((error) => console.dir(error));
 };
 export function close() {
     return {
