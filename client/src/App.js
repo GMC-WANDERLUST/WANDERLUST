@@ -10,6 +10,7 @@ import AddProfilePhoto from "./Components/UserProfil/AddProfilePhoto";
 import UserProfile from "./Components/UserProfil/UserProfile";
 import UserUpdateProfile from "./Components/UserProfil/UserUpdateProfile";
 import PostsList from "./Components/Posts/PostsList";
+import HostsList from "./Components/Hosts/HostsList";
 import { useState } from "react";
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
                 />
                 <PrivateRoute path="/profile/:id" component={UserProfile} />
                 <PrivateRoute path="/postsList" component={PostsList} />
+                <PrivateRoute path="/hostsList" component={HostsList} />
             </Switch>
         </div>
     );

@@ -27,16 +27,15 @@ function NavBar() {
         history.push("/login");
     };
     const [destinationData, setDestinationData] = useState("");
+    const [hostingData, setHostingData] = useState("");
     const [travellerSelected, setTravellerSelected] = useState(false);
     const [hostSelected, setHostSelected] = useState(false);
     const [discoverSelected, setDiscoverSelected] = useState(true);
-
     const initialStates = () => {
         setTravellerSelected(false);
         setHostSelected(false);
         setDiscoverSelected(false);
     };
-
     const findTravellers = () => {
         initialStates();
         setTravellerSelected(true);
@@ -50,34 +49,24 @@ function NavBar() {
         setDiscoverSelected(true);
     };
     const handelChange = (e) => {
-        setDestinationData(e.target.value);
+        if (travellerSelected) {
+            setDestinationData(e.target.value);
+        } else if (hostSelected) {
+            setHostingData(e.target.value);
+        }
     };
     const handleSearch = () => {
-        sessionStorage.removeItem("city");
-        sessionStorage.setItem("destination", destinationData);
-        history.push("/postsList");
-        window.location.reload();
-
-        // if (travellerSelected) {
-        //     axios
-        //         .get(`/api/posts/allPosts/${id}`, {
-        //             headers: {
-        //                 jwt: token,
-        //                 data: destinationData,
-        //             },
-        //         })
-        //         .then((response) => {
-        //             console.log(response);
-        //              dispatch({
-        //                  type: SET_POSTS_BY_DESTINATION,
-        //                  payload: response.data.data,
-        //              });
-        //         })
-        //         .catch((error) => console.dir(error));
-        // }
-        // console.log(destinationData);
-        // console.log("destination data 1:", destinationData);
-        // dispatch(getPostsList())
+        if (travellerSelected) {
+            sessionStorage.removeItem("city");
+            sessionStorage.setItem("destination", destinationData);
+            history.push("/postsList");
+            window.location.reload();
+        } else if (hostSelected) {
+            sessionStorage.removeItem("city");
+            sessionStorage.setItem("residence", hostingData);
+            history.push("/hostsList");
+            window.location.reload();
+        }
     };
     return (
         <Navbar bg="dark" variant="dark">

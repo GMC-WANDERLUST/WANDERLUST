@@ -32,7 +32,7 @@ function ModalAddHosting({ open }) {
     let subtitle;
     const [newData, setNewData] = useState("");
     const openHosting = useSelector(
-        (state) => state.addHostingReducer.openHosting
+        (state) => state.hostingReducer.openHosting
     );
     const dispatch = useDispatch();
     ///////////////////////////////////////////////////////////////////////////////////
@@ -124,6 +124,12 @@ function ModalAddHosting({ open }) {
                 </h2>
                 <button onClick={handleclose}>Close</button>
                 <form>
+                    <input
+                        type="text"
+                        name="city"
+                        placeholder="city"
+                        onChange={handleChange}
+                    />
                     <input
                         type="text"
                         name="nbreOfRooms"

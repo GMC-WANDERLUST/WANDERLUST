@@ -9,6 +9,7 @@ import {
     GET_USER_POSTS,
     GET_POSTS_BY_DESTINATION,
     GET_POSTS_BY_CITY,
+    GET_HOSTS_BY_DESTINATION,
 } from "../constants/action-types";
 import axios from "axios";
 // import Swal from "sweetalert2";
@@ -56,6 +57,23 @@ export const getPostsByDestination = (payload) => (dispatch) => {
             })
             .catch((error) => console.dir(error));
 };
+export const getHostsByDestination = (payload) => (dispatch) => {
+    // console.log("action :", payload.travellerSelected);
+    axios
+        .get(`/api/host/allHosting/residence/${payload.id}`, {
+            headers: {
+                jwt: payload.token,
+                data: payload.residence,
+            },
+        })
+        .then((response) => {
+            dispatch({
+                type: GET_HOSTS_BY_DESTINATION,
+                payload: response.data.data,
+            });
+        })
+        .catch((error) => console.dir(error));
+};
 export const getPostsByCity = (payload) => (dispatch) => {
     // console.log("action :", payload.travellerSelected);
         axios
@@ -73,6 +91,24 @@ export const getPostsByCity = (payload) => (dispatch) => {
                 });
             })
             .catch((error) => console.dir(error));
+};
+export const getHostsByCity = (payload) => (dispatch) => {
+    // console.log("action :", payload.travellerSelected);
+    axios
+        .get(`/api/host/allHosting/residence/city/${payload.id}`, {
+            headers: {
+                jwt: payload.token,
+                data: payload.city,
+            },
+        })
+        .then((response) => {
+            console.log(response);
+            dispatch({
+                type: GET_POSTS_BY_CITY,
+                payload: response.data.data,
+            });
+        })
+        .catch((error) => console.dir(error));
 };
 export function close() {
     return {

@@ -3,54 +3,54 @@ import NavBar from "../NavBar/NavBar";
 import { userId, getToken } from "../../utils";
 import { useDispatch } from "react-redux";
 import {
-    getPostsByDestination,
-    getPostsByCity,
+    getHostsByCity,
+    getHostsByDestination,
 } from "../../redux/actions/userActions";
 import { useSelector } from "react-redux";
-import PostDestinationItem from "./PostDestinationItem";
-import PostCityItem from "./PostCityItem";
+import HostDestinationItem from "./HostDestinationItem";
+import HostCityItem from "./HostCityItem";
 import FilterDropdown from "./FilterDropdown";
 
-function PostList() {
+function HostsList() {
     let id = userId();
     let token = getToken();
     const dispatch = useDispatch();
-    let destination = sessionStorage.getItem("destination");
+    let residence = sessionStorage.getItem("residence");
     let city = sessionStorage.getItem("city");
     console.log("city", city);
     // console.log(destination)
     useEffect(() => {
         if (city) {
-            dispatch(getPostsByCity({ city, id, token }));
-        } else if (destination) {
-            dispatch(getPostsByDestination({ destination, id, token }));
-        } 
-    }, [id, token, destination, city, dispatch]);
-    const postsByDestination = useSelector(
-        (state) => state.postReducer.postsByDestination
+            dispatch(getHostsByCity({ city, id, token }));
+        } else if (residence) {
+            dispatch(getHostsByDestination({ residence, id, token }));
+        }
+    }, [id, token, residence, city, dispatch]);
+    const hostsByDestination = useSelector(
+        (state) => state.hostingReducer.hostsByDestination
     );
     const postsByCity = useSelector((state) => state.postReducer.postsByCity);
     console.log(postsByCity);
     return (
         <div>
             <NavBar />
-            <h1>This is the posts List</h1>
+            <h1>This is the hosts List</h1>
             <FilterDropdown />
-            {postsByDestination.length === 0 && postsByCity.length === 0 ? (
+            {hostsByDestination.length === 0 && postsByCity.length === 0 ? (
                 <h2> No data was found</h2>
-            ) : postsByDestination.length !== 0 && postsByCity.length === 0 ? (
+            ) : hostsByDestination.length !== 0 && postsByCity.length === 0 ? (
                 <div>
-                    {postsByDestination.map((post) => (
-                        <div key={post._id}>
-                            <PostDestinationItem post={post} />
+                    {hostsByDestination.map((host) => (
+                        <div key={host._id}>
+                            <HostDestinationItem host={host} />
                         </div>
                     ))}
                 </div>
-            ) : postsByDestination.length === 0 && postsByCity.length !== 0 ? (
+            ) : hostsByDestination.length === 0 && postsByCity.length !== 0 ? (
                 <div>
                     {postsByCity.map((post) => (
                         <div key={post._id}>
-                            <PostCityItem post={post} />
+                            <HostCityItem post={post} />
                         </div>
                     ))}
                 </div>
@@ -58,4 +58,4 @@ function PostList() {
         </div>
     );
 }
-export default PostList;
+export default HostsList;
