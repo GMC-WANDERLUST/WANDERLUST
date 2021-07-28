@@ -44,14 +44,6 @@ function AddProfilePhoto() {
                         showConfirmButton: false,
                         timer: 1200,
                     }),
-                // console.log(
-                //     "Upload Progress :" +
-                //         Math.round(
-                //             (progressEvent.loaded / progressEvent.total) *
-                //                 100
-                //         ) +
-                //         "%"
-                // ),
             })
             .then((response) => {
                 setUrl(response.data.url);
@@ -60,7 +52,6 @@ function AddProfilePhoto() {
                 console.dir(error);
             });
 
-        // history.push(`/profile/${id}`);
     };
     const handleForward = () => {
         history.push(`/profile/${id}`);

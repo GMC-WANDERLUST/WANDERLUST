@@ -19,6 +19,10 @@ const hostingSchema = new mongoose.Schema({
     residence: {
         type: "string",
     },
+    city : {
+        type : "string",
+        required : true,
+    },
     languages : {
         type : ["string"],
         required : true,

@@ -97,9 +97,9 @@ router.get(
     async (req, res) => {
         let destinationData = req.header("data");
         try {
-            const PostsList = ([] = await Posts.find({
+            const PostsList = [] = await Posts.find({
                 destination: destinationData.toLowerCase(),
-            }));
+            });
 
             // console.log(typeof PostsList.length)
 
