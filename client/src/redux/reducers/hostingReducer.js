@@ -3,6 +3,7 @@ import {
     OPEN_HOSTING_MODAL,
     GET_HOSTS_BY_DESTINATION,
     GET_USER_HOSTS,
+    GET_RANDOM_USER_HOSTS,
 } from "../constants/action-types";
 
 const initialState = {
@@ -25,6 +26,11 @@ const hostingReducer = (state = initialState, action) => {
                 openHosting: false,
             };
         case GET_USER_HOSTS:
+            return {
+                ...state,
+                userHosts: payload,
+            };
+        case GET_RANDOM_USER_HOSTS:
             return {
                 ...state,
                 userHosts: payload,

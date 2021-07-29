@@ -10,6 +10,8 @@ import {
     GET_POSTS_BY_DESTINATION,
     GET_POSTS_BY_CITY,
     GET_HOSTS_BY_DESTINATION,
+    GET_RANDOM_USER_PROFILE,
+    GET_RANDOM_USER_POSTS,
 } from "../constants/action-types";
 import axios from "axios";
 // import Swal from "sweetalert2";
@@ -27,6 +29,19 @@ export const getUserProfile = (payload) => (dispatch) => {
         })
         .catch((err) => console.dir(err));
 };
+export const getRandomUserProfile = (payload) => (dispatch) => {
+    axios
+        .get(`/api/profile/UserInfos/${payload.rId}`, {
+            headers: {
+                // "Content-Type": "multipart/form-data",
+                jwt: payload.token,
+            },
+        })
+        .then((response) => {
+            dispatch({ type: GET_RANDOM_USER_PROFILE, payload: response.data.data });
+        })
+        .catch((err) => console.dir(err));
+};
 export const getUserPosts = (payload) => (dispatch) => {
     axios
         .get(`/api/posts/myPosts/${payload.id}`, {
@@ -37,6 +52,19 @@ export const getUserPosts = (payload) => (dispatch) => {
         })
         .then((response) => {
             dispatch({ type: GET_USER_POSTS, payload: response.data.data });
+        })
+        .catch((err) => console.dir(err));
+};
+export const getRandomUserPosts = (payload) => (dispatch) => {
+    axios
+        .get(`/api/posts/myPosts/${payload.rId}`, {
+            headers: {
+                // "Content-Type": "multipart/form-data",
+                jwt: payload.token,
+            },
+        })
+        .then((response) => {
+            dispatch({ type: GET_RANDOM_USER_POSTS, payload: response.data.data });
         })
         .catch((err) => console.dir(err));
 };

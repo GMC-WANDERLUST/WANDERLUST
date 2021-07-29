@@ -1,18 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function HostCityItem({ post }) {
+function HostCityItem({ host }) {
+    const saveUserId = () => {
+        sessionStorage.setItem("randomId", host.host);
+    };
     return (
         <div className="postItem">
-            <h6>
-                {post.firstName} {post.lastName}
-            </h6>
-            <img src={post.img} alt="profil_photo" width="60px" />
-            <h6>Destination : {post.residence.toUpperCase()}</h6>
-            <h6> City :{post.city.toUpperCase()}</h6>
-            <h6>Speaks : {post.languages[0]}</h6>
-            <h6>Nombres of Rooms: {post.nbreOfRooms} </h6>
-            <h6>Nombres of Beds: {post.nbreOfBeds} </h6>
-            <p>{post.description}</p>
+            <Link to={`/uprofile/${host.user}`} onClick={saveUserId}>
+                <h6>
+                    {host.firstName} {host.lastName}
+                </h6>
+            </Link>
+            <img src={host.img} alt="profil_photo" width="60px" />
+            <h6>Destination : {host.residence.toUpperCase()}</h6>
+            <h6> City :{host.city.toUpperCase()}</h6>
+            <h6>Speaks : {host.languages[0]}</h6>
+            <h6>Nombres of Rooms: {host.nbreOfRooms} </h6>
+            <h6>Nombres of Beds: {host.nbreOfBeds} </h6>
+            <p>{host.description}</p>
             <input type="button" value="Connect this Host" />
         </div>
     );
