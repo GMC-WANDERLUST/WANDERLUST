@@ -1,6 +1,7 @@
 const UserInfos = require("../../model/UserInfos");
 const Posts = require("../../model/Posts");
 const Host = require("../../model/Hosting");
+const User = require("../../model/User")
 
 module.exports = {
     async UpdateUserPhoto(req, res) {
@@ -15,6 +16,10 @@ module.exports = {
             let photoUrl = `${req.protocol}://${req.get("host")}/uploads/${
                 req.file.filename
             }`;
+            await User.findByIdAndUpdate(
+                id,
+                { $set: { image: photoUrl } }
+            );
             await UserInfos.findOneAndUpdate(
                 { user: id },
                 { $set: { photo: photoUrl } }

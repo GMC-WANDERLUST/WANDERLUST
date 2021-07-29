@@ -9,6 +9,10 @@ const userSchema = new mongoose.Schema({
         type: "string",
         required: true,
     },
+    image: {
+        type: "string",
+        default: "/uploads/user.png",
+    },
     DayOfBirth: {
         type: "string",
         required: true,
@@ -42,9 +46,9 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: true,
     },
-    isReported : {
-        type : "number",
-        default : 0
+    isReported: {
+        type: "number",
+        default: 0,
     },
     date: {
         type: Date,

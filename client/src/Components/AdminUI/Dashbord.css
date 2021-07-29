@@ -1,0 +1,8 @@
+.usersList {
+    display: flex;
+    flex-wrap: wrap;
+}
+.postsList {
+    display: flex;
+    flex-wrap: wrap;
+}
