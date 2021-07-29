@@ -1,5 +1,5 @@
-import Footer from "./Header";
-import Header from "./Footer";
+import Footer from "./Footer";
+import Header from "./Header";
 import Menu from "./Menu";
 import DashBoard from "./DashBoard";
 
