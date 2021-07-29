@@ -2,14 +2,13 @@ import axios from "axios";
 import React, { useState } from "react";
 import { userId, getToken } from "../../utils";
 import Swal from "sweetalert2";
-
 function HostItem({ host }) {
     const id = userId();
     const token = getToken();
-    const [editPost, setEditPost] = useState({});
+    const [editHost, setEditHost] = useState();
     const [showEdit, setShowEdit] = useState(false);
     const handelChange = (e) => {
-        setEditPost({ ...editPost, [e.target.name]: e.target.value });
+        setEditHost({ ...editHost, [e.target.name]: e.target.value });
     };
     const showEditPost = () => {
         setShowEdit(true);
@@ -17,83 +16,79 @@ function HostItem({ host }) {
     const cancelEdit = () => {
         setShowEdit(false);
     };
-    // const handleSaveEdit = () => {
-    //     axios
-    //         .put(
-    //             `/api/posts/editPost/${id}`,
-    //             { editPost, _id: post._id },
-    //             {
-    //                 headers: {
-    //                     jwt: token,
-    //                 },
-    //             }
-    //         )
-    //         .then((response) => {
-    //             Swal.fire({
-    //                 title: "Save changes",
-    //                 icon: "warning",
-    //                 showCancelButton: true,
-    //                 confirmButtonColor: "#3085d6",
-    //                 cancelButtonColor: "#d33",
-    //                 confirmButtonText: "Confirm",
-    //             }).then((result) => {
-    //                 if (result.isConfirmed) {
-    //                     Swal.fire({
-    //                         title: response.data.message,
-    //                         icon: "success",
-    //                         showDenyButton: false,
-    //                         showCancelButton: false,
-    //                         confirmButtonText: `Save`,
-    //                     }).then((result) => {
-    //                         if (result.isConfirmed) {
-    //                             window.location.reload();
-    //                         }
-    //                     });
-    //                 }
-    //             });
-    //         })
-    //         .catch((error) => console.dir(error));
-    // };
-    // const handelDeletePost = () => {
-    //     Swal.fire({
-    //         title: "Are you sure?",
-    //         text: "You won't be able to revert this!",
-    //         icon: "warning",
-    //         showCancelButton: true,
-    //         confirmButtonColor: "#3085d6",
-    //         cancelButtonColor: "#d33",
-    //         confirmButtonText: "Yes, delete it!",
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             axios
-    //                 .delete(`/api/posts/deletePost/${id}`, {
-    //                     headers: {
-    //                         jwt: token,
-    //                         _id: post._id,
-    //                     },
-    //                 })
-    //                 .then((response) => {
-    //                     console.log(response);
-    //                     Swal.fire({
-    //                         title: response.data.message,
-    //                         showDenyButton: false,
-    //                         showCancelButton: false,
-    //                         icon: "success",
-    //                         confirmButtonText: `Save`,
-    //                     }).then((result) => {
-    //                         if (result.isConfirmed) {
-    //                             window.location.reload();
-    //                         }
-    //                     });
-    //                 })
-    //                 .catch((error) => {
-    //                     console.log(error);
-    //                     Swal.fire(error.data.data.message, "error");
-    //                     setShowEdit(true);
-    //                 });
-    //         }
-    //     });
-    // };
+    const handleSaveEdit = () => {
+        axios
+            .put(`/api/host/editHosting/${id}`, editHost, {
+                headers: {
+                    jwt: token,
+                    data: host._id,
+                },
+            })
+            .then((response) => {
+                Swal.fire({
+                    title: "Save changes",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Confirm",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: response.data.message,
+                            icon: "success",
+                            showDenyButton: false,
+                            showCancelButton: false,
+                            confirmButtonText: `Save`,
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.reload();
+                            }
+                        });
+                    }
+                });
+            })
+            .catch((error) => console.dir(error));
+    };
+    const handelDeletePost = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios
+                    .delete(`/api/host/deleteHosting/${id}`, {
+                        headers: {
+                            jwt: token,
+                            data: host._id,
+                        },
+                    })
+                    .then((response) => {
+                        Swal.fire({
+                            title: response.data.message,
+                            showDenyButton: false,
+                            showCancelButton: false,
+                            icon: "success",
+                            confirmButtonText: `Save`,
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.reload();
+                            }
+                        });
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        Swal.fire(error.data.data.message, "error");
+                        setShowEdit(true);
+                    });
+            }
+        });
+    };
     return (
         <React.Fragment>
             <section className="post">
@@ -112,52 +107,46 @@ function HostItem({ host }) {
                         <p>{host.description}</p>
                         <input
                             type="button"
-                            value="Edit post"
+                            value="Edit"
                             onClick={showEditPost}
                         />
                         <input
                             type="button"
-                            value="Delete post"
-                            // onClick={handelDeletePost}
+                            value="Delete"
+                            onClick={handelDeletePost}
                         />
                     </div>
                 )}
-                {/* {showEdit ? (
+                {showEdit ? (
                     <div>
                         <input
                             type="text"
-                            name="destination"
-                            defaultValue={post.destination}
-                            onChange={handelChange}
-                        />
-                        <input
-                            type="text"
                             name="city"
-                            defaultValue={post.city}
-                            onChange={handelChange}
-                        />
-                        <input
-                            type="date"
-                            name="check_in"
-                            defaultValue={post.check_in}
-                            onChange={handelChange}
-                        />
-                        <input
-                            type="date"
-                            name="check_out"
-                            defaultValue={post.check_out}
+                            defaultValue={host.city}
                             onChange={handelChange}
                         />
                         <input
                             type="text"
-                            name="nbreOfGuests"
-                            defaultValue={post.nbreOfGuests}
+                            name="nbreOfRooms"
+                            defaultValue={host.nbreOfRooms}
+                            onChange={handelChange}
+                        />
+                        <input
+                            type="text"
+                            name="nbreOfBeds"
+                            defaultValue={host.nbreOfBeds}
+                            onChange={handelChange}
+                        />
+                        <input
+                            type="text"
+                            name="price"
+                            defaultValue={host.price}
                             onChange={handelChange}
                         />
                         <input
                             type="text"
                             name="description"
-                            defaultValue={post.description}
+                            defaultValue={host.description}
                             onChange={handelChange}
                         />
                         <input
@@ -171,7 +160,7 @@ function HostItem({ host }) {
                             onClick={cancelEdit}
                         />
                     </div>
-                ) : null} */}
+                ) : null}
             </section>
         </React.Fragment>
     );
