@@ -2,9 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function PostDestinationItem({ post }) {
+    const saveUserId =() => {
+        sessionStorage.setItem("randomId", post.user);
+    }
     return (
         <div className="postItem">
-            <Link to={`/profile/${post.user}`}>
+            <Link to={`/uprofile/${post.user}`} onClick={saveUserId}>
                 <h6>
                     {post.firstName.toUpperCase()} {post.lastName.toUpperCase()}
                 </h6>

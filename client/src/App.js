@@ -19,6 +19,7 @@ import Admin from "./Components/AdminUI/Admin";
 import UsersList from "./Components/AdminUI/UsersList/UsersList";
 import UserPostsList from "./Components/AdminUI/PostsList/UsersPostsList";
 import AdminHostsList from "./Components/AdminUI/HostsList/AdminHostsList";
+import RandomProfile from "./Components/RandomUserProfile/RandomProfile";
 
 function App() {
     return (
@@ -50,6 +51,7 @@ function App() {
                     component={UserUpdateProfile}
                 />
                 <PrivateRoute path="/profile/:id" component={UserProfile} />
+                <PrivateRoute path="/uprofile/:id" component={RandomProfile} />
                 <PrivateRoute path="/postsList" component={PostsList} />
                 <PrivateRoute path="/hostsList" component={HostsList} />
                 <AdminRoute

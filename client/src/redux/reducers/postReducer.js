@@ -4,6 +4,7 @@ import {
     GET_USER_POSTS,
     GET_POSTS_BY_DESTINATION,
     GET_POSTS_BY_CITY,
+    GET_RANDOM_USER_POSTS,
 } from "../constants/action-types";
 
 const initialState = {
@@ -27,6 +28,11 @@ const postReducer = (state = initialState, action) => {
                 openPost: false,
             };
         case GET_USER_POSTS:
+            return {
+                ...state,
+                userPosts: payload,
+            };
+        case GET_RANDOM_USER_POSTS:
             return {
                 ...state,
                 userPosts: payload,
