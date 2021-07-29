@@ -48,12 +48,13 @@ router.put("/editPost/:id", verify, verifyUserAccess, async (req, res) => {
             $set: { ...editPost },
         });
         let editedPost = await Posts.findById(_id);
+        console.log(editedPost);
         res.status(201).json({
             message: "Post was updated successfully",
             editedPost,
         });
     } catch (err) {
-        res.status(500).send('Cant" \'t " find the post ', err);
+        res.status(500).json({message: 'Cannot find the post ', err});
     }
 });
 

@@ -7,6 +7,7 @@ const Host = require("../model/Hosting");
 const verify = require("../middlewares/verifyToken");
 const userAccess = require("../middlewares/verifyUserAccess");
 const bcrypt = require("bcryptjs");
+const adminAcess = require('../middlewares/Admin')
 const {
     NewPasswordValidation,
     NewEmailValidation,
@@ -195,5 +196,21 @@ router.put("/editStatus/:id", verify, userAccess, async (req, res) => {
         res.status(500).json(err);
     }
 });
+router.put('/report/:id', verify, adminAcess, async (req,res) => {
+    try {
+        let {id} = req.params;
+        console.log(id)
+        await User.findByIdAndUpdate(id, { isReported : 1  });
+        let reportedUser = await User.findById(id)
+        res.status(201).json({
+            status: true,
+            message: "user was reported!",
+            reportedUser,
+        });
+
+    } catch (error) {
+        res.status(401).json({message : "data not found", error})
+    }
+})
 
 module.exports = router;

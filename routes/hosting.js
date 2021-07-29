@@ -39,19 +39,23 @@ router.post("/newHosting/:id", verify, async (req, res) => {
 });
 
 // UPDATING HOSTING
-router.put("/editHosting/:id", verify, HostAccess, async (req, res) => {
-    let body = req.body;
-    let { id } = req.params;
+router.put("/editHosting/:id", verify, UserAccess, async (req, res) => {
     try {
-        let editedHosting = await Hosting.findByIdAndUpdate(id, {
-            $set: { ...body },
+        let { editHost } = req.body;
+        let id = req.header("data")
+        await Hosting.findByIdAndUpdate(id, {
+            $set: { ...editHost },
         });
+        let editedHosting = await Hosting.findById(id);
         res.status(201).json({
             message: "Hosting offer was updated successfully",
             editedHosting,
         });
     } catch (err) {
-        res.status(500).send('Cant" \'t " find the Hosting offer ', err);
+        res.status(500).json({
+            message: "Cannot find the Hosting offer ",
+            err,
+        });
     }
 });
 
@@ -59,7 +63,7 @@ router.put("/editHosting/:id", verify, HostAccess, async (req, res) => {
 router.get("/myHosting/:id", verify, UserAccess, async (req, res) => {
     try {
         let { id } = req.params;
-        const hostingList = await Hosting.find({host : id});
+        const hostingList = await Hosting.find({ host: id });
         res.status(201).json({
             status: true,
             message: "hosting list",
@@ -120,10 +124,9 @@ router.get(
     }
 );
 // DELETE HOSTING
-router.delete("/deleteHosting/:id", verify, HostAccess, async (req, res) => {
-    let { id } = req.params;
+router.delete("/deleteHosting/:id", verify, UserAccess, async (req, res) => {
+    let id = req.header("data");
     try {
-        let host = req.user;
 
         let deletedHosting = await Hosting.findByIdAndRemove(id);
         res.status(201).json({

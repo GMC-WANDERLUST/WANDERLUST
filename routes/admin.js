@@ -3,13 +3,22 @@ const controller = require("../controllers/adminControllers");
 const verify = require("../middlewares/verifyToken");
 const verifyAdmin = require("../middlewares/Admin");
 
-//GET User List
+//GET Users List
 router.get(
-  "/userList",
+  "/usersList/:id",
   verify,
   verifyAdmin,
   controller.userManagementController.getUsers.getUserList
 );
+//GET All Posts
+
+router.get(
+  "/allPosts/:id",
+  verify,
+  verifyAdmin,
+  controller.userManagementController.getUsers.getPostsList
+);
+
 //GET One User
 router.get(
   "/user/:id",

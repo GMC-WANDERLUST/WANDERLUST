@@ -30,7 +30,6 @@ function UserProfile() {
     const user = useSelector((state) => state.userReducer.user);
     const userPost = useSelector((state) => state.postReducer.userPosts);
     const userHosts = useSelector((state) => state.hostingReducer.userHosts);
-    console.log(userHosts)
     const openPostModal = () => {
         dispatch(addPost());
     };
@@ -88,13 +87,15 @@ function UserProfile() {
                         ))}
                     </article>
                 ) : null}
-                <article>
-                    {userHosts.map((host) => (
-                        <div key={host._id}>
-                            <HostItem host={host} />
-                        </div>
-                    ))}
-                </article>
+                {showHosts ? (
+                    <article>
+                        {userHosts.map((host) => (
+                            <div key={host._id}>
+                                <HostItem host={host} />
+                            </div>
+                        ))}
+                    </article>
+                ) : null}
             </div>
         </React.Fragment>
     );

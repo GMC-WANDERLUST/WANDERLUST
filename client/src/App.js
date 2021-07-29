@@ -11,7 +11,10 @@ import UserProfile from "./Components/UserProfil/UserProfile";
 import UserUpdateProfile from "./Components/UserProfil/UserUpdateProfile";
 import PostsList from "./Components/Posts/PostsList";
 import HostsList from "./Components/Hosts/HostsList";
-import { useState } from "react";
+// import { useState } from "react";
+import Admin from "./Components/AdminUI/Admin";
+import UsersList from "./Components/AdminUI/UsersList/UsersList";
+import UserPostsList from "./Components/AdminUI/PostsList/UsersPostsList"
 
 function App() {
     return (
@@ -40,9 +43,16 @@ function App() {
                 <PrivateRoute path="/profile/:id" component={UserProfile} />
                 <PrivateRoute path="/postsList" component={PostsList} />
                 <PrivateRoute path="/hostsList" component={HostsList} />
-            </Switch>
-        </div>
-    );
+
+        <PrivateRoute exact path="/adminUi/:id" component={Admin} />
+        <PrivateRoute path="/adminUi/admin/usersList" component={UsersList} />
+        <PrivateRoute
+          path="/adminUi/admin/allPosts"
+          component={UserPostsList}
+        />
+      </Switch>
+    </div>
+  );
 }
 
 export default App;

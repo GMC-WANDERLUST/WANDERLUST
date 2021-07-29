@@ -27,4 +27,16 @@ module.exports = {
       res.status(500).json({ status: false, msg: err });
     }
   },
+  async getPostsList(req, res) {
+    try {
+      const postsList =
+        await userManagementService.getUserServices.getPostsList();
+      res
+        .status(200)
+        .json({ status: true, msg: "PostsList found", data: postsList });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ status: false, msg: err });
+    }
+  },
 };

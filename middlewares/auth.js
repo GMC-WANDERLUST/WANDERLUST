@@ -72,7 +72,7 @@ exports.login = async (req, res) => {
     // Create and assign a token
 
     const token = jwt.sign(
-        { id: user._id, email: user.email, password: user.password },
+        { id: user._id, email: user.email, password: user.password, isReported : user.isReported },
         process.env.TOKEN_SECRET,
         {
             expiresIn: "1d",
@@ -91,6 +91,7 @@ exports.login = async (req, res) => {
         id: user._id,
         isHost: user.isHost,
         check,
+        isAdmin:user.isAdmin,
         msg: `WELCOME ${user.FirstName}! HAVE A NICE TIME `,
         message: `HI ${user.FirstName}! GOOD TO SEE YOU AGAIN`,
     });
