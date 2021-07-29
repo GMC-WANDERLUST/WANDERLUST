@@ -1,4 +1,8 @@
-import { GET_ADMIN_PROFILE, GET_USERS_LIST } from "../constants/action-types";
+import {
+  GET_ADMIN_PROFILE,
+  GET_USERS_LIST,
+  GET_POSTS_LIST,
+} from "../constants/action-types";
 import axios from "axios";
 
 export const getUserProfile = (payload) => (dispatch) => {
@@ -10,6 +14,7 @@ export const getUserProfile = (payload) => (dispatch) => {
     })
     .then((response) => {
       dispatch({ type: GET_ADMIN_PROFILE, payload: response.data.data });
+      console.log(response)
     })
     .catch((err) => console.dir(err));
 };
@@ -31,16 +36,17 @@ export const getAllUsers = (payload) => (dispatch) => {
 
 //Admin GETs All Posts
 
-// export const getUserPosts = (payload) => (dispatch) => {
-//   axios
-//     .get(`/api/usersList/${payload.id}`, {
-//       headers: {
-
-//         jwt: payload.token,
-//       },
-//     })
-//     .then((response) => {
-//       dispatch({ type: GET_POSTS_LIST, payload: response.data.data });
-//     })
-//     .catch((err) => console.dir(err));
-// };
+export const getUserPosts = (payload) => (dispatch) => {
+  axios
+    .get(`/api/admin/allPosts/${payload.id}`, {
+      headers: {
+        jwt: payload.token,
+      },
+    })
+    .then((response) => {
+      dispatch({ type: GET_POSTS_LIST, payload: response.data.data });
+      console.log(response);
+    })
+    .catch((err) => console.dir(err));
+};
+ 

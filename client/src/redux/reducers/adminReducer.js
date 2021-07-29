@@ -1,10 +1,11 @@
-import { GET_USERS_LIST } from "../constants/action-types";
+import { GET_USERS_LIST, GET_POSTS_LIST } from "../constants/action-types";
 
 const initialState = {
   usersList: [],
+  postsList :[],
 };
 
-const userReducer = (state = initialState, action) => {
+const adminReducer = (state = initialState, action) => {
   // eslint-disable-next-line
   const { type, payload } = action;
   switch (type) {
@@ -13,8 +14,14 @@ const userReducer = (state = initialState, action) => {
         ...state,
         usersList: payload,
       };
+    case GET_POSTS_LIST:
+      return {
+        ...state,
+        postsList: payload,
+      };
+
     default:
       return state;
   }
 };
-export default userReducer;
+export default adminReducer;

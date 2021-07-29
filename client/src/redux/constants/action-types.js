@@ -17,4 +17,5 @@ export const GET_USER_HOSTS = "GET_USER_HOSTS";
 
 export const GET_ADMIN_PROFILE = "GET_ADMIN_PROFILE";
 export const GET_USERS_LIST = "GET_USERS_LIST";
+export const GET_POSTS_LIST = "GET_POSTS_LIST";
 

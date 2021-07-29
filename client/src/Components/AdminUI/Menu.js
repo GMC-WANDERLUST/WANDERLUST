@@ -7,8 +7,7 @@ import { userId, getToken } from "../../utils";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserProfile } from "../../redux/actions/userActions";
 import { useHistory } from "react-router-dom";
-import { getAllUsers } from "../../redux/actions/adminActions";
-import axios from "axios";
+import { getAllUsers, getUserPosts } from "../../redux/actions/adminActions";
 
 function Menu() {
   const id = userId();
@@ -27,22 +26,16 @@ function Menu() {
     dispatch(getAllUsers({ id, token }));
     history.push("admin/usersList");
   };
-
   //Admin Get all Posts
   const handlePosts = () => {
-    axios
-      .get(`/api/admin/allPosts/${id}`, {
-        headers: {
-          jwt: token,
-        },
-      })
-      .then((response) => {
-        let postsList = response.data.data;
-        console.log(postsList);
-      })
-      .catch((error) => console.dir(error));
+    dispatch(getUserPosts({ id, token }));
     history.push("admin/allPosts");
   };
+
+  // const handlePosts = () => {
+  //   dispatch(getUserPosts({ id, token }));
+  //   history.push("admin/allPosts");
+  // };
 
   return (
     <div>
@@ -117,9 +110,12 @@ function Menu() {
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a href="" className="nav-link active" onClick={handlePosts}>
+                      <a
+                        href=""
+                        className="nav-link"
+                        onClick={handlePosts}
+                      >
                         <i className="far fa-circle nav-icon" />
-                        
                         All Posts
                       </a>
                     </li>
@@ -135,7 +131,7 @@ function Menu() {
                   <a href="pages/widgets.html" className="nav-link">
                     <i className="nav-icon fas fa-th" />
                     <p>
-                      Widgets
+                      Destination
                       <span className="right badge badge-danger">New</span>
                     </p>
                   </a>
@@ -144,7 +140,7 @@ function Menu() {
                   <a href="#" className="nav-link">
                     <i className="nav-icon fas fa-copy" />
                     <p>
-                      Layout Options
+                      Traveller Options
                       <i className="fas fa-angle-left right" />
                       <span className="badge badge-info right">6</span>
                     </p>

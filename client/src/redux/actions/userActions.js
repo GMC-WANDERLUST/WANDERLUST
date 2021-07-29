@@ -12,13 +12,13 @@ import {
     GET_HOSTS_BY_DESTINATION,
 } from "../constants/action-types";
 import axios from "axios";
-// import Swal from "sweetalert2";
+
 
 export const getUserProfile = (payload) => (dispatch) => {
     axios
         .get(`/api/profile/UserInfos/${payload.id}`, {
             headers: {
-                // "Content-Type": "multipart/form-data",
+              
                 jwt: payload.token,
             },
         })
@@ -31,7 +31,7 @@ export const getUserPosts = (payload) => (dispatch) => {
     axios
         .get(`/api/posts/myPosts/${payload.id}`, {
             headers: {
-                // "Content-Type": "multipart/form-data",
+                
                 jwt: payload.token,
             },
         })
@@ -41,7 +41,7 @@ export const getUserPosts = (payload) => (dispatch) => {
         .catch((err) => console.dir(err));
 };
 export const getPostsByDestination = (payload) => (dispatch) => {
-    // console.log("action :", payload.travellerSelected);
+    
         axios
             .get(`/api/posts/allPosts/destination/${payload.id}`, {
                 headers: {
