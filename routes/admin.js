@@ -3,6 +3,8 @@ const controller = require("../controllers/adminControllers");
 const verify = require("../middlewares/verifyToken");
 const verifyAdmin = require("../middlewares/Admin");
 const User = require("../model/User");
+const Posts = require("../model/Posts");
+const Hosts = require("../model/Hosting")
 
 //GET Users List
 router.get(
@@ -19,6 +21,17 @@ router.get(
     verifyAdmin,
     controller.userManagementController.getUsers.getPostsList
 );
+//GET All Hosts
+
+router.get("/allHosts/:id", verify, verifyAdmin, async (req, res) => {
+    try {
+        let hosts = await Hosts.find();
+        res.status(201).json({status : true, message:"all hosts", hosts})
+    } catch(error) {
+        console.log(error)
+        res.status(401).json({status: false, message:"error", error})
+    }
+});
 
 //GET One User
 router.get(
@@ -27,19 +40,30 @@ router.get(
     verifyAdmin,
     controller.userManagementController.getUsers.getUserById
 );
-// UPDATE User Admin
+// ADD Admin
 router.put("/addAdmin/:id", verify, verifyAdmin, async (req, res) => {
     try {
-        let { isAdmin } = req.body;
-
         let id = req.header("data");
-
         let newAdmin = await User.findByIdAndUpdate(id, {
-            $set: { isAdmin },
+            $set: { isAdmin: true },
         });
-
         res.status(201).json({
             message: "Admin was added successfully",
+            newAdmin,
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+// REMOVE ADMIN
+router.put("/removeAdmin/:id", verify, verifyAdmin, async (req, res) => {
+    try {
+        let id = req.header("data");
+        let newAdmin = await User.findByIdAndUpdate(id, {
+            $set: { isAdmin: false },
+        });
+        res.status(201).json({
+            message: "Admin was removed",
             newAdmin,
         });
     } catch (err) {
@@ -79,16 +103,30 @@ router.put("/unbanedUser/:id", verify, verifyAdmin, async (req, res) => {
     }
 });
 // delete user post
-router.delete("/deleteUserPost/:id", verify, verifyAdmin, async (req, res) => {
-    let { id } = req.params;
+router.delete("/deletePost/:id", verify, verifyAdmin, async (req, res) => {
     try {
+        let id = req.header("data");
         let deletedPost = await Posts.findByIdAndRemove(id);
         res.status(201).json({
             message: "Post was deleted successfully",
             deletedPost,
         });
     } catch (err) {
-        res.send(500).send(err);
+        res.status(500).send(err);
+        console.log(err);
+    }
+});
+// delete user host
+router.delete("/deleteHost/:id", verify, verifyAdmin, async (req, res) => {
+    try {
+        let id = req.header("data");
+        let deletedPost = await Hosts.findByIdAndRemove(id);
+        res.status(201).json({
+            message: "Host was deleted successfully",
+            deletedPost,
+        });
+    } catch (err) {
+        res.status(500).send(err);
         console.log(err);
     }
 });

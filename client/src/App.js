@@ -18,6 +18,7 @@ import WrongPath from "./Components/WrongPath/WrongPath";
 import Admin from "./Components/AdminUI/Admin";
 import UsersList from "./Components/AdminUI/UsersList/UsersList";
 import UserPostsList from "./Components/AdminUI/PostsList/UsersPostsList";
+import AdminHostsList from "./Components/AdminUI/HostsList/AdminHostsList";
 
 function App() {
     return (
@@ -66,6 +67,11 @@ function App() {
                     path="/adminUi/admin/allPosts"
                     restricted={true}
                     component={UserPostsList}
+                />
+                <AdminRoute
+                    path="/adminUi/admin/allHosts"
+                    restricted={true}
+                    component={AdminHostsList}
                 />
             </Switch>
         </div>

@@ -6,3 +6,7 @@
     display: flex;
     flex-wrap: wrap;
 }
+.hostsList {
+    display: flex;
+    flex-wrap: wrap;
+}

@@ -43,6 +43,9 @@ function Menu() {
         //     .catch((error) => console.dir(error));
         // history.push("admin/allPosts");
     };
+    const handleHosts =() => {
+        // history.push("admin/allHosts")
+    }
 
     return (
         <div>
@@ -135,8 +138,9 @@ function Menu() {
                                         </li>
                                         <li className="nav-item">
                                             <a
-                                                href="./index3.html"
+                                                href=""
                                                 className="nav-link"
+                                                onClick={handleHosts}
                                             >
                                                 <i className="far fa-circle nav-icon" />
                                                 <p>All Host Users</p>
