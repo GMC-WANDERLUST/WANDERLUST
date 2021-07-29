@@ -222,12 +222,5 @@ function DashBoard() {
     </div>
   );
 }
-<<<<<<< HEAD
-export default DashBoard
-||||||| merged common ancestors
-
-export default DashBoard
-=======
 
 export default DashBoard;
->>>>>>> 2d38cb7da4e4724bd30c72967587f26866646aa5
