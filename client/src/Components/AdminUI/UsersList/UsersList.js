@@ -13,14 +13,14 @@ function UsersList() {
   }, [id, token, dispatch]);
   const usersList = useSelector((state) => state.adminReducer.usersList);
   return (
-    <div>
-      <h1>this is userList</h1>
-      {usersList.map((user) => (
-        <div key={user._id}>
-          <UserCard user={user}/>
-        </div>
-      ))}
-    </div>
+      <div>
+          <h1>Users List</h1>
+          {usersList.map((user) => (
+              <div key={user._id}>
+                  <UserCard token={token} user={user} id={id} />
+              </div>
+          ))}
+      </div>
   );
 }
 

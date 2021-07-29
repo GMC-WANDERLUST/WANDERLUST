@@ -1,4 +1,9 @@
-import { GET_ADMIN_PROFILE, GET_USERS_LIST } from "../constants/action-types";
+import {
+    GET_ADMIN_PROFILE,
+    GET_USERS_LIST,
+    ADMIN_GET_POSTS_LIST,
+    SHOW_USERS_LIST,
+} from "../constants/action-types";
 import axios from "axios";
 
 export const getUserProfile = (payload) => (dispatch) => {
@@ -31,16 +36,20 @@ export const getAllUsers = (payload) => (dispatch) => {
 
 //Admin GETs All Posts
 
-// export const getUserPosts = (payload) => (dispatch) => {
-//   axios
-//     .get(`/api/usersList/${payload.id}`, {
-//       headers: {
-
-//         jwt: payload.token,
-//       },
-//     })
-//     .then((response) => {
-//       dispatch({ type: GET_POSTS_LIST, payload: response.data.data });
-//     })
-//     .catch((err) => console.dir(err));
-// };
+export const adminGetUsersPosts = (payload) => (dispatch) => {
+  axios
+    .get(`/api/admin/allPosts/${payload.id}`, {
+      headers: {
+        jwt: payload.token,
+      },
+    })
+    .then((response) => {
+      dispatch({ type: ADMIN_GET_POSTS_LIST, payload: response.data.data });
+    })
+    .catch((err) => console.dir(err));
+};
+export function showUsersList() {
+    return {
+        type: SHOW_USERS_LIST,
+    };
+}

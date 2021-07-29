@@ -31,7 +31,14 @@ function UserEditProfil({ match }) {
                 });
                 history.push(`/addprofilephoto/${id}`);
             })
-            .catch((error) => console.dir(error));
+            .catch((error) => {
+                console.dir(error);
+                Swal.fire({
+                    title: error.response.data.message,
+                    icon: "error",
+                    confirmButtonText: "OK",
+                });
+            });
     };
 
     return (
