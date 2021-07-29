@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { userId, getToken } from "../../utils";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 function PostItem({ post }) {
     const id = userId();
@@ -99,9 +100,10 @@ function PostItem({ post }) {
             <section className="post">
                 {showEdit ? null : (
                     <div className="postItem">
-                        <h6>
-                            {post.firstName} {post.lastName}
-                        </h6>
+                            <h6>
+                                {post.firstName}
+                                {post.lastName}
+                            </h6>
                         <img src={post.img} alt="profil_photo" width="60px" />
                         <h6>Destination : {post.destination.toUpperCase()}</h6>
                         <h6> City :{post.city.toUpperCase()}</h6>
