@@ -2,15 +2,17 @@ import React from "react";
 import { Card, ListGroupItem, ListGroup, Button } from "react-bootstrap";
 import axios from "axios";
 import { userId, getToken } from "../../../utils";
-function PostsCard({ post }) {
+
+
+function HostsCard({ host }) {
     let id = userId();
     let token = getToken();
     const handleDelete = () => {
         axios
-            .delete(`/api/admin/deletePost/${id}`, {
+            .delete(`/api/admin/deleteHost/${id}`, {
                 headers: {
                     jwt: token,
-                    data: post._id,
+                    data: host._id,
                 },
             })
             .then((response) => {
@@ -22,33 +24,37 @@ function PostsCard({ post }) {
     return (
         <div>
             <Card style={{ width: "18rem" }}>
-                <Card.Img variant="top" src={post.img} height="450px" />
+                <Card.Img variant="top" src={host.img} height="450px" />
                 <Card.Body>
                     <Card.Title>
-                        {post.firstName.toUpperCase()}{" "}
-                        {post.lastName.toUpperCase()}
+                        {host.firstName.toUpperCase()}{" "}
+                        {host.lastName.toUpperCase()}
                     </Card.Title>
-                    <Card.Text>{post.description}</Card.Text>
+                    <Card.Text>{host.description}</Card.Text>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
                     <ListGroupItem>
-                        Destination :{post.destination.toUpperCase()}
+                        Residence :{host.residence.toUpperCase()}
                     </ListGroupItem>
                     <ListGroupItem>
-                        City :{post.city.toUpperCase()}
+                        City :{host.city.toUpperCase()}
                     </ListGroupItem>
-                    <ListGroupItem>From : {post.check_in}</ListGroupItem>
-                    <ListGroupItem>To : {post.check_out} </ListGroupItem>
                     <ListGroupItem>
-                        Nombre of Guests : {post.nbreOfGuests}
+                        Nombre of Rooms : {host.nbreOfRooms}
+                    </ListGroupItem>
+                    <ListGroupItem>
+                        Nombre of Beds : {host.nbreOfBeds}
+                    </ListGroupItem>
+                    <ListGroupItem>
+                        Price : {host.price} $
                     </ListGroupItem>
                 </ListGroup>
                 <Button variant="outline-danger" onClick={handleDelete}>
-                    Delete this post
+                    Delete this host
                 </Button>
             </Card>
         </div>
     );
 }
 
-export default PostsCard;
+export default HostsCard;

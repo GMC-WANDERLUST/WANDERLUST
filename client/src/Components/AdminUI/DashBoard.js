@@ -9,9 +9,11 @@ import { userId, getToken } from "../../utils";
 import {
     getAllUsers,
     adminGetUsersPosts,
+    adminGetHosts,
 } from "../../redux/actions/adminActions";
 import UserCard from "./UsersList/UserCard";
 import PostsCard from "./PostsList/PostCard";
+import HostsCard from "./HostsList/HostsCard";
 import "./Dashbord.css";
 
 function DashBoard() {
@@ -23,19 +25,22 @@ function DashBoard() {
     useEffect(() => {
         dispatch(getAllUsers({ id, token }));
         dispatch(adminGetUsersPosts({ id, token }));
+        dispatch(adminGetHosts({ id, token }));
     }, [id, token, dispatch]);
-    const [showUsers, setShowUsers] = useState(false);
-    const [showUPosts, setShowPosts] = useState(false);
-    const handelShow = () => {
-        setShowUsers(!showUsers);
-    };
-    const handelShowPosts = () => {
-        setShowPosts(!showUPosts);
-    };
+    // const [showUsers, setShowUsers] = useState(false);
+    // const [showUPosts, setShowPosts] = useState(false);
+    // const handelShow = () => {
+    //     setShowUsers(!showUsers);
+    // };
+    // const handelShowPosts = () => {
+    //     setShowPosts(!showUPosts);
+    // };
     const users = useSelector((state) => state.adminReducer.usersList);
     const posts = useSelector((state) => state.adminReducer.adminPostsList);
+    const hosts = useSelector((state) => state.adminReducer.adminHostsList);
     let numberOfPosts = posts.length;
     let numberOfUsers = users.length;
+    let numberOfHosts = hosts.length;
     const viewAllUsers = () => {
         // dispatch(showUsersList())
         // dispatch(getAllUsers({ id, token }));
@@ -45,6 +50,11 @@ function DashBoard() {
         // dispatch(showUsersList())
         // dispatch(getAllUsers({ id, token }));
         history.push("admin/allPosts");
+    };
+    const viewAllHosts = () => {
+        // dispatch(showUsersList())
+        // dispatch(getAllUsers({ id, token }));
+        history.push("admin/allHosts");
     };
 
     return (
@@ -150,6 +160,7 @@ function DashBoard() {
 
                 <div className="card">
                     <div>
+                        <h4>Users List</h4>
                         <div className="usersList">
                             {users
                                 .map((user, index) => {
@@ -176,6 +187,7 @@ function DashBoard() {
                         ) : null}
                     </div>
                     <br />
+                    <h4>Posts List</h4>
                     <div className="postsList">
                         {posts
                             .map((post, index) => {
@@ -194,11 +206,38 @@ function DashBoard() {
                             .reverse()}
                     </div>
                     <div>
-                        {numberOfPosts >= 5 ? (
+                        {numberOfHosts >= 5 ? (
                             <input
                                 type="button"
                                 value="View all posts"
                                 onClick={viewAllPosts}
+                            />
+                        ) : null}
+                    </div>
+                    <h4>Hosts List</h4>
+                    <div className="hostsList">
+                        {hosts
+                            .map((host, index) => {
+                                if (index <= 5) {
+                                    return (
+                                        <div key={host._id}>
+                                            <HostsCard
+                                                token={token}
+                                                host={host}
+                                                id={id}
+                                            />
+                                        </div>
+                                    );
+                                }
+                            })
+                            .reverse()}
+                    </div>
+                    <div>
+                        {numberOfHosts >= 5 ? (
+                            <input
+                                type="button"
+                                value="View all posts"
+                                onClick={viewAllHosts}
                             />
                         ) : null}
                     </div>
