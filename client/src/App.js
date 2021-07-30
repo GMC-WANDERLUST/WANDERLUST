@@ -1,9 +1,9 @@
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
-import Login from "./Components/Login/Login";
-import Register from "./Components/Register/Register";
+import LogInSide from "./Components/Login/LogInSide";
+import SignUp from "./Components/Register/SignUp";
 import Home from "./Components/Home/Home";
-import UserEditProfil from "./Components/UserProfil/UserEditProfil";
+import UserAddInformations from "./Components/UserProfil/UserAddInformations";
 import FirstPage from "./Components/FirstPage/FirstPage";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import PublicRoute from "./Components/PublicRoute/PublicRoute";
@@ -14,7 +14,6 @@ import UserUpdateProfile from "./Components/UserProfil/UserUpdateProfile";
 import PostsList from "./Components/Posts/PostsList";
 import HostsList from "./Components/Hosts/HostsList";
 import WrongPath from "./Components/WrongPath/WrongPath";
-// import { useState } from "react";
 import Admin from "./Components/AdminUI/Admin";
 import UsersList from "./Components/AdminUI/UsersList/UsersList";
 import UserPostsList from "./Components/AdminUI/PostsList/UsersPostsList";
@@ -29,12 +28,17 @@ function App() {
                 <PublicRoute
                     restricted={true}
                     path="/register"
-                    component={Register}
+                    component={SignUp}
                 />
-                <PublicRoute
+                {/* <PublicRoute
                     restricted={true}
                     path="/login"
                     component={Login}
+                /> */}
+                <PublicRoute
+                    restricted={true}
+                    path="/login"
+                    component={LogInSide}
                 />
                 <PrivateRoute path="/home" component={Home} />
                 <PrivateRoute path="/wrong" component={WrongPath} />
@@ -44,7 +48,7 @@ function App() {
                 />
                 <PrivateRoute
                     path="/editprofile/:id"
-                    component={UserEditProfil}
+                    component={UserAddInformations}
                 />
                 <PrivateRoute
                     path="/updateprofile/:id"

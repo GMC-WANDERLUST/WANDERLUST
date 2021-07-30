@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 function PostDestinationItem({ post }) {
     const saveUserId =() => {
@@ -23,6 +24,9 @@ function PostDestinationItem({ post }) {
             <h6>Nombres of Guests: {post.nbreOfGuests[0]} </h6>
             <p>{post.description}</p>
             <input type="button" value="Send a hosting request" />
+            {/* <Button variant="contained" color="secondary">
+                Secondary
+            </Button> */}
         </div>
     );
 }
