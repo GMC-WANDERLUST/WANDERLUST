@@ -8,7 +8,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { getUserProfile } from "../../redux/actions/userActions";
 import { adminGetUsersPosts } from "../../redux/actions/adminActions";
 import { useHistory } from "react-router-dom";
-import { getAllUsers, showUsersList } from "../../redux/actions/adminActions";
+import { getAllUsers, getUserPosts } from "../../redux/actions/adminActions";
+import {  showUsersList } from "../../redux/actions/adminActions";
 import axios from "axios";
 
 function Menu() {
@@ -23,28 +24,28 @@ function Menu() {
 
     //Admin GET all Users
     const handleUsers = () => {
-        // dispatch(showUsersList())
-        // dispatch(getAllUsers({ id, token }));
-        // history.push("admin/usersList");
+        dispatch(showUsersList())
+        dispatch(getAllUsers({ id, token }));
+        history.push("admin/usersList");
     };
 
     //Admin Get all Posts
     const handlePosts = () => {
-        // axios
-        //     .get(`/api/admin/allPosts/${id}`, {
-        //         headers: {
-        //             jwt: token,
-        //         },
-        //     })
-        //     .then((response) => {
-        //         let postsList = response.data.data;
-        //         console.log(postsList);
-        //     })
-        //     .catch((error) => console.dir(error));
-        // history.push("admin/allPosts");
+        axios
+            .get(`/api/admin/allPosts/${id}`, {
+                headers: {
+                    jwt: token,
+                },
+            })
+            .then((response) => {
+                let postsList = response.data.data;
+                console.log(postsList);
+            })
+            .catch((error) => console.dir(error));
+        history.push("admin/allPosts");
     };
     const handleHosts =() => {
-        // history.push("admin/allHosts")
+        history.push("admin/allHosts")
     }
 
     return (
