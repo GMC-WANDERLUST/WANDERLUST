@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, ListGroupItem, ListGroup, Button } from "react-bootstrap";
 import axios from "axios";
-import { GET_USER_HOSTS } from "../../../redux/constants/action-types";
+import { GET_USER_HOSTS } from "../../../../redux/constants/action-types";
 
 function UserCard({ token, user, id }) {
     // const [banned, setBanned] = React.useState(false);

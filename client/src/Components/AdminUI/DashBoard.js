@@ -11,10 +11,10 @@ import {
     adminGetUsersPosts,
     adminGetHosts,
 } from "../../redux/actions/adminActions";
-import UserCard from "./UsersList/UserCard";
-import PostsCard from "./PostsList/PostCard";
-import HostsCard from "./HostsList/HostsCard";
 import "./Dashbord.css";
+import CardHost from "./HostsList/CardHost";
+import CardUser from "./UsersList/CardUser";
+import CardPost from "./PostsList/CardPost";
 
 function DashBoard() {
     // const show = useSelector((state) => state.adminReducer.show);
@@ -159,15 +159,15 @@ function DashBoard() {
                 </div>
 
                 <div className="card">
-                    <div>
+                    <div className="usersList">
                         <h4>Users List</h4>
-                        <div className="usersList">
+                        <div className="admin-wl-userItem">
                             {users
                                 .map((user, index) => {
                                     if (index <= 8) {
                                         return (
                                             <div key={user._id}>
-                                                <UserCard
+                                                <CardUser
                                                     token={token}
                                                     user={user}
                                                     id={id}
@@ -178,68 +178,75 @@ function DashBoard() {
                                 })
                                 .reverse()}
                         </div>
-                        {numberOfUsers >= 8 ? (
-                            <input
-                                type="button"
-                                value="View all users"
-                                onClick={viewAllUsers}
-                            />
-                        ) : null}
+                        <div>
+                            {numberOfUsers >= 8 ? (
+                                <input
+                                    type="button"
+                                    value="View all users"
+                                    onClick={viewAllUsers}
+                                />
+                            ) : null}
+                        </div>
                     </div>
                     <br />
-                    <h4>Posts List</h4>
                     <div className="postsList">
-                        {posts
-                            .map((post, index) => {
-                                if (index <= 5) {
-                                    return (
-                                        <div key={post._id}>
-                                            <PostsCard
-                                                token={token}
-                                                post={post}
-                                                id={id}
-                                            />
-                                        </div>
-                                    );
-                                }
-                            })
-                            .reverse()}
+                        <h4>Posts List</h4>
+                        <div className="admin-wl-postItem">
+                            {posts
+                                .map((post, index) => {
+                                    if (index <= 12) {
+                                        return (
+                                            <div key={post._id}>
+                                                <CardPost
+                                                    token={token}
+                                                    post={post}
+                                                    id={id}
+                                                />
+                                            </div>
+                                        );
+                                    }
+                                })
+                                .reverse()}
+                        </div>
+                        <div>
+                            {numberOfPosts >= 12 ? (
+                                <input
+                                    type="button"
+                                    value="View all posts"
+                                    onClick={viewAllPosts}
+                                />
+                            ) : null}
+                        </div>
                     </div>
-                    <div>
-                        {numberOfHosts >= 5 ? (
-                            <input
-                                type="button"
-                                value="View all posts"
-                                onClick={viewAllPosts}
-                            />
-                        ) : null}
-                    </div>
-                    <h4>Hosts List</h4>
+                    <br />
                     <div className="hostsList">
-                        {hosts
-                            .map((host, index) => {
-                                if (index <= 5) {
-                                    return (
-                                        <div key={host._id}>
-                                            <HostsCard
-                                                token={token}
-                                                host={host}
-                                                id={id}
-                                            />
-                                        </div>
-                                    );
-                                }
-                            })
-                            .reverse()}
-                    </div>
-                    <div>
-                        {numberOfHosts >= 5 ? (
-                            <input
-                                type="button"
-                                value="View all posts"
-                                onClick={viewAllHosts}
-                            />
-                        ) : null}
+                        <h4>Hosts List</h4>
+                        <div className="admin-wl-hostItem">
+                            {hosts
+                                .map((host, index) => {
+                                    if (index <= 8) {
+                                        return (
+                                            <div key={host._id}>
+                                                <CardHost
+                                                    token={token}
+                                                    host={host}
+                                                    id={id}
+                                                />
+                                            </div>
+                                        );
+                                    }
+                                })
+                                .reverse()}
+                        </div>
+                        <div>
+                            {numberOfHosts >= 8 ? (
+                                <input
+                                    type="button"
+                                    value="View all posts"
+                                    onClick={viewAllHosts}
+                                />
+                            ) : null}
+                        </div>
                     </div>
                 </div>
             </div>

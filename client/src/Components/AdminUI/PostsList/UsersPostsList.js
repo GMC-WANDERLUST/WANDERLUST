@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import PostsCard from "./PostCard";
 import { userId, getToken } from "../../../utils";
 import { useDispatch, useSelector } from "react-redux";
 import { adminGetUsersPosts } from "../../../redux/actions/adminActions";
 import { Button, ListGroup } from "react-bootstrap";
+import CardPost from "./CardPost";
 
 function UserPostsList() {
     let id = userId();
@@ -21,7 +21,7 @@ function UserPostsList() {
             <h1>Posts List</h1>
             {postsList.map((post) => (
                 <div key={post._id}>
-                    <PostsCard post={post} />
+                    <CardPost post={post} />
                 </div>
             ))}
         </div>
