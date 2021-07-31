@@ -7,39 +7,39 @@ import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import CardUser from "./CardUser";
 
-
 const useStyles = makeStyles((theme) => ({
-    root: {
-        width: "100%",
-        maxWidth: "36ch",
-        backgroundColor: theme.palette.background.paper,
-    },
-    inline: {
-        display: "inline",
-    },
+  root: {
+    width: "100%",
+    maxWidth: "36ch",
+    backgroundColor: theme.palette.background.paper,
+  },
+  inline: {
+    display: "inline",
+  },
 }));
 
 function UsersList() {
-    const classes = useStyles();
-    let id = userId();
-    let token = getToken();
-    let dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getAllUsers({ id, token }));
-    }, [id, token, dispatch]);
-    const usersList = useSelector((state) => state.adminReducer.usersList);
-    return (
-        <div>
-            <List className={classes.root}>
-                <h1>Users List</h1>
-                {usersList.map((user) => (
-                    <div key={user._id}>
-                        <CardUser token={token} user={user} id={id} />
-                    </div>
-                ))}
-            </List>
-        </div>
-    );
+  const classes = useStyles();
+  let id = userId();
+  let token = getToken();
+  let dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllUsers({ id, token }));
+  }, [id, token, dispatch]);
+  const usersList = useSelector((state) => state.adminReducer.usersList);
+  return (
+    <div>
+      {console.log(usersList)}
+      <List className={classes.root}>
+        <h1>Users List</h1>
+        {usersList.map((user) => (
+          <div key={user._id}>
+            <CardUser token={token} user={user} id={id} />
+          </div>
+        ))}
+      </List>
+    </div>
+  );
 }
 
 export default UsersList;
