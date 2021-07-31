@@ -42,7 +42,6 @@ function UserProfile() {
     return (
         <React.Fragment>
             <NavBar />
-            <h1>This is the user Profile</h1>
             <div key={user._id}>
                 <img src={user.photo} alt="profile_photo" width="250px" />
                 <ModalEditPhoto action="Edit you photo" data={user.photo} />
