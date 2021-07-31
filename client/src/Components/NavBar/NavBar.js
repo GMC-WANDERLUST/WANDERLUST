@@ -12,6 +12,7 @@ import { logout } from "../../utils";
 import { useHistory } from "react-router-dom";
 import { userId, getToken, getIsAdmin } from "../../utils";
 import DropDown from "../../Components/UserProfil/DropDown";
+import MDropDown from "../../Components/UserProfil/MDropDown";
 function NavBar() {
     const history = useHistory();
     let isAdmin = getIsAdmin();
@@ -131,7 +132,8 @@ function NavBar() {
                             Search
                         </Button>
                     </Form>
-                    <DropDown />
+                    <MDropDown />
+                    {/* <DropDown /> */}
                     <Button
                         variant="danger"
                         type="button"
