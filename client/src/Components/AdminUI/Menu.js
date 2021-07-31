@@ -8,7 +8,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { getUserProfile } from "../../redux/actions/userActions";
 import { adminGetUsersPosts } from "../../redux/actions/adminActions";
 import { useHistory } from "react-router-dom";
-import { getAllUsers, showUsersList } from "../../redux/actions/adminActions";
+import { getAllUsers, getUserPosts } from "../../redux/actions/adminActions";
+import {  showUsersList } from "../../redux/actions/adminActions";
 import axios from "axios";
 
 function Menu() {

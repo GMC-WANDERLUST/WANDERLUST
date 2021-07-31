@@ -12,7 +12,7 @@ const initialState = {
   adminHostsList : []
 };
 
-const userReducer = (state = initialState, action) => {
+const adminReducer = (state = initialState, action) => {
   // eslint-disable-next-line
   const { type, payload } = action;
   switch (type) {
@@ -39,4 +39,4 @@ const userReducer = (state = initialState, action) => {
           return state;
   }
 };
-export default userReducer;
+export default adminReducer;
