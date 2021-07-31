@@ -8,10 +8,9 @@ function PublicRoute({ component: Component, restricted, ...rest }) {
             {...rest}
             render={(routeData) => {
                 if (isLoggedIn() && restricted) {
-                    return <Component {...rest} {...routeData} />;
+                    return <Redirect to="/wrong" />;
                 } else {
-                    <Redirect to="/" />;
-                    return;
+                    return <Component {...rest} {...routeData} />;
                 }
             }}
         />

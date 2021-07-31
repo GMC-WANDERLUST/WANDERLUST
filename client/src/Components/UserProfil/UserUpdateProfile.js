@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
 import axios from "axios";
 import { userId, getToken } from "../../utils";
-import "./UserEditProfile.css";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";

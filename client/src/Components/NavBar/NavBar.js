@@ -1,28 +1,22 @@
 import React, { useState } from "react";
 import {
-  Navbar,
-  Nav,
-  Container,
-  Button,
-  Form,
-  FormControl,
-  NavDropdown,
+    Navbar,
+    Nav,
+    Container,
+    Button,
+    Form,
+    FormControl,
+    NavDropdown,
 } from "react-bootstrap";
 import { logout } from "../../utils";
 import { useHistory } from "react-router-dom";
 import { userId, getToken, getIsAdmin } from "../../utils";
 import DropDown from "../../Components/UserProfil/DropDown";
-// import { Link } from "react-router-dom";
-
-// import { useDispatch } from "react-redux";
-// import { SET_POSTS_BY_DESTINATION } from "../../redux/constants/action-types";
-
+import MDropDown from "../../Components/UserProfil/MDropDown";
 function NavBar() {
     const history = useHistory();
-    // const dispatch = useDispatch();
     let isAdmin = getIsAdmin();
     let id = userId();
-    // let token = getToken();
     const handleLogout = () => {
         logout();
         history.push("/login");
@@ -73,9 +67,9 @@ function NavBar() {
         <Navbar bg="dark" variant="dark">
             <Container>
                 <Navbar.Brand href="/home">Home</Navbar.Brand>
-                  <Navbar.Brand href={`/adminUi/${id}`}>
-          {isAdmin === "true" ? "Admin" : null}{" "}
-        </Navbar.Brand>
+                <Navbar.Brand href={`/adminUi/${id}`}>
+                    {isAdmin === "true" ? "Admin" : null}{" "}
+                </Navbar.Brand>
                 <Navbar.Brand href={`/profile/${id}`}>Profile</Navbar.Brand>
                 <Nav className="me-auto">
                     <NavDropdown
@@ -138,7 +132,8 @@ function NavBar() {
                             Search
                         </Button>
                     </Form>
-                    <DropDown />
+                    <MDropDown />
+                    {/* <DropDown /> */}
                     <Button
                         variant="danger"
                         type="button"
@@ -148,7 +143,6 @@ function NavBar() {
                     </Button>
                 </Nav>
             </Container>
-            {/* <PostList destinationData={destinationData} /> */}
         </Navbar>
     );
 }

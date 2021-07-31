@@ -7,7 +7,6 @@ function Admin() {
   
   return (
     <div className="wrapper">
-      {" "}
       <Header />
       <Menu />
       <DashBoard />

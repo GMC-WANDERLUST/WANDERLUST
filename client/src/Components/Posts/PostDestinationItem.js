@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 function PostDestinationItem({ post }) {
+    const saveUserId =() => {
+        sessionStorage.setItem("randomId", post.user);
+    }
     return (
         <div className="postItem">
-            <Link to={`/profile/${post.user}`}>
+            <Link to={`/uprofile/${post.user}`} onClick={saveUserId}>
                 <h6>
                     {post.firstName.toUpperCase()} {post.lastName.toUpperCase()}
                 </h6>
@@ -20,6 +24,9 @@ function PostDestinationItem({ post }) {
             <h6>Nombres of Guests: {post.nbreOfGuests[0]} </h6>
             <p>{post.description}</p>
             <input type="button" value="Send a hosting request" />
+            {/* <Button variant="contained" color="secondary">
+                Secondary
+            </Button> */}
         </div>
     );
 }

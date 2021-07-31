@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import "./Login.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { login, saveId, saveIsHost,saveIsAdmin } from "../../utils";
-import NavBarExt from "../NavBar/NavBarExt";
+import { login, saveId, saveIsHost,saveIsAdmin } from "../../../utils";
+import NavBarExt from "../../NavBar/NavBarExt";
 import Swal from "sweetalert2";
 
 function Login() {

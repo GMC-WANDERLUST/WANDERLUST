@@ -1,27 +1,42 @@
-import { GET_USERS_LIST, GET_POSTS_LIST } from "../constants/action-types";
+import {
+    GET_USERS_LIST,
+    ADMIN_GET_POSTS_LIST,
+    SHOW_USERS_LIST,
+    ADMIN_GET_HOSTS_LIST,
+} from "../constants/action-types";
 
 const initialState = {
   usersList: [],
-  postsList :[],
+  adminPostsList : [],
+  showTheList : false,
+  adminHostsList : []
 };
 
 const adminReducer = (state = initialState, action) => {
   // eslint-disable-next-line
   const { type, payload } = action;
   switch (type) {
-    case GET_USERS_LIST:
-      return {
-        ...state,
-        usersList: payload,
-      };
-    case GET_POSTS_LIST:
-      return {
-        ...state,
-        postsList: payload,
-      };
-
-    default:
-      return state;
+      case GET_USERS_LIST:
+          return {
+              ...state,
+              usersList: payload,
+          };
+      case ADMIN_GET_POSTS_LIST:
+          return {
+              ...state,
+              adminPostsList: payload,
+          };
+      case ADMIN_GET_HOSTS_LIST:
+          return {
+              ...state,
+              adminHostsList: payload,
+          };
+      case SHOW_USERS_LIST:
+          return {
+              showTheList: !state.showTheList,
+          };
+      default:
+          return state;
   }
 };
 export default adminReducer;

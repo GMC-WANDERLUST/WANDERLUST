@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../../NavBar/NavBar";
 import axios from "axios";
-import { userId, getToken } from "../../utils";
-import "./UserEditProfile.css";
+import { userId, getToken } from "../../../utils";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 function UserEditProfil({ match }) {
@@ -31,7 +30,14 @@ function UserEditProfil({ match }) {
                 });
                 history.push(`/addprofilephoto/${id}`);
             })
-            .catch((error) => console.dir(error));
+            .catch((error) => {
+                console.dir(error);
+                Swal.fire({
+                    title: error.response.data.message,
+                    icon: "error",
+                    confirmButtonText: "OK",
+                });
+            });
     };
 
     return (

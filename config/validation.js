@@ -83,8 +83,28 @@ const NewEmailValidation = (data) => {
     const result = schema.validate(data);
     return result;
 };
+const InfosValidation = (data) => {
+    console.log("validation/data", data)
+    const schema = Joi.object({
+        Country: Joi.string().required().messages({
+            "string.empty": "Country cannot be an empty field",
+            "any.required": "Country is a required field",
+        }),
+        PhoneNumber: Joi.string().min(6).required().messages({
+            "string.empty": "PhoneNumber cannot be an empty field",
+            "any.required": "PhoneNumber is a required field",
+        }),
+        Languages: Joi.string().required().messages({
+            "string.empty": "Languages cannot be an empty field",
+            "any.required": "Languages is a required field",
+        }),
+    });
+    const result = schema.validate(data);
+    return result;
+};
 
 module.exports.RegisterValidation = RegisterValidation;
 module.exports.NewPasswordValidation = NewPasswordValidation;
 module.exports.NewFirstNameValidation = NewFirstNameValidation;
 module.exports.NewEmailValidation = NewEmailValidation;
+module.exports.InfosValidation = InfosValidation;

@@ -38,3 +38,9 @@ export function saveIsAdmin(data) {
 export function getIsAdmin() {
   return localStorage.getItem("isAdmin");
 }
+export function isAdmin() {
+    if (localStorage.getItem("isAdmin")==="true") {
+        return true;
+    }
+    return false;
+}

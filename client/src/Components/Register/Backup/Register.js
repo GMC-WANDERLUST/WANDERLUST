@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import "./Register.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import NavBarExt from "../NavBar/NavBarExt";
+import NavBarExt from "../../NavBar/NavBarExt";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 // import { createUser } from "../../redux/actions/userActions";
