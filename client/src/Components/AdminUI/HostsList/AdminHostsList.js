@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
-import HostsCard from "./HostsCard";
+import CardHost from "./CardHost";
 import { userId, getToken } from "../../../utils";
 import { useDispatch, useSelector } from "react-redux";
 import { adminGetHosts } from "../../../redux/actions/adminActions";
-import { Button, ListGroup } from "react-bootstrap";
 
 function AdminHostsList() {
     let id = userId();
@@ -21,7 +20,7 @@ function AdminHostsList() {
             <h1>Hosts List</h1>
             {hostsList.map((host) => (
                 <div key={host._id}>
-                    <HostsCard host={host} />
+                    <CardHost host={host} />
                 </div>
             ))}
         </div>

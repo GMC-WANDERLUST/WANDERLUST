@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, ListGroupItem, ListGroup, Button } from "react-bootstrap";
 import axios from "axios";
-import { userId, getToken } from "../../../utils";
+import { userId, getToken } from "../../../../utils";
 
 
 function HostsCard({ host }) {
