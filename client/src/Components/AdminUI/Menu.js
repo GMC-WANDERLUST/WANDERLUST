@@ -24,29 +24,29 @@ function Menu() {
 
     //Admin GET all Users
     const handleUsers = () => {
-        dispatch(showUsersList())
-        dispatch(getAllUsers({ id, token }));
+        // dispatch(showUsersList())
+        // dispatch(getAllUsers({ id, token }));
         history.push("admin/usersList");
     };
 
     //Admin Get all Posts
     const handlePosts = () => {
-        axios
-            .get(`/api/admin/allPosts/${id}`, {
-                headers: {
-                    jwt: token,
-                },
-            })
-            .then((response) => {
-                let postsList = response.data.data;
-                console.log(postsList);
-            })
-            .catch((error) => console.dir(error));
+        // axios
+        //     .get(`/api/admin/allPosts/${id}`, {
+        //         headers: {
+        //             jwt: token,
+        //         },
+        //     })
+        //     .then((response) => {
+        //         let postsList = response.data.data;
+        //         console.log(postsList);
+        //     })
+        //     .catch((error) => console.dir(error));
         history.push("admin/allPosts");
     };
-    const handleHosts =() => {
+    const handleHosts = () => {
         history.push("admin/allHosts")
-    }
+    };
 
     return (
         <div>
@@ -120,16 +120,16 @@ function Menu() {
                                     </a>
                                     <ul className="nav nav-treeview">
                                         <li className="nav-item">
-                                            <input
-                                                type="button"
+                                            <a
                                                 value="Users List"
                                                 className="nav-link"
                                                 onClick={handleUsers}
-                                            />
+                                            >
+                                                All Users
+                                            </a>
                                         </li>
                                         <li className="nav-item">
                                             <a
-                                                href=""
                                                 className="nav-link active"
                                                 onClick={handlePosts}
                                             >
@@ -139,7 +139,6 @@ function Menu() {
                                         </li>
                                         <li className="nav-item">
                                             <a
-                                                href=""
                                                 className="nav-link"
                                                 onClick={handleHosts}
                                             >
