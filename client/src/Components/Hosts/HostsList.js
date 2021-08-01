@@ -10,8 +10,21 @@ import { useSelector } from "react-redux";
 import HostDestinationItem from "./HostDestinationItem";
 import HostCityItem from "./HostCityItem";
 import FilterDropdown from "./FilterDropdown";
+import { makeStyles } from "@material-ui/core/styles";
+import LinearProgress from "@material-ui/core/LinearProgress";
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: "100%",
+        "& > * + *": {
+            marginTop: theme.spacing(2),
+        },
+    },
+}));
 
 function HostsList() {
+    const classes = useStyles();
+
     let id = userId();
     let token = getToken();
     const dispatch = useDispatch();
@@ -30,31 +43,43 @@ function HostsList() {
         (state) => state.hostingReducer.hostsByDestination
     );
     const postsByCity = useSelector((state) => state.postReducer.postsByCity);
-    console.log(postsByCity);
+    const test = useSelector((state) => state.postReducer.test);
+    const hostTest = useSelector((state) => state.hostingReducer.hostTest);
+
     return (
         <div>
             <NavBar />
-            <h1>This is the hosts List</h1>
             <FilterDropdown />
-            {hostsByDestination.length === 0 && postsByCity.length === 0 ? (
-                <h2> No data was found</h2>
-            ) : hostsByDestination.length !== 0 && postsByCity.length === 0 ? (
+            {test || hostTest ? (
                 <div>
-                    {hostsByDestination.map((host) => (
-                        <div key={host._id}>
-                            <HostDestinationItem host={host} />
+                    {hostsByDestination.length === 0 &&
+                    postsByCity.length === 0 ? (
+                        <h2> No data was found</h2>
+                    ) : hostsByDestination.length !== 0 &&
+                      postsByCity.length === 0 ? (
+                        <div>
+                            {hostsByDestination.map((host) => (
+                                <div key={host._id}>
+                                    <HostDestinationItem host={host} />
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
-            ) : hostsByDestination.length === 0 && postsByCity.length !== 0 ? (
-                <div>
-                    {postsByCity.map((post) => (
-                        <div key={post._id}>
-                            <HostCityItem post={post} />
+                    ) : hostsByDestination.length === 0 &&
+                      postsByCity.length !== 0 ? (
+                        <div>
+                            {postsByCity.map((host) => (
+                                <div key={host._id}>
+                                    <HostCityItem host={host} />
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                    ) : null}
                 </div>
-            ) : null}
+            ) : (
+                <div className={classes.root}>
+                    <LinearProgress />
+                </div>
+            )}
         </div>
     );
 }

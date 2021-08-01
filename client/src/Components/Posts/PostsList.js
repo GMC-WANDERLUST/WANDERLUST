@@ -10,8 +10,21 @@ import { useSelector } from "react-redux";
 import PostDestinationItem from "./PostDestinationItem";
 import PostCityItem from "./PostCityItem";
 import FilterDropdown from "./FilterDropdown";
+import { makeStyles } from "@material-ui/core/styles";
+import LinearProgress from "@material-ui/core/LinearProgress";
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: "100%",
+        "& > * + *": {
+            marginTop: theme.spacing(2),
+        },
+    },
+}));
 
 function PostList() {
+    const classes = useStyles();
+
     let id = userId();
     let token = getToken();
     const dispatch = useDispatch();
@@ -24,37 +37,48 @@ function PostList() {
             dispatch(getPostsByCity({ city, id, token }));
         } else if (destination) {
             dispatch(getPostsByDestination({ destination, id, token }));
-        } 
+        }
     }, [id, token, destination, city, dispatch]);
     const postsByDestination = useSelector(
         (state) => state.postReducer.postsByDestination
     );
     const postsByCity = useSelector((state) => state.postReducer.postsByCity);
-    console.log(postsByCity);
+    const test = useSelector((state) => state.postReducer.test);
+
     return (
         <div>
             <NavBar />
-            <h1>This is the posts List</h1>
             <FilterDropdown />
-            {postsByDestination.length === 0 && postsByCity.length === 0 ? (
-                <h2> No data was found</h2>
-            ) : postsByDestination.length !== 0 && postsByCity.length === 0 ? (
+            {test ? (
                 <div>
-                    {postsByDestination.map((post) => (
-                        <div key={post._id}>
-                            <PostDestinationItem post={post} />
+                    {postsByDestination.length === 0 &&
+                    postsByCity.length === 0 ? (
+                        <h2> No data was found</h2>
+                    ) : postsByDestination.length !== 0 &&
+                      postsByCity.length === 0 ? (
+                        <div>
+                            {postsByDestination.map((post) => (
+                                <div key={post._id}>
+                                    <PostDestinationItem post={post} />
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
-            ) : postsByDestination.length === 0 && postsByCity.length !== 0 ? (
-                <div>
-                    {postsByCity.map((post) => (
-                        <div key={post._id}>
-                            <PostCityItem post={post} />
+                    ) : postsByDestination.length === 0 &&
+                      postsByCity.length !== 0 ? (
+                        <div>
+                            {postsByCity.map((post) => (
+                                <div key={post._id}>
+                                    <PostCityItem post={post} />
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                    ) : null}
                 </div>
-            ) : null}
+            ) : (
+                <div className={classes.root}>
+                    <LinearProgress />
+                </div>
+            )}
         </div>
     );
 }

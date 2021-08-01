@@ -8,6 +8,7 @@ import {
 const initialState = {
   usersList: [],
   adminPostsList : [],
+  adminTest: false,
   showTheList : false,
   adminHostsList : []
 };
@@ -20,20 +21,24 @@ const adminReducer = (state = initialState, action) => {
           return {
               ...state,
               usersList: payload,
+              adminTest: true,
           };
       case ADMIN_GET_POSTS_LIST:
           return {
               ...state,
               adminPostsList: payload,
+              adminTest: true,
           };
       case ADMIN_GET_HOSTS_LIST:
           return {
               ...state,
               adminHostsList: payload,
+              adminTest: true,
           };
       case SHOW_USERS_LIST:
           return {
               showTheList: !state.showTheList,
+              adminTest: true,
           };
       default:
           return state;

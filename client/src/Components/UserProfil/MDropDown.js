@@ -9,6 +9,7 @@ import { openHostingModal } from "../../redux/actions/hostActions";
 import { userId, getToken, getIsHost, saveIsHost } from "../../utils";
 import axios from "axios";
 import Swal from "sweetalert2";
+
 function MDropDown() {
     let id = userId();
     let token = getToken();
@@ -90,10 +91,11 @@ function MDropDown() {
                         Change e-mail
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
+
                     <NavDropdown.Item onClick={acceptGuests}>
                         {isHost === "true"
-                            ? "Stop Accepting Guests"
-                            : "Accept Guests"}
+                            ? "Accept Guests"
+                            : "Stop Accepting Guests"}
                     </NavDropdown.Item>
                 </NavDropdown>
             </Nav>
