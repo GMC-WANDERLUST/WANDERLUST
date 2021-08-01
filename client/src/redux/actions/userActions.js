@@ -15,12 +15,10 @@ import {
 } from "../constants/action-types";
 import axios from "axios";
 
-
 export const getUserProfile = (payload) => (dispatch) => {
     axios
         .get(`/api/profile/UserInfos/${payload.id}`, {
             headers: {
-              
                 jwt: payload.token,
             },
         })
@@ -38,7 +36,10 @@ export const getRandomUserProfile = (payload) => (dispatch) => {
             },
         })
         .then((response) => {
-            dispatch({ type: GET_RANDOM_USER_PROFILE, payload: response.data.data });
+            dispatch({
+                type: GET_RANDOM_USER_PROFILE,
+                payload: response.data.data,
+            });
         })
         .catch((err) => console.dir(err));
 };
@@ -46,7 +47,6 @@ export const getUserPosts = (payload) => (dispatch) => {
     axios
         .get(`/api/posts/myPosts/${payload.id}`, {
             headers: {
-                
                 jwt: payload.token,
             },
         })
@@ -64,26 +64,28 @@ export const getRandomUserPosts = (payload) => (dispatch) => {
             },
         })
         .then((response) => {
-            dispatch({ type: GET_RANDOM_USER_POSTS, payload: response.data.data });
+            dispatch({
+                type: GET_RANDOM_USER_POSTS,
+                payload: response.data.data,
+            });
         })
         .catch((err) => console.dir(err));
 };
 export const getPostsByDestination = (payload) => (dispatch) => {
-    
-        axios
-            .get(`/api/posts/allPosts/destination/${payload.id}`, {
-                headers: {
-                    jwt: payload.token,
-                    data: payload.destination,
-                },
-            })
-            .then((response) => {
-                dispatch({
-                    type: GET_POSTS_BY_DESTINATION,
-                    payload: response.data.data,
-                });
-            })
-            .catch((error) => console.dir(error));
+    axios
+        .get(`/api/posts/allPosts/destination/${payload.id}`, {
+            headers: {
+                jwt: payload.token,
+                data: payload.destination,
+            },
+        })
+        .then((response) => {
+            dispatch({
+                type: GET_POSTS_BY_DESTINATION,
+                payload: response.data.data,
+            });
+        })
+        .catch((error) => console.dir(error));
 };
 export const getHostsByDestination = (payload) => (dispatch) => {
     // console.log("action :", payload.travellerSelected);
@@ -104,21 +106,21 @@ export const getHostsByDestination = (payload) => (dispatch) => {
 };
 export const getPostsByCity = (payload) => (dispatch) => {
     // console.log("action :", payload.travellerSelected);
-        axios
-            .get(`/api/posts/allPosts/destination/city/${payload.id}`, {
-                headers: {
-                    jwt: payload.token,
-                    data: payload.city,
-                },
-            })
-            .then((response) => {
-                console.log(response);
-                dispatch({
-                    type: GET_POSTS_BY_CITY,
-                    payload: response.data.data,
-                });
-            })
-            .catch((error) => console.dir(error));
+    axios
+        .get(`/api/posts/allPosts/destination/city/${payload.id}`, {
+            headers: {
+                jwt: payload.token,
+                data: payload.city,
+            },
+        })
+        .then((response) => {
+            console.log(response);
+            dispatch({
+                type: GET_POSTS_BY_CITY,
+                payload: response.data.data,
+            });
+        })
+        .catch((error) => console.dir(error));
 };
 export const getHostsByCity = (payload) => (dispatch) => {
     // console.log("action :", payload.travellerSelected);

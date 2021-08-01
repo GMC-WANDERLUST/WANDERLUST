@@ -5,6 +5,7 @@ import {
 
 const initialState = {
     user: [],
+    test: false,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -15,11 +16,13 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 user: payload,
+                test: true,
             };
         case GET_RANDOM_USER_PROFILE:
             return {
                 ...state,
                 user: payload,
+                test: true,
             };
         default:
             return state;

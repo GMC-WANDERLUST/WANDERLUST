@@ -43,6 +43,7 @@ function ModalAddHosting({ open }) {
     }
     function handleclose() {
         dispatch(closeHostingModal());
+        // window.location.reload()
     }
     const handleChange = (e) => {
         setNewData({ ...newData, [e.target.name]: e.target.value });

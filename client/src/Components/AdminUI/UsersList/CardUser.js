@@ -75,7 +75,7 @@ function CardUser({ token, user, id }) {
                 )
                 .then((response) => {
                     console.log(response);
-                    window.lcation.reload();
+                    window.location.reload();
                 })
                 .catch((error) => {
                     console.log(error);
@@ -94,7 +94,7 @@ function CardUser({ token, user, id }) {
                 )
                 .then((response) => {
                     console.log(response);
-                    window.lcation.reload();
+                    window.location.reload();
                 })
                 .catch((error) => {
                     console.log(error);
@@ -133,6 +133,7 @@ function CardUser({ token, user, id }) {
                                     color="textPrimary"
                                 >
                                     <Button
+                                        // type="button"
                                         variant={
                                             user.isUser ? "danger" : "warning"
                                         }
@@ -141,6 +142,7 @@ function CardUser({ token, user, id }) {
                                         {user.isUser ? "Ban" : "Unban"}
                                     </Button>
                                     <Button
+                                        // type="button"
                                         variant={
                                             user.isAdmin
                                                 ? "outline-secondary"
