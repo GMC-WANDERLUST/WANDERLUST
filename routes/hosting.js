@@ -42,7 +42,7 @@ router.post("/newHosting/:id", verify, async (req, res) => {
 router.put("/editHosting/:id", verify, UserAccess, async (req, res) => {
     try {
         let { editHost } = req.body;
-        let id = req.header("data")
+        let id = req.header("data");
         await Hosting.findByIdAndUpdate(id, {
             $set: { ...editHost },
         });
@@ -123,11 +123,26 @@ router.get(
         }
     }
 );
+// REPORT HOST
+router.put("/reportHost/:id", verify, UserAccess, async (req, res) => {
+    try {
+        let { id } = req.body;
+        // console.log(id);
+        await Hosting.findByIdAndUpdate(id, { isReported: 1 });
+        let reportedHost = await Hosting.findById(id);
+        res.status(201).json({
+            status: true,
+            message: "Host was reported!",
+            reportedHost,
+        });
+    } catch (error) {
+        res.status(401).json({ message: "data not found", error });
+    }
+});
 // DELETE HOSTING
 router.delete("/deleteHosting/:id", verify, UserAccess, async (req, res) => {
     let id = req.header("data");
     try {
-
         let deletedHosting = await Hosting.findByIdAndRemove(id);
         res.status(201).json({
             message: "Hosting Post was deleted successfully",

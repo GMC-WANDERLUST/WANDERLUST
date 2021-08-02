@@ -5,6 +5,7 @@ import {
     SHOW_USERS_LIST,
     ADMIN_GET_HOSTS_LIST,
     ADMIN_GET_REPORTED_POSTS_LIST,
+    ADMIN_GET_REPORTED_HOSTS_LIST,
 } from "../constants/action-types";
 import axios from "axios";
 
@@ -67,6 +68,22 @@ export const adminGetReportedPosts = (payload) => (dispatch) => {
             });
         })
         .catch((err) => console.dir("reported error",err));
+};
+export const adminGetReportedHosts = (payload) => (dispatch) => {
+    axios
+        .get(`/api/admin/reportedHosts/${payload.id}`, {
+            headers: {
+                jwt: payload.token,
+            },
+        })
+        .then((response) => {
+            console.log(response);
+            dispatch({
+                type: ADMIN_GET_REPORTED_HOSTS_LIST,
+                payload: response.data.data,
+            });
+        })
+        .catch((err) => console.dir("reported error", err));
 };
 export const adminGetHosts = (payload) => (dispatch) => {
     axios

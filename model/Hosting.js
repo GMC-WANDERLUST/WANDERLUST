@@ -47,6 +47,10 @@ const hostingSchema = new mongoose.Schema({
         type: "number",
         default: 0,
     },
+    date: {
+        type: Date,
+        default: Date.now,
+    },
 });
 
 module.exports = Hosting = mongoose.model("hosting", hostingSchema);

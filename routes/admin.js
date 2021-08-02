@@ -25,7 +25,6 @@ router.get(
 
 router.get("/reportedPosts/:id", verify, verifyAdmin, async (req, res) => {
     let { id } = req.params;
-    // console.log("test")
     try {
         const reportedPosts = await Posts.find({isReported : 1});
         // console.log(reportedPosts);
@@ -33,6 +32,22 @@ router.get("/reportedPosts/:id", verify, verifyAdmin, async (req, res) => {
             status: true,
             message: "reported Posts",
             data: reportedPosts,
+        });
+    } catch (error) {
+        res.status(404).json({ status: true, error });
+    }
+});
+//GET Reported Hosts
+
+router.get("/reportedHosts/:id", verify, verifyAdmin, async (req, res) => {
+    let { id } = req.params;
+    try {
+        const reportedHosts = await Hosts.find({isReported : 1});
+        // console.log(reportedPosts);
+        res.status(201).json({
+            status: true,
+            message: "reported Hosts",
+            data: reportedHosts,
         });
     } catch (error) {
         res.status(404).json({ status: true, error });

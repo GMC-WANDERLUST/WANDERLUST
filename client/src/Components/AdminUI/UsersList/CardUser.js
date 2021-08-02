@@ -7,8 +7,8 @@ import Typography from "@material-ui/core/Typography";
 import {
     makeStyles,
     withStyles,
-    ThemeProvider,
     createTheme,
+    ThemeProvider,
 } from "@material-ui/core/styles";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
@@ -18,9 +18,17 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
-import { red } from "@material-ui/core/colors";
 import "./CardUser.css";
 import { Link } from "react-router-dom";
+import {
+    blue,
+    amber,
+    deepOrange,
+    red,
+    pink,
+    green,
+} from "@material-ui/core/colors";
+
 const useStyles = makeStyles((theme) => ({
     root: {
         width: "100%",
@@ -30,33 +38,52 @@ const useStyles = makeStyles((theme) => ({
     inline: {
         display: "inline",
     },
-}));
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: "#9b0000",
-        },
-        secondary: {
-            main: "#43a047",
-        },
-        info: {
-            main: "#1e88e5",
-        },
-        warning: {
-            main: "#e0e0e0",
+    ban: {
+        color: theme.palette.getContrastText(red[700]),
+        backgroundColor: red[700],
+        "&:hover": {
+            backgroundColor: red[900],
+            // Reset on touch devices, it doesn't add specificity
+            "@media (hover: none)": {
+                backgroundColor: red[700],
+            },
         },
     },
-});
-// const theme2 = createTheme({
-//     palette: {
-//         primary: {
-//             main: "#1e88e5",
-//         },
-//         secondary: {
-//             main: "#e0e0e0",
-//         },
-//     },
-// });
+    unban: {
+        color: theme.palette.getContrastText(green[700]),
+        backgroundColor: green[700],
+        "&:hover": {
+            backgroundColor: green[900],
+            // Reset on touch devices, it doesn't add specificity
+            "@media (hover: none)": {
+                backgroundColor: green[700],
+            },
+        },
+    },
+    addAdmin: {
+        color: theme.palette.getContrastText(blue[700]),
+        backgroundColor: blue[700],
+        "&:hover": {
+            backgroundColor: blue[900],
+            // Reset on touch devices, it doesn't add specificity
+            "@media (hover: none)": {
+                backgroundColor: blue[700],
+            },
+        },
+    },
+    remove: {
+        color: theme.palette.getContrastText(amber[700]),
+        backgroundColor: amber[700],
+        "&:hover": {
+            backgroundColor: amber[900],
+            // Reset on touch devices, it doesn't add specificity
+            "@media (hover: none)": {
+                backgroundColor: amber[700],
+            },
+        },
+    },
+}));
+
 function CardUser({ token, user, id }) {
     const classes = useStyles();
     const handelBanUser = () => {
@@ -168,48 +195,51 @@ function CardUser({ token, user, id }) {
                                     className={classes.inline}
                                     color="textPrimary"
                                 >
-                                    <ThemeProvider theme={theme}>
-                                        <Button
-                                            size="small"
-                                            variant="contained"
-                                            color={
-                                                user.isUser
-                                                    ? "primary"
-                                                    : "secondary"
-                                            }
-                                            className={classes.button}
-                                            startIcon={
-                                                user.isUser ? (
-                                                    <RemoveCircleIcon />
-                                                ) : (
-                                                    <ReplayIcon />
-                                                )
-                                            }
-                                            onClick={handelBanUser}
-                                        >
-                                            {user.isUser ? "Ban" : "Unban"}
-                                        </Button>
-                                        <Button
-                                            size="small"
-                                            variant="contained"
-                                            color={
-                                                user.isAdmin
-                                                    ? "info"
-                                                    : "warning"
-                                            }
-                                            className={classes.button}
-                                            startIcon={
-                                                user.isAdmin ? (
-                                                    <HighlightOffIcon />
-                                                ) : (
-                                                    <AddCircleIcon />
-                                                )
-                                            }
-                                            onClick={handelAddAdmin}
-                                        >
-                                            {user.isAdmin ? "Remove" : "Add"}
-                                        </Button>
-                                    </ThemeProvider>
+                                    <Button
+                                        size="small"
+                                        variant="contained"
+                                        // color={
+                                        //     user.isUser
+                                        //         ? "secondary"
+                                        //         : "primary"
+                                        // }
+                                        className={
+                                            user.isUser
+                                                ? classes.ban
+                                                : classes.unban
+                                        }
+                                        startIcon={
+                                            user.isUser ? (
+                                                <RemoveCircleIcon />
+                                            ) : (
+                                                <ReplayIcon />
+                                            )
+                                        }
+                                        onClick={handelBanUser}
+                                    >
+                                        {user.isUser ? "Ban" : "Unban"}
+                                    </Button>
+
+                                    <Button
+                                        size="small"
+                                        variant="contained"
+                                        // color={
+                                        //     user.isAdmin
+                                        //         ? "secondary"
+                                        //         : "primary"
+                                        // }
+                                        className={user.isAdmin ? classes.remove : classes.addAdmin}
+                                        startIcon={
+                                            user.isAdmin ? (
+                                                <HighlightOffIcon />
+                                            ) : (
+                                                <AddCircleIcon />
+                                            )
+                                        }
+                                        onClick={handelAddAdmin}
+                                    >
+                                        {user.isAdmin ? "Remove" : "Add"}
+                                    </Button>
                                 </Typography>
                             </React.Fragment>
                         }

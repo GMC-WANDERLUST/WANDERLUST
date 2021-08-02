@@ -53,7 +53,7 @@ function Main() {
           </div>
           <div
             className="u-align-center u-carousel-item u-clearfix u-image u-shading u-section-1-2"
-            src
+            src="true"
             data-image-width={150}
             data-image-height={99}
           >
@@ -74,7 +74,7 @@ function Main() {
           </div>
           <div
             className="u-align-center u-carousel-item u-clearfix u-image u-shading u-section-1-3"
-            src
+            src="true"
             data-image-width={1280}
             data-image-height={853}
           >
@@ -96,7 +96,7 @@ function Main() {
           </div>
           <div
             className="u-align-center u-carousel-item u-clearfix u-image u-shading u-section-1-4"
-            src
+            src="true"
             data-image-width={1280}
             data-image-height={720}
           >

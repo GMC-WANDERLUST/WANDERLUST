@@ -13,22 +13,21 @@ import { showUsersList } from "../../redux/actions/adminActions";
 import axios from "axios";
 
 function Menu() {
-  const id = userId();
-  const dispatch = useDispatch();
-  const token = getToken();
-  const user = useSelector((state) => state.userReducer.user);
-  const history = useHistory();
-  useEffect(() => {
-    dispatch(getUserProfile({ id, token }));
-  }, [id, token, dispatch]);
+    const id = userId();
+    const dispatch = useDispatch();
+    const token = getToken();
+    const user = useSelector((state) => state.userReducer.user);
+    const history = useHistory();
+    useEffect(() => {
+        dispatch(getUserProfile({ id, token }));
+    }, [id, token, dispatch]);
 
-  //Admin GET all Users
-  const handleUsers = () => {
-    // dispatch(showUsersList())
-    // dispatch(getAllUsers({ id, token }));
-    history.push("admin/usersList");
-  };
-
+    //Admin GET all Users
+    const handleUsers = () => {
+        // dispatch(showUsersList())
+        // dispatch(getAllUsers({ id, token }));
+        history.push("admin/usersList");
+    };
 
     //Admin Get all Posts
     const handlePosts = () => {
@@ -53,7 +52,6 @@ function Menu() {
         <div>
             <div>
                 <aside className="main-sidebar sidebar-dark-primary elevation-4">
-                    {/* Brand Logo */}
                     <a href="/home" className="brand-link">
                         <img
                             src="\uploads\logo.jpg"
@@ -65,9 +63,7 @@ function Menu() {
                             Admin Panel
                         </span>
                     </a>
-                    {/* Sidebar */}
                     <div className="sidebar">
-                        {/* Sidebar user panel (optional) */}
                         <div className="user-panel mt-3 pb-3 mb-3 d-flex">
                             <div className="image">
                                 <img
@@ -82,7 +78,6 @@ function Menu() {
                                 </a>
                             </div>
                         </div>
-                        {/* SidebarSearch Form */}
                         <div className="form-inline">
                             <div
                                 className="input-group"
@@ -101,7 +96,6 @@ function Menu() {
                                 </div>
                             </div>
                         </div>
-                        {/* Sidebar Menu */}
                         <nav className="mt-2">
                             <ul
                                 className="nav nav-pills nav-sidebar flex-column"
@@ -109,8 +103,6 @@ function Menu() {
                                 role="menu"
                                 data-accordion="false"
                             >
-                                {/* Add icons to the links using the .nav-icon class
-         with font-awesome or any other icon font library */}
                                 <li className="nav-item menu-open">
                                     <a href="#" className="nav-link active">
                                         <i className="nav-icon fas fa-tachometer-alt" />
@@ -182,18 +174,11 @@ function Menu() {
                                 </li>
                             </ul>
                         </nav>
-                        {/* /.sidebar-menu */}
                     </div>
-                    {/* /.sidebar */}
                 </aside>
-
             </div>
-           
-            
-          </div>
-         
-    
-  );
+        </div>
+    );
 }
 
 export default Menu;

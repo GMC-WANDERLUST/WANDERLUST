@@ -11,6 +11,7 @@ import {
     adminGetUsersPosts,
     adminGetHosts,
     adminGetReportedPosts,
+    adminGetReportedHosts,
 } from "../../redux/actions/adminActions";
 import "./Dashbord.css";
 import CardHost from "./HostsList/CardHost";
@@ -28,6 +29,7 @@ function DashBoard() {
         dispatch(adminGetUsersPosts({ id, token }));
         dispatch(adminGetHosts({ id, token }));
         dispatch(adminGetReportedPosts({ id, token }));
+        dispatch(adminGetReportedHosts({ id, token }));
     }, [id, token, dispatch]);
     // const [showUsers, setShowUsers] = useState(false);
     // const [showUPosts, setShowPosts] = useState(false);
@@ -42,11 +44,15 @@ function DashBoard() {
     const reportedPosts = useSelector(
         (state) => state.adminReducer.adminReportedPosts
     );
+    const reportedHosts = useSelector(
+        (state) => state.adminReducer.adminReportedHosts
+    );
     const hosts = useSelector((state) => state.adminReducer.adminHostsList);
     let numberOfPosts = posts.length;
     let numberOfUsers = users.length;
     let numberOfHosts = hosts.length;
     let numberOfReportedPosts = reportedPosts.length;
+    let numberOfReportedHosts = reportedHosts.length;
 
     const viewAllUsers = () => {
         // dispatch(showUsersList())
@@ -63,12 +69,20 @@ function DashBoard() {
         // dispatch(getAllUsers({ id, token }));
         history.push("admin/allHosts");
     };
+    const viewAllReportedHosts = () => {
+        // dispatch(showUsersList())
+        // dispatch(getAllUsers({ id, token }));
+        history.push("admin/allReportedHosts");
+    };
+    const viewAllReportedPosts = () => {
+        // dispatch(showUsersList())
+        // dispatch(getAllUsers({ id, token }));
+        history.push("admin/allReportedPosts");
+    };
 
     return (
         <div>
-            {/* Content Wrapper. Contains page content */}
             <div className="content-wrapper">
-                {/* Content Header (Page header) */}
                 <div className="content-header">
                     <div className="container-fluid">
                         <div className="row mb-2">
@@ -77,7 +91,6 @@ function DashBoard() {
                                     WanderLust Admin Interface
                                 </h1>
                             </div>
-                            {/* /.col */}
                             <div className="col-sm-6">
                                 <ol className="breadcrumb float-sm-right">
                                     <li className="breadcrumb-item">
@@ -92,7 +105,6 @@ function DashBoard() {
                     </div>
                 </div>
                 <div className="container-fluid">
-                    {/* Info boxes */}
                     <div className="row">
                         <div className="col-12 col-sm-6 col-md-3">
                             <div className="info-box">
@@ -105,11 +117,8 @@ function DashBoard() {
                                         {numberOfPosts}
                                     </span>
                                 </div>
-                                {/* /.info-box-content */}
                             </div>
-                            {/* /.info-box */}
                         </div>
-                        {/* /.col */}
                         <div className="col-12 col-sm-6 col-md-3">
                             <div className="info-box mb-3">
                                 <span className="info-box-icon bg-danger elevation-1">
@@ -123,12 +132,8 @@ function DashBoard() {
                                         {numberOfHosts}
                                     </span>
                                 </div>
-                                {/* /.info-box-content */}
                             </div>
-                            {/* /.info-box */}
                         </div>
-                        {/* /.col */}
-                        {/* fix for small devices only */}
                         <div className="clearfix hidden-md-up" />
                         <div className="col-12 col-sm-6 col-md-3">
                             <div className="info-box mb-3">
@@ -141,39 +146,62 @@ function DashBoard() {
                                     </span>
                                     <span className="info-box-number">760</span>
                                 </div>
-                                {/* /.info-box-content */}
                             </div>
-                            {/* /.info-box */}
                         </div>
-                        {/* /.col */}
                         <div className="col-12 col-sm-6 col-md-3">
                             <div className="info-box mb-3">
                                 <span className="info-box-icon bg-warning elevation-1">
                                     <i className="fas fa-users" />
                                 </span>
-                                <div className="info-box-content">
+                                 <div className="info-box-content">
                                     <span className="info-box-text">
                                         All Members
                                     </span>
                                     <span className="info-box-number">
                                         {numberOfUsers}
                                     </span>
-                                </div>
-                                {/* /.info-box-content */}
+                                </div> 
                             </div>
-                            {/* /.info-box */}
                         </div>
-                        {/* /.col */}
                     </div>
                 </div>
-
                 <div className="card">
+                    <div className="reportedHosts">
+                        <h4>Reported Hosts</h4>
+                        <div className="admin-wl-reportedHostItem">
+                            {reportedHosts
+                                .map((host, index) => {
+                                    if (index <= 5) {
+                                        return (
+                                            <div key={host._id}>
+                                                <CardHost
+                                                    token={token}
+                                                    host={host}
+                                                    id={id}
+                                                />
+                                            </div>
+                                        );
+                                    }
+                                })
+                                .reverse()}
+                        </div>
+                        <div>
+                            {numberOfReportedHosts >= 5 ? (
+                                <input
+                                    type="button"
+                                    value="View all"
+                                    onClick={viewAllReportedHosts}
+                                />
+                            ) : null}
+                        </div>
+                    </div>
+                    <br />
                     <div className="reportedPosts">
                         <h4>Reported Posts</h4>
                         <div className="admin-wl-reportedPostItem">
                             {reportedPosts
                                 .map((post, index) => {
-                                    if (index <= 8) {
+                                    if (index <= 5) {
                                         return (
                                             <div key={post._id}>
                                                 <CardPost
@@ -188,11 +216,11 @@ function DashBoard() {
                                 .reverse()}
                         </div>
                         <div>
-                            {numberOfUsers >= 8 ? (
+                            {numberOfReportedPosts >= 5 ? (
                                 <input
                                     type="button"
                                     value="View all users"
-                                    onClick={viewAllUsers}
+                                    onClick={viewAllReportedPosts}
                                 />
                             ) : null}
                         </div>

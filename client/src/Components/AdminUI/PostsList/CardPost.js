@@ -6,11 +6,12 @@ import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
-import { Button } from "react-bootstrap";
+import Button from "@material-ui/core/Button";
+import DeleteIcon from "@material-ui/icons/Delete";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import { Link } from "react-router-dom";
-import "./CardPost.css"
+import "./CardPost.css";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.paper,
         display: "flex",
         flexDirection: "column",
+        alignItems: "center",
     },
     item: {
         boxShadow: "2px 2px 2px black",
@@ -106,9 +108,17 @@ function CardPost({ token, post, id }) {
                         }
                     />
                 </ListItem>
-                <Button variant="outline-danger" onClick={handleDelete}>
-                    Delete
-                </Button>
+                <div>
+                    <Button
+                        className={classes.button}
+                        startIcon={<DeleteIcon />}
+                        variant="contained"
+                        color="secondary"
+                        onClick={handleDelete}
+                    >
+                        Delete
+                    </Button>
+                </div>
                 <Divider variant="inset" component="li" />
             </List>
         </div>

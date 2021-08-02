@@ -146,7 +146,7 @@ router.get(
 router.put("/reportPost/:id", verify, verifyUserAccess, async (req, res) => {
     try {
         let { id } = req.body;
-        console.log(id);
+        // console.log(id);
         await Posts.findByIdAndUpdate(id, { isReported: 1 });
         let reportedPost = await Posts.findById(id);
         res.status(201).json({
