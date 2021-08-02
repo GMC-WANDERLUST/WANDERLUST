@@ -2,10 +2,27 @@ import React, { useEffect } from "react";
 import { userId, getToken } from "../../../utils";
 import { useDispatch, useSelector } from "react-redux";
 import { adminGetUsersPosts } from "../../../redux/actions/adminActions";
-import { Button, ListGroup } from "react-bootstrap";
 import CardPost from "./CardPost";
+import { makeStyles } from "@material-ui/core/styles";
+import List from "@material-ui/core/List";
+import Button from "@material-ui/core/Button";
+import "./UsersPost.css"
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: "100%",
+        maxWidth: "100%",
+        backgroundColor: theme.palette.background.paper,
+        display: "flex",
+        flexWrap: "wrap",
+    },
+    inline: {
+        display: "inline",
+    },
+}));
 
 function UserPostsList() {
+    const classes = useStyles();
     let id = userId();
     let token = getToken();
     const dispatch = useDispatch();
@@ -14,16 +31,20 @@ function UserPostsList() {
     }, [id, token, dispatch]);
     const postsList = useSelector((state) => state.adminReducer.adminPostsList);
     return (
-        <div>
-            {/* <Button variant="outline-primary" href={`/adminUi/${id}`}>
-                Back
-            </Button> */}
+        <div className="wl-admin-postsList">
             <h1>Posts List</h1>
-            {postsList.map((post) => (
-                <div key={post._id}>
-                    <CardPost post={post} />
-                </div>
-            ))}
+            <List className={classes.root}>
+                {postsList
+                    .map((post) => (
+                        <div key={post._id}>
+                            <CardPost post={post} />
+                        </div>
+                    ))
+                    .reverse()}
+            </List>
+            <Button href={`/adminUi/${id}`} color="primary">
+                Back
+            </Button>
         </div>
     );
 }

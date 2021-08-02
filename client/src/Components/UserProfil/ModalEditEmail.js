@@ -58,6 +58,7 @@ function ModalEditEmail({ open }) {
             showCancelButton: true,
             confirmButtonText: `Save`,
             denyButtonText: `Don't save`,
+            showLoaderOnConfirm: true,
         }).then((result) => {
             if (result.isConfirmed) {
                 axios

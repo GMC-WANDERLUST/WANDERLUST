@@ -5,7 +5,6 @@ import { getAllUsers } from "../../../redux/actions/adminActions";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import Button from "@material-ui/core/Button";
-
 import CardUser from "./CardUser";
 import "./UsersList.css";
 

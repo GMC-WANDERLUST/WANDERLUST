@@ -88,7 +88,7 @@ exports.login = async (req, res) => {
     res.status(201).json({
         status: 200,
         token: token,
-        id: user._id,
+        id,
         isHost: user.isHost,
         check,
         isAdmin:user.isAdmin,

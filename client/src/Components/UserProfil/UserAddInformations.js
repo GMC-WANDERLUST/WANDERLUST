@@ -94,6 +94,7 @@ export default function Checkout() {
                     title: response.data.message,
                     icon: "success",
                     confirmButtonText: "CONTINUE",
+                    showLoaderOnConfirm: true,
                 });
                 history.push(`/addprofilephoto/${id}`);
             })
@@ -103,6 +104,7 @@ export default function Checkout() {
                     title: error.response.data.message,
                     icon: "error",
                     confirmButtonText: "OK",
+                    showLoaderOnConfirm: true,
                 });
             });
     };

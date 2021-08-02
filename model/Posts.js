@@ -42,6 +42,10 @@ const PostSchema = new Schema(
             type: "string",
             required: true,
         },
+        isReported: {
+            type: "number",
+            default: 0,
+        },
         likes: [
             {
                 user: {

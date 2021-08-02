@@ -9,7 +9,7 @@ import { getUserProfile } from "../../redux/actions/userActions";
 import { adminGetUsersPosts } from "../../redux/actions/adminActions";
 import { useHistory } from "react-router-dom";
 import { getAllUsers, getUserPosts } from "../../redux/actions/adminActions";
-import {  showUsersList } from "../../redux/actions/adminActions";
+import { showUsersList } from "../../redux/actions/adminActions";
 import axios from "axios";
 
 function Menu() {
@@ -45,7 +45,7 @@ function Menu() {
         history.push("admin/allPosts");
     };
     const handleHosts = () => {
-        history.push("admin/allHosts")
+        history.push("admin/allHosts");
     };
 
     return (
@@ -121,15 +121,18 @@ function Menu() {
                                     <ul className="nav nav-treeview">
                                         <li className="nav-item">
                                             <a
-                                                value="Users List"
+                                                href="#"
+                                                // value="Users List"
                                                 className="nav-link"
                                                 onClick={handleUsers}
                                             >
+                                                <i className="far fa-circle nav-icon" />
                                                 All Users
                                             </a>
                                         </li>
                                         <li className="nav-item">
                                             <a
+                                                href="#"
                                                 className="nav-link active"
                                                 onClick={handlePosts}
                                             >
@@ -139,6 +142,7 @@ function Menu() {
                                         </li>
                                         <li className="nav-item">
                                             <a
+                                                href="#"
                                                 className="nav-link"
                                                 onClick={handleHosts}
                                             >
