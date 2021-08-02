@@ -75,7 +75,7 @@ function CardUser({ token, user, id }) {
                 )
                 .then((response) => {
                     console.log(response);
-                    window.lcation.reload();
+                    window.location.reload();
                 })
                 .catch((error) => {
                     console.log(error);
