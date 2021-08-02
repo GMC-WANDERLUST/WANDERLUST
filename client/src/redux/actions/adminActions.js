@@ -4,6 +4,7 @@ import {
     ADMIN_GET_POSTS_LIST,
     SHOW_USERS_LIST,
     ADMIN_GET_HOSTS_LIST,
+    ADMIN_GET_REPORTED_POSTS_LIST,
 } from "../constants/action-types";
 import axios from "axios";
 
@@ -29,7 +30,6 @@ export const getAllUsers = (payload) => (dispatch) => {
             },
         })
         .then((response) => {
-            console.log(response);
             dispatch({ type: GET_USERS_LIST, payload: response.data.data });
         })
         .catch((err) => console.dir(err));
@@ -51,6 +51,22 @@ export const adminGetUsersPosts = (payload) => (dispatch) => {
             });
         })
         .catch((err) => console.dir(err));
+};
+export const adminGetReportedPosts = (payload) => (dispatch) => {
+    axios
+        .get(`/api/admin/reportedPosts/${payload.id}`, {
+            headers: {
+                jwt: payload.token,
+            },
+        })
+        .then((response) => {
+            console.log(response)
+            dispatch({
+                type: ADMIN_GET_REPORTED_POSTS_LIST,
+                payload: response.data.data,
+            });
+        })
+        .catch((err) => console.dir("reported error",err));
 };
 export const adminGetHosts = (payload) => (dispatch) => {
     axios

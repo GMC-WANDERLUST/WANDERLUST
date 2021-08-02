@@ -14,18 +14,18 @@ const hostingSchema = new mongoose.Schema({
         required: true,
     },
     img: {
-        type:"string"
+        type: "string",
     },
     residence: {
         type: "string",
     },
-    city : {
-        type : "string",
-        required : true,
+    city: {
+        type: "string",
+        required: true,
     },
-    languages : {
-        type : ["string"],
-        required : true,
+    languages: {
+        type: ["string"],
+        required: true,
     },
     nbreOfRooms: {
         type: "string",
@@ -42,6 +42,10 @@ const hostingSchema = new mongoose.Schema({
     description: {
         type: "string",
         required: true,
+    },
+    isReported: {
+        type: "number",
+        default: 0,
     },
 });
 

@@ -86,11 +86,13 @@ function LogInSide() {
                               title: response.data.message.toUpperCase(),
                               icon: "success",
                               confirmButtonText: "Let's Go!",
+                              showLoaderOnConfirm: true,
                           })
                         : Swal.fire({
                               title: response.data.msg,
                               icon: "success",
                               confirmButtonText: "Let's Go!",
+                              showLoaderOnConfirm: true,
                           });
                 }
 

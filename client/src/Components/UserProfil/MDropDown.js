@@ -47,12 +47,14 @@ function MDropDown() {
                         confirmButtonColor: "#3085d6",
                         cancelButtonColor: "#d33",
                         confirmButtonText: "Yes, Continue!",
+                        showLoaderOnConfirm: true,
                     }).then((result) => {
                         if (result.isConfirmed) {
                             Swal.fire({
                                 title: `${response.data.message}`,
                                 showDenyButton: false,
                                 showCancelButton: false,
+                                showLoaderOnConfirm: true,
                                 confirmButtonText: `Ok`,
                                 icon: "success",
                             }).then((result) => {
@@ -79,7 +81,7 @@ function MDropDown() {
                 <NavDropdown
                     id="nav-dropdown-dark-example"
                     title="Profile Settings"
-                    menuVariant="dark"
+                    menuvariant="dark"
                 >
                     <NavDropdown.Item href={`/updateprofile/${id}`}>
                         Update Personal Informations

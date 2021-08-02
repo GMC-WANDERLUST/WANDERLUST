@@ -10,6 +10,7 @@ import { Button } from "react-bootstrap";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import { Link } from "react-router-dom";
+import "./CardPost.css"
 
 const useStyles = makeStyles((theme) => ({
     root: {

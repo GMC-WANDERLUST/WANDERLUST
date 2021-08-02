@@ -1,3 +1,7 @@
+.card {
+    display: flex;
+    flex-direction: column;
+}
 .usersList {
     display: flex;
     flex-direction: column;
@@ -19,6 +23,20 @@
     padding-top: 10px;
     padding-left: 20px;
     box-shadow: 0px 5px 15px rgb(80, 76, 76);
+}
+.reportedPosts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-left: 20px;
+    box-shadow: 0px 5px 15px rgb(80, 76, 76);
+}
+.admin-wl-reportedPostItem {
+    color: black;
+    display: flex;
+    flex-wrap: wrap;
 }
 .admin-wl-postItem {
     color: black;

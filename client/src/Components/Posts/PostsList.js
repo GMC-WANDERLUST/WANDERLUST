@@ -61,7 +61,7 @@ function PostList() {
                                 <div key={post._id}>
                                     <PostDestinationItem post={post} />
                                 </div>
-                            ))}
+                            )).reverse()}
                         </div>
                     ) : postsByDestination.length === 0 &&
                       postsByCity.length !== 0 ? (
@@ -70,7 +70,7 @@ function PostList() {
                                 <div key={post._id}>
                                     <PostCityItem post={post} />
                                 </div>
-                            ))}
+                            )).reverse()}
                         </div>
                     ) : null}
                 </div>

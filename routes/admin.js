@@ -4,7 +4,7 @@ const verify = require("../middlewares/verifyToken");
 const verifyAdmin = require("../middlewares/Admin");
 const User = require("../model/User");
 const Posts = require("../model/Posts");
-const Hosts = require("../model/Hosting")
+const Hosts = require("../model/Hosting");
 
 //GET Users List
 router.get(
@@ -21,15 +21,33 @@ router.get(
     verifyAdmin,
     controller.userManagementController.getUsers.getPostsList
 );
+//GET Reported Posts
+
+router.get("/reportedPosts/:id", verify, verifyAdmin, async (req, res) => {
+    let { id } = req.params;
+    // console.log("test")
+    try {
+        const reportedPosts = await Posts.find({isReported : 1});
+        // console.log(reportedPosts);
+        res.status(201).json({
+            status: true,
+            message: "reported Posts",
+            data: reportedPosts,
+        });
+    } catch (error) {
+        res.status(404).json({ status: true, error });
+    }
+});
+
 //GET All Hosts
 
 router.get("/allHosts/:id", verify, verifyAdmin, async (req, res) => {
     try {
         let hosts = await Hosts.find();
-        res.status(201).json({status : true, message:"all hosts", hosts})
-    } catch(error) {
-        console.log(error)
-        res.status(401).json({status: false, message:"error", error})
+        res.status(201).json({ status: true, message: "all hosts", hosts });
+    } catch (error) {
+        console.log(error);
+        res.status(401).json({ status: false, message: "error", error });
     }
 });
 

@@ -114,6 +114,7 @@ function UserUpdateProfile() {
                     title: response.data.message,
                     icon: "success",
                     confirmButtonText: "CONTINUE",
+                    showLoaderOnConfirm: true,
                 });
                 history.push(`/profile/${id}`);
             })

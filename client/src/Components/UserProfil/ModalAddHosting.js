@@ -64,6 +64,7 @@ function ModalAddHosting({ open }) {
                     showDenyButton: true,
                     showCancelButton: true,
                     confirmButtonText: `Save`,
+                    showLoaderOnConfirm: true,
                     denyButtonText: `Don't save`,
                 }).then((result) => {
                     if (result.isConfirmed) {

@@ -80,6 +80,7 @@ function SignUp() {
                     icon: "success",
                     text: "The journey starts now!",
                     confirmButtonText: "GO NOW",
+                    showLoaderOnConfirm: true,
                 });
                 history.push("/login");
             })

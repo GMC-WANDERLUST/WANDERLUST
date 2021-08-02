@@ -196,6 +196,7 @@ router.put("/editStatus/:id", verify, userAccess, async (req, res) => {
         res.status(500).json(err);
     }
 });
+//Report USER
 router.put('/report/:id', verify, adminAcess, async (req,res) => {
     try {
         let {id} = req.params;

@@ -194,11 +194,11 @@ function NavBar() {
                         <Button
                             variant="outline-success"
                             onClick={handleSearch}
+                            style={{ marginRight: "20px" }}
                         >
                             Search
                         </Button>
                     </Form>
-                    <MDropDown />
                     <FormGroup>
                         <FormControlLabel
                             control={
@@ -216,6 +216,7 @@ function NavBar() {
                             }
                         />
                     </FormGroup>
+                    <MDropDown />
                     <Button
                         variant="danger"
                         type="button"
