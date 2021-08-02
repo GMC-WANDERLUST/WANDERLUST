@@ -5,7 +5,7 @@ function WrongPath() {
     return (
         <div>
             <h1>WRONG PATH</h1>
-            <Link to="/home">GO BACK</Link>
+            <Link to="/">GO BACK</Link>
         </div>
     )
 }
