@@ -401,10 +401,8 @@ function Menu() {
             </nav>
             {/* /.sidebar-menu */}
           </div>
-          {/* /.sidebar */}
-        </aside>
-      </div>
-    </div>
+         
+      
   );
 }
 
