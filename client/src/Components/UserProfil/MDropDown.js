@@ -9,6 +9,7 @@ import { openHostingModal } from "../../redux/actions/hostActions";
 import { userId, getToken, getIsHost, saveIsHost } from "../../utils";
 import axios from "axios";
 import Swal from "sweetalert2";
+
 function MDropDown() {
     let id = userId();
     let token = getToken();
@@ -46,12 +47,14 @@ function MDropDown() {
                         confirmButtonColor: "#3085d6",
                         cancelButtonColor: "#d33",
                         confirmButtonText: "Yes, Continue!",
+                        showLoaderOnConfirm: true,
                     }).then((result) => {
                         if (result.isConfirmed) {
                             Swal.fire({
                                 title: `${response.data.message}`,
                                 showDenyButton: false,
                                 showCancelButton: false,
+                                showLoaderOnConfirm: true,
                                 confirmButtonText: `Ok`,
                                 icon: "success",
                             }).then((result) => {
@@ -78,7 +81,7 @@ function MDropDown() {
                 <NavDropdown
                     id="nav-dropdown-dark-example"
                     title="Profile Settings"
-                    menuVariant="dark"
+                    menuvariant="dark"
                 >
                     <NavDropdown.Item href={`/updateprofile/${id}`}>
                         Update Personal Informations
@@ -90,10 +93,11 @@ function MDropDown() {
                         Change e-mail
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
+
                     <NavDropdown.Item onClick={acceptGuests}>
                         {isHost === "true"
-                            ? "Stop Accepting Guests"
-                            : "Accept Guests"}
+                            ? "Accept Guests"
+                            : "Stop Accepting Guests"}
                     </NavDropdown.Item>
                 </NavDropdown>
             </Nav>

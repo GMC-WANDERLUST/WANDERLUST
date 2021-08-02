@@ -37,6 +37,7 @@ function PostItem({ post }) {
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
                     confirmButtonText: "Confirm",
+                    showLoaderOnConfirm: true,
                 }).then((result) => {
                     if (result.isConfirmed) {
                         Swal.fire({
@@ -45,6 +46,7 @@ function PostItem({ post }) {
                             showDenyButton: false,
                             showCancelButton: false,
                             confirmButtonText: `Save`,
+                            showLoaderOnConfirm: true,
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 window.location.reload();
@@ -64,6 +66,7 @@ function PostItem({ post }) {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!",
+            showLoaderOnConfirm: true,
         }).then((result) => {
             if (result.isConfirmed) {
                 axios
@@ -81,6 +84,7 @@ function PostItem({ post }) {
                             showCancelButton: false,
                             icon: "success",
                             confirmButtonText: `Save`,
+                            showLoaderOnConfirm: true,
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 window.location.reload();

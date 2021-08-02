@@ -47,6 +47,7 @@ function DropDown() {
                         confirmButtonColor: "#3085d6",
                         cancelButtonColor: "#d33",
                         confirmButtonText: "Yes, Continue!",
+                        showLoaderOnConfirm: true,
                     }).then((result) => {
                         if (result.isConfirmed) {
                             Swal.fire({
@@ -54,6 +55,7 @@ function DropDown() {
                                 showDenyButton: false,
                                 showCancelButton: false,
                                 confirmButtonText: `Ok`,
+                                showLoaderOnConfirm: true,
                                 icon: "success",
                             }).then((result) => {
                                 if (result.isConfirmed) {

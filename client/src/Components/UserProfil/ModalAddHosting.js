@@ -43,6 +43,7 @@ function ModalAddHosting({ open }) {
     }
     function handleclose() {
         dispatch(closeHostingModal());
+        // window.location.reload()
     }
     const handleChange = (e) => {
         setNewData({ ...newData, [e.target.name]: e.target.value });
@@ -63,6 +64,7 @@ function ModalAddHosting({ open }) {
                     showDenyButton: true,
                     showCancelButton: true,
                     confirmButtonText: `Save`,
+                    showLoaderOnConfirm: true,
                     denyButtonText: `Don't save`,
                 }).then((result) => {
                     if (result.isConfirmed) {

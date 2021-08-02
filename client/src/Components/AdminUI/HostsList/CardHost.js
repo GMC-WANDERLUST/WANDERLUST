@@ -10,7 +10,7 @@ import { Button } from "react-bootstrap";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import { Link } from "react-router-dom";
-
+import "./CardHost.css"
 const useStyles = makeStyles((theme) => ({
     root: {
         width: "100%",
@@ -46,7 +46,7 @@ function CardPost({ token, host, id }) {
         sessionStorage.setItem("randomId", host.host);
     };
     return (
-        <div className={classes.root}>
+        <div className="wl-card-item">
             <List className={classes.root}>
                 <ListItem alignItems="flex-start">
                     <ListItemAvatar>

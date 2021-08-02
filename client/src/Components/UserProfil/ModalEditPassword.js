@@ -56,6 +56,7 @@ function ModalEditPassword({ open }) {
             showCancelButton: true,
             confirmButtonText: `Save`,
             denyButtonText: `Don't save`,
+            showLoaderOnConfirm: true,
         }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {

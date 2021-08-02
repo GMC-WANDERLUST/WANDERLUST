@@ -10,6 +10,7 @@ import {
     getAllUsers,
     adminGetUsersPosts,
     adminGetHosts,
+    adminGetReportedPosts,
 } from "../../redux/actions/adminActions";
 import "./Dashbord.css";
 import CardHost from "./HostsList/CardHost";
@@ -26,6 +27,7 @@ function DashBoard() {
         dispatch(getAllUsers({ id, token }));
         dispatch(adminGetUsersPosts({ id, token }));
         dispatch(adminGetHosts({ id, token }));
+        dispatch(adminGetReportedPosts({ id, token }));
     }, [id, token, dispatch]);
     // const [showUsers, setShowUsers] = useState(false);
     // const [showUPosts, setShowPosts] = useState(false);
@@ -37,10 +39,15 @@ function DashBoard() {
     // };
     const users = useSelector((state) => state.adminReducer.usersList);
     const posts = useSelector((state) => state.adminReducer.adminPostsList);
+    const reportedPosts = useSelector(
+        (state) => state.adminReducer.adminReportedPosts
+    );
     const hosts = useSelector((state) => state.adminReducer.adminHostsList);
     let numberOfPosts = posts.length;
     let numberOfUsers = users.length;
     let numberOfHosts = hosts.length;
+    let numberOfReportedPosts = reportedPosts.length;
+
     const viewAllUsers = () => {
         // dispatch(showUsersList())
         // dispatch(getAllUsers({ id, token }));
@@ -106,12 +113,14 @@ function DashBoard() {
                         <div className="col-12 col-sm-6 col-md-3">
                             <div className="info-box mb-3">
                                 <span className="info-box-icon bg-danger elevation-1">
-                                    <i className="fas fa-thumbs-up" />
+                                    <i className="fas fa-clipboard" />
                                 </span>
                                 <div className="info-box-content">
-                                    <span className="info-box-text">Likes</span>
+                                    <span className="info-box-text">
+                                        Hosting Posts
+                                    </span>
                                     <span className="info-box-number">
-                                        41,410
+                                        {numberOfHosts}
                                     </span>
                                 </div>
                                 {/* /.info-box-content */}
@@ -159,6 +168,36 @@ function DashBoard() {
                 </div>
 
                 <div className="card">
+                    <div className="reportedPosts">
+                        <h4>Reported Posts</h4>
+                        <div className="admin-wl-reportedPostItem">
+                            {reportedPosts
+                                .map((post, index) => {
+                                    if (index <= 8) {
+                                        return (
+                                            <div key={post._id}>
+                                                <CardPost
+                                                    token={token}
+                                                    post={post}
+                                                    id={id}
+                                                />
+                                            </div>
+                                        );
+                                    }
+                                })
+                                .reverse()}
+                        </div>
+                        <div>
+                            {numberOfUsers >= 8 ? (
+                                <input
+                                    type="button"
+                                    value="View all users"
+                                    onClick={viewAllUsers}
+                                />
+                            ) : null}
+                        </div>
+                    </div>
+                    <br />
                     <div className="usersList">
                         <h4>Users List</h4>
                         <div className="admin-wl-userItem">
@@ -242,7 +281,7 @@ function DashBoard() {
                             {numberOfHosts >= 8 ? (
                                 <input
                                     type="button"
-                                    value="View all posts"
+                                    value="View all Hosts"
                                     onClick={viewAllHosts}
                                 />
                             ) : null}

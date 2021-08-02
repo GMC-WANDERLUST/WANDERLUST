@@ -7,7 +7,7 @@ function HostCityItem({ host }) {
     };
     return (
         <div className="postItem">
-            <Link to={`/uprofile/${host.user}`} onClick={saveUserId}>
+            <Link to={`/uprofile/${host.host}`} onClick={saveUserId}>
                 <h6>
                     {host.firstName} {host.lastName}
                 </h6>
