@@ -4,12 +4,14 @@ import {
     SHOW_USERS_LIST,
     ADMIN_GET_HOSTS_LIST,
     ADMIN_GET_REPORTED_POSTS_LIST,
+    ADMIN_GET_REPORTED_HOSTS_LIST,
 } from "../constants/action-types";
 
 const initialState = {
   usersList: [],
   adminPostsList : [],
   adminReportedPosts : [],
+  adminReportedHosts : [],
   adminTest: false,
   showTheList : false,
   adminHostsList : []
@@ -35,6 +37,12 @@ const adminReducer = (state = initialState, action) => {
           return {
               ...state,
               adminReportedPosts: payload,
+              adminTest: true,
+          };
+      case ADMIN_GET_REPORTED_HOSTS_LIST:
+          return {
+              ...state,
+              adminReportedHosts: payload,
               adminTest: true,
           };
       case ADMIN_GET_HOSTS_LIST:
