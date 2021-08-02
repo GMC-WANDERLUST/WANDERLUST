@@ -4,7 +4,7 @@ import LogInSide from "./Components/Login/LogInSide";
 import SignUp from "./Components/Register/SignUp";
 import Home from "./Components/Home/Home";
 import UserAddInformations from "./Components/UserProfil/UserAddInformations";
-import FirstPage from "./Components/FirstPage/FirstPage";
+//import FirstPage from "./Components/FirstPage/FirstPage";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import PublicRoute from "./Components/PublicRoute/PublicRoute";
 import AdminRoute from "./Components/PrivateRoute/AdminRoute";
@@ -19,24 +19,20 @@ import UsersList from "./Components/AdminUI/UsersList/UsersList";
 import UserPostsList from "./Components/AdminUI/PostsList/UsersPostsList";
 import AdminHostsList from "./Components/AdminUI/HostsList/AdminHostsList";
 import RandomProfile from "./Components/RandomUserProfile/RandomProfile";
+import LandingPage from "./Components/LandingPage/LandingPage";
 
 
 function App() {
     return (
         <div className="App">
-                <Switch>
-                    <Route
-                        restricted={true}
-                        exact
-                        path="/"
-                        component={FirstPage}
-                    />
-                    <PublicRoute
-                        restricted={true}
-                        path="/register"
-                        component={SignUp}
-                    />
-                    {/* <PublicRoute
+            <Switch>
+                <Route restricted={true} exact path="/" component={LandingPage} />
+                <PublicRoute
+                    restricted={true}
+                    path="/register"
+                    component={SignUp}
+                />
+                {/* <PublicRoute
                     restricted={true}
                     path="/login"
                     component={Login}
