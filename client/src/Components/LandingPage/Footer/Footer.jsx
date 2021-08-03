@@ -8,12 +8,12 @@ function Footer() {
           id="sec-fa94"
         >
           <div className="u-clearfix u-sheet u-valign-middle u-sheet-1">
-            <a href="https://nicepage.com" className="u-image u-logo u-image-1">
+            {/* <a href="https://nicepage.com" className="u-image u-logo u-image-1">
               <img
-                src="images/default-logo.png"
+                src="images/lo.png"
                 className="u-logo-image u-logo-image-1"
               />
-            </a>
+            </a> */}
             <div className="u-align-left u-social-icons u-spacing-10 u-social-icons-1">
               <a
                 className="u-social-url"
@@ -173,7 +173,7 @@ function Footer() {
               </a>
             </div>
             <p className="u-align-center-lg u-align-center-md u-align-center-xl u-text u-text-1">
-              Sample footer text
+              Copyright © WanderLust&nbsp;2021
             </p>
           </div>
         </footer>
@@ -185,6 +185,7 @@ function Footer() {
             className="u-link"
             href="https://en.wikipedia.org/wiki/Tunisia"
             target="_blank"
+            rel="noreferrer"
           >
             <span> Tunisia</span>
           </a>

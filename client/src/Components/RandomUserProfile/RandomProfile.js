@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
     getRandomUserProfile,
     getRandomUserPosts,
-    addPost,
+    // addPost,
 } from "../../redux/actions/userActions";
 import { getRandomUserHosts } from "../../redux/actions/hostActions";
 import { userId, getToken } from "../../utils";
