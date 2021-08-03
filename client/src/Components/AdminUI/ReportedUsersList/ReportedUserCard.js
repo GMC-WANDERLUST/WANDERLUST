@@ -6,16 +6,16 @@ import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import {
   makeStyles,
-  withStyles,
-  createTheme,
-  ThemeProvider,
+  // withStyles,
+  // createTheme,
+  // ThemeProvider,
 } from "@material-ui/core/styles";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
 import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
 import ReplayIcon from "@material-ui/icons/Replay";
-import AddCircleIcon from "@material-ui/icons/AddCircle";
-import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+// import AddCircleIcon from "@material-ui/icons/AddCircle";
+// import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import "./CardUser.css";
@@ -23,9 +23,9 @@ import { Link } from "react-router-dom";
 import {
   blue,
   amber,
-  deepOrange,
+  // deepOrange,
   red,
-  pink,
+  // pink,
   green,
 } from "@material-ui/core/colors";
 
@@ -167,6 +167,7 @@ function ReportedUserCard({ token, user, id }) {
   const saveUserId = () => {
     sessionStorage.setItem("randomId", user._id);
   };
+  console.log(user)
 
   return (
     <div className="wl-card-item">
@@ -179,8 +180,8 @@ function ReportedUserCard({ token, user, id }) {
             primary={
               <Link to={`/uprofile/${user._id}`} onClick={saveUserId}>
                 <h5>
-                  {user.FirstName.toUpperCase()} <br />{" "}
-                  {user.LastName.toUpperCase()}{" "}
+                  {user.firstName.toUpperCase()} <br />{" "}
+                  {user.lastName.toUpperCase()}{" "}
                 </h5>
               </Link>
             }
@@ -206,7 +207,7 @@ function ReportedUserCard({ token, user, id }) {
                     }
                     onClick={handelBanUser}
                   >
-                    {user.isUser ? "Ban" : "Unban"}
+                    {user.isUser ? "Unban" : "Ban"}
                   </Button>
                 </Typography>
               </React.Fragment>

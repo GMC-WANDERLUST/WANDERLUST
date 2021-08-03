@@ -34,7 +34,7 @@ function ReportedUsersList() {
   );
   return (
     <div className="wl-admin-userList">
-      <h1>Reported Users List</h1>
+      <h1>Reported Hosts List</h1>
       <List className={classes.root}>
         {adminReportedHosts
           .map((user) => (

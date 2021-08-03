@@ -7,12 +7,12 @@ import {
     CloseButton,
 } from "react-bootstrap";
 import "./FilterDropDown.css";
-import {useHistory} from "react-router-dom"
+// import {useHistory} from "react-router-dom"
 
 function FilterDropdown() {
     const [showCityFilter, setShowCityFilter] = useState(false);
     const [cityData, setCityData] = useState("");
-    const history = useHistory();
+    // const history = useHistory();
     const handelCityFilter = () => {
         setShowCityFilter(true);
     };

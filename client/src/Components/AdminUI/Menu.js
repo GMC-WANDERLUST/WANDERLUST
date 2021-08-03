@@ -8,9 +8,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { getUserProfile } from "../../redux/actions/userActions";
 import {} from "../../redux/actions/adminActions";
 import { useHistory } from "react-router-dom";
-import { getAllUsers, getUserPosts } from "../../redux/actions/adminActions";
-import { showUsersList } from "../../redux/actions/adminActions";
-import axios from "axios";
+// import { getAllUsers, getUserPosts } from "../../redux/actions/adminActions";
+// import { showUsersList } from "../../redux/actions/adminActions";
+// import axios from "axios";
 
 function Menu() {
   const id = userId();

@@ -8,9 +8,9 @@ function NavBar() {
           id="sec-f9a4"
         >
           <div className="u-clearfix u-sheet u-sheet-1">
-            <a href=" " className="u-image u-logo u-image-1" src="true">
-              <img src="true" className="u-logo-image u-logo-image-1" alt ="LandScape" />
-            </a>
+            {/* <a href=" " className="u-image u-logo u-image-1" src="true">
+              <img src="images/lo.png" className="u-logo-image u-logo-image-1" alt ="LandScape" />
+            </a> */}
             <nav className="u-align-left u-menu u-menu-dropdown u-nav-spacing-25 u-offcanvas u-menu-1">
               <div
                 className="menu-collapse u-custom-font u-font-montserrat"

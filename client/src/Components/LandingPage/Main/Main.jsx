@@ -45,7 +45,7 @@ function Main() {
                     data-image-height={313}
                   />
                   <h3 className="u-align-center-md u-custom-font u-font-ubuntu u-text u-text-body-alt-color u-text-1">
-                    We Are Travel Agency
+                    We Are a Hosting & booking website for travelers
                   </h3>
                 </div>
               </div>
@@ -101,13 +101,10 @@ function Main() {
             data-image-height={720}
           >
             <div className="u-clearfix u-sheet u-valign-middle u-sheet-1">
-              <h1 className="u-text u-text-default u-title u-text-1">
-                INTUITIVE
-              </h1>
-              <p className="u-large-text u-text u-text-default u-text-variant u-text-2">
-                Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing
-                elit nullam nunc justo sagittis suscipit ultrices.
+              <p className="u-large-text u-text u-text-default u-text-variant u-text-1">
+                Wherever you go we a Home for&nbsp;
               </p>
+              <h1 className="u-text u-text-default u-title u-text-2">YOU...</h1>
               <a
                 href=" "
                 className="u-btn u-button-style u-palette-2-base u-btn-1"
@@ -214,12 +211,14 @@ function Main() {
                       src="images/pexelsphoto1624504.jpeg"
                       alt="LandScape"
                     />
-                    <h6 className="u-custom-font u-font-ubuntu u-text u-text-body-alt-color u-text-1">
-                      Missioners Group
+                    <h2 className="u-custom-font u-font-ubuntu u-text u-text-3">
+                      Our Mission
+                    </h2>
+                    <h6 className="u-custom-font u-font-ubuntu u-text u-text-body-alt-color u-text-4">
+                      Cheap Travel
                     </h6>
                     <p className="u-text u-text-body-alt-color u-text-2">
-                      We offer a full range of travel services to church groups
-                      , humanitarian agencies, and missionary organizations.
+                      Make travelling accessible to everyone...
                     </p>
                   </div>
                 </div>
@@ -239,8 +238,8 @@ function Main() {
                       Leisure Travel
                     </h6>
                     <p className="u-text u-text-body-alt-color u-text-5">
-                      We take the stress and frustration out of planning your
-                      vacation.
+                      We take the stress and frustration of expensive
+                      accomodation out of planning your vacation.
                     </p>
                   </div>
                 </div>
@@ -251,12 +250,16 @@ function Main() {
                       src="images/pexelsphoto167684.jpeg"
                       alt="LandScape"
                     />
-                    <h6 className="u-custom-font u-font-ubuntu u-text u-text-body-alt-color u-text-6">
-                      Corporate Travel
+                    <h2 className="u-custom-font u-font-ubuntu u-text u-text-3">
+                      Who
+                      <br />
+                      We Are
+                    </h2>
+                    <h6 className="u-custom-font u-font-ubuntu u-text u-text-body-alt-color u-text-4">
+                      Hosting Website
                     </h6>
-                    <p className="u-text u-text-body-alt-color u-text-7">
-                      We offer a full array of corporate travel options with
-                      personalized service.
+                    <p className="u-text u-text-body-alt-color u-text-2">
+                      Hosting & booking website for travelers
                     </p>
                   </div>
                 </div>
@@ -276,20 +279,19 @@ function Main() {
                 <div className="u-container-style u-layout-cell u-left-cell u-size-30 u-layout-cell-1">
                   <div className="u-container-layout u-valign-middle u-container-layout-1">
                     <h2 className="u-custom-font u-font-ubuntu u-text u-text-1">
-                      How Travel
+                      How WanderLust
                       <br />
-                      Leaders Works
+                      Works
                     </h2>
                   </div>
                 </div>
                 <div className="u-container-style u-layout-cell u-right-cell u-size-30 u-layout-cell-2">
                   <div className="u-container-layout u-valign-middle u-container-layout-2">
                     <p className="u-text u-text-2">
-                      We are the largest and most celebrated network of
-                      professional travel agents in North America. Wherever you
-                      want to go, however you want to get there, whatever you
-                      want to do—we have the ideal travel agent match just for
-                      you.{" "}
+                      We are the largest and most celebrated network of travel
+                      hosts around the world. Wherever you want to go, however
+                      you want to get there, whatever you want to do—we have the
+                      ideal travel host match just for you.{" "}
                     </p>
                   </div>
                 </div>
@@ -328,8 +330,7 @@ function Main() {
                       traveling public shops for travel. We feel personalized
                       service is the utmost important factor in planning travel.
                       Something the internet cannot possibly give. We work hard
-                      to maintain our 99% customer satisfaction.suscipit
-                      ultrices.
+                      to maintain our 99% customer satisfaction.
                     </p>
                     <a
                       href="https://nicepage.com/k/offer-html-templates"
@@ -498,13 +499,13 @@ function Main() {
                       Contact Us
                     </h2>
                     <p className="u-text u-text-body-alt-color u-text-3">
-                      &nbsp;Katapola, Amorgos 84008, Greece&nbsp;
+                      &nbsp;7 Rahmeni Mnakbi Street&nbsp; Go My Code
                       <br />
-                      +30 22850 71554,
+                      +216 53 302 269,
                       <br />
-                      +30 22850 71554&nbsp;
+                      +216 25 296 778&nbsp;
                       <br />
-                      info@adventure.com
+                      info@wanderlust.com
                     </p>
                   </div>
                 </div>
