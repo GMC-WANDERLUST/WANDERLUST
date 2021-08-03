@@ -4,13 +4,15 @@ import {
     GET_HOSTS_BY_DESTINATION,
     GET_USER_HOSTS,
     GET_RANDOM_USER_HOSTS,
+    GET_HOSTS_BY_CHECK_IN,
 } from "../constants/action-types";
 
 const initialState = {
     openHosting: false,
     userHosts: [],
-    hostTest : false,
-    hostsByDestination : []
+    hostTest: false,
+    hostsByDestination: [],
+    hostsByCheckIn: [],
 };
 
 const hostingReducer = (state = initialState, action) => {
@@ -44,6 +46,12 @@ const hostingReducer = (state = initialState, action) => {
             return {
                 ...state,
                 hostsByDestination: payload,
+                hostTest: true,
+            };
+        case GET_HOSTS_BY_CHECK_IN:
+            return {
+                ...state,
+                hostsByCheckIn: payload,
                 hostTest: true,
             };
         default:

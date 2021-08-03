@@ -39,6 +39,10 @@ const hostingSchema = new mongoose.Schema({
         type: "string",
         required: true,
     },
+    available : {
+        type:"string",
+        required: true
+    },
     description: {
         type: "string",
         required: true,

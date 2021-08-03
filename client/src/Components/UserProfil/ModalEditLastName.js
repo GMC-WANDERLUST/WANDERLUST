@@ -2,6 +2,24 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import axios from "axios";
 import { userId, getToken } from "../../utils";
+import CloseButton from "react-bootstrap/CloseButton";
+import Button from "@material-ui/core/Button";
+import DoneRoundedIcon from "@material-ui/icons/DoneRounded";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import { blue } from "@material-ui/core/colors";
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        "& > *": {
+            margin: theme.spacing(1),
+            width: "25ch",
+        },
+    },
+    margin: {
+        margin: theme.spacing(1),
+    },
+}));
 
 const customStyles = {
     content: {
@@ -11,13 +29,24 @@ const customStyles = {
         bottom: "auto",
         marginRight: "-50%",
         transform: "translate(-50%, -50%)",
+        width: "40%",
+        height: "40%",
     },
 };
+const ColorButton = withStyles((theme) => ({
+    root: {
+        color: theme.palette.getContrastText(blue[800]),
+        backgroundColor: blue[800],
+        "&:hover": {
+            backgroundColor: blue[500],
+        },
+    },
+}))(Button);
 
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement("#root");
 
 function ModalEditLastName({ action, data }) {
+    const classes = useStyles();
     let subtitle;
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [newData, setNewData] = useState("");
@@ -25,8 +54,7 @@ function ModalEditLastName({ action, data }) {
         setIsOpen(true);
     }
     function afterOpenModal() {
-        // references are now sync'd and can be accessed.
-        subtitle.style.color = "#f00";
+        subtitle.style.color = "#006064";
     }
     function closeModal() {
         setIsOpen(false);
@@ -58,15 +86,38 @@ function ModalEditLastName({ action, data }) {
                 style={customStyles}
                 contentLabel="Example Modal"
             >
-                <h2 ref={(_subtitle) => (subtitle = _subtitle)}>EDIT</h2>
-                <button onClick={closeModal}>close</button>
-                <input
-                    type="text"
-                    name="LastName"
-                    defaultValue={data}
-                    onChange={handleChange}
-                />
-                <button onClick={saveNewData}>OK</button>
+                <CloseButton aria-label="Hide" onClick={closeModal}>
+                    close
+                </CloseButton>
+                <div className="wl-modal-edit-firstname-box">
+                    <h2 ref={(_subtitle) => (subtitle = _subtitle)}>
+                        Edit your Last Name
+                    </h2>
+                    <form
+                        className={classes.root}
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <TextField
+                            id="standard-basic"
+                            label="Last Name"
+                            name="LastName"
+                            defaultValue={data}
+                            onChange={handleChange}
+                        />
+                    </form>
+                    <div>
+                        <ColorButton
+                            size="small"
+                            startIcon={<DoneRoundedIcon />}
+                            variant="contained"
+                            color="default"
+                            onClick={saveNewData}
+                        >
+                            OK
+                        </ColorButton>
+                    </div>
+                </div>
             </Modal>
         </div>
     );

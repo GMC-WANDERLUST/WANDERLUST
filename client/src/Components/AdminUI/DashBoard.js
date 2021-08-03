@@ -153,25 +153,25 @@ function DashBoard() {
                                 <span className="info-box-icon bg-warning elevation-1">
                                     <i className="fas fa-users" />
                                 </span>
-                                 <div className="info-box-content">
+                                <div className="info-box-content">
                                     <span className="info-box-text">
                                         All Members
                                     </span>
                                     <span className="info-box-number">
                                         {numberOfUsers}
                                     </span>
-                                </div> 
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="card">
                     <div className="reportedHosts">
-                        <h4>Reported Hosts</h4>
+                        <h4>Reported Hosts Suggestions</h4>
                         <div className="admin-wl-reportedHostItem">
                             {reportedHosts
                                 .map((host, index) => {
-                                    if (index <= 5) {
+                                    if (index <= 6) {
                                         return (
                                             <div key={host._id}>
                                                 <CardHost
@@ -186,7 +186,7 @@ function DashBoard() {
                                 .reverse()}
                         </div>
                         <div>
-                            {numberOfReportedHosts >= 5 ? (
+                            {numberOfReportedHosts >= 6 ? (
                                 <input
                                     type="button"
                                     value="View all"
@@ -201,7 +201,7 @@ function DashBoard() {
                         <div className="admin-wl-reportedPostItem">
                             {reportedPosts
                                 .map((post, index) => {
-                                    if (index <= 5) {
+                                    if (index <= 6) {
                                         return (
                                             <div key={post._id}>
                                                 <CardPost
@@ -216,10 +216,10 @@ function DashBoard() {
                                 .reverse()}
                         </div>
                         <div>
-                            {numberOfReportedPosts >= 5 ? (
+                            {numberOfReportedPosts >= 6 ? (
                                 <input
                                     type="button"
-                                    value="View all users"
+                                    value="View all"
                                     onClick={viewAllReportedPosts}
                                 />
                             ) : null}
@@ -287,7 +287,7 @@ function DashBoard() {
                     </div>
                     <br />
                     <div className="hostsList">
-                        <h4>Hosts List</h4>
+                        <h4>Hosts Suggestions List</h4>
                         <div className="admin-wl-hostItem">
                             {hosts
                                 .map((host, index) => {
@@ -315,6 +315,7 @@ function DashBoard() {
                             ) : null}
                         </div>
                     </div>
+                    <br />
                 </div>
             </div>
         </div>

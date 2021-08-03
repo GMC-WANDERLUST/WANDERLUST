@@ -51,8 +51,6 @@ function PostDestinationItem({ post }) {
         });
     };
     let dateTab = post.date.split("T");
-    console.log(typeof post.date);
-    // console.log("post user :", post.user);
     return (
         <div className="postItem">
             <p>

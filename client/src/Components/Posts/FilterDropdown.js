@@ -7,14 +7,31 @@ import {
     CloseButton,
 } from "react-bootstrap";
 import "./FilterDropDown.css";
-import {useHistory} from "react-router-dom"
-
+import Grid from "@material-ui/core/Grid";
+import DateFnsUtils from "@date-io/date-fns";
+import {
+    MuiPickersUtilsProvider,
+    KeyboardDatePicker,
+} from "@material-ui/pickers";
+import Button from "@material-ui/core/Button";
+import moment from "moment-timezone";
+////////////////////////////////////////////////////////////////////////////////////////////////
 function FilterDropdown() {
+    // let id = userId();
+    // let token = getToken();
+    var n = Date.now();
+    const [selectedDate, setSelectedDate] = React.useState(
+        moment(n).format("YYYY-MM-DD")
+    );
     const [showCityFilter, setShowCityFilter] = useState(false);
     const [cityData, setCityData] = useState("");
-    // const history = useHistory();
+    const [showDateFilter, setShowDateFilter] = useState(false);
+    // console.log("selected date :", selectedDate, typeof selectedDate);
+
+    /////////////////////////////////////////////////////city filter////////////////////////////////
     const handelCityFilter = () => {
         setShowCityFilter(true);
+        setShowDateFilter(false);
     };
     const handleClose = () => {
         setShowCityFilter(false);
@@ -28,6 +45,29 @@ function FilterDropdown() {
         // window.location.reload();
         window.location.reload();
     };
+
+    ////////////////////////////////////////////date filter//////////////////////////////////////////
+    const handleDateFilter = () => {
+        setShowDateFilter(true);
+        setShowCityFilter(false);
+    };
+    const handleDateChange = (date) => {
+        setSelectedDate(moment(date).format("YYYY-MM-DD"));
+    };
+    let destinationData = localStorage.getItem("destination");
+
+    const handelSaveDateFilter = () => {
+        sessionStorage.removeItem("city");
+        sessionStorage.setItem("destination", destinationData);
+        sessionStorage.setItem("check_in", selectedDate);
+        window.location.reload();
+    };
+    const handleClearFilter = () => {
+        sessionStorage.removeItem("city");
+        sessionStorage.removeItem("check_in");
+        sessionStorage.setItem("destination", destinationData);
+        window.location.reload();
+    };
     return (
         <div className="mb-2">
             <DropdownButton
@@ -38,13 +78,17 @@ function FilterDropdown() {
                 variant="secondary"
                 title="Filter"
             >
+                <Dropdown.Item eventKey="2" onClick={handleClearFilter}>
+                    Clear Filter
+                </Dropdown.Item>
+                <Dropdown.Divider />
                 <Dropdown.Item eventKey="1" onClick={handelCityFilter}>
                     City filter
                 </Dropdown.Item>
-                <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-                <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
+                <Dropdown.Item eventKey="2" onClick={handleDateFilter}>
+                    Date Filter
+                </Dropdown.Item>
             </DropdownButton>
             <div className="cityFilter">
                 {showCityFilter ? (
@@ -65,6 +109,37 @@ function FilterDropdown() {
                             />
                         </Form.Group>
                         <CloseButton onClick={handleClose} />
+                    </div>
+                ) : null}
+                {showDateFilter ? (
+                    <div className="dateFilterBox">
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            <Grid container alignItems="center">
+                                <KeyboardDatePicker
+                                    disableToolbar
+                                    variant="inline"
+                                    name="check_in"
+                                    format="yyyy-MM-dd"
+                                    margin="normal"
+                                    id="date-picker-inline"
+                                    label="Date picker inline"
+                                    value={selectedDate}
+                                    onChange={handleDateChange}
+                                    KeyboardButtonProps={{
+                                        "aria-label": "change date",
+                                    }}
+                                />
+                                <div className="wl-ok-button">
+                                    <Button
+                                        variant="contained"
+                                        color="default"
+                                        onClick={handelSaveDateFilter}
+                                    >
+                                        OK
+                                    </Button>
+                                </div>
+                            </Grid>
+                        </MuiPickersUtilsProvider>
                     </div>
                 ) : null}
             </div>
