@@ -1,0 +1,53 @@
+/* MODAL UPDATE PROFILE PHOTO */
+
+.wl-modal-update-photo-box {
+    text-align: center;
+    width: 100%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: whitesmoke;
+}
+.wl-modal-update-photo-uploadBox {
+    height: 20%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.123);
+}
+.wl-modal-update-photo-photoArea {
+    height: 80%;
+}
+.wl-modal-update-photo-saveBox {
+    width: 22%;
+    display: flex;
+    justify-content: space-around;
+}
+
+/* MODAL EDIT FIRSTNAME */
+
+.wl-modal-edit-firstname-box {
+    height: 80%;
+    width: 80%;
+    position: absolute;
+    bottom: 20px;
+    left: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: whitesmoke;
+    box-shadow: 1px 1px 10px whitesmoke;
+}
+
+/* MODAL ADD POST*/
+
+.wl-modal-add-post-container {
+    display: flex;
+    flex-direction: column;
+}
+.modal-add-post-close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}

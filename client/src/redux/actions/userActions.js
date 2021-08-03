@@ -12,6 +12,8 @@ import {
     GET_HOSTS_BY_DESTINATION,
     GET_RANDOM_USER_PROFILE,
     GET_RANDOM_USER_POSTS,
+    GET_POSTS_BY_CHECK_IN,
+    GET_HOSTS_BY_CHECK_IN,
 } from "../constants/action-types";
 import axios from "axios";
 
@@ -117,6 +119,44 @@ export const getPostsByCity = (payload) => (dispatch) => {
             console.log(response);
             dispatch({
                 type: GET_POSTS_BY_CITY,
+                payload: response.data.data,
+            });
+        })
+        .catch((error) => console.dir(error));
+};
+export const getPostsByCheckIn = (payload) => (dispatch) => {
+    // console.log("action :", payload.travellerSelected);
+    axios
+        .get(`/api/posts/allPosts/filter/date/${payload.id}`, {
+            headers: {
+                jwt: payload.token,
+                data: payload.check_in,
+                destination: payload.destination,
+            },
+        })
+        .then((response) => {
+            console.log(response);
+            dispatch({
+                type: GET_POSTS_BY_CHECK_IN,
+                payload: response.data.data,
+            });
+        })
+        .catch((error) => console.dir(error));
+};
+export const getHostsByCheckIn = (payload) => (dispatch) => {
+    // console.log("action :", payload.travellerSelected);
+    axios
+        .get(`/api/host/allHosts/filter/date/${payload.id}`, {
+            headers: {
+                jwt: payload.token,
+                data: payload.check_in,
+                residence: payload.residence,
+            },
+        })
+        .then((response) => {
+            console.log(response);
+            dispatch({
+                type: GET_HOSTS_BY_CHECK_IN,
                 payload: response.data.data,
             });
         })

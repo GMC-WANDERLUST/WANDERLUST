@@ -54,7 +54,7 @@ router.put("/editPost/:id", verify, verifyUserAccess, async (req, res) => {
             editedPost,
         });
     } catch (err) {
-        res.status(500).json({message: 'Cannot find the post ', err});
+        res.status(500).json({ message: "Cannot find the post ", err });
     }
 });
 
@@ -98,9 +98,9 @@ router.get(
     async (req, res) => {
         let destinationData = req.header("data");
         try {
-            const PostsList = [] = await Posts.find({
+            const PostsList = ([] = await Posts.find({
                 destination: destinationData.toLowerCase(),
-            });
+            }));
 
             // console.log(typeof PostsList.length)
 
@@ -127,6 +127,35 @@ router.get(
         try {
             const PostsList = ([] = await Posts.find({
                 city: cityData.toLowerCase(),
+            }));
+
+            res.status(201).json({
+                status: true,
+                data: PostsList,
+                message: "posts list",
+                length: PostsList.length,
+            });
+        } catch (err) {
+            res.status(500).send(err);
+            console.log(err);
+        }
+    }
+);
+// SHOW POST BY DATE
+
+router.get(
+    "/allPosts/filter/date/:id",
+    verify,
+    verifyUserAccess,
+    async (req, res) => {
+        let dateData = req.header("data");
+        let destinationData = req.header("destination");
+        console.log("date data", dateData)
+        console.log("destination", destinationData);
+        try {
+            const PostsList = ([] = await Posts.find({
+                destination: destinationData.toLowerCase(),
+                check_in: dateData,
             }));
 
             res.status(201).json({

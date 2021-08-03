@@ -25,6 +25,7 @@ import { useDispatch } from "react-redux";
 import { openHostingModal } from "../../redux/actions/hostActions";
 import axios from "axios";
 import Swal from "sweetalert2";
+import "./NavBar.css";
 
 function NavBar() {
     const history = useHistory();
@@ -68,19 +69,26 @@ function NavBar() {
     };
     const handleSearch = () => {
         if (travellerSelected) {
+            sessionStorage.removeItem("check_in");
             sessionStorage.removeItem("city");
+            sessionStorage.removeItem("residence");
+            localStorage.removeItem("residence");
             sessionStorage.setItem("destination", destinationData);
+            localStorage.setItem("destination", destinationData);
             history.push("/postsList");
             window.location.reload();
         } else if (hostSelected) {
+            sessionStorage.removeItem("check_in");
             sessionStorage.removeItem("city");
+            sessionStorage.removeItem("destination");
+            localStorage.removeItem("destination");
             sessionStorage.setItem("residence", hostingData);
+            localStorage.setItem("residence", hostingData);
             history.push("/hostsList");
             window.location.reload();
         }
     };
     const initState = isHost === "true" ? true : false;
-    console.log("init :", initState);
     const [checkedIn, setCheckedIn] = React.useState(initState);
     const toggleChecked = () => {
         setCheckedIn(!checkedIn);
@@ -135,98 +143,104 @@ function NavBar() {
         }
     };
     return (
-        <Navbar bg="dark" variant="dark">
-            <Container>
-                <Navbar.Brand href="/home">Home</Navbar.Brand>
-                <Navbar.Brand href={`/adminUi/${id}`}>
-                    {isAdmin === "true" ? "Admin" : null}{" "}
-                </Navbar.Brand>
-                <Navbar.Brand href={`/profile/${id}`}>Profile</Navbar.Brand>
-                <Nav className="me-auto">
-                    <NavDropdown
-                        title={
-                            travellerSelected
-                                ? "Find Travellers"
-                                : hostSelected
-                                ? "Find Hosts"
-                                : discoverSelected
-                                ? "Discover"
-                                : null
-                        }
-                        id="collasible-nav-dropdown"
-                    >
-                        <NavDropdown.Item
-                            href="#action/3.1"
-                            onClick={handelDiscover}
-                        >
-                            Discover
-                        </NavDropdown.Item>
-                        <NavDropdown.Item
-                            href="#action/3.1"
-                            onClick={findTravellers}
-                        >
-                            Find Travellers
-                        </NavDropdown.Item>
-                        <NavDropdown.Item
-                            href="#action/3.2"
-                            onClick={findHosts}
-                        >
-                            Find Hosts
-                        </NavDropdown.Item>
+        <div className="wl-NavBar-container">
+            <div className="navBar">
+                <Navbar bg="dark" variant="dark">
+                    <Container>
+                        <Navbar.Brand href="/home">Home</Navbar.Brand>
+                        <Navbar.Brand href={`/adminUi/${id}`}>
+                            {isAdmin === "true" ? "Admin" : null}{" "}
+                        </Navbar.Brand>
+                        <Navbar.Brand href={`/profile/${id}`}>
+                            Profile
+                        </Navbar.Brand>
+                        <Nav className="me-auto">
+                            <NavDropdown
+                                title={
+                                    travellerSelected
+                                        ? "Find Travellers"
+                                        : hostSelected
+                                        ? "Find Hosts"
+                                        : discoverSelected
+                                        ? "Discover"
+                                        : null
+                                }
+                                id="collasible-nav-dropdown"
+                            >
+                                <NavDropdown.Item
+                                    href="#action/3.1"
+                                    onClick={handelDiscover}
+                                >
+                                    Discover
+                                </NavDropdown.Item>
+                                <NavDropdown.Item
+                                    href="#action/3.1"
+                                    onClick={findTravellers}
+                                >
+                                    Find Travellers
+                                </NavDropdown.Item>
+                                <NavDropdown.Item
+                                    href="#action/3.2"
+                                    onClick={findHosts}
+                                >
+                                    Find Hosts
+                                </NavDropdown.Item>
 
-                        <NavDropdown.Divider />
-                    </NavDropdown>
-                    <Form className="d-flex">
-                        <FormControl
-                            type="search"
-                            placeholder={
-                                travellerSelected
-                                    ? "Enter your residence"
-                                    : hostSelected
-                                    ? "Enter your destination"
-                                    : "Search"
-                            }
-                            className="mr-2"
-                            aria-label="Search"
-                            name="destination"
-                            onChange={handelChange}
-                        />
-                        <Button
-                            variant="outline-success"
-                            onClick={handleSearch}
-                            style={{ marginRight: "20px" }}
-                        >
-                            Search
-                        </Button>
-                    </Form>
-                    <FormGroup>
-                        <FormControlLabel
-                            control={
-                                <Switch
-                                    checked={initState}
-                                    onChange={toggleChecked}
-                                    // onClick={acceptGuests}
-                                    // value={isHost ? "on" : "off"}
+                                <NavDropdown.Divider />
+                            </NavDropdown>
+                            <Form className="d-flex">
+                                <FormControl
+                                    type="search"
+                                    placeholder={
+                                        travellerSelected
+                                            ? "Enter your residence"
+                                            : hostSelected
+                                            ? "Enter your destination"
+                                            : "Search"
+                                    }
+                                    className="mr-2"
+                                    aria-label="Search"
+                                    name="destination"
+                                    onChange={handelChange}
                                 />
-                            }
-                            label={
-                                initState
-                                    ? "Stop Accepting Guests"
-                                    : "Accept Guests"
-                            }
-                        />
-                    </FormGroup>
-                    <MDropDown />
-                    <Button
-                        variant="danger"
-                        type="button"
-                        onClick={handleLogout}
-                    >
-                        Log Out
-                    </Button>
-                </Nav>
-            </Container>
-        </Navbar>
+                                <Button
+                                    variant="outline-success"
+                                    onClick={handleSearch}
+                                    style={{ marginRight: "20px" }}
+                                >
+                                    Search
+                                </Button>
+                            </Form>
+                            <FormGroup>
+                                <FormControlLabel
+                                    control={
+                                        <Switch
+                                            checked={initState}
+                                            onChange={toggleChecked}
+                                            // onClick={acceptGuests}
+                                            // value={isHost ? "on" : "off"}
+                                        />
+                                    }
+                                    label={
+                                        initState
+                                            ? "Stop Accepting Guests"
+                                            : "Accept Guests"
+                                    }
+                                />
+                            </FormGroup>
+                            <MDropDown />
+                            <Button
+                                variant="danger"
+                                type="button"
+                                onClick={handleLogout}
+                            >
+                                Log Out
+                            </Button>
+                        </Nav>
+                    </Container>
+                </Navbar>
+            </div>
+        </div>
     );
 }
 

@@ -5,6 +5,7 @@ import {
     GET_POSTS_BY_DESTINATION,
     GET_POSTS_BY_CITY,
     GET_RANDOM_USER_POSTS,
+    GET_POSTS_BY_CHECK_IN,
 } from "../constants/action-types";
 
 const initialState = {
@@ -12,7 +13,8 @@ const initialState = {
     userPosts: [],
     testPost: false,
     postsByDestination : [],
-    postsByCity : []
+    postsByCity : [],
+    postsByCheckIn : [],
 };
 
 const postReducer = (state = initialState, action) => {
@@ -32,7 +34,7 @@ const postReducer = (state = initialState, action) => {
             return {
                 ...state,
                 userPosts: payload,
-                test : true
+                test: true,
             };
         case GET_RANDOM_USER_POSTS:
             return {
@@ -50,6 +52,12 @@ const postReducer = (state = initialState, action) => {
             return {
                 ...state,
                 postsByCity: payload,
+                test: true,
+            };
+        case GET_POSTS_BY_CHECK_IN:
+            return {
+                ...state,
+                postsByCheckIn: payload,
                 test: true,
             };
 

@@ -32,11 +32,6 @@ function App() {
                     path="/register"
                     component={SignUp}
                 />
-                {/* <PublicRoute
-                    restricted={true}
-                    path="/login"
-                    component={Login}
-                /> */}
                     <PublicRoute
                         restricted={true}
                         path="/login"
