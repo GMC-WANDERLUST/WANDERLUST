@@ -87,12 +87,12 @@ function CardPost({ token, host, id }) {
                                     {host.city.toUpperCase()}
                                     <br />
                                     <span className={classes.titre}>
-                                        Nombre of Rooms:
+                                        Number of Rooms:
                                     </span>{" "}
                                     {host.nbreOfRooms}
                                     <br />
                                     <span className={classes.titre}>
-                                        Nombre of Beds :
+                                        Number of Beds :
                                     </span>{" "}
                                     {host.nbreOfBeds}
                                     <br />

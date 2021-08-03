@@ -99,7 +99,7 @@ function CardPost({ token, post, id }) {
                                     </span>{" "}
                                     {post.check_out} <br />
                                     <span className={classes.titre}>
-                                        Nombre of Guests :
+                                        Number of Guests :
                                     </span>{" "}
                                     {post.nbreOfGuests} <br />
                                 </Typography>
