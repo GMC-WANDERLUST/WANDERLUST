@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import {
     getHostsByCity,
     getHostsByDestination,
+    getHostsByCheckIn,
 } from "../../redux/actions/userActions";
 import { useSelector } from "react-redux";
 import HostDestinationItem from "./HostDestinationItem";
@@ -30,19 +31,23 @@ function HostsList() {
     const dispatch = useDispatch();
     let residence = sessionStorage.getItem("residence");
     let city = sessionStorage.getItem("city");
-    console.log("city", city);
-    // console.log(destination)
+    let check_in = sessionStorage.getItem("check_in");
     useEffect(() => {
-        if (city) {
+        if (city && check_in === null && residence === null) {
             dispatch(getHostsByCity({ city, id, token }));
-        } else if (residence) {
+        } else if (residence && check_in === null && city === null) {
             dispatch(getHostsByDestination({ residence, id, token }));
+        } else if (check_in && residence && city === null) {
+            dispatch(getHostsByCheckIn({ residence, check_in, id, token }));
         }
     }, [id, token, residence, city, dispatch]);
     const hostsByDestination = useSelector(
         (state) => state.hostingReducer.hostsByDestination
     );
     const postsByCity = useSelector((state) => state.postReducer.postsByCity);
+    const hostsByDate = useSelector(
+        (state) => state.hostingReducer.hostsByCheckIn
+        );
     const test = useSelector((state) => state.postReducer.test);
     const hostTest = useSelector((state) => state.hostingReducer.hostTest);
 
@@ -53,7 +58,8 @@ function HostsList() {
             {test || hostTest ? (
                 <div>
                     {hostsByDestination.length === 0 &&
-                    postsByCity.length === 0 ? (
+                    postsByCity.length === 0 &&
+                    hostsByDate.length === 0 ? (
                         <h2> No data was found</h2>
                     ) : hostsByDestination.length !== 0 &&
                       postsByCity.length === 0 ? (
@@ -65,9 +71,20 @@ function HostsList() {
                             ))}
                         </div>
                     ) : hostsByDestination.length === 0 &&
+                      hostsByDate.length === 0 &&
                       postsByCity.length !== 0 ? (
                         <div>
                             {postsByCity.map((host) => (
+                                <div key={host._id}>
+                                    <HostCityItem host={host} />
+                                </div>
+                            ))}
+                        </div>
+                    ) : hostsByDestination.length === 0 &&
+                      postsByCity.length === 0 &&
+                      hostsByDate.length !== 0 ? (
+                        <div>
+                            {hostsByDate.map((host) => (
                                 <div key={host._id}>
                                     <HostCityItem host={host} />
                                 </div>

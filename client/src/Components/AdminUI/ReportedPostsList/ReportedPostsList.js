@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { userId, getToken } from "../../../utils";
 import { useDispatch, useSelector } from "react-redux";
 import { adminGetReportedPosts } from "../../../redux/actions/adminActions";
-import ReportedPostCard from "./ReportedPostCard";
+import CardPost from "../PostsList/CardPost"
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import Button from "@material-ui/core/Button";
@@ -29,25 +29,25 @@ function ReportedPostsList() {
   useEffect(() => {
     dispatch(adminGetReportedPosts({ id, token }));
   }, [id, token, dispatch]);
-  const adminReportedPosts = useSelector(
+  const reportedPosts = useSelector(
     (state) => state.adminReducer.adminReportedPosts
   );
   return (
-    <div className="wl-admin-postsList">
-      <h1>Reported Posts List</h1>
-      <List className={classes.root}>
-        {adminReportedPosts
-          .map((post) => (
-            <div key={post._id}>
-              <ReportedPostCard post={post} />
-            </div>
-          ))
-          .reverse()}
-      </List>
-      <Button href={`/adminUi/${id}`} color="primary">
-        Back
-      </Button>
-    </div>
+      <div className="wl-admin-postsList">
+          <h1>Reported Posts List</h1>
+          <List className={classes.root}>
+              {reportedPosts
+                  .map((post) => (
+                      <div key={post._id}>
+                          <CardPost post={post} />
+                      </div>
+                  ))
+                  .reverse()}
+          </List>
+          <Button href={`/adminUi/${id}`} color="primary">
+              Back
+          </Button>
+      </div>
   );
 }
 

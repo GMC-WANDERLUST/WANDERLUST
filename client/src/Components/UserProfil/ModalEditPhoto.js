@@ -1,39 +1,57 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import { userId, getToken } from "../../utils";
-// import { fillUserProfile } from "../../redux/actions/userActions";
-// import { useDispatch, useSelector } from "react-redux";
-// import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
+import "./Modals.css";
+import CloseButton from "react-bootstrap/CloseButton";
+import Button from "@material-ui/core/Button";
+import PublishIcon from "@material-ui/icons/Publish";
+import SaveIcon from "@material-ui/icons/Save";
+import { makeStyles } from "@material-ui/core/styles";
+
 const customStyles = {
     content: {
-        top: "50%",
+        top: "45%",
         left: "50%",
         right: "auto",
         bottom: "auto",
         marginRight: "-50%",
         transform: "translate(-50%, -50%)",
+        width: "70%",
+        height: "80%",
+        paddingTop: "0px",
     },
 };
-
+const useStyles = makeStyles((theme) => ({
+    button: {
+        margin: theme.spacing(1),
+    },
+}));
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement("#root");
 
 function ModalEditPhoto({ action, data }) {
-    let subtitle;
+    const classes = useStyles();
+
+    // let subtitle;
     const [modalIsOpen, setIsOpen] = React.useState(false);
     function openModal() {
         setIsOpen(true);
     }
     function afterOpenModal() {
         // references are now sync'd and can be accessed.
-        subtitle.style.color = "#f00";
+        // subtitle.style.color = "#f00";
     }
     function closeModal() {
         setIsOpen(false);
-        window.location.reload();
+        // window.location.reload();
     }
+
+    const handleSave = () => {
+        setIsOpen(false);
+        window.location.reload();
+    };
     let id = userId();
     let token = getToken();
 
@@ -42,16 +60,12 @@ function ModalEditPhoto({ action, data }) {
     const handelChange = (e) => {
         setUploadFile(e.target.files[0]);
     };
-    // const dispatch = useDispatch();
-    // const userObject = useSelector((state) => state.userReducer.user);
-    // const history = useHistory();
 
     // Photo Upload
     const submitForm = (e) => {
         e.preventDefault();
         var bodyFormData = new FormData();
         bodyFormData.append("photo", uploadFile, uploadFile.name);
-        // dispatch(fillUserProfile({ bodyFormData, token, id }));
         axios
             .put(`/api/profile/updateUserPhoto/${id}`, bodyFormData, {
                 headers: {
@@ -70,14 +84,6 @@ function ModalEditPhoto({ action, data }) {
                         showConfirmButton: false,
                         timer: 1200,
                     }),
-                // console.log(
-                //     "Upload Progress :" +
-                //         Math.round(
-                //             (progressEvent.loaded / progressEvent.total) *
-                //                 100
-                //         ) +
-                //         "%"
-                // ),
             })
             .then((response) => {
                 setUrl(response.data.url);
@@ -85,14 +91,9 @@ function ModalEditPhoto({ action, data }) {
             .catch((error) => {
                 console.dir(error);
             });
-
-        // history.push(`/profile/${id}`);
     };
-    // const handleForward = () => {
-    //     history.push(`/profile/${id}`);
-    // };
     return (
-        <div>
+        <div className="wl-modal-update-photo-container">
             <button onClick={openModal}>{action}</button>
             <Modal
                 isOpen={modalIsOpen}
@@ -101,22 +102,49 @@ function ModalEditPhoto({ action, data }) {
                 style={customStyles}
                 contentLabel="Example Modal"
             >
-                <h2 ref={(_subtitle) => (subtitle = _subtitle)}>EDIT</h2>
-                <button onClick={closeModal}>close</button>
-                <h1>Please upload your profile photo</h1>
-                <label>Select a file:</label>
-                <form>
-                    <input type="file" name="photo" onChange={handelChange} />
-                    <button type="button" onClick={submitForm}>
-                        Upload
-                    </button>
-                </form>
-                {url ? (
-                    <img src={url} alt="profile_photo" width="250px" />
-                ) : (
-                    <img src={data} alt="profile_photo" width="90px" />
-                )}
-                <button onClick={closeModal}>OK</button>
+                <CloseButton aria-label="Hide" onClick={closeModal}>
+                    close
+                </CloseButton>
+                <div className="wl-modal-update-photo-box">
+                    {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>EDIT</h2> */}
+                    <h5>UPDATE YOUR PROFILE PHOTO</h5>
+
+                    <div className="wl-modal-update-photo-photoArea">
+                        {url ? (
+                            <img src={url} alt="profile_photo" width="280px" />
+                        ) : (
+                            <img src={data} alt="profile_photo" width="280px" />
+                        )}
+                    </div>
+                    <form className="wl-modal-update-photo-uploadBox">
+                        <input
+                            type="file"
+                            name="photo"
+                            onChange={handelChange}
+                        />
+                        <div className="wl-modal-update-photo-saveBox">
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                startIcon={<PublishIcon />}
+                                className={classes.button}
+                                onClick={submitForm}
+                            >
+                                Upload
+                            </Button>
+                            <Button
+                                disabled={url ? false : true}
+                                variant="contained"
+                                color="default"
+                                startIcon={<SaveIcon />}
+                                className={classes.button}
+                                onClick={handleSave}
+                            >
+                                Save
+                            </Button>
+                        </div>
+                    </form>
+                </div>
             </Modal>
         </div>
     );

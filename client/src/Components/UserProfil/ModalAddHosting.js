@@ -151,6 +151,12 @@ function ModalAddHosting({ open }) {
                         onChange={handleChange}
                     />
                     <input
+                        type="date"
+                        name="available"
+                        placeholder="From"
+                        onChange={handleChange}
+                    />
+                    <input
                         type="text"
                         name="description"
                         placeholder="A brief description"
