@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
         display: "inline",
     },
 }));
-function CardPost({ token, post, id }) {
+function ReportedPostCard({ token, post, id }) {
     const classes = useStyles();
     const handleDelete = () => {
         axios
@@ -99,7 +99,7 @@ function CardPost({ token, post, id }) {
                                     </span>{" "}
                                     {post.check_out} <br />
                                     <span className={classes.titre}>
-                                        Number of Guests :
+                                        Nombre of Guests :
                                     </span>{" "}
                                     {post.nbreOfGuests} <br />
                                 </Typography>
@@ -125,4 +125,4 @@ function CardPost({ token, post, id }) {
     );
 }
 
-export default CardPost;
+export default ReportedPostCard;

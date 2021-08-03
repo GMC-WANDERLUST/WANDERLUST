@@ -2,11 +2,11 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { userId, getToken } from "../../utils";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserProfile } from "../../redux/actions/userActions";
-import { adminGetUsersPosts } from "../../redux/actions/adminActions";
+import {} from "../../redux/actions/adminActions";
 import { useHistory } from "react-router-dom";
 import { getAllUsers, getUserPosts } from "../../redux/actions/adminActions";
 import { showUsersList } from "../../redux/actions/adminActions";
@@ -46,6 +46,12 @@ function Menu() {
     };
     const handleHosts = () => {
         history.push("admin/allHosts");
+    };
+    const handleReportedHosts = () => {
+        history.push("admin/allReportedHosts");
+    };
+    const handleReportedPosts = () => {
+        history.push("admin/allReportedPosts");
     };
 
     return (
@@ -143,107 +149,27 @@ function Menu() {
                                                 <p>All Host Users</p>
                                             </a>
                                         </li>
-                                    </ul>
-                                </li>
-                                <li className="nav-item">
-                                    <a
-                                        href="pages/widgets.html"
-                                        className="nav-link"
-                                    >
-                                        <i className="nav-icon fas fa-th" />
-                                        <p>
-                                            Widgets
-                                            <span className="right badge badge-danger">
-                                                New
-                                            </span>
-                                        </p>
-                                    </a>
-                                </li>
-                                <li className="nav-item">
-                                    <a href="#" className="nav-link">
-                                        <i className="nav-icon fas fa-copy" />
-                                        <p>
-                                            Layout Options
-                                            <i className="fas fa-angle-left right" />
-                                            <span className="badge badge-info right">
-                                                6
-                                            </span>
-                                        </p>
-                                    </a>
-                                    <ul className="nav nav-treeview">
                                         <li className="nav-item">
                                             <a
-                                                href="pages/layout/top-nav.html"
+                                                href="#"
                                                 className="nav-link"
-                                            >
-                                                <i className="far fa-circle nav-icon" />
-                                                <p>Top Navigation</p>
-                                            </a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a
-                                                href="pages/layout/top-nav-sidebar.html"
-                                                className="nav-link"
-                                            >
-                                                <i className="far fa-circle nav-icon" />
-                                                <p>Top Navigation + Sidebar</p>
-                                            </a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a
-                                                href="pages/layout/boxed.html"
-                                                className="nav-link"
-                                            >
-                                                <i className="far fa-circle nav-icon" />
-                                                <p>Boxed</p>
-                                            </a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a
-                                                href="pages/layout/fixed-sidebar.html"
-                                                className="nav-link"
-                                            >
-                                                <i className="far fa-circle nav-icon" />
-                                                <p>Fixed Sidebar</p>
-                                            </a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a
-                                                href="pages/layout/fixed-sidebar-custom.html"
-                                                className="nav-link"
+                                                onClick={handleReportedHosts}
                                             >
                                                 <i className="far fa-circle nav-icon" />
                                                 <p>
-                                                    Fixed Sidebar{" "}
-                                                    <small>+ Custom Area</small>
+                                                    All Reported Hosts
+                                                    Suggestions
                                                 </p>
                                             </a>
                                         </li>
                                         <li className="nav-item">
                                             <a
-                                                href="pages/layout/fixed-topnav.html"
+                                                href="#"
                                                 className="nav-link"
+                                                onClick={handleReportedPosts}
                                             >
                                                 <i className="far fa-circle nav-icon" />
-                                                <p>Fixed Navbar</p>
-                                            </a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a
-                                                href="pages/layout/fixed-footer.html"
-                                                className="nav-link"
-                                            >
-                                                <i className="far fa-circle nav-icon" />
-                                                <p>Fixed Footer</p>
-                                            </a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a
-                                                href="pages/layout/collapsed-sidebar.html"
-                                                className="nav-link"
-                                            >
-                                                <i className="far fa-circle nav-icon" />
-                                                <p>Collapsed Sidebar</p>
+                                                <p>All Reported Posts</p>
                                             </a>
                                         </li>
                                     </ul>

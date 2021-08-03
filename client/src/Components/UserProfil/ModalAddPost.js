@@ -67,7 +67,7 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-function ModalAddPost({ open }) {
+function ModalAddPost() {
     ///////////////////////////////////////////////////////////////////////////////////
     // DECLARATIONS
     var n = Date.now();
