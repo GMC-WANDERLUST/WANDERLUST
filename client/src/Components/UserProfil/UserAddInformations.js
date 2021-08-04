@@ -159,7 +159,7 @@ export default function Checkout() {
                                         id="demo-simple-select"
                                         required
                                         name="Gender"
-                                        // onChange={handelChange}
+                                        onChange={handelAddInfos}
                                     >
                                         <MenuItem value="Male" name="Gender">
                                             Male

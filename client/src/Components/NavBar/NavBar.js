@@ -145,7 +145,7 @@ function NavBar() {
     return (
         <div className="wl-NavBar-container">
             <div className="navBar">
-                <Navbar bg="dark" variant="dark">
+                <Navbar bg="light" variant="light" expand fixed="top">
                     <Container>
                         <Navbar.Brand href="/home">Home</Navbar.Brand>
                         <Navbar.Brand href={`/adminUi/${id}`}>
@@ -173,20 +173,20 @@ function NavBar() {
                                 >
                                     Discover
                                 </NavDropdown.Item>
+                                <NavDropdown.Divider />
                                 <NavDropdown.Item
                                     href="#action/3.1"
                                     onClick={findTravellers}
                                 >
                                     Find Travellers
                                 </NavDropdown.Item>
+                                <NavDropdown.Divider />
                                 <NavDropdown.Item
                                     href="#action/3.2"
                                     onClick={findHosts}
                                 >
                                     Find Hosts
                                 </NavDropdown.Item>
-
-                                <NavDropdown.Divider />
                             </NavDropdown>
                             <Form className="d-flex">
                                 <FormControl

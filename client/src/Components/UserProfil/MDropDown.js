@@ -25,53 +25,53 @@ function MDropDown() {
         dispatch(openHostingModal());
     };
 
-    const acceptGuests = () => {
-        if (isHost === "true") {
-            axios
-                .put(
-                    `/api/user/editStatus/${id}`,
-                    {},
-                    {
-                        headers: {
-                            jwt: token,
-                        },
-                    }
-                )
-                .then((response) => {
-                    saveIsHost(false);
-                    Swal.fire({
-                        title: "Are you sure?",
-                        text: "You won't to stop accepting guests!",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#3085d6",
-                        cancelButtonColor: "#d33",
-                        confirmButtonText: "Yes, Continue!",
-                        showLoaderOnConfirm: true,
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            Swal.fire({
-                                title: `${response.data.message}`,
-                                showDenyButton: false,
-                                showCancelButton: false,
-                                showLoaderOnConfirm: true,
-                                confirmButtonText: `Ok`,
-                                icon: "success",
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    window.location.reload();
-                                }
-                            });
-                        }
-                    });
-                })
-                .catch((error) => {
-                    Swal.fire(error.data.data.message, "", "error");
-                });
-        } else {
-            openHosting();
-        }
-    };
+    // const acceptGuests = () => {
+    //     if (isHost === "true") {
+    //         axios
+    //             .put(
+    //                 `/api/user/editStatus/${id}`,
+    //                 {},
+    //                 {
+    //                     headers: {
+    //                         jwt: token,
+    //                     },
+    //                 }
+    //             )
+    //             .then((response) => {
+    //                 saveIsHost(false);
+    //                 Swal.fire({
+    //                     title: "Are you sure?",
+    //                     text: "You won't to stop accepting guests!",
+    //                     icon: "warning",
+    //                     showCancelButton: true,
+    //                     confirmButtonColor: "#3085d6",
+    //                     cancelButtonColor: "#d33",
+    //                     confirmButtonText: "Yes, Continue!",
+    //                     showLoaderOnConfirm: true,
+    //                 }).then((result) => {
+    //                     if (result.isConfirmed) {
+    //                         Swal.fire({
+    //                             title: `${response.data.message}`,
+    //                             showDenyButton: false,
+    //                             showCancelButton: false,
+    //                             showLoaderOnConfirm: true,
+    //                             confirmButtonText: `Ok`,
+    //                             icon: "success",
+    //                         }).then((result) => {
+    //                             if (result.isConfirmed) {
+    //                                 window.location.reload();
+    //                             }
+    //                         });
+    //                     }
+    //                 });
+    //             })
+    //             .catch((error) => {
+    //                 Swal.fire(error.data.data.message, "", "error");
+    //             });
+    //     } else {
+    //         openHosting();
+    //     }
+    // };
     return (
         <div>
             <ModalEditPassword />
@@ -94,11 +94,11 @@ function MDropDown() {
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
 
-                    <NavDropdown.Item onClick={acceptGuests}>
+                    {/* <NavDropdown.Item onClick={acceptGuests}>
                         {isHost === "true"
                             ? "Accept Guests"
                             : "Stop Accepting Guests"}
-                    </NavDropdown.Item>
+                    </NavDropdown.Item> */}
                 </NavDropdown>
             </Nav>
         </div>

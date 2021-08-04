@@ -1,0 +1,61 @@
+.wl-postItem-container {
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.411);
+    background-color: white;
+}
+.wl-postItem-box {
+    padding-left: 25px;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    height: 43vh;
+    border-radius: 10px;
+}
+.wl-postItem-header {
+    display: flex;
+    align-items: center;
+}
+.wl-postItem-header > h5 {
+    margin-left: 25px;
+    color: black;
+    font-weight: bold;
+}
+.wl-postItem-body {
+    padding-left: 80px;
+    /* padding-top: 5px; */
+    margin: 0;
+    clear: both;
+    overflow: auto;
+}
+.wl-postItem-line {
+    display: flex;
+    align-items: baseline;
+    padding: 0;
+    margin: 0;
+    height: 25px;
+}
+.t5 {
+    font-size: 1.05em;
+    font-weight: bold;
+    margin-right: 10px;
+}
+.wl-postItem-body > p {
+    font-size: 1em;
+    padding: 0;
+    margin: 0;
+}
+
+.wl-postItem-buttons {
+    /* margin-top: 20px; */
+    width: 40%;
+    position: relative;
+    left: 380px;
+    display: flex;
+    justify-content: flex-end;
+}
+.wl-postItem-edit {
+    padding: 10px;
+    width: 90%;
+    margin: auto;
+    margin-top: 10px;
+}
