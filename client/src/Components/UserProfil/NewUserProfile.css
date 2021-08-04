@@ -1,0 +1,41 @@
+.wl-newUserProfile-container {
+    border: 1px black solid;
+    height: 1020px;
+    width: 85%;
+    margin: auto;
+    display: flex;
+}
+.wl-newUserProfile-leftBox {
+    border: 3px red solid;
+    height: 1020px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.wl-newUserProfile-rightBox {
+    border: 3px blue solid;
+    height: 1020px;
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+.wl-user-photoBox {
+    border: 1px green solid;
+    flex: 1;
+}
+.wl-user-infos {
+    border: 1px purple solid;
+    flex: 1;
+}
+.wl-user-hobbies {
+    border: 1px brown solid;
+    flex: 1;
+}
+.wl-NameAndSomeIformations {
+    border: 1px orange solid;
+    flex: 1;
+}
+.PostsAndHosts {
+    border: 1px rgb(253, 14, 201) solid;
+    flex: 3;
+}

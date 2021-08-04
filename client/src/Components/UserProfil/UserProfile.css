@@ -1,12 +1,127 @@
-.postItem {
-    border: 1px red solid;
-    padding: 10px;
-    width: 80%;
+.wl-newUserProfile-container {
+    height: 1020px;
+    width: 75%;
     margin: auto;
+    display: flex;
+    margin-top: 80px;
 }
-.post {
-    border: 3px black solid;
-    padding: 5px;
+.wl-newUserProfile-leftBox {
+    height: 1020px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.wl-newUserProfile-rightBox {
+    height: 1020px;
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+.wl-user-photoBox {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.377);
+    border-radius: 10px 10px;
+}
+.wl-user-infos {
+    flex: 1;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.377);
+    border-radius: 10px 10px;
+}
+.wl-user-infos > h6 {
+    float: left;
+    margin-right: 10px;
+    color: black;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+.wl-user-infos > p {
+    color: black;
+    font-weight: normal;
+    font-size: 1.05em;
+}
+.wl-user-infos > h5 {
+    border-bottom: 1px rgba(88, 88, 88, 0.589) solid;
+    padding: 0 0 5px 5px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+}
+.wl-user-hobbies {
+    flex: 1;
+}
+.wl-NameAndSomeIformations {
+    padding: 20px;
+    height: 30%;
+    padding-bottom: 0px;
+    margin-bottom: 20px;
+}
+.firstName-lastName {
+    display: flex;
+    justify-content: space-between;
+}
+.firstName-box {
+    width: 52%;
+    margin-right: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.firstName-box > h1 {
+    font-size: 2.4em;
+}
+.lastName-box {
+    padding: 0px;
     width: 50%;
-    margin: auto;
+    display: flex;
+}
+.lastName-box > h1 {
+    margin-right: 10px;
+    font-size: 2.4em;
+}
+.wl-country-birthday-occupation {
+    margin-top: 25px;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.wl-info-element {
+    display: flex;
+    align-items: center;
+}
+.wl-info-element > h3 {
+    margin-left: 20px;
+    font-size: 1.4em;
+}
+.PostsAndHosts {
+    height: 67%;
+    background-color: rgba(220, 220, 220, 0.384);
+}
+.PostsAndHostsAndReview {
+    height: 92%;
+    overflow: auto;
+}
+
+
+.wl-add-post {
+    position: relative;
+    left: 650px;
+    top: 200px;
+    /* z-index: 1; */
+}
+input[type="radio"] {
+    display: none;
+    cursor: pointer;
+}
+label:hover {
+    cursor: pointer;
+    color: tomato;
 }

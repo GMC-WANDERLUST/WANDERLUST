@@ -6,6 +6,7 @@ import Home from "./Components/Home/Home";
 import UserAddInformations from "./Components/UserProfil/UserAddInformations";
 //import FirstPage from "./Components/FirstPage/FirstPage";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import PrvRoute from "./Components/PrivateRoute/PrvRoute";
 import PublicRoute from "./Components/PublicRoute/PublicRoute";
 import AdminRoute from "./Components/PrivateRoute/AdminRoute";
 import AddProfilePhoto from "./Components/UserProfil/AddProfilePhoto";
@@ -27,7 +28,7 @@ function App() {
     return (
         <div className="App">
             <Switch>
-                <Route
+                <PrvRoute
                     restricted={true}
                     exact
                     path="/"

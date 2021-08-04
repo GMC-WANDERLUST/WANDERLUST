@@ -8,6 +8,7 @@ import DoneRoundedIcon from "@material-ui/icons/DoneRounded";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { blue } from "@material-ui/core/colors";
+import { FaPen } from "react-icons/fa";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -78,7 +79,14 @@ function ModalEditLastName({ action, data }) {
     };
     return (
         <div>
-            <button onClick={openModal}>{action}</button>
+            <label>
+                <FaPen size="15px" color="grey" />
+                <input
+                    type="checkbox"
+                    title="Edit First Name"
+                    onClick={openModal}
+                />
+            </label>
             <Modal
                 isOpen={modalIsOpen}
                 onAfterOpen={afterOpenModal}

@@ -9,10 +9,11 @@ import Button from "@material-ui/core/Button";
 import PublishIcon from "@material-ui/icons/Publish";
 import SaveIcon from "@material-ui/icons/Save";
 import { makeStyles } from "@material-ui/core/styles";
+import { FaPen } from "react-icons/fa";
 
 const customStyles = {
     content: {
-        top: "45%",
+        top: "55%",
         left: "50%",
         right: "auto",
         bottom: "auto",
@@ -94,7 +95,10 @@ function ModalEditPhoto({ action, data }) {
     };
     return (
         <div className="wl-modal-update-photo-container">
-            <button onClick={openModal}>{action}</button>
+            <label>
+                <FaPen size="15px" />
+                <input type="checkbox" title={action} onClick={openModal} />
+            </label>
             <Modal
                 isOpen={modalIsOpen}
                 onAfterOpen={afterOpenModal}

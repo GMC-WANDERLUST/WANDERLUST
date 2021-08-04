@@ -125,21 +125,16 @@ function UserUpdateProfile() {
         // eslint-disable-next-line
         <div>
             <NavBar />
-            <h1>Update your Personal Informations</h1>
             {test ? (
                 <React.Fragment>
                     <CssBaseline />
-                    <AppBar
-                        position="absolute"
-                        color="default"
-                        className={classes.appBar}
-                    >
-                        <Toolbar>
-                            <Typography variant="h6" color="inherit" noWrap>
-                                WANDERLUST
-                            </Typography>
-                        </Toolbar>
-                    </AppBar>
+
+                    <Toolbar>
+                        <Typography variant="h6" color="inherit" noWrap>
+                            WANDERLUST
+                        </Typography>
+                    </Toolbar>
+                    <h1>Update your Personal Informations</h1>
                     <main className={classes.layout}>
                         <Paper
                             className={classes.paper}
@@ -187,6 +182,7 @@ function UserUpdateProfile() {
                                                 required
                                                 name="Gender"
                                                 defaultValue={userInfos.Gender}
+                                                onChange={handelUpdateInfos}
                                             >
                                                 <MenuItem
                                                     value="Male"
