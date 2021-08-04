@@ -10,7 +10,7 @@ import "./UsersList.css";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: "100%",
+        width: "80%",
         maxWidth: "100%",
         backgroundColor: theme.palette.background.paper,
         display: "flex",
@@ -31,21 +31,26 @@ function UsersList() {
     }, [id, token, dispatch]);
     const usersList = useSelector((state) => state.adminReducer.usersList);
     return (
-        <div className="wl-admin-userList">
-            <h1>Users List</h1>
-            <List className={classes.root}>
-                {usersList
-                    .map((user) => (
-                        <div key={user._id}>
-                            <CardUser token={token} user={user} id={id} />
-                        </div>
-                    ))
-                    .reverse()}
-            </List>
-            <Button href={`/adminUi/${id}`} color="primary">
-                Back
-            </Button>
-        </div>
+      <div className="wl-admin-userList">
+        <h1>Users List</h1>
+        <List className={classes.root}>
+          {usersList
+            .map((user) => (
+              <div key={user._id}>
+                <CardUser token={token} user={user} id={id} />
+              </div>
+            ))
+            .reverse()}
+        </List>
+        <Button
+          href={`/adminUi/${id}`}
+          color="primary"
+          size="large"
+          variant="contained"
+        >
+          Back
+        </Button>
+      </div>
     );
 }
 
