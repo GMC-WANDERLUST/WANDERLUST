@@ -43,7 +43,8 @@ router.post("/newHosting/:id", verify, async (req, res) => {
 // UPDATING HOSTING
 router.put("/editHosting/:id", verify, UserAccess, async (req, res) => {
     try {
-        let { editHost } = req.body;
+        let editHost = req.body;
+        console.log(editHost)
         let id = req.header("data");
         await Hosting.findByIdAndUpdate(id, {
             $set: { ...editHost },

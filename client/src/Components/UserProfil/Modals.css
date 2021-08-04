@@ -1,5 +1,10 @@
 /* MODAL UPDATE PROFILE PHOTO */
-
+input[type="checkbox"] {
+    display: none;
+}
+label:hover {
+    cursor: pointer;
+}
 .wl-modal-update-photo-box {
     text-align: center;
     width: 100%;
