@@ -1,9 +1,10 @@
-.login-container 
-{
-    border: 1px black solid;
-    width: 30%;
-    margin: auto;
-    margin-top: 3%;
-    padding: 20px;
-    border-radius: 5%;
+.login-container {
+    background: url("./background.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    display: flex;
+    justify-content: flex-end;
+    /* background-color: violet; */
 }

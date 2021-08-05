@@ -24,8 +24,6 @@
     padding-left: 80px;
     /* padding-top: 5px; */
     margin: 0;
-    clear: both;
-    overflow: auto;
 }
 .wl-postItem-line {
     display: flex;
