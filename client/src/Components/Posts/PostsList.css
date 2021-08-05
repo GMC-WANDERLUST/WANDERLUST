@@ -1,0 +1,21 @@
+.wl-postsList-container {
+    border: 3px black solid;
+    height: auto;
+}
+.wl-postsList-body {
+    border: 3px red solid;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.wl-postsList-item {
+    border: 3px blue solid;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    padding: 25px;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: auto;
+}

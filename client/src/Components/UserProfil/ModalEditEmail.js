@@ -11,6 +11,25 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../utils";
 import { useHistory } from "react-router";
 import Swal from "sweetalert2";
+import CloseButton from "react-bootstrap/CloseButton";
+import Button from "@material-ui/core/Button";
+import DoneRoundedIcon from "@material-ui/icons/DoneRounded";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import { blue } from "@material-ui/core/colors";
+import { FaPen } from "react-icons/fa";
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        "& > *": {
+            margin: theme.spacing(1),
+            width: "25ch",
+        },
+    },
+    margin: {
+        margin: theme.spacing(1),
+    },
+}));
 
 const customStyles = {
     content: {
@@ -20,15 +39,26 @@ const customStyles = {
         bottom: "auto",
         marginRight: "-50%",
         transform: "translate(-50%, -50%)",
+        width: "40%",
+        height: "40%",
     },
 };
+const ColorButton = withStyles((theme) => ({
+    root: {
+        color: theme.palette.getContrastText(blue[800]),
+        backgroundColor: blue[800],
+        "&:hover": {
+            backgroundColor: blue[500],
+        },
+    },
+}))(Button);
 
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement("#root");
 
-function ModalEditEmail({ open }) {
+function ModalEditEmail({ data }) {
     ///////////////////////////////////////////////////////////////////////////////////
     // DECLARATIONS
+    const classes = useStyles();
     let id = userId();
     let token = getToken();
     let subtitle;
@@ -40,7 +70,7 @@ function ModalEditEmail({ open }) {
     // FUNCTIONS
     function afterOpenModal() {
         // references are now sync'd and can be accessed.
-        subtitle.style.color = "#f00";
+        subtitle.style.color = "#006064";
     }
     function handleclose() {
         dispatch(closeEmailModal());
@@ -85,7 +115,7 @@ function ModalEditEmail({ open }) {
             }
         });
     };
-
+    console.log(data);
     return (
         <div>
             <Modal
@@ -95,8 +125,38 @@ function ModalEditEmail({ open }) {
                 style={customStyles}
                 contentLabel="Example Modal"
             >
-                <h2 ref={(_subtitle) => (subtitle = _subtitle)}>EDIT EMAIL</h2>
-                <button onClick={handleclose}>Close</button>
+                <CloseButton aria-label="Hide" onClick={handleclose}>
+                    close
+                </CloseButton>
+                <div className="wl-modal-edit-firstname-box">
+                    <h2 ref={(_subtitle) => (subtitle = _subtitle)}>
+                        Edit E-mail
+                    </h2>
+                    <form
+                        className={classes.root}
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <TextField
+                            id="standard-basic"
+                            label="NEW E-MAIL"
+                            name="email"
+                            onChange={handleChange}
+                        />
+                    </form>
+                    <div>
+                        <ColorButton
+                            startIcon={<DoneRoundedIcon />}
+                            variant="contained"
+                            color="default"
+                            onClick={saveNewData}
+                        >
+                            OK
+                        </ColorButton>
+                    </div>
+                </div>
+                {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>EDIT EMAIL</h2> */}
+                {/* <button onClick={handleclose}>Close</button>
                 <form>
                     <input
                         type="text"
@@ -108,7 +168,7 @@ function ModalEditEmail({ open }) {
                     <button type="button" onClick={saveNewData}>
                         Save
                     </button>
-                </form>
+                </form> */}
             </Modal>
         </div>
     );
