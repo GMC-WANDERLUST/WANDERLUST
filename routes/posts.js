@@ -48,7 +48,6 @@ router.put("/editPost/:id", verify, verifyUserAccess, async (req, res) => {
             $set: { ...editPost },
         });
         let editedPost = await Posts.findById(_id);
-        console.log(editedPost);
         res.status(201).json({
             message: "Post was updated successfully",
             editedPost,
@@ -150,8 +149,6 @@ router.get(
     async (req, res) => {
         let dateData = req.header("data");
         let destinationData = req.header("destination");
-        console.log("date data", dateData)
-        console.log("destination", destinationData);
         try {
             const PostsList = ([] = await Posts.find({
                 destination: destinationData.toLowerCase(),

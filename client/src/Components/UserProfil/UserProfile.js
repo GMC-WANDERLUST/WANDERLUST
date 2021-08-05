@@ -18,8 +18,10 @@ import HostItem from "./HostItem";
 import { makeStyles } from "@material-ui/core/styles";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Avatar from "@material-ui/core/Avatar";
-import { FaMapMarkerAlt, FaSuitcase } from "react-icons/fa";
+import { FaMapMarkerAlt, FaSuitcase, FaPhoneAlt } from "react-icons/fa";
 import { RiCake2Fill, RiFileAddFill } from "react-icons/ri";
+import { IoLanguage, IoPeople, IoSchool, IoFootball } from "react-icons/io5";
+import { BiWorld } from "react-icons/bi";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -113,16 +115,15 @@ function UserProfile() {
     const openPostModal = () => {
         dispatch(addPost());
     };
-    const handleMyPosts = () => {
-        setShowPost(!showPost);
-    };
-    const handleMyHosts = () => {
-        setShowHosts(!showHosts);
-    };
+    // const handleMyPosts = () => {
+    //     setShowPost(!showPost);
+    // };
+    // const handleMyHosts = () => {
+    //     setShowHosts(!showHosts);
+    // };
     return (
         <React.Fragment>
             <NavBar />
-
             {test ? (
                 <div key={user._id}>
                     <div className="wl-newUserProfile-container">
@@ -135,57 +136,73 @@ function UserProfile() {
                                         className={classes.large}
                                     />
                                 </a>
-
                                 <ModalEditPhoto data={user.photo} />
                             </div>
                             <div className="wl-user-infos">
                                 <h5>About</h5>
-                                <h6>Languages :</h6>
-                                <p> {user.Languages}</p>
-                                <h6>Gender :</h6> <p>{user.Gender}</p>
-                                <h6>Phone :</h6>
-                                <p>{user.PhoneNumber}</p>
-                                <h6>Visited countries :</h6>
-                                <p> {user.CountriesIvisited} </p>
-                                <h6>Education :</h6>
-                                <p> {user.Education} </p>
-                                <h6>Hobbies</h6>
-                                <p> {user.Hobbies} </p>
+                                <div className="wl-leftInfos-item">
+                                    <IoLanguage size="18px" color="grey" />
+                                    <h5>Languages:</h5>
+                                    <h6> {user.Languages}</h6>
+                                </div>
+                                <div className="wl-leftInfos-item">
+                                    <IoPeople size="18px" color="grey" />
+                                    <h5>Gender:</h5> <h6>{user.Gender}</h6>
+                                </div>
+                                <div className="wl-leftInfos-item">
+                                    <FaPhoneAlt size="18px" color="grey" />
+                                    <h5>Phone:</h5>
+                                    <h6>{user.PhoneNumber}</h6>
+                                </div>
+                                <div className="wl-leftInfos-item">
+                                    <BiWorld size="18px" color="grey" />
+                                    <h5>Visited countries:</h5>
+                                    <h6>{user.CountriesIvisited}</h6>
+                                </div>
+                                <div className="wl-leftInfos-item">
+                                    <IoSchool size="27px" color="grey" />
+                                    <h5>Education:</h5>
+                                    <h6>{user.Education}</h6>
+                                </div>
+                                <div className="wl-leftInfos-item">
+                                    <IoFootball size="18px" color="grey" />
+                                    <h5>Hobbies:</h5>
+                                    <h6> {user.Hobbies} </h6>
+                                </div>
                             </div>
                             <div className="wl-user-infos">
                                 <h5>About me</h5>
-                                <p> {user.AboutMe} </p>
+                                <h6> {user.AboutMe} </h6>
                             </div>
                         </div>
                         <div className="wl-newUserProfile-rightBox">
                             <div className="wl-NameAndSomeIformations">
                                 <div className="wl-add-post" title="Add post">
-                                    <label>
-                                        <RiFileAddFill
-                                            size="40px"
-                                            // color="#f2e6e6"
-                                        />
+                                    <label className="btn-add-post">
                                         <input
                                             type="radio"
                                             value="Add Post"
                                             onClick={openPostModal}
                                         />
+                                        <RiFileAddFill
+                                            size="40px"
+                                            // color="#f2e6e6"
+                                        />
                                     </label>
                                     <ModalAddPost />
                                 </div>
                                 <div className="firstName-lastName">
-                                    <div className="firstName-box">
-                                        <h1>{user.FirstName}</h1>
-
+                                    <div className="modal-firstName">
                                         <ModalEditFirstName
                                             data={user.FirstName}
                                         />
                                     </div>
+                                    <div className="firstName-box">
+                                        <h1>{user.FirstName}</h1>
+                                    </div>
+                                    <ModalEditLastName data={user.LastName} />
                                     <div className="lastName-box">
                                         <h1>{user.LastName}</h1>
-                                        <ModalEditLastName
-                                            data={user.LastName}
-                                        />
                                     </div>
                                 </div>
                                 <div className="wl-country-birthday-occupation">
@@ -237,21 +254,25 @@ function UserProfile() {
                                 </div>
                                 <div className="PostsAndHostsAndReview">
                                     <TabPanel value={value} index={0}>
-                                        <article>
-                                            {userPost.map((post) => (
-                                                <div key={post._id}>
-                                                    <PostItem post={post} />
-                                                </div>
-                                            ))}
+                                        <article className="wl-profile-postsLists">
+                                            {userPost
+                                                .map((post) => (
+                                                    <div key={post._id}>
+                                                        <PostItem post={post} />
+                                                    </div>
+                                                ))
+                                                .reverse()}
                                         </article>
                                     </TabPanel>
                                     <TabPanel value={value} index={1}>
-                                        <article>
-                                            {userHosts.map((host) => (
-                                                <div key={host._id}>
-                                                    <HostItem host={host} />
-                                                </div>
-                                            ))}
+                                        <article className="wl-profile-hostPostsLists">
+                                            {userHosts
+                                                .map((host) => (
+                                                    <div key={host._id}>
+                                                        <HostItem host={host} />
+                                                    </div>
+                                                ))
+                                                .reverse()}
                                         </article>
                                     </TabPanel>
                                     <TabPanel value={value} index={2}>

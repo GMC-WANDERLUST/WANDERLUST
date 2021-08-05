@@ -2,10 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { userId, getToken } from "../../utils";
 import Swal from "sweetalert2";
-import hoursToMilliseconds from "date-fns/hoursToMilliseconds/index.js";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import DateFnsUtils from "@date-io/date-fns";
 import {
@@ -56,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
     },
     margin: {
         margin: theme.spacing(1),
+        fontSize: "0.7em",
     },
     paper: {
         marginTop: theme.spacing(1),
@@ -182,55 +181,58 @@ function HostItem({ host }) {
     let dateTab = host.date.split("T");
     return (
         <React.Fragment>
-            <section className="wl-postItem-container">
-                <div className="wl-postItem-box">
+            <section className="wl-hostItem-container">
+                <div className="wl-hostItem-box">
                     {showEdit ? null : (
-                        <div className="wl-postItem-dataList">
-                            <p>
+                        <div className="wl-hostItem-dataList">
+                            <h6>
                                 {dateTab[0]} at {dateTab[1].split(".")[0]}
-                            </p>
-                            <div className="wl-postItem-header">
+                            </h6>
+                            <div className="wl-hostItem-header">
                                 <Avatar
                                     alt="profil_photo"
                                     src={host.img}
                                     className={classes.large}
                                 />
-                                <h5>
+                                <h6>
                                     {host.firstName} {host.lastName}
-                                </h5>
+                                </h6>
                             </div>
-                            <div className="wl-postItem-body">
-                                <div className="wl-postItem-line">
-                                    <h6 className="t5">Residence :</h6>
-                                    <p>{host.residence.toUpperCase()}</p>
+                            <div className="wl-hostItem-body">
+                                <div className="wl-hostItem-line">
+                                    <h5 className="t5">Residence :</h5>
+                                    <h6>{host.residence.toUpperCase()}</h6>
                                 </div>
-                                <div className="wl-postItem-line">
-                                    <h6 className="t5"> City :</h6>
-                                    <p>{host.city.toUpperCase()}</p>
+                                <div className="wl-hostItem-line">
+                                    <h5 className="t5"> City :</h5>
+                                    <h6>{host.city.toUpperCase()}</h6>
                                 </div>
-                                <div className="wl-postItem-line">
-                                    <h6 className="t5">Available on :</h6>
-                                    <p>{host.available}</p>
+                                <div className="wl-hostItem-line">
+                                    <h5 className="t5">Available on :</h5>
+                                    <h6>{host.available}</h6>
                                 </div>
-                                <div className="wl-postItem-line">
-                                    <h6 className="t5">Speaks :</h6>
-                                    <p> {host.languages}</p>
+                                <div className="wl-hostItem-line">
+                                    <h5 className="t5">Speaks :</h5>
+                                    <h6> {host.languages}</h6>
                                 </div>
-                                <div className="wl-postItem-line">
-                                    <h6 className="t5"> Nombres of Rooms:</h6>
-                                    <p>{host.nbreOfRooms} </p>
+                                <div className="wl-hostItem-line">
+                                    <h5 className="t5"> Nombres of Rooms:</h5>
+                                    <h6>{host.nbreOfRooms} </h6>
                                 </div>
-                                <div className="wl-postItem-line">
-                                    <h6 className="t5"> Nombres of Beds:</h6>
-                                    <p>{host.nbreOfBeds} </p>
+                                <div className="wl-hostItem-line">
+                                    <h5 className="t5"> Nombres of Beds:</h5>
+                                    <h6>{host.nbreOfBeds} </h6>
                                 </div>
-                                <div className="wl-postItem-line">
-                                    <h6 className="t5"> Price:</h6>
-                                    <p>{host.price} </p>
+                                <div className="wl-hostItem-line">
+                                    <h5 className="t5"> Price:</h5>
+                                    <h6>{host.price} $ </h6>
                                 </div>
-                                <p>" {host.description} "</p>
+                                <div className="wl-hostItem-line">
+                                    <h5 className="t5"> Description:</h5>
+                                    <h6>{host.description}</h6>
+                                </div>
                             </div>
-                            <div className="wl-postItem-buttons">
+                            <div className="wl-hostItem-buttons">
                                 <ColorButton
                                     variant="contained"
                                     color="primary"
@@ -251,11 +253,11 @@ function HostItem({ host }) {
                         </div>
                     )}
                     {showEdit ? (
-                        <div className="wl-postItem-core">
+                        <div className="wl-hostItem-core">
                             <main
                                 className={classes.layout}
                                 onChange={handelChange}
-                                className="wl-postItem-edit"
+                                className="wl-hostItem-edit"
                             >
                                 <Typography
                                     component="h1"
@@ -276,7 +278,6 @@ function HostItem({ host }) {
                                                 autoComplete="family-name"
                                             />
                                         </Grid>
-                                        {/* <Grid item xs={4} sm={4}></Grid> */}
                                         <Grid item xs={12} sm={6}>
                                             <TextField
                                                 required
@@ -374,54 +375,6 @@ function HostItem({ host }) {
                     ) : null}
                 </div>
             </section>
-
-            {/* <section className="post">
-             
-                {showEdit ? (
-                    <div>
-                        <input
-                            type="text"
-                            name="city"
-                            defaultValue={host.city}
-                            onChange={handelChange}
-                        />
-                        <input
-                            type="text"
-                            name="nbreOfRooms"
-                            defaultValue={host.nbreOfRooms}
-                            onChange={handelChange}
-                        />
-                        <input
-                            type="text"
-                            name="nbreOfBeds"
-                            defaultValue={host.nbreOfBeds}
-                            onChange={handelChange}
-                        />
-                        <input
-                            type="text"
-                            name="price"
-                            defaultValue={host.price}
-                            onChange={handelChange}
-                        />
-                        <input
-                            type="text"
-                            name="description"
-                            defaultValue={host.description}
-                            onChange={handelChange}
-                        />
-                        <input
-                            type="button"
-                            value="Save changes"
-                            onClick={handleSaveEdit}
-                        />
-                        <input
-                            type="button"
-                            value="Cancel"
-                            onClick={cancelEdit}
-                        />
-                    </div>
-                ) : null}
-            </section> */}
         </React.Fragment>
     );
 }

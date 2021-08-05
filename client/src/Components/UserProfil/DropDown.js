@@ -86,9 +86,7 @@ function DropDown() {
                 />
 
                 <Dropdown.Menu>
-                    <Dropdown.Item
-                        href={`/updateprofile/${id}`}
-                    >
+                    <Dropdown.Item href={`/updateprofile/${id}`}>
                         Update Personal Informations
                     </Dropdown.Item>
                     <Dropdown.Item href="#/action-2" onClick={handleopenModal}>

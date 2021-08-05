@@ -79,8 +79,8 @@ function ModalEditLastName({ action, data }) {
     };
     return (
         <div>
-            <label>
-                <FaPen size="15px" color="grey" />
+            <label className="btn-edit-lastName">
+                <FaPen size="15px"/>
                 <input
                     type="checkbox"
                     title="Edit First Name"

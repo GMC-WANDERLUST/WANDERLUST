@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1),
     },
 }));
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement("#root");
 
 function ModalEditPhoto({ action, data }) {
@@ -95,7 +94,7 @@ function ModalEditPhoto({ action, data }) {
     };
     return (
         <div className="wl-modal-update-photo-container">
-            <label>
+            <label className="btn-edit-photo">
                 <FaPen size="15px" />
                 <input type="checkbox" title={action} onClick={openModal} />
             </label>

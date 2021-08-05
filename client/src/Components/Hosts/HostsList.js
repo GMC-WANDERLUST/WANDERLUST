@@ -13,6 +13,7 @@ import HostCityItem from "./HostCityItem";
 import FilterDropdown from "./FilterDropdown";
 import { makeStyles } from "@material-ui/core/styles";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import "./HostsList.css";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
 
 function HostsList() {
     const classes = useStyles();
-
     let id = userId();
     let token = getToken();
     const dispatch = useDispatch();
@@ -47,56 +47,64 @@ function HostsList() {
     const postsByCity = useSelector((state) => state.postReducer.postsByCity);
     const hostsByDate = useSelector(
         (state) => state.hostingReducer.hostsByCheckIn
-        );
+    );
     const test = useSelector((state) => state.postReducer.test);
     const hostTest = useSelector((state) => state.hostingReducer.hostTest);
 
     return (
-        <div>
+        <div className="wl-hostsList-page">
             <NavBar />
-            <FilterDropdown />
-            {test || hostTest ? (
-                <div>
-                    {hostsByDestination.length === 0 &&
-                    postsByCity.length === 0 &&
-                    hostsByDate.length === 0 ? (
-                        <h2> No data was found</h2>
-                    ) : hostsByDestination.length !== 0 &&
-                      postsByCity.length === 0 ? (
-                        <div>
-                            {hostsByDestination.map((host) => (
-                                <div key={host._id}>
-                                    <HostDestinationItem host={host} />
-                                </div>
-                            ))}
-                        </div>
-                    ) : hostsByDestination.length === 0 &&
-                      hostsByDate.length === 0 &&
-                      postsByCity.length !== 0 ? (
-                        <div>
-                            {postsByCity.map((host) => (
-                                <div key={host._id}>
-                                    <HostCityItem host={host} />
-                                </div>
-                            ))}
-                        </div>
-                    ) : hostsByDestination.length === 0 &&
-                      postsByCity.length === 0 &&
-                      hostsByDate.length !== 0 ? (
-                        <div>
-                            {hostsByDate.map((host) => (
-                                <div key={host._id}>
-                                    <HostCityItem host={host} />
-                                </div>
-                            ))}
-                        </div>
-                    ) : null}
-                </div>
-            ) : (
-                <div className={classes.root}>
-                    <LinearProgress />
-                </div>
-            )}
+            <div className="wl-hostsList-container">
+                {test || hostTest ? (
+                    <div className="wl-hostsList-body">
+                        <FilterDropdown />
+                        {hostsByDestination.length === 0 &&
+                        postsByCity.length === 0 &&
+                        hostsByDate.length === 0 ? (
+                            <h2> No data was found</h2>
+                        ) : hostsByDestination.length !== 0 &&
+                          postsByCity.length === 0 ? (
+                            <div className="wl-hostsList-item">
+                                {hostsByDestination
+                                    .map((host) => (
+                                        <div key={host._id}>
+                                            <HostDestinationItem host={host} />
+                                        </div>
+                                    ))
+                                    .reverse()}
+                            </div>
+                        ) : hostsByDestination.length === 0 &&
+                          hostsByDate.length === 0 &&
+                          postsByCity.length !== 0 ? (
+                            <div className="wl-hostsList-item">
+                                {postsByCity
+                                    .map((host) => (
+                                        <div key={host._id}>
+                                            <HostDestinationItem host={host} />
+                                        </div>
+                                    ))
+                                    .reverse()}
+                            </div>
+                        ) : hostsByDestination.length === 0 &&
+                          postsByCity.length === 0 &&
+                          hostsByDate.length !== 0 ? (
+                            <div className="wl-hostsList-item">
+                                {hostsByDate
+                                    .map((host) => (
+                                        <div key={host._id}>
+                                            <HostDestinationItem host={host} />
+                                        </div>
+                                    ))
+                                    .reverse()}
+                            </div>
+                        ) : null}
+                    </div>
+                ) : (
+                    <div className={classes.root}>
+                        <LinearProgress />
+                    </div>
+                )}
+            </div>
         </div>
     );
 }
