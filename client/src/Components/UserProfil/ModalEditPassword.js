@@ -29,19 +29,20 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         marginTop: theme.spacing(1),
-        marginBottom: theme.spacing(1),
-        padding: theme.spacing(2),
-        [theme.breakpoints.up(600 + theme.spacing(1) * 2)]: {
+        marginBottom: theme.spacing(2),
+        padding: theme.spacing(1),
+        [theme.breakpoints.up(600 + theme.spacing(2) * 1)]: {
             marginTop: theme.spacing(1),
             marginBottom: theme.spacing(1),
             padding: theme.spacing(3),
         },
+        height: "50hv",
     },
     layout: {
         width: "auto",
-        marginLeft: theme.spacing(2),
-        marginRight: theme.spacing(2),
-        [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        [theme.breakpoints.up(600 + theme.spacing(1) * 2)]: {
             width: 600,
             marginLeft: "auto",
             marginRight: "auto",
@@ -57,8 +58,8 @@ const customStyles = {
         bottom: "auto",
         marginRight: "-50%",
         transform: "translate(-50%, -50%)",
-        width: "80%",
-        height: "80%",
+        width: "50%",
+        height: "45%",
         backgroundColor: "whitesmoke",
     },
 };
@@ -81,7 +82,7 @@ function ModalEditPassword({ open }) {
     // FUNCTIONS
     function afterOpenModal() {
         // references are now sync'd and can be accessed.
-        subtitle.style.color = "#f00";
+        subtitle.style.color = "#006064";
     }
     function handleclose() {
         dispatch(close());
@@ -151,85 +152,105 @@ function ModalEditPassword({ open }) {
                         close
                     </CloseButton>
                 </div>
+                <h5 ref={(_subtitle) => (subtitle = _subtitle)}>
+                    EDIT PASSWORD
+                </h5>
                 <div className="wl-modal-edit-password-container">
-                    <h5 ref={(_subtitle) => (subtitle = _subtitle)}>
-                        EDIT PASSWORD
-                    </h5>
                     <main className={classes.layout}>
-                        <Paper
-                            className={classes.paper}
-                            onChange={handleChange}
-                        >
-                            <Typography
-                                component="h1"
-                                variant="h4"
-                                align="center"
-                            ></Typography>
-                            <React.Fragment>
-                                <Grid container spacing={3}>
-                                    <Button
-                                        // variant="contained"
-                                        // color="primary"
-                                        size="small"
-                                        className={classes.button}
-                                        startIcon={
-                                            show ? (
-                                                <VisibilityOffIcon />
-                                            ) : (
-                                                <VisibilityIcon />
-                                            )
-                                        }
-                                        onClick={showPasswords}
-                                    >
-                                        {/* {show ? "Hide":""} */}
-                                    </Button>
-                                    <Grid item xs={4} sm={4}>
-                                        <TextField
-                                            required
-                                            id="Password"
-                                            name="oldPassword"
-                                            type={show ? "text" : "password"}
-                                            label="Old Password"
-                                            fullWidth
-                                            autoComplete="current-password"
-                                        />
+                        <div className="edit-password-body">
+                            <Paper
+                                className={classes.paper}
+                                onChange={handleChange}
+                            >
+                                <Typography
+                                    component="h1"
+                                    variant="h4"
+                                    align="center"
+                                ></Typography>
+                                <React.Fragment>
+                                    <Grid container spacing={1}>
+                                        <div className="button">
+                                            <Button
+                                                // variant="contained"
+                                                // color="primary"
+                                                size="small"
+                                                className={classes.button}
+                                                startIcon={
+                                                    show ? (
+                                                        <VisibilityOffIcon />
+                                                    ) : (
+                                                        <VisibilityIcon />
+                                                    )
+                                                }
+                                                onClick={showPasswords}
+                                            >
+                                                {/* {show ? "Hide":""} */}
+                                            </Button>
+                                        </div>
+                                        <div className="box">
+                                            <Grid item xs={4} sm={4}>
+                                                <TextField
+                                                    required
+                                                    id="Password"
+                                                    name="oldPassword"
+                                                    type={
+                                                        show
+                                                            ? "text"
+                                                            : "password"
+                                                    }
+                                                    label="Old Password"
+                                                    fullWidth
+                                                    autoComplete="current-password"
+                                                />
+                                            </Grid>
+                                            <Grid item xs={4} sm={4}>
+                                                <TextField
+                                                    required
+                                                    id="newpassword"
+                                                    name="newpassword"
+                                                    type={
+                                                        show
+                                                            ? "text"
+                                                            : "password"
+                                                    }
+                                                    label="New Password"
+                                                    fullWidth
+                                                    // autoComplete="family-name"
+                                                />
+                                            </Grid>
+                                            {/* <Grid item xs={4} sm={4}></Grid> */}
+                                            <Grid item xs={6} sm={4}>
+                                                <TextField
+                                                    required
+                                                    id="repeat_newpassword"
+                                                    name="repeat_newpassword"
+                                                    type={
+                                                        show
+                                                            ? "text"
+                                                            : "password"
+                                                    }
+                                                    label="Confirm"
+                                                    fullWidth
+                                                    // autoComplete="Occupation"
+                                                />
+                                            </Grid>
+                                        </div>
                                     </Grid>
-                                    <Grid item xs={4} sm={4}>
-                                        <TextField
-                                            required
-                                            id="newpassword"
-                                            name="newpassword"
-                                            type={show ? "text" : "password"}
-                                            label="New Password"
-                                            fullWidth
-                                            // autoComplete="family-name"
-                                        />
-                                    </Grid>
-                                    {/* <Grid item xs={4} sm={4}></Grid> */}
-                                    <Grid item xs={12} sm={6}>
-                                        <TextField
-                                            required
-                                            id="repeat_newpassword"
-                                            name="repeat_newpassword"
-                                            type={show ? "text" : "password"}
-                                            label="Confirm"
-                                            fullWidth
-                                            // autoComplete="Occupation"
-                                        />
-                                    </Grid>
-                                </Grid>
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    size="small"
-                                    className={classes.button}
-                                    startIcon={<SaveIcon />}
-                                    onClick={saveNewData}
-                                >
-                                    Save
-                                </Button>
-                            </React.Fragment>
-                        </Paper>
+                                </React.Fragment>
+                            </Paper>
+                        </div>
+                        <div className="edit-password-button">
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                size="small"
+                                // className={classes.button}
+                                startIcon={<SaveIcon />}
+                                onClick={saveNewData}
+                            >
+                                Save
+                            </Button>
+                        </div>
                     </main>
                 </div>
             </Modal>
