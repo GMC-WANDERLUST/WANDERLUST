@@ -12,10 +12,10 @@ const useStyles = makeStyles((theme) => ({
     root: {
         width: "100%",
         maxWidth: "100%",
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: "none",
         display: "flex",
         flexWrap: "wrap",
-    },
+        marginLeft:"350px"    },
     inline: {
         display: "inline",
     },
@@ -33,8 +33,8 @@ function ReportedUsersList() {
         (state) => state.adminReducer.adminReportedHosts
     );
     return (
-        <div className="wl-admin-userList">
-            <h1>Reported Users List</h1>
+        <div className="wl-admin-userList bckg">
+            <h1>Reported Hosts List</h1>
             <List className={classes.root}>
                 {reportedHosts
                     .map((host) => (
@@ -44,7 +44,7 @@ function ReportedUsersList() {
                     ))
                     .reverse()}
             </List>
-            <Button href={`/adminUi/${id}`} color="primary">
+            <Button href={`/adminUi/${id}`} color="primary" variant="contained" size="large">
                 Back
             </Button>
         </div>

@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     display: "flex",
     flexWrap: "wrap",
+    marginLeft:"250px"
   },
   inline: {
     display: "inline",
@@ -33,21 +34,26 @@ function ReportedPostsList() {
     (state) => state.adminReducer.adminReportedPosts
   );
   return (
-      <div className="wl-admin-postsList">
-          <h1>Reported Posts List</h1>
-          <List className={classes.root}>
-              {reportedPosts
-                  .map((post) => (
-                      <div key={post._id}>
-                          <CardPost post={post} />
-                      </div>
-                  ))
-                  .reverse()}
-          </List>
-          <Button href={`/adminUi/${id}`} color="primary">
-              Back
-          </Button>
-      </div>
+    <div className="wl-admin-postsList">
+      <h1>Reported Travellers List</h1>
+      <List className={classes.root}>
+        {reportedPosts
+          .map((post) => (
+            <div key={post._id}>
+              <CardPost post={post} />
+            </div>
+          ))
+          .reverse()}
+      </List>
+      <Button
+        href={`/adminUi/${id}`}
+        color="primary"
+        variant="contained"
+        size="large"
+      >
+        Back
+      </Button>
+    </div>
   );
 }
 

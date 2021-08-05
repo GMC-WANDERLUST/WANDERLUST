@@ -10,8 +10,8 @@ import "./UsersPost.css"
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: "100%",
-        maxWidth: "100%",
+        width: "80%",
+        maxWidth: "80%",
         backgroundColor: theme.palette.background.paper,
         display: "flex",
         flexWrap: "wrap",
@@ -31,21 +31,26 @@ function UserPostsList() {
     }, [id, token, dispatch]);
     const postsList = useSelector((state) => state.adminReducer.adminPostsList);
     return (
-        <div className="wl-admin-postsList">
-            <h1>Posts List</h1>
-            <List className={classes.root}>
-                {postsList
-                    .map((post) => (
-                        <div key={post._id}>
-                            <CardPost post={post} />
-                        </div>
-                    ))
-                    .reverse()}
-            </List>
-            <Button href={`/adminUi/${id}`} color="primary">
-                Back
-            </Button>
-        </div>
+      <div className="wl-admin-postsList">
+        <h1>Travellers Posts List</h1>
+        <List className={classes.root}>
+          {postsList
+            .map((post) => (
+              <div key={post._id}>
+                <CardPost post={post} />
+              </div>
+            ))
+            .reverse()}
+        </List>
+        <Button
+          href={`/adminUi/${id}`}
+          color="primary"
+          variant="contained"
+          size="large"
+        >
+          Back
+        </Button>
+      </div>
     );
 }
 
