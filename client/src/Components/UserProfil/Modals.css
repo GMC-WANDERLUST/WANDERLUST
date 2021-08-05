@@ -2,7 +2,11 @@
 input[type="checkbox"] {
     display: none;
 }
-label:hover {
+.btn-edit-photo {
+    color: rgba(211, 211, 211, 0.5);
+}
+.btn-edit-photo:hover {
+    color: indigo;
     cursor: pointer;
 }
 .wl-modal-update-photo-box {
@@ -44,7 +48,20 @@ label:hover {
     background-color: whitesmoke;
     box-shadow: 1px 1px 10px whitesmoke;
 }
-
+.btn-edit-firstName {
+    color: rgba(211, 211, 211, 0.5);
+}
+.btn-edit-firstName:hover {
+    color: indigo;
+    cursor: pointer;
+}
+.btn-edit-lastName {
+    color: rgba(211, 211, 211, 0.5);
+}
+.btn-edit-lastName:hover {
+    color: indigo;
+    cursor: pointer;
+}
 /* MODAL ADD POST*/
 
 .wl-modal-add-post-container {

@@ -36,6 +36,9 @@ function FilterDropdown() {
     const handelCityChange = (e) => {
         setCityData(e.target.value);
     };
+    const handleCloseDate = () => {
+        setShowDateFilter(false);
+    };
     const saveFilter = () => {
         sessionStorage.removeItem("residence");
         sessionStorage.removeItem("check_in");
@@ -108,6 +111,9 @@ function FilterDropdown() {
                 ) : null}
                 {showDateFilter ? (
                     <div className="dateFilterBox">
+                        <div className="close-btn">
+                            <CloseButton onClick={handleCloseDate} />
+                        </div>
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                             <Grid container alignItems="center">
                                 <KeyboardDatePicker

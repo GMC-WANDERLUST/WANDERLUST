@@ -9,7 +9,6 @@ import Button from "@material-ui/core/Button";
 import { red, yellow } from "@material-ui/core/colors";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import DateFnsUtils from "@date-io/date-fns";
 import {
@@ -55,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
     },
     margin: {
         margin: theme.spacing(1),
+        fontSize: "0.7em",
     },
     paper: {
         marginTop: theme.spacing(1),
@@ -204,43 +204,49 @@ function PostItem({ post }) {
                 <div className="wl-postItem-box">
                     {showEdit ? null : (
                         <div className="wl-postItem-dataList">
-                            <p>
+                            <h6>
                                 {dateTab[0]} at {dateTab[1].split(".")[0]}
-                            </p>
+                            </h6>
                             <div className="wl-postItem-header">
                                 <Avatar
                                     alt="profil_photo"
                                     src={post.img}
                                     className={classes.large}
                                 />
-                                <h5>
+                                <h6>
                                     {post.firstName} {post.lastName}
-                                </h5>
+                                </h6>
                             </div>
                             <div className="wl-postItem-body">
                                 <div className="wl-postItem-line">
-                                    <h6 className="t5">Destination :</h6>
-                                    <p>{post.destination.toUpperCase()}</p>
+                                    <h5 className="t5">Destination :</h5>
+                                    <h6>{post.destination.toUpperCase()}</h6>
                                 </div>
                                 <div className="wl-postItem-line">
-                                    <h6 className="t5"> City :</h6>
-                                    <p>{post.city.toUpperCase()}</p>
+                                    <h5 className="t5"> City :</h5>
+                                    <h6>{post.city.toUpperCase()}</h6>
                                 </div>
                                 <div className="wl-postItem-line">
-                                    <h6 className="t5">From :</h6>
-                                    <p>
-                                        {post.check_in} To {post.check_out}
-                                    </p>
+                                    <h5 className="t5">From :</h5>
+                                    <h6>{post.check_in}</h6>
                                 </div>
                                 <div className="wl-postItem-line">
-                                    <h6 className="t5">Speaks :</h6>
-                                    <p> {post.languages}</p>
+                                    <h5 className="t5">To :</h5>
+                                    <h6>{post.check_out}</h6>
+                                </div>
+
+                                <div className="wl-postItem-line">
+                                    <h5 className="t5">Speaks :</h5>
+                                    <h6> {post.languages}</h6>
                                 </div>
                                 <div className="wl-postItem-line">
-                                    <h6 className="t5"> Nombres of Guests:</h6>
-                                    <p>{post.nbreOfGuests[0]} </p>
+                                    <h5 className="t5"> Nombres of Guests:</h5>
+                                    <h6>{post.nbreOfGuests[0]} </h6>
                                 </div>
-                                <p>" {post.description} "</p>
+                                <div className="wl-postItem-line">
+                                    <h5 className="t5">Decsription :</h5>
+                                    <h6>" {post.description} "</h6>
+                                </div>
                             </div>
                             <div className="wl-postItem-buttons">
                                 <ColorButton

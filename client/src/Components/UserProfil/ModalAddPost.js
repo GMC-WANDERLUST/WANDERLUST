@@ -59,7 +59,7 @@ const customStyles = {
         bottom: "auto",
         marginRight: "-50%",
         transform: "translate(-50%, -50%)",
-        width: "80%",
+        width: "65%",
         height: "80%",
         backgroundColor: "whitesmoke",
     },

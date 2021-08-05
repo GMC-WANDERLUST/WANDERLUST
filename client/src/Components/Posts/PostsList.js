@@ -13,6 +13,7 @@ import PostCityItem from "./PostCityItem";
 import FilterDropdown from "./FilterDropdown";
 import { makeStyles } from "@material-ui/core/styles";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import "./PostsList.css";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -51,58 +52,60 @@ function PostList() {
     const test = useSelector((state) => state.postReducer.test);
 
     return (
-        <div>
+        <div className="wl-postsList-page">
             <NavBar />
-            <FilterDropdown />
-            {test ? (
-                <div>
-                    {postsByDestination.length === 0 &&
-                    postsByCity.length === 0 &&
-                    postsByCheckIn.length === 0 ? (
-                        <h2> No data was found</h2>
-                    ) : postsByDestination.length !== 0 &&
-                      postsByCity.length === 0 &&
-                      postsByCheckIn.length === 0 ? (
-                        <div>
-                            {postsByDestination
-                                .map((post) => (
-                                    <div key={post._id}>
-                                        <PostDestinationItem post={post} />
-                                    </div>
-                                ))
-                                .reverse()}
-                        </div>
-                    ) : postsByDestination.length === 0 &&
-                      postsByCheckIn.length === 0 &&
-                      postsByCity.length !== 0 ? (
-                        <div>
-                            {postsByCity
-                                .map((post) => (
-                                    <div key={post._id}>
-                                        <PostCityItem post={post} />
-                                    </div>
-                                ))
-                                .reverse()}
-                        </div>
-                    ) : postsByDestination.length === 0 &&
-                      postsByCity.length === 0 &&
+            <div className="wl-postsList-container">
+                {test ? (
+                    <div className="wl-postsList-body">
+                        <FilterDropdown />
+                        {postsByDestination.length === 0 &&
+                        postsByCity.length === 0 &&
+                        postsByCheckIn.length === 0 ? (
+                            <h2> No data was found</h2>
+                        ) : postsByDestination.length !== 0 &&
+                          postsByCity.length === 0 &&
+                          postsByCheckIn.length === 0 ? (
+                            <div className="wl-postsList-item">
+                                {postsByDestination
+                                    .map((post) => (
+                                        <div key={post._id}>
+                                            <PostDestinationItem post={post} />
+                                        </div>
+                                    ))
+                                    .reverse()}
+                            </div>
+                        ) : postsByDestination.length === 0 &&
+                          postsByCheckIn.length === 0 &&
+                          postsByCity.length !== 0 ? (
+                            <div className="wl-postsList-item">
+                                {postsByCity
+                                    .map((post) => (
+                                        <div key={post._id}>
+                                            <PostDestinationItem post={post} />
+                                        </div>
+                                    ))
+                                    .reverse()}
+                            </div>
+                        ) : postsByDestination.length === 0 &&
+                          postsByCity.length === 0 &&
                           postsByCheckIn.length !== 0 ? (
-                        <div>
-                            {postsByCheckIn
-                                .map((post) => (
-                                    <div key={post._id}>
-                                        <PostCityItem post={post} />
-                                    </div>
-                                ))
-                                .reverse()}
-                        </div>
-                    ) : null}
-                </div>
-            ) : (
-                <div className={classes.root}>
-                    <LinearProgress />
-                </div>
-            )}
+                            <div className="wl-postsList-item">
+                                {postsByCheckIn
+                                    .map((post) => (
+                                        <div key={post._id}>
+                                            <PostDestinationItem post={post} />
+                                        </div>
+                                    ))
+                                    .reverse()}
+                            </div>
+                        ) : null}
+                    </div>
+                ) : (
+                    <div className={classes.root}>
+                        <LinearProgress />
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

@@ -10,7 +10,6 @@ import TextField from "@material-ui/core/TextField";
 import { blue } from "@material-ui/core/colors";
 import { FaPen } from "react-icons/fa";
 
-
 const useStyles = makeStyles((theme) => ({
     root: {
         "& > *": {
@@ -47,7 +46,7 @@ const ColorButton = withStyles((theme) => ({
 
 Modal.setAppElement("#root");
 
-function ModalEditFirstName({ action, data }) {
+function ModalEditFirstName({ data }) {
     const classes = useStyles();
     let subtitle;
     const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -81,8 +80,8 @@ function ModalEditFirstName({ action, data }) {
     };
     return (
         <div>
-            <label>
-                <FaPen size="15px" color="grey" />
+            <label className="btn-edit-firstName">
+                <FaPen size="15px"/>
                 <input
                     type="checkbox"
                     title="Edit First Name"
