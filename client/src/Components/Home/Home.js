@@ -32,7 +32,7 @@ function Home() {
                       WHEREVER YOU GO
                     </h1>
                     <a
-                      href="https://nicepage.com/c/education-website-templates"
+                      href=" "
                       className="u-border-none u-btn u-btn-round u-button-style u-custom-color-4 u-hover-custom-color-6 u-radius-50 u-btn-1"
                       data-animation-name="fadeIn"
                       data-animation-duration={1000}
