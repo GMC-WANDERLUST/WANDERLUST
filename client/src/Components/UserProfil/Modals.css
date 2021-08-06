@@ -6,7 +6,7 @@ input[type="checkbox"] {
     color: rgba(211, 211, 211, 0.5);
 }
 .btn-edit-photo:hover {
-    color: indigo;
+    color: black;
     cursor: pointer;
 }
 .wl-modal-update-photo-box {
@@ -52,14 +52,14 @@ input[type="checkbox"] {
     color: rgba(211, 211, 211, 0.5);
 }
 .btn-edit-firstName:hover {
-    color: indigo;
+    color: black;
     cursor: pointer;
 }
 .btn-edit-lastName {
     color: rgba(211, 211, 211, 0.5);
 }
 .btn-edit-lastName:hover {
-    color: indigo;
+    color: black;
     cursor: pointer;
 }
 /* MODAL ADD POST*/

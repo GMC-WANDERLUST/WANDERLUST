@@ -9,13 +9,12 @@ import { red, deepPurple } from "@material-ui/core/colors";
 import Avatar from "@material-ui/core/Avatar";
 import "../UserProfil/HostItem.css";
 import "../UserProfil/PostItem.css";
-
 const ColorButtonRequest = withStyles((theme) => ({
     root: {
-        color: theme.palette.getContrastText(deepPurple[500]),
-        backgroundColor: deepPurple[500],
+        color: theme.palette.getContrastText(deepPurple[600]),
+        backgroundColor: deepPurple[600],
         "&:hover": {
-            backgroundColor: deepPurple[300],
+            backgroundColor: deepPurple[400],
         },
     },
 }))(Button);
@@ -133,9 +132,14 @@ function PostDestinationItem({ post }) {
                             src={post.img}
                             className={classes.large}
                         />
-                        <h5>
-                            {post.firstName} {post.lastName}
-                        </h5>
+                        <Link
+                            to={`/uprofile/${post.user}`}
+                            onClick={saveUserId}
+                        >
+                            <h5>
+                                {post.firstName} {post.lastName}
+                            </h5>
+                        </Link>
                     </div>
                     <div className="wl-postDestinationItem-body">
                         <div className="wl-postItem-line">

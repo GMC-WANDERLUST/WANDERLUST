@@ -1,9 +1,15 @@
+.background {
+    background-color: #eae6f0;
+    height: 100%;
+}
 .wl-newUserProfile-container {
+    background-color: #ab0552;
     height: 1020px;
     width: 75%;
     margin: auto;
+    padding: 25px;
     display: flex;
-    margin-top: 80px;
+    margin-top: 20px;
     color: rgb(32, 32, 32);
 }
 .wl-newUserProfile-leftBox {
@@ -18,6 +24,7 @@
     align-items: baseline;
 }
 .wl-leftInfos-item > h5 {
+    color: #171810;
     display: flex;
     align-items: center;
     font-size: 1.2em;
@@ -27,7 +34,7 @@
 .wl-leftInfos-item > h6 {
     display: flex;
     align-items: center;
-    color: gray;
+    color: #171810;
     font-size: 1.05em;
 }
 .wl-newUserProfile-rightBox {
@@ -45,10 +52,12 @@
     align-items: center;
     padding: 10px;
     margin-bottom: 10px;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.377);
+    /* box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.377); */
     border-radius: 10px 10px;
 }
 .wl-user-infos {
+    background-color: #efebe2;
+    color: #171810;
     flex: 1;
     padding: 15px;
     margin-bottom: 10px;
@@ -56,17 +65,17 @@
     border-radius: 10px 10px;
 }
 .wl-user-infos > h6 {
-    color: black;
+    color: #171810;
     font-weight: bold;
     font-size: 1.1em;
 }
 .wl-user-infos > p {
-    color: black;
+    color: #171810;
     font-weight: normal;
     font-size: 1.05em;
 }
 .wl-user-infos > h5 {
-    border-bottom: 1px rgba(88, 88, 88, 0.589) solid;
+    border-bottom: 1px rgba(0, 0, 0, 0.589) solid;
     padding: 0 0 5px 5px;
     margin-bottom: 20px;
     font-size: 0.9em;
@@ -75,10 +84,11 @@
     flex: 1;
 }
 .wl-NameAndSomeIformations {
+    color: #efebe2;
     padding: 20px;
     height: 30%;
     padding-bottom: 0px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 .firstName-lastName {
     text-align: left;
@@ -108,7 +118,7 @@
 }
 .wl-country-birthday-occupation {
     margin-top: 25px;
-    height: 40%;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -122,8 +132,9 @@
     font-size: 1.4em;
 }
 .PostsAndHosts {
+    margin-top: 50px;
     height: 67%;
-    background-color: rgba(220, 220, 220, 0.384);
+    /* background-color: rgba(220, 220, 220, 0.384); */
 }
 .PostsAndHostsAndReview {
     height: 92%;
@@ -132,7 +143,7 @@
 
 .wl-add-post {
     position: relative;
-    left: 650px;
+    left: 550px;
     top: 200px;
     /* z-index: 1; */
 }
@@ -142,8 +153,8 @@ input[type="radio"] {
 }
 .btn-add-post:hover {
     cursor: pointer;
-    color: tomato;
+    color: black;
 }
 .btn-add-post {
-    color: #f2e6e6;
+    color: #9b9999;
 }

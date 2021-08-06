@@ -9,6 +9,7 @@ import {
 
 const initialState = {
     openHosting: false,
+    randomUserHost:[],
     userHosts: [],
     hostTest: false,
     hostsByDestination: [],
@@ -39,7 +40,7 @@ const hostingReducer = (state = initialState, action) => {
         case GET_RANDOM_USER_HOSTS:
             return {
                 ...state,
-                userHosts: payload,
+                randomUserHost: payload,
                 hostTest: true,
             };
         case GET_HOSTS_BY_DESTINATION:
