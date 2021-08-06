@@ -4,6 +4,7 @@ import {
 } from "../constants/action-types";
 
 const initialState = {
+    randomUser: [],
     user: [],
     test: false,
 };
@@ -21,7 +22,7 @@ const userReducer = (state = initialState, action) => {
         case GET_RANDOM_USER_PROFILE:
             return {
                 ...state,
-                user: payload,
+                randomUser: payload,
                 test: true,
             };
         default:

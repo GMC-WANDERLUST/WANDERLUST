@@ -199,29 +199,35 @@ function HostItem({ host }) {
                                 </h6>
                             </div>
                             <div className="wl-hostItem-body">
-                                <div className="wl-hostItem-line">
-                                    <h5 className="t5">Residence :</h5>
-                                    <h6>{host.residence.toUpperCase()}</h6>
-                                </div>
-                                <div className="wl-hostItem-line">
-                                    <h5 className="t5"> City :</h5>
-                                    <h6>{host.city.toUpperCase()}</h6>
+                                <div className="wl-hostItem-row">
+                                    <div className="wl-hostItem-line">
+                                        <h5 className="t5">Residence :</h5>
+                                        <h6>{host.residence.toUpperCase()}</h6>
+                                    </div>
+                                    <div className="wl-hostItem-first-line">
+                                        <h5 className="t5"> City :</h5>
+                                        <h6>{host.city.toUpperCase()}</h6>
+                                    </div>
                                 </div>
                                 <div className="wl-hostItem-line">
                                     <h5 className="t5">Available on :</h5>
                                     <h6>{host.available}</h6>
                                 </div>
                                 <div className="wl-hostItem-line">
-                                    <h5 className="t5">Speaks :</h5>
+                                    <h5 className="t5">Languages :</h5>
                                     <h6> {host.languages}</h6>
                                 </div>
-                                <div className="wl-hostItem-line">
-                                    <h5 className="t5"> Nombres of Rooms:</h5>
-                                    <h6>{host.nbreOfRooms} </h6>
-                                </div>
-                                <div className="wl-hostItem-line">
-                                    <h5 className="t5"> Nombres of Beds:</h5>
-                                    <h6>{host.nbreOfBeds} </h6>
+                                <div className="wl-hostItem-row">
+                                    <div className="wl-hostItem-line">
+                                        <h5 className="t5">
+                                            Nombres of Rooms:
+                                        </h5>
+                                        <h6>{host.nbreOfRooms} </h6>
+                                    </div>
+                                    <div className="wl-hostItem-first-line">
+                                        <h5 className="t5">Nombres of Beds:</h5>
+                                        <h6>{host.nbreOfBeds} </h6>
+                                    </div>
                                 </div>
                                 <div className="wl-hostItem-line">
                                     <h5 className="t5"> Price:</h5>

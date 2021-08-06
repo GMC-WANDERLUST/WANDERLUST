@@ -10,6 +10,7 @@ import {
 
 const initialState = {
     openPost: false,
+    randomUserPosts:[],
     userPosts: [],
     testPost: false,
     postsByDestination : [],
@@ -39,7 +40,7 @@ const postReducer = (state = initialState, action) => {
         case GET_RANDOM_USER_POSTS:
             return {
                 ...state,
-                userPosts: payload,
+                randomUserPosts: payload,
                 test: true,
             };
         case GET_POSTS_BY_DESTINATION:

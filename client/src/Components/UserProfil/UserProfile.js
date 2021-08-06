@@ -86,8 +86,8 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.paper,
     },
     large: {
-        width: theme.spacing(40),
-        height: theme.spacing(40),
+        width: theme.spacing(35),
+        height: theme.spacing(35),
     },
 }));
 
@@ -124,170 +124,190 @@ function UserProfile() {
     return (
         <React.Fragment>
             <NavBar />
-            {test ? (
-                <div key={user._id}>
-                    <div className="wl-newUserProfile-container">
-                        <div className="wl-newUserProfile-leftBox">
-                            <div className="wl-user-photoBox">
-                                <a href={user.photo}>
-                                    <Avatar
-                                        alt="Profile_Photo"
-                                        src={user.photo}
-                                        className={classes.large}
-                                    />
-                                </a>
-                                <ModalEditPhoto data={user.photo} />
-                            </div>
-                            <div className="wl-user-infos">
-                                <h5>About</h5>
-                                <div className="wl-leftInfos-item">
-                                    <IoLanguage size="18px" color="grey" />
-                                    <h5>Languages:</h5>
-                                    <h6> {user.Languages}</h6>
-                                </div>
-                                <div className="wl-leftInfos-item">
-                                    <IoPeople size="18px" color="grey" />
-                                    <h5>Gender:</h5> <h6>{user.Gender}</h6>
-                                </div>
-                                <div className="wl-leftInfos-item">
-                                    <FaPhoneAlt size="18px" color="grey" />
-                                    <h5>Phone:</h5>
-                                    <h6>{user.PhoneNumber}</h6>
-                                </div>
-                                <div className="wl-leftInfos-item">
-                                    <BiWorld size="18px" color="grey" />
-                                    <h5>Visited countries:</h5>
-                                    <h6>{user.CountriesIvisited}</h6>
-                                </div>
-                                <div className="wl-leftInfos-item">
-                                    <IoSchool size="27px" color="grey" />
-                                    <h5>Education:</h5>
-                                    <h6>{user.Education}</h6>
-                                </div>
-                                <div className="wl-leftInfos-item">
-                                    <IoFootball size="18px" color="grey" />
-                                    <h5>Hobbies:</h5>
-                                    <h6> {user.Hobbies} </h6>
-                                </div>
-                            </div>
-                            <div className="wl-user-infos">
-                                <h5>About me</h5>
-                                <h6> {user.AboutMe} </h6>
-                            </div>
-                        </div>
-                        <div className="wl-newUserProfile-rightBox">
-                            <div className="wl-NameAndSomeIformations">
-                                <div className="wl-add-post" title="Add post">
-                                    <label className="btn-add-post">
-                                        <input
-                                            type="radio"
-                                            value="Add Post"
-                                            onClick={openPostModal}
+            <div className="background">
+                {test ? (
+                    <div key={user._id}>
+                        <div className="wl-newUserProfile-container">
+                            <div className="wl-newUserProfile-leftBox">
+                                <div className="wl-user-photoBox">
+                                    <a href={user.photo}>
+                                        <Avatar
+                                            alt="Profile_Photo"
+                                            src={user.photo}
+                                            className={classes.large}
                                         />
-                                        <RiFileAddFill
-                                            size="40px"
-                                            // color="#f2e6e6"
-                                        />
-                                    </label>
-                                    <ModalAddPost />
+                                    </a>
+                                    <ModalEditPhoto data={user.photo} />
                                 </div>
-                                <div className="firstName-lastName">
-                                    <div className="modal-firstName">
-                                        <ModalEditFirstName
-                                            data={user.FirstName}
-                                        />
+                                <div className="wl-user-infos">
+                                    <h5>About</h5>
+                                    <div className="wl-leftInfos-item">
+                                        <IoLanguage size="18px" color="grey" />
+                                        <h5>Languages:</h5>
+                                        <h6> {user.Languages}</h6>
                                     </div>
-                                    <div className="firstName-box">
-                                        <h1>{user.FirstName}</h1>
+                                    <div className="wl-leftInfos-item">
+                                        <IoPeople size="18px" color="grey" />
+                                        <h5>Gender:</h5> <h6>{user.Gender}</h6>
                                     </div>
-                                    <ModalEditLastName data={user.LastName} />
-                                    <div className="lastName-box">
-                                        <h1>{user.LastName}</h1>
+                                    <div className="wl-leftInfos-item">
+                                        <FaPhoneAlt size="18px" color="grey" />
+                                        <h5>Phone:</h5>
+                                        <h6>{user.PhoneNumber}</h6>
+                                    </div>
+                                    <div className="wl-leftInfos-item">
+                                        <BiWorld size="18px" color="grey" />
+                                        <h5>Visited countries:</h5>
+                                        <h6>{user.CountriesIvisited}</h6>
+                                    </div>
+                                    <div className="wl-leftInfos-item">
+                                        <IoSchool size="27px" color="grey" />
+                                        <h5>Education:</h5>
+                                        <h6>{user.Education}</h6>
+                                    </div>
+                                    <div className="wl-leftInfos-item">
+                                        <IoFootball size="18px" color="grey" />
+                                        <h5>Hobbies:</h5>
+                                        <h6> {user.Hobbies} </h6>
                                     </div>
                                 </div>
-                                <div className="wl-country-birthday-occupation">
-                                    <div className="wl-info-element">
-                                        <FaMapMarkerAlt
-                                            size="20px"
-                                            color="grey"
-                                        />
-                                        <h3>{user.Country}</h3>
-                                    </div>
-                                    <div className="wl-info-element">
-                                        <RiCake2Fill size="20px" color="grey" />
-                                        <h3>{user.DayOfBirth}</h3>
-                                        <h3>{user.MonthOfBirth}</h3>
-                                        <h3>{user.YearOfBirth}</h3>
-                                    </div>
-                                    <div className="wl-info-element">
-                                        <FaSuitcase size="20px" color="grey" />
-                                        <h3>{user.Occupation} </h3>
-                                    </div>
+                                <div className="wl-user-infos">
+                                    <h5>About me</h5>
+                                    <h6> {user.AboutMe} </h6>
                                 </div>
                             </div>
-                            <div className="PostsAndHosts">
-                                <div className="postandhostNavBar">
-                                    <AppBar color="default" position="static">
-                                        <Tabs
-                                            variant="fullWidth"
-                                            value={value}
-                                            onChange={handleChange}
-                                            aria-label="nav tabs example"
+                            <div className="wl-newUserProfile-rightBox">
+                                <div className="wl-NameAndSomeIformations">
+                                    <div
+                                        className="wl-add-post"
+                                        title="Add post"
+                                    >
+                                        <label className="btn-add-post">
+                                            <input
+                                                type="radio"
+                                                value="Add Post"
+                                                onClick={openPostModal}
+                                            />
+                                            <RiFileAddFill
+                                                size="40px"
+                                                // color="#f2e6e6"
+                                            />
+                                        </label>
+                                        <ModalAddPost />
+                                    </div>
+                                    <div className="firstName-lastName">
+                                        <div className="modal-firstName">
+                                            <ModalEditFirstName
+                                                data={user.FirstName}
+                                            />
+                                        </div>
+                                        <div className="firstName-box">
+                                            <h1>{user.FirstName}</h1>
+                                        </div>
+                                        <ModalEditLastName
+                                            data={user.LastName}
+                                        />
+                                        <div className="lastName-box">
+                                            <h1>{user.LastName}</h1>
+                                        </div>
+                                    </div>
+                                    <div className="wl-country-birthday-occupation">
+                                        <div className="wl-info-element">
+                                            <FaMapMarkerAlt
+                                                size="20px"
+                                                color="grey"
+                                            />
+                                            <h3>{user.Country}</h3>
+                                        </div>
+                                        <div className="wl-info-element">
+                                            <RiCake2Fill
+                                                size="20px"
+                                                color="grey"
+                                            />
+                                            <h3>{user.DayOfBirth}</h3>
+                                            <h3>{user.MonthOfBirth}</h3>
+                                            <h3>{user.YearOfBirth}</h3>
+                                        </div>
+                                        <div className="wl-info-element">
+                                            <FaSuitcase
+                                                size="20px"
+                                                color="grey"
+                                            />
+                                            <h3>{user.Occupation} </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="PostsAndHosts">
+                                    <div className="postandhostNavBar">
+                                        <AppBar
+                                            color="default"
+                                            position="static"
                                         >
-                                            <LinkTab
-                                                label="My Posts"
-                                                href="/drafts"
-                                                {...a11yProps(0)}
-                                            />
-                                            <LinkTab
-                                                label="My Hosting Posts"
-                                                href="/trash"
-                                                {...a11yProps(1)}
-                                            />
-                                            <LinkTab
-                                                label="Reviews"
-                                                href="/spam"
-                                                {...a11yProps(2)}
-                                            />
-                                        </Tabs>
-                                    </AppBar>
-                                </div>
-                                <div className="PostsAndHostsAndReview">
-                                    <TabPanel value={value} index={0}>
-                                        <article className="wl-profile-postsLists">
-                                            {userPost
-                                                .map((post) => (
-                                                    <div key={post._id}>
-                                                        <PostItem post={post} />
-                                                    </div>
-                                                ))
-                                                .reverse()}
-                                        </article>
-                                    </TabPanel>
-                                    <TabPanel value={value} index={1}>
-                                        <article className="wl-profile-hostPostsLists">
-                                            {userHosts
-                                                .map((host) => (
-                                                    <div key={host._id}>
-                                                        <HostItem host={host} />
-                                                    </div>
-                                                ))
-                                                .reverse()}
-                                        </article>
-                                    </TabPanel>
-                                    <TabPanel value={value} index={2}>
-                                        REVIEWS
-                                    </TabPanel>
+                                            <Tabs
+                                                variant="fullWidth"
+                                                value={value}
+                                                onChange={handleChange}
+                                                aria-label="nav tabs example"
+                                            >
+                                                <LinkTab
+                                                    label="My Posts"
+                                                    href="/drafts"
+                                                    {...a11yProps(0)}
+                                                />
+                                                <LinkTab
+                                                    label="My Hosting Posts"
+                                                    href="/trash"
+                                                    {...a11yProps(1)}
+                                                />
+                                                <LinkTab
+                                                    label="Reviews"
+                                                    href="/spam"
+                                                    {...a11yProps(2)}
+                                                />
+                                            </Tabs>
+                                        </AppBar>
+                                    </div>
+                                    <div className="PostsAndHostsAndReview">
+                                        <TabPanel value={value} index={0}>
+                                            <article className="wl-profile-postsLists">
+                                                {userPost
+                                                    .map((post) => (
+                                                        <div key={post._id}>
+                                                            <PostItem
+                                                                post={post}
+                                                            />
+                                                        </div>
+                                                    ))
+                                                    .reverse()}
+                                            </article>
+                                        </TabPanel>
+                                        <TabPanel value={value} index={1}>
+                                            <article className="wl-profile-hostPostsLists">
+                                                {userHosts
+                                                    .map((host) => (
+                                                        <div key={host._id}>
+                                                            <HostItem
+                                                                host={host}
+                                                            />
+                                                        </div>
+                                                    ))
+                                                    .reverse()}
+                                            </article>
+                                        </TabPanel>
+                                        <TabPanel value={value} index={2}>
+                                            REVIEWS
+                                        </TabPanel>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            ) : (
-                <div className={classes.rootProgress}>
-                    <LinearProgress />
-                </div>
-            )}
+                ) : (
+                    <div className={classes.rootProgress}>
+                        <LinearProgress />
+                    </div>
+                )}
+            </div>
         </React.Fragment>
     );
 }

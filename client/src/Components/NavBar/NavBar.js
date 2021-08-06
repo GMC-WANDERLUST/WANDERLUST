@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import Avatar from "@material-ui/core/Avatar";
 import {
     Navbar,
     Nav,
     Container,
-    Button,
     Form,
     FormControl,
     NavDropdown,
 } from "react-bootstrap";
+import Button from "@material-ui/core/Button";
 import { logout } from "../../utils";
 import { useHistory } from "react-router-dom";
 import {
@@ -21,13 +23,52 @@ import MDropDown from "../../Components/UserProfil/MDropDown";
 import Switch from "@material-ui/core/Switch";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openHostingModal } from "../../redux/actions/hostActions";
 import axios from "axios";
 import Swal from "sweetalert2";
 import "./NavBar.css";
+import { FaHome } from "react-icons/fa";
+import {
+    getUserProfile,
+    getRandomUserProfile,
+} from "../../redux/actions/userActions";
+import { RiCompassDiscoverLine } from "react-icons/ri";
+import { IoTicket } from "react-icons/io5";
+import { IoIosPerson } from "react-icons/io";
+import { FiLogOut } from "react-icons/fi";
+import { FaSearch } from "react-icons/fa";
+import { RiAdminFill } from "react-icons/ri";
+import { purple, red } from "@material-ui/core/colors";
 
-function NavBar() {
+const useStyles = makeStyles((theme) => ({
+    button: {
+        margin: theme.spacing(0),
+        fontSize: "0.6em",
+        width: "100px",
+    },
+}));
+const ColorButton = withStyles((theme) => ({
+    root: {
+        color: theme.palette.getContrastText(purple[500]),
+        backgroundColor: purple[500],
+        "&:hover": {
+            backgroundColor: purple[700],
+        },
+    },
+}))(Button);
+const LogOutButton = withStyles((theme) => ({
+    root: {
+        color: theme.palette.getContrastText(red[500]),
+        backgroundColor: red[500],
+        "&:hover": {
+            backgroundColor: red[700],
+        },
+    },
+}))(Button);
+
+function NavBar({ rId }) {
+    const classes = useStyles();
     const history = useHistory();
     let isAdmin = getIsAdmin();
     let id = userId();
@@ -38,6 +79,10 @@ function NavBar() {
         logout();
         history.push("/login");
     };
+    useEffect(() => {
+        dispatch(getUserProfile({ id, token }));
+    }, [id, token, dispatch]);
+    const user = useSelector((state) => state.userReducer.user);
     const [destinationData, setDestinationData] = useState("");
     const [hostingData, setHostingData] = useState("");
     const [travellerSelected, setTravellerSelected] = useState(false);
@@ -144,26 +189,51 @@ function NavBar() {
     };
     return (
         <div className="wl-NavBar-container">
-            <div className="navBar">
-                <Navbar bg="light" variant="light" expand fixed="top">
-                    <Container>
-                        <Navbar.Brand href="/home">Home</Navbar.Brand>
+            <div>
+                <Navbar
+                    bg="light"
+                    variant="light"
+                    expand
+                    fixed="top"
+                    className="navbar"
+                >
+                    <Container className="navBar">
+                        <Navbar.Brand href="/home">
+                            <span className="wl-navbar-items">
+                                <FaHome />
+                                <span className="item">Home</span>
+                            </span>
+                        </Navbar.Brand>
                         <Navbar.Brand href={`/adminUi/${id}`}>
-                            {isAdmin === "true" ? "Admin" : null}{" "}
+                            {isAdmin === "true" ? (
+                                <span className="wl-navbar-items">
+                                    <RiAdminFill />
+                                    <span className="item">Admin</span>
+                                </span>
+                            ) : null}
                         </Navbar.Brand>
                         <Navbar.Brand href={`/profile/${id}`}>
-                            Profile
+                            <Avatar alt="Remy Sharp" src={user.photo} />
                         </Navbar.Brand>
                         <Nav className="me-auto">
                             <NavDropdown
                                 title={
-                                    travellerSelected
-                                        ? "Find Travellers"
-                                        : hostSelected
-                                        ? "Find Hosts"
-                                        : discoverSelected
-                                        ? "Discover"
-                                        : null
+                                    travellerSelected ? (
+                                        <span>
+                                            <IoTicket size="25px" /> Find
+                                            Travellers
+                                        </span>
+                                    ) : hostSelected ? (
+                                        <span>
+                                            <IoIosPerson size="25px" /> Find
+                                            Hosts
+                                        </span>
+                                    ) : discoverSelected ? (
+                                        <span>
+                                            <RiCompassDiscoverLine size="25px" />
+                                            Discover
+                                        </span>
+                                    ) : null
                                 }
                                 id="collasible-nav-dropdown"
                             >
@@ -171,6 +241,10 @@ function NavBar() {
                                     href="#action/3.1"
                                     onClick={handelDiscover}
                                 >
+                                    <RiCompassDiscoverLine
+                                        size="25px"
+                                        color="grey"
+                                    />
                                     Discover
                                 </NavDropdown.Item>
                                 <NavDropdown.Divider />
@@ -178,6 +252,7 @@ function NavBar() {
                                     href="#action/3.1"
                                     onClick={findTravellers}
                                 >
+                                    <IoTicket size="25px" color="grey" />
                                     Find Travellers
                                 </NavDropdown.Item>
                                 <NavDropdown.Divider />
@@ -185,32 +260,39 @@ function NavBar() {
                                     href="#action/3.2"
                                     onClick={findHosts}
                                 >
+                                    <IoIosPerson size="25px" color="grey" />
                                     Find Hosts
                                 </NavDropdown.Item>
                             </NavDropdown>
                             <Form className="d-flex">
-                                <FormControl
-                                    type="search"
-                                    placeholder={
-                                        travellerSelected
-                                            ? "Enter your residence"
-                                            : hostSelected
-                                            ? "Enter your destination"
-                                            : "Search"
-                                    }
-                                    className="mr-2"
-                                    aria-label="Search"
-                                    name="destination"
-                                    onChange={handelChange}
-                                />
-                                <Button
-                                    variant="outline-success"
+                                <div className="inputSearch">
+                                    <FormControl
+                                        type="search"
+                                        placeholder={
+                                            travellerSelected
+                                                ? "Enter your residence"
+                                                : hostSelected
+                                                ? "Enter your destination"
+                                                : "Search"
+                                        }
+                                        className="mr-2"
+                                        aria-label="Search"
+                                        name="destination"
+                                        onChange={handelChange}
+                                    />
+                                </div>
+                            </Form>
+                            <div className="searchButton">
+                                <ColorButton
+                                    variant="contained"
+                                    size="small"
+                                    className={classes.button}
+                                    startIcon={<FaSearch />}
                                     onClick={handleSearch}
-                                    style={{ marginRight: "20px" }}
                                 >
                                     Search
-                                </Button>
-                            </Form>
+                                </ColorButton>
+                            </div>
                             <FormGroup>
                                 <FormControlLabel
                                     control={
@@ -229,13 +311,18 @@ function NavBar() {
                                 />
                             </FormGroup>
                             <MDropDown />
-                            <Button
-                                variant="danger"
-                                type="button"
-                                onClick={handleLogout}
-                            >
-                                Log Out
-                            </Button>
+                            <div className="searchButton">
+                                <LogOutButton
+                                    variant="contained"
+                                    size="small"
+                                    type="button"
+                                    startIcon={<FiLogOut />}
+                                    className={classes.button}
+                                    onClick={handleLogout}
+                                >
+                                    Log Out
+                                </LogOutButton>
+                            </div>
                         </Nav>
                     </Container>
                 </Navbar>

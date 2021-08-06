@@ -131,9 +131,14 @@ function HostDestinationItem({ host }) {
                             src={host.img}
                             className={classes.large}
                         />
-                        <h5>
-                            {host.firstName} {host.lastName}
-                        </h5>
+                        <Link
+                            to={`/uprofile/${host.host}`}
+                            onClick={saveUserId}
+                        >
+                            <h5>
+                                {host.firstName} {host.lastName}
+                            </h5>
+                        </Link>
                     </div>
                     <div className="wl-hostDestinationItem-body">
                         <div className="wl-hostItem-line">
