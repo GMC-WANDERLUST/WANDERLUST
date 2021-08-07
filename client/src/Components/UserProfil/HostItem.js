@@ -13,26 +13,28 @@ import {
 import moment from "moment-timezone";
 import SaveIcon from "@material-ui/icons/Save";
 import Button from "@material-ui/core/Button";
-import { red, yellow } from "@material-ui/core/colors";
+import { red, pink } from "@material-ui/core/colors";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import "./HostItem.css";
 
 const ColorButton = withStyles((theme) => ({
     root: {
-        color: theme.palette.getContrastText(yellow[700]),
-        backgroundColor: yellow[700],
+        color: theme.palette.getContrastText(pink[50]),
+        backgroundColor: pink[50],
         "&:hover": {
-            backgroundColor: yellow[500],
+            backgroundColor: "#FF0BAC",
+            color: "white",
         },
     },
 }))(Button);
 const ColorButtonDelete = withStyles((theme) => ({
     root: {
-        color: theme.palette.getContrastText(red["A700"]),
-        backgroundColor: red["A700"],
+        color: theme.palette.getContrastText(red[50]),
+        backgroundColor: red[50],
         "&:hover": {
-            backgroundColor: red["A400"],
+            backgroundColor: red["A700"],
+            color: "white",
         },
     },
 }))(Button);

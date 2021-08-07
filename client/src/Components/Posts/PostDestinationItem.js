@@ -11,8 +11,8 @@ import "../UserProfil/HostItem.css";
 import "../UserProfil/PostItem.css";
 const ColorButtonRequest = withStyles((theme) => ({
     root: {
-        color: theme.palette.getContrastText(deepPurple[600]),
-        backgroundColor: deepPurple[600],
+        color: theme.palette.getContrastText(deepPurple[100]),
+        backgroundColor: deepPurple[100],
         "&:hover": {
             backgroundColor: deepPurple[400],
         },
@@ -20,8 +20,8 @@ const ColorButtonRequest = withStyles((theme) => ({
 }))(Button);
 const ColorButtonReport = withStyles((theme) => ({
     root: {
-        color: theme.palette.getContrastText(red["A700"]),
-        backgroundColor: red["A700"],
+        color: theme.palette.getContrastText(red[100]),
+        backgroundColor: red[100],
         "&:hover": {
             backgroundColor: red["A400"],
         },
@@ -127,14 +127,32 @@ function PostDestinationItem({ post }) {
                         {dateTab[0]} at {dateTab[1].split(".")[0]}
                     </h6>
                     <div className="wl-postItem-header">
-                        <Avatar
-                            alt="profil_photo"
-                            src={post.img}
-                            className={classes.large}
-                        />
                         <Link
-                            to={`/uprofile/${post.user}`}
+                            to={
+                                id === post.user
+                                    ? `/profile/${post.user}`
+                                    : `/uprofile/${post.user}`
+                            }
                             onClick={saveUserId}
+                        >
+                            <Avatar
+                                alt="profil_photo"
+                                src={post.img}
+                                className={classes.large}
+                            />
+                        </Link>
+                        <Link
+                            to={
+                                id === post.user
+                                    ? `/profile/${post.user}`
+                                    : `/uprofile/${post.user}`
+                            }
+                            onClick={saveUserId}
+                            style={{
+                                textDecoration: "none",
+                                color: "#F41F4E",
+                            }}
+                            className="post-link"
                         >
                             <h5>
                                 {post.firstName} {post.lastName}

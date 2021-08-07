@@ -15,7 +15,8 @@ import ModalAddPost from "./ModalAddPost";
 import "./UserProfile.css";
 import PostItem from "./PostItem";
 import HostItem from "./HostItem";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import SwipeableViews from "react-swipeable-views";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Avatar from "@material-ui/core/Avatar";
 import { FaMapMarkerAlt, FaSuitcase, FaPhoneAlt } from "react-icons/fa";
@@ -37,8 +38,8 @@ function TabPanel(props) {
         <div
             role="tabpanel"
             hidden={value !== index}
-            id={`nav-tabpanel-${index}`}
-            aria-labelledby={`nav-tab-${index}`}
+            id={`full-width-tabpanel-${index}`}
+            aria-labelledby={`full-width-tab-${index}`}
             {...other}
         >
             {value === index && (
@@ -57,22 +58,22 @@ TabPanel.propTypes = {
 };
 function a11yProps(index) {
     return {
-        id: `nav-tab-${index}`,
-        "aria-controls": `nav-tabpanel-${index}`,
+        id: `full-width-tab-${index}`,
+        "aria-controls": `full-width-tabpanel-${index}`,
     };
 }
 
-function LinkTab(props) {
-    return (
-        <Tab
-            component="a"
-            onClick={(event) => {
-                event.preventDefault();
-            }}
-            {...props}
-        />
-    );
-}
+// function LinkTab(props) {
+//     return (
+//         <Tab
+//             component="a"
+//             onClick={(event) => {
+//                 event.preventDefault();
+//             }}
+//             {...props}
+//         />
+//     );
+// }
 
 const useStyles = makeStyles((theme) => ({
     rootProgress: {
@@ -82,8 +83,8 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     root: {
-        flexGrow: 1,
         backgroundColor: theme.palette.background.paper,
+        width: 500,
     },
     large: {
         width: theme.spacing(35),
@@ -93,10 +94,15 @@ const useStyles = makeStyles((theme) => ({
 
 function UserProfile() {
     const classes = useStyles();
+    const theme = useTheme();
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
+    };
+
+    const handleChangeIndex = (index) => {
+        setValue(index);
     };
     let id = userId();
     let token = getToken();
@@ -224,8 +230,8 @@ function UserProfile() {
                                                 size="20px"
                                                 color="grey"
                                             />
-                                            <h3>{user.DayOfBirth}</h3>
                                             <h3>{user.MonthOfBirth}</h3>
+                                            <h3>{user.DayOfBirth},</h3>
                                             <h3>{user.YearOfBirth}</h3>
                                         </div>
                                         <div className="wl-info-element">
@@ -238,35 +244,104 @@ function UserProfile() {
                                     </div>
                                 </div>
                                 <div className="PostsAndHosts">
-                                    <div className="postandhostNavBar">
-                                        <AppBar
-                                            color="default"
-                                            position="static"
+                                    <AppBar position="static" color="default">
+                                        <Tabs
+                                            value={value}
+                                            onChange={handleChange}
+                                            indicatorColor="primary"
+                                            textColor="primary"
+                                            variant="fullWidth"
+                                            aria-label="full width tabs example"
                                         >
-                                            <Tabs
-                                                variant="fullWidth"
-                                                value={value}
-                                                onChange={handleChange}
-                                                aria-label="nav tabs example"
-                                            >
-                                                <LinkTab
-                                                    label="My Posts"
-                                                    href="/drafts"
-                                                    {...a11yProps(0)}
-                                                />
-                                                <LinkTab
-                                                    label="My Hosting Posts"
-                                                    href="/trash"
-                                                    {...a11yProps(1)}
-                                                />
-                                                <LinkTab
-                                                    label="Reviews"
-                                                    href="/spam"
-                                                    {...a11yProps(2)}
-                                                />
-                                            </Tabs>
-                                        </AppBar>
-                                    </div>
+                                            <Tab
+                                                label="My Posts"
+                                                {...a11yProps(0)}
+                                            />
+                                            <Tab
+                                                label="My Hosts"
+                                                {...a11yProps(1)}
+                                            />
+                                            <Tab
+                                                label="Review"
+                                                {...a11yProps(2)}
+                                            />
+                                        </Tabs>
+                                    </AppBar>
+                                    <SwipeableViews
+                                        axis={
+                                            theme.direction === "rtl"
+                                                ? "x-reverse"
+                                                : "x"
+                                        }
+                                        index={value}
+                                        onChangeIndex={handleChangeIndex}
+                                    >
+                                        <TabPanel
+                                            value={value}
+                                            index={0}
+                                            dir={theme.direction}
+                                        >
+                                            <article className="wl-profile-postsLists">
+                                                {userPost
+                                                    .map((post) => (
+                                                        <div key={post._id}>
+                                                            <PostItem
+                                                                post={post}
+                                                            />
+                                                        </div>
+                                                    ))
+                                                    .reverse()}
+                                            </article>
+                                        </TabPanel>
+                                        <TabPanel
+                                            value={value}
+                                            index={1}
+                                            dir={theme.direction}
+                                        >
+                                            <article className="wl-profile-hostPostsLists">
+                                                {userHosts
+                                                    .map((host) => (
+                                                        <div key={host._id}>
+                                                            <HostItem
+                                                                host={host}
+                                                            />
+                                                        </div>
+                                                    ))
+                                                    .reverse()}
+                                            </article>
+                                        </TabPanel>
+                                        <TabPanel
+                                            value={value}
+                                            index={2}
+                                            dir={theme.direction}
+                                        >
+                                            REVIEWS
+                                        </TabPanel>
+                                    </SwipeableViews>
+                                    {/* <AppBar color="default" position="static">
+                                        <Tabs
+                                            variant="fullWidth"
+                                            value={value}
+                                            onChange={handleChange}
+                                            aria-label="nav tabs example"
+                                        >
+                                            <LinkTab
+                                                label="My Posts"
+                                                href="/drafts"
+                                                {...a11yProps(0)}
+                                            />
+                                            <LinkTab
+                                                label="My Hosting Posts"
+                                                href="/trash"
+                                                {...a11yProps(1)}
+                                            />
+                                            <LinkTab
+                                                label="Reviews"
+                                                href="/spam"
+                                                {...a11yProps(2)}
+                                            />
+                                        </Tabs>
+                                    </AppBar>
                                     <div className="PostsAndHostsAndReview">
                                         <TabPanel value={value} index={0}>
                                             <article className="wl-profile-postsLists">
@@ -297,7 +372,7 @@ function UserProfile() {
                                         <TabPanel value={value} index={2}>
                                             REVIEWS
                                         </TabPanel>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>
