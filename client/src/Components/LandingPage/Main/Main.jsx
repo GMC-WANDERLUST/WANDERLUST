@@ -80,12 +80,9 @@ function Main() {
           >
             <div className="u-clearfix u-sheet u-valign-middle u-sheet-1">
               <h1 className="u-text u-text-default u-title u-text-1">
-                INTUITIVE
+                Explore the World 
               </h1>
-              <p className="u-large-text u-text u-text-default u-text-variant u-text-2">
-                Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing
-                elit nullam nunc justo sagittis suscipit ultrices.
-              </p>
+              
               <a
                 href=" "
                 className="u-btn u-button-style u-palette-2-base u-btn-1"
@@ -311,20 +308,22 @@ function Main() {
                 <div className="u-align-right u-container-style u-image u-layout-cell u-left-cell u-size-30 u-image-1">
                   <div className="u-container-layout u-container-layout-1">
                     <h2 className="u-custom-font u-font-ubuntu u-text u-text-body-alt-color u-text-1">
-                      Why Choose Discount Trip Source?
+                      Why
+                      <br /> Choose
+                      <br /> Us ?
                     </h2>
                   </div>
                 </div>
                 <div className="u-container-style u-layout-cell u-right-cell u-size-30 u-layout-cell-2">
                   <div className="u-container-layout u-container-layout-2">
                     <p className="u-text u-text-2">
-                      Sample text. Lorem ipsum dolor sit amet, consectetur
+                      {/* Sample text. Lorem ipsum dolor sit amet, consectetur
                       adipiscing elit nullam nunc justo We go the EXTRA MILE for
                       our clients. We research in depth to make sure there is
                       “no stone left unturned."&nbsp;Giving our customers the
                       best available fares possible.
                       <br />
-                      <br />
+                      <br /> */}
                       &nbsp; We want to make sure every client's trip is nothing
                       short of perfect.Technology has changed the way the
                       traveling public shops for travel. We feel personalized
@@ -353,7 +352,7 @@ function Main() {
                 <div className="u-container-style u-layout-cell u-left-cell u-opacity u-opacity-40 u-size-30 u-layout-cell-1">
                   <div className="u-container-layout u-container-layout-1">
                     <p className="u-text u-text-body-alt-color u-text-1">
-                      At Mountain Home Charter Service Inc., we are committed to
+                      At WanderLustd Inc., we are committed to
                       business integrity and honesty through hard work,
                       organization, cleanliness, courtesy, and communication.
                       Our entire team works hard to exceed all customer
@@ -362,7 +361,7 @@ function Main() {
                       happy to help in any way possible.
                       <br />
                       <br />
-                      At<b>&nbsp;Mountain Home Charter Service Inc.</b>, our
+                      At<b>&nbsp;WanderLust Inc.</b>, our
                       number one concern is customer satisfaction. We believe
                       this can only be accomplished by providing superior
                       service, quality lines, and competitive pricing.

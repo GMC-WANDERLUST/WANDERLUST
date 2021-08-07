@@ -54,12 +54,8 @@
     margin: 0 344px 0 0;
 }
 
-/* element.style {
-} */
-.u-section-1 .u-text-1 {
-    font-weight: 700;
-    margin: 0 344px 0 0;
-}
+    /* font-weight: 700;
+    margin: 0 344px 0 0; */
 h2:not(.u-subtitle) {
     font-weight: 400;
     font-size: 2.25rem;
