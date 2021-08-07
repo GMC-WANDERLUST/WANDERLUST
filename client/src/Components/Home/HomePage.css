@@ -50,11 +50,13 @@
 }
 
 .u-section-1 .u-text-1 {
-    font-weight: 700;
+    font-family: "Aguafina Script";
+    font-weight: 800;
+    font-size: 3em;
     margin: 0 344px 0 0;
 }
 
-    /* font-weight: 700;
+/* font-weight: 700;
     margin: 0 344px 0 0; */
 h2:not(.u-subtitle) {
     font-weight: 400;
@@ -147,10 +149,20 @@ a.u-button-style.u-text-custom-color-5[class*="u-border-"] {
     margin: -139px calc(((100% - 1140px) / 2) + 630px) 0
         calc(((100% - 1140px) / 2) + 8px);
 }
-
+.wl-search-input-box {
+    width: 50%;
+    margin: auto;
+    padding-left: 50px;
+    margin-left: 100px;
+    display: inline;
+    display: flex;
+}
+.wl-radio-choose {
+    margin-right: 20px;
+    color: #381b72;
+}
 .u-section-1 .u-text-4 {
     color: #4e2f8d;
-
     font-weight: 700;
     font-size: 1rem;
     margin: 27px calc(((100% - 1140px) / 2) + 630px) 60px
