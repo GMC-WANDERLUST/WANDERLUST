@@ -3,6 +3,7 @@ import NavBar from "../NavBar/NavBar";
 import "./HomePage.css";
 
 function Home() {
+
   return (
     <div>
       <NavBar />
@@ -85,6 +86,7 @@ function Home() {
                         placeholder="Ex : Istanbul.."
                       />
                     </form>
+                
                   </div>
                 </div>
                 <div

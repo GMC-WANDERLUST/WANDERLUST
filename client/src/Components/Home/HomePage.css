@@ -1,7 +1,10 @@
 .u-white, .u-body.u-white, .u-container-style.u-white:before, .u-table-alt-white tr:nth-child(even) {
     color: #111111;
-    background-color: #f1f1f1;
-    background: rgb(255, 255, 255);
+    /* background-color: #f1f1f1;
+    background: rgb(255, 255, 255); */
+}
+.u-text-custom-color-5 svg, .u-text-hover-custom-color-5:hover svg, .u-button-style:hover > .u-text-hover-custom-color-5 svg, .u-button-style.u-button-style.active > .u-text-active-custom-color-5 svg, .u-text-hover-custom-color-5:focus svg {
+    fill: #4e2f8d;
 }
 .u-border-custom-color-4, .u-separator-custom-color-4:after {
     border-color: #f96b9d;
@@ -30,6 +33,7 @@
 .u-section-1 .u-container-layout-1 {
   box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.4);
   padding: 21px 14px;
+  
 }
 
 .u-section-1 .u-text-1 {
@@ -37,8 +41,7 @@
   margin: 0 344px 0 0;
 }
 
-element.style {
-}
+
 .u-section-1 .u-text-1 {
     font-weight: 700;
     margin: 0 344px 0 0;
