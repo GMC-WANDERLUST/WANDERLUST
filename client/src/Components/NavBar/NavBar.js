@@ -40,12 +40,19 @@ import { FiLogOut } from "react-icons/fi";
 import { FaSearch } from "react-icons/fa";
 import { RiAdminFill } from "react-icons/ri";
 import { purple, red } from "@material-ui/core/colors";
+import logo from "../NavBar/logo.png";
 
 const useStyles = makeStyles((theme) => ({
     button: {
         margin: theme.spacing(0),
         fontSize: "0.6em",
         width: "100px",
+    },
+    root: {
+        display: "flex",
+        "& > *": {
+            margin: theme.spacing(0),
+        },
     },
 }));
 const ColorButton = withStyles((theme) => ({
@@ -77,7 +84,7 @@ function NavBar({ rId }) {
     const dispatch = useDispatch();
     const handleLogout = () => {
         logout();
-        history.push("/login");
+        history.push("/");
     };
     useEffect(() => {
         dispatch(getUserProfile({ id, token }));
@@ -197,6 +204,9 @@ function NavBar({ rId }) {
                     fixed="top"
                     className="navbar"
                 >
+                    <a className={classes.root} href="/home">
+                        <Avatar alt="logo" src={logo} />
+                    </a>
                     <Container className="navBar">
                         <Navbar.Brand href="/home">
                             <span className="wl-navbar-items">

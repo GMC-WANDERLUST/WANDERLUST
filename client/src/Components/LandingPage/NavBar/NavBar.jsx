@@ -1,5 +1,6 @@
 import React from "react";
 import "../Home.css";
+import "./NavBar.css"
 function NavBar() {
     return (
         <div className="NewNavBar">
@@ -10,7 +11,7 @@ function NavBar() {
                 <div className="u-clearfix u-sheet u-sheet-1">
                    
                     <nav className="u-align-left u-menu u-menu-dropdown u-nav-spacing-25 u-offcanvas u-menu-1">
-                        <div
+                        {/* <div
                             className="menu-collapse u-custom-font u-font-montserrat"
                             style={{}}
                         >
@@ -55,7 +56,7 @@ function NavBar() {
                                   
                                 </svg>
                             </a>
-                        </div>
+                        </div> */}
                         <div className="u-custom-menu u-nav-container" >
                             <ul className="u-custom-font u-font-montserrat u-nav u-spacing-25 u-unstyled">
                                 <li className="u-nav-item">
@@ -99,7 +100,7 @@ function NavBar() {
                                 </li>
                             </ul>
                         </div>
-                        <div className="u-custom-menu u-nav-container-collapse">
+                        {/* <div className="u-custom-menu u-nav-container-collapse">
                             <div className="u-align-center u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
                                 <div className="u-sidenav-overflow">
                                     <div className="u-menu-close" />
@@ -147,7 +148,7 @@ function NavBar() {
                                 </div>
                             </div>
                             <div className="u-black u-menu-overlay u-opacity u-opacity-70" />
-                        </div>
+                        </div> */}
                     </nav>
                     <h1 className="u-custom-font u-headline u-text u-text-custom-color-3 u-text-1">
                         <a href="/">WANDERLUST</a>

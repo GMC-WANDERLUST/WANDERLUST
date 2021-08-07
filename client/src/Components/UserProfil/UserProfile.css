@@ -1,22 +1,32 @@
 .background {
-    background-color: #eae6f0;
-    height: 100%;
+    background-color: rgb(243, 243, 243);
+    height: auto !important;
 }
 .wl-newUserProfile-container {
-    background-color: #ab0552;
-    height: 1020px;
+    background-color: rgb(255, 255, 255);
+    /* box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.712); */
+    height: auto !important;
     width: 75%;
     margin: auto;
     padding: 25px;
     display: flex;
-    margin-top: 20px;
+    margin-top: 22px;
     color: rgb(32, 32, 32);
 }
 .wl-newUserProfile-leftBox {
-    height: 1020px;
+    background-color: #f0efef94;
+    height: 100%;
     flex: 1;
     display: flex;
     flex-direction: column;
+    border-radius: 5px 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.377);
+}
+.wl-user-infos {
+    color: #171810;
+    flex: 1;
+    padding: 15px;
+    /* margin-bottom: 10px; */
 }
 .wl-leftInfos-item {
     display: flex;
@@ -24,21 +34,21 @@
     align-items: baseline;
 }
 .wl-leftInfos-item > h5 {
-    color: #171810;
+    color: black;
     display: flex;
     align-items: center;
-    font-size: 1.2em;
+    font-size: 1.14em;
     margin-left: 10px;
     margin-right: 5px;
 }
 .wl-leftInfos-item > h6 {
     display: flex;
     align-items: center;
-    color: #171810;
-    font-size: 1.05em;
+    color: #6c676d;
+    font-size: 1em;
 }
 .wl-newUserProfile-rightBox {
-    height: 1020px;
+    height: auto;
     flex: 2;
     display: flex;
     flex-direction: column;
@@ -51,31 +61,24 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
-    margin-bottom: 10px;
     /* box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.377); */
     border-radius: 10px 10px;
 }
-.wl-user-infos {
-    background-color: #efebe2;
-    color: #171810;
-    flex: 1;
-    padding: 15px;
-    margin-bottom: 10px;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.377);
-    border-radius: 10px 10px;
-}
+
 .wl-user-infos > h6 {
     color: #171810;
     font-weight: bold;
     font-size: 1.1em;
 }
-.wl-user-infos > p {
+/* .wl-user-infos > p {
+    border: 1px red solid;
     color: #171810;
     font-weight: normal;
     font-size: 1.05em;
-}
+} */
 .wl-user-infos > h5 {
-    border-bottom: 1px rgba(0, 0, 0, 0.589) solid;
+    color: #ff0bac;
+    border-bottom: 1px #ff0bac solid;
     padding: 0 0 5px 5px;
     margin-bottom: 20px;
     font-size: 0.9em;
@@ -84,11 +87,11 @@
     flex: 1;
 }
 .wl-NameAndSomeIformations {
-    color: #efebe2;
+    color: black;
     padding: 20px;
-    height: 30%;
+    height: auto !important;
     padding-bottom: 0px;
-    margin-bottom: 40px;
+    margin-bottom: 70px;
 }
 .firstName-lastName {
     text-align: left;
@@ -132,15 +135,14 @@
     font-size: 1.4em;
 }
 .PostsAndHosts {
-    margin-top: 50px;
-    height: 67%;
+    /* margin-top: 40px; */
+    height: auto;
     /* background-color: rgba(220, 220, 220, 0.384); */
 }
 .PostsAndHostsAndReview {
-    height: 92%;
-    overflow: auto;
+    height: auto !important;
+    /* overflow: auto; */
 }
-
 .wl-add-post {
     position: relative;
     left: 550px;
@@ -153,7 +155,7 @@ input[type="radio"] {
 }
 .btn-add-post:hover {
     cursor: pointer;
-    color: black;
+    color: indigo;
 }
 .btn-add-post {
     color: #9b9999;

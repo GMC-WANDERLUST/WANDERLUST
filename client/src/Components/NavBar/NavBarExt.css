@@ -1,4 +1,4 @@
-.Container{
+.Container {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -8,4 +8,7 @@
     display: flex;
     justify-content: space-around;
     width: 20%;
+}
+.nav-logo > h6:hover {
+    border-bottom: 3px #fd9504 solid;
 }

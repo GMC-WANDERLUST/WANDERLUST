@@ -6,7 +6,7 @@ import Avatar from "@material-ui/core/Avatar";
 import "./PostItem.css";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import { purple } from "@material-ui/core/colors";
+import { pink, red } from "@material-ui/core/colors";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -20,19 +20,21 @@ import SaveIcon from "@material-ui/icons/Save";
 
 const ColorButton = withStyles((theme) => ({
     root: {
-        color: theme.palette.getContrastText(purple[50]),
-        backgroundColor: purple[50],
+        color: theme.palette.getContrastText(pink[50]),
+        backgroundColor: pink[50],
         "&:hover": {
-            backgroundColor: purple[400],
+            backgroundColor: "#FF0BAC",
+            color: "white",
         },
     },
 }))(Button);
 const ColorButtonDelete = withStyles((theme) => ({
     root: {
-        color: theme.palette.getContrastText(purple[50]),
-        backgroundColor: purple[50],
+        color: theme.palette.getContrastText(red[50]),
+        backgroundColor: red[50],
         "&:hover": {
-            backgroundColor: purple[400],
+            backgroundColor: red["A700"],
+            color: "white",
         },
     },
 }))(Button);

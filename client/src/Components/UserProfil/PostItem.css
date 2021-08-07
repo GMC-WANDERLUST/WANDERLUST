@@ -1,10 +1,10 @@
 .wl-postItem-container {
+    background-color: white;
     width: 100%;
     border-radius: 5px;
     margin-bottom: 15px;
     padding-top: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.411);
-    background-color: #ab0552;
 }
 .wl-postDestinationItem-container {
     width: 50vh;
@@ -15,9 +15,11 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.411);
     background-color: white;
 }
-
+.post-link:hover {
+    color: #7b1fa2 !important;
+}
 .wl-postItem-box {
-    color: #efebe2;
+    color: black;
     height: auto;
     margin-bottom: 10px;
     border-radius: 10px;
@@ -35,7 +37,7 @@
 .wl-postItem-header > h6 {
     margin-left: 15px;
     font-size: 0.88em;
-    color: #efebe2;
+    color: black;
     font-weight: bold;
 }
 .wl-postItem-body {
