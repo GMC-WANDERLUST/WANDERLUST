@@ -1,4 +1,4 @@
-li:hover {
+.u-nav-item:hover {
     background-color: #f1960d;
     color: white;
     border: 2px white solid;
