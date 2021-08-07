@@ -11,8 +11,8 @@ import "../UserProfil/HostItem.css";
 
 const ColorButton = withStyles((theme) => ({
     root: {
-        color: theme.palette.getContrastText(yellow[700]),
-        backgroundColor: yellow[700],
+        color: theme.palette.getContrastText(yellow[100]),
+        backgroundColor: yellow[100],
         "&:hover": {
             backgroundColor: yellow[500],
         },
@@ -20,8 +20,8 @@ const ColorButton = withStyles((theme) => ({
 }))(Button);
 const ColorButtonDelete = withStyles((theme) => ({
     root: {
-        color: theme.palette.getContrastText(red["A700"]),
-        backgroundColor: red["A700"],
+        color: theme.palette.getContrastText(red[100]),
+        backgroundColor: red[100],
         "&:hover": {
             backgroundColor: red["A400"],
         },
@@ -126,14 +126,37 @@ function HostDestinationItem({ host }) {
                         {dateTab[0]} at {dateTab[1].split(".")[0]}
                     </h6>
                     <div className="wl-hostItem-header">
-                        <Avatar
-                            alt="profil_photo"
-                            src={host.img}
-                            className={classes.large}
-                        />
-                        <h5>
-                            {host.firstName} {host.lastName}
-                        </h5>
+                        <Link
+                            to={
+                                id === host.host
+                                    ? `/profile/${host.host}`
+                                    : `/uprofile/${host.host}`
+                            }
+                            onClick={saveUserId}
+                        >
+                            <Avatar
+                                alt="profil_photo"
+                                src={host.img}
+                                className={classes.large}
+                            />
+                        </Link>
+                        <Link
+                            to={
+                                id === host.host
+                                    ? `/profile/${host.host}`
+                                    : `/uprofile/${host.host}`
+                            }
+                            onClick={saveUserId}
+                            style={{
+                                textDecoration: "none",
+                                color: "#F41F4E",
+                            }}
+                            className="post-link"
+                        >
+                            <h5>
+                                {host.firstName} {host.lastName}
+                            </h5>
+                        </Link>
                     </div>
                     <div className="wl-hostDestinationItem-body">
                         <div className="wl-hostItem-line">

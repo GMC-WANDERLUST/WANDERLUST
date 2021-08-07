@@ -109,10 +109,12 @@ function RandomProfile() {
         dispatch(getRandomUserPosts({ rId, token }));
         dispatch(getRandomUserHosts({ rId, token }));
     }, [id, token, dispatch]);
-    const user = useSelector((state) => state.userReducer.user);
+    const randomUser = useSelector((state) => state.userReducer.randomUser);
     const test = useSelector((state) => state.userReducer.test);
-    const userPost = useSelector((state) => state.postReducer.userPosts);
-    const userHosts = useSelector((state) => state.hostingReducer.userHosts);
+    const userPost = useSelector((state) => state.postReducer.randomUserPosts);
+    const userHosts = useSelector(
+        (state) => state.hostingReducer.randomUserHost
+    );
     const openPostModal = () => {
         dispatch(addPost());
     };
@@ -126,14 +128,14 @@ function RandomProfile() {
         <React.Fragment>
             <NavBar />
             {test ? (
-                <div key={user._id}>
+                <div key={randomUser._id}>
                     <div className="wl-newUserProfile-container">
                         <div className="wl-newUserProfile-leftBox">
                             <div className="wl-user-photoBox">
-                                <a href={user.photo}>
+                                <a href={randomUser.photo}>
                                     <Avatar
                                         alt="Profile_Photo"
-                                        src={user.photo}
+                                        src={randomUser.photo}
                                         className={classes.large}
                                     />
                                 </a>
@@ -143,46 +145,47 @@ function RandomProfile() {
                                 <div className="wl-leftInfos-item">
                                     <IoLanguage size="18px" color="grey" />
                                     <h5>Languages:</h5>
-                                    <h6> {user.Languages}</h6>
+                                    <h6> {randomUser.Languages}</h6>
                                 </div>
                                 <div className="wl-leftInfos-item">
                                     <IoPeople size="18px" color="grey" />
-                                    <h5>Gender:</h5> <h6>{user.Gender}</h6>
+                                    <h5>Gender:</h5>{" "}
+                                    <h6>{randomUser.Gender}</h6>
                                 </div>
                                 <div className="wl-leftInfos-item">
                                     <FaPhoneAlt size="18px" color="grey" />
                                     <h5>Phone:</h5>
-                                    <h6>{user.PhoneNumber}</h6>
+                                    <h6>{randomUser.PhoneNumber}</h6>
                                 </div>
                                 <div className="wl-leftInfos-item">
                                     <BiWorld size="18px" color="grey" />
                                     <h5>Visited countries:</h5>
-                                    <h6>{user.CountriesIvisited}</h6>
+                                    <h6>{randomUser.CountriesIvisited}</h6>
                                 </div>
                                 <div className="wl-leftInfos-item">
                                     <IoSchool size="23px" color="grey" />
                                     <h5>Education:</h5>
-                                    <h6>{user.Education}</h6>
+                                    <h6>{randomUser.Education}</h6>
                                 </div>
                                 <div className="wl-leftInfos-item">
                                     <IoFootball size="18px" color="grey" />
                                     <h5>Hobbies:</h5>
-                                    <h6> {user.Hobbies} </h6>
+                                    <h6> {randomUser.Hobbies} </h6>
                                 </div>
                             </div>
                             <div className="wl-user-infos">
                                 <h5>About me</h5>
-                                <h6> {user.AboutMe} </h6>
+                                <h6> {randomUser.AboutMe} </h6>
                             </div>
                         </div>
                         <div className="wl-newUserProfile-rightBox">
                             <div className="wl-NameAndSomeIformations">
                                 <div className="firstName-lastName">
                                     <div className="firstName-box">
-                                        <h1>{user.FirstName}</h1>
+                                        <h1>{randomUser.FirstName}</h1>
                                     </div>
                                     <div className="lastName-box">
-                                        <h1>{user.LastName}</h1>
+                                        <h1>{randomUser.LastName}</h1>
                                     </div>
                                 </div>
                                 <div className="wl-country-birthday-occupation">
@@ -191,17 +194,17 @@ function RandomProfile() {
                                             size="20px"
                                             color="grey"
                                         />
-                                        <h3>{user.Country}</h3>
+                                        <h3>{randomUser.Country}</h3>
                                     </div>
                                     <div className="wl-info-element">
                                         <RiCake2Fill size="20px" color="grey" />
-                                        <h3>{user.DayOfBirth}</h3>
-                                        <h3>{user.MonthOfBirth}</h3>
-                                        <h3>{user.YearOfBirth}</h3>
+                                        <h3>{randomUser.DayOfBirth}</h3>
+                                        <h3>{randomUser.MonthOfBirth}</h3>
+                                        <h3>{randomUser.YearOfBirth}</h3>
                                     </div>
                                     <div className="wl-info-element">
                                         <FaSuitcase size="20px" color="grey" />
-                                        <h3>{user.Occupation} </h3>
+                                        <h3>{randomUser.Occupation} </h3>
                                     </div>
                                 </div>
                             </div>

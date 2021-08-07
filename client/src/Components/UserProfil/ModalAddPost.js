@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
 
 const customStyles = {
     content: {
-        top: "50%",
+        top: "55%",
         left: "50%",
         right: "auto",
         bottom: "auto",
@@ -70,6 +70,10 @@ Modal.setAppElement("#root");
 function ModalAddPost() {
     ///////////////////////////////////////////////////////////////////////////////////
     // DECLARATIONS
+    const classes = useStyles();
+    let id = userId();
+    let token = getToken();
+    let subtitle;
     var n = Date.now();
     const [selectedDate, setSelectedDate] = React.useState(
         moment(n).format("YYYY-MM-DD")
@@ -91,10 +95,6 @@ function ModalAddPost() {
         });
         setSelectedSecondDate(moment(date).format("YYYY-MM-DD"));
     };
-    const classes = useStyles();
-    let id = userId();
-    let token = getToken();
-    let subtitle;
     const [newData, setNewData] = useState("");
     const openPost = useSelector((state) => state.postReducer.openPost);
     const dispatch = useDispatch();

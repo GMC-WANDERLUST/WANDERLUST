@@ -19,7 +19,8 @@ import Container from "@material-ui/core/Container";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
-// import { Link } from "react-router-dom";
+import "./Register.css";
+import NavBarExt from "../NavBar/NavBarExt";
 
 function Copyright() {
     return (
@@ -36,10 +37,11 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
     paper: {
-        marginTop: theme.spacing(8),
+        marginTop: theme.spacing(3),
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        backgroundColor: "rgba(255, 255, 255, 0.6) ",
     },
     avatar: {
         margin: theme.spacing(1),
@@ -47,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     },
     form: {
         width: "100%", // Fix IE 11 issue.
-        marginTop: theme.spacing(3),
+        marginTop: theme.spacing(1),
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
@@ -93,9 +95,10 @@ function SignUp() {
     };
 
     return (
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <div className={classes.paper}>
+        <div className="wl-signup-container">
+            <NavBarExt />
+            <Container className={classes.paper} component="main" maxWidth="xs">
+                <CssBaseline />
                 <Avatar className={classes.avatar}>
                     <LockOutlinedIcon />
                 </Avatar>
@@ -300,11 +303,11 @@ function SignUp() {
                         </Grid>
                     </Grid>
                 </form>
-            </div>
+            </Container>
             <Box mt={5}>
                 <Copyright />
             </Box>
-        </Container>
+        </div>
     );
 }
 export default SignUp;

@@ -6,7 +6,7 @@ import Avatar from "@material-ui/core/Avatar";
 import "./PostItem.css";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import { red, yellow } from "@material-ui/core/colors";
+import { pink, red } from "@material-ui/core/colors";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -20,19 +20,21 @@ import SaveIcon from "@material-ui/icons/Save";
 
 const ColorButton = withStyles((theme) => ({
     root: {
-        color: theme.palette.getContrastText(yellow[700]),
-        backgroundColor: yellow[700],
+        color: theme.palette.getContrastText(pink[50]),
+        backgroundColor: pink[50],
         "&:hover": {
-            backgroundColor: yellow[500],
+            backgroundColor: "#FF0BAC",
+            color: "white",
         },
     },
 }))(Button);
 const ColorButtonDelete = withStyles((theme) => ({
     root: {
-        color: theme.palette.getContrastText(red["A700"]),
-        backgroundColor: red["A700"],
+        color: theme.palette.getContrastText(red[50]),
+        backgroundColor: red[50],
         "&:hover": {
-            backgroundColor: red["A400"],
+            backgroundColor: red["A700"],
+            color: "white",
         },
     },
 }))(Button);
@@ -218,25 +220,30 @@ function PostItem({ post }) {
                                 </h6>
                             </div>
                             <div className="wl-postItem-body">
-                                <div className="wl-postItem-line">
-                                    <h5 className="t5">Destination :</h5>
-                                    <h6>{post.destination.toUpperCase()}</h6>
+                                <div className="wl-postItem-row">
+                                    <div className="wl-postItem-line">
+                                        <h5 className="t5">Destination :</h5>
+                                        <h6>
+                                            {post.destination.toUpperCase()}
+                                        </h6>
+                                    </div>
+                                    <div className="wl-postItem-first-line">
+                                        <h5 className="t5"> City :</h5>
+                                        <h6>{post.city.toUpperCase()}</h6>
+                                    </div>
+                                </div>
+                                <div className="wl-postItem-row">
+                                    <div className="wl-postItem-line">
+                                        <h5 className="t5">From :</h5>
+                                        <h6>{post.check_in}</h6>
+                                    </div>
+                                    <div className="wl-postItem-first-line">
+                                        <h5 className="t5">To :</h5>
+                                        <h6>{post.check_out}</h6>
+                                    </div>
                                 </div>
                                 <div className="wl-postItem-line">
-                                    <h5 className="t5"> City :</h5>
-                                    <h6>{post.city.toUpperCase()}</h6>
-                                </div>
-                                <div className="wl-postItem-line">
-                                    <h5 className="t5">From :</h5>
-                                    <h6>{post.check_in}</h6>
-                                </div>
-                                <div className="wl-postItem-line">
-                                    <h5 className="t5">To :</h5>
-                                    <h6>{post.check_out}</h6>
-                                </div>
-
-                                <div className="wl-postItem-line">
-                                    <h5 className="t5">Speaks :</h5>
+                                    <h5 className="t5">Languages:</h5>
                                     <h6> {post.languages}</h6>
                                 </div>
                                 <div className="wl-postItem-line">

@@ -1,9 +1,7 @@
-.register-container 
-{
-    border: 1px black solid;
-    width: 30%;
-    margin: auto;
-    margin-top: 3%;
-    padding: 20px;
-    border-radius: 5%;
+.wl-signup-container {
+   background: url("bg.png") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }

@@ -1,21 +1,21 @@
 .wl-postsList-container {
-    border: 3px black solid;
-    height: auto;
+    height: auto !important;
 }
 .wl-postsList-body {
-    border: 3px red solid;
-    height: auto;
+    height: auto !important;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 50px;
 }
 .wl-postsList-item {
-    border: 3px blue solid;
+    background-color: #ede7f67a;
     width: 90%;
     margin: auto;
+    height: auto !important;
     display: flex;
-    padding: 25px;
     justify-content: center;
     flex-wrap: wrap;
-    height: auto;
+    padding: 25px;
+    border-radius: 5px;
 }

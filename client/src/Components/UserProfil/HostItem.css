@@ -1,6 +1,7 @@
 .wl-hostItem-container {
-    width: 80%;
-    border-radius: 10px;
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
     margin-bottom: 15px;
     padding-top: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.411);
@@ -17,7 +18,7 @@
 }
 .wl-hostItem-box {
     color: black;
-    height: 52vh;
+    height: auto;
     margin-bottom: 10px;
     border-radius: 10px;
     padding-left: 25px;
@@ -64,8 +65,27 @@
 .wl-postDestinationItem-body {
     margin-top: 8px;
 }
+.wl-hostItem-row {
+    height: 25px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+.wl-hostItem-first-line {
+    width: auto;
+    display: flex;
+    align-items: baseline;
+    padding: 0;
+    margin: 0;
+    margin-left: 10px;
+    padding-left: 10px;
+    height: 25px;
+}
+.wl-hostItem-first-line > h6 {
+    font-size: 0.86em;
+}
 .wl-hostItem-line {
-    width: 70%;
+    width: auto;
     display: flex;
     align-items: baseline;
     padding: 0;

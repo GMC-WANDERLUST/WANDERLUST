@@ -57,9 +57,9 @@ function PostItem({ post }) {
             <section className="wl-postItem-container">
                 <div className="wl-postItem-box">
                     <div className="wl-postItem-dataList">
-                        <p>
+                        <h6>
                             {dateTab[0]} at {dateTab[1].split(".")[0]}
-                        </p>
+                        </h6>
                         <div className="wl-postItem-header">
                             <Avatar
                                 alt="profil_photo"
@@ -71,34 +71,37 @@ function PostItem({ post }) {
                             </h5>
                         </div>
                         <div className="wl-postItem-body">
-                            <div className="wl-postItem-line">
-                                <h6 className="t5">Destination :</h6>
-                                <p>{post.destination.toUpperCase()}</p>
+                            <div className="wl-postItem-row">
+                                <div className="wl-postItem-line">
+                                    <h5 className="t5">Destination :</h5>
+                                    <h6>{post.destination.toUpperCase()}</h6>
+                                </div>
+                                <div className="wl-postItem-first-line">
+                                    <h5 className="t5"> City :</h5>
+                                    <h6>{post.city.toUpperCase()}</h6>
+                                </div>
+                            </div>
+                            <div className="wl-postItem-row">
+                                <div className="wl-postItem-line">
+                                    <h5 className="t5">From :</h5>
+                                    <h6>{post.check_in}</h6>
+                                </div>
+                                <div className="wl-postItem-first-line">
+                                    <h5 className="t5">To :</h5>
+                                    <h6>{post.check_out}</h6>
+                                </div>
                             </div>
                             <div className="wl-postItem-line">
-                                <h6 className="t5"> City :</h6>
-                                <p>{post.city.toUpperCase()}</p>
+                                <h5 className="t5">Speaks :</h5>
+                                <h6> {post.languages}</h6>
                             </div>
                             <div className="wl-postItem-line">
-                                <h6 className="t5">From :</h6>
-                                <p>{post.check_in}</p>
+                                <h5 className="t5"> Nombres of Guests:</h5>
+                                <h6>{post.nbreOfGuests[0]} </h6>
                             </div>
                             <div className="wl-postItem-line">
-                                <h6 className="t5">To :</h6>
-                                <p>{post.check_out}</p>
-                            </div>
-
-                            <div className="wl-postItem-line">
-                                <h6 className="t5">Speaks :</h6>
-                                <p> {post.languages}</p>
-                            </div>
-                            <div className="wl-postItem-line">
-                                <h6 className="t5"> Nombres of Guests:</h6>
-                                <p>{post.nbreOfGuests[0]} </p>
-                            </div>
-                            <div className="wl-postItem-line">
-                                <h6 className="t5">Decsription :</h6>
-                                <p>" {post.description} "</p>
+                                <h5 className="t5">Decsription :</h5>
+                                <h6>" {post.description} "</h6>
                             </div>
                         </div>
                     </div>

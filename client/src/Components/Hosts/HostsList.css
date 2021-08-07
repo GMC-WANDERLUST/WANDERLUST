@@ -1,18 +1,21 @@
 .wl-hostsList-container {
-    border: 3px black solid;
-    width: 80%;
-    height: auto;
-    margin: auto;
+    height: auto !important;
 }
 .wl-hostsList-body {
-    border: 3px red solid;
-    height: auto;
+    height: auto !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 50px;
 }
 .wl-hostsList-item {
-    border: 3px blue solid;
-    width: 100%;
+    background-color: #ede7f67a;
+    width: 90%;
     margin: auto;
+    height: auto !important;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    padding: 20px;
+    padding: 25px;
+    border-radius: 5px;
 }
