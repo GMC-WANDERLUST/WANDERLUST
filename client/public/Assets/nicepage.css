@@ -12764,7 +12764,7 @@ section.u-image,
   z-index: 20;
 }
 .u-overlap .u-header.u-sticky {
-  position: fixed;
+  /* position: fixed; */
 }
 .u-overlap.u-overlap-transparent .u-header {
   background-color: transparent !important;
