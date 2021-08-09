@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,200&display=swap");
+
+.wl-container {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+}
+section {
+    scroll-snap-align: start;
+    height: 100vh;
+}
+/* .wl-section-navbar {
+    height: 15vh;
+} */
+.wl-section-four {
+    height: 50vh;
+}
+.wl-section-navbar {
+    margin: 0;
+    padding: 0;
+    height: 0vh;
+    background-color: transparent;
+}
+.wl-section-one {
+    font-family: "Poppins", sans-serif !important;
+}
+.wl-footer-scroll {
+    height: 10vh;
+}
