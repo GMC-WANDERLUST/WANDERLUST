@@ -15,6 +15,6 @@
         -o-background-size: cover;
         background-size: cover;
         width: auto;
-        height: 1030px;
+        /* height: 1030px; */
     }
 }

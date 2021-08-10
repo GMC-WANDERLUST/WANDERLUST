@@ -2,7 +2,6 @@ const UserInfos = require("../../model/UserInfos");
 const User = require("../../model/User");
 module.exports = {
     async CreateUser(
-        Rating,
         Gender,
         Country,
         PhoneNumber,
@@ -21,12 +20,10 @@ module.exports = {
             // console.log(currentYear);
             var d = new Date();
             var currentYear = d.getFullYear();
-
             return await UserInfos.create({
                 user: user._id,
                 FirstName: user.FirstName,
                 LastName: user.LastName,
-                Rating,
                 DayOfBirth: user.DayOfBirth,
                 MonthOfBirth: user.MonthOfBirth,
                 YearOfBirth: user.YearOfBirth,

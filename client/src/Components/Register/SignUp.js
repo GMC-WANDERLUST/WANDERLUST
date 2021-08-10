@@ -50,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
     form: {
         width: "100%", // Fix IE 11 issue.
         marginTop: theme.spacing(0),
+        height: "20%",
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
@@ -107,7 +108,7 @@ function SignUp() {
                 </Typography>
                 <form className={classes.form} noValidate>
                     <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xs={6} sm={6}>
                             <TextField
                                 autoComplete="FirstName"
                                 name="FirstName"
@@ -120,7 +121,7 @@ function SignUp() {
                                 onChange={handelChange}
                             />
                         </Grid>
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xs={6} sm={6}>
                             <TextField
                                 variant="outlined"
                                 required={true}

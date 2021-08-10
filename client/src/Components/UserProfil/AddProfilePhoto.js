@@ -69,7 +69,7 @@ function AddProfilePhoto() {
 
     return (
         <div>
-            {/* <NavBar /> */}
+            <NavBar />
             <div className="wl-ap-container">
                 <main className="ap-main">
                     <div className="please">
