@@ -192,6 +192,7 @@ function UserProfile() {
                                             <input
                                                 type="radio"
                                                 value="Add Post"
+                                                className="wl-input-add-post"
                                                 onClick={openPostModal}
                                             />
                                             <RiFileAddFill

@@ -20,7 +20,7 @@ import UsersList from "./Components/AdminUI/UsersList/UsersList";
 import UserPostsList from "./Components/AdminUI/PostsList/UsersPostsList";
 import AdminHostsList from "./Components/AdminUI/HostsList/AdminHostsList";
 import RandomProfile from "./Components/RandomUserProfile/RandomProfile";
-import LandingPage from "./Components/LandingPage/LandingPage";
+import LandingPage from "./Components/LandingPage/Main/LandingPage";
 import ReportedHostsList from "./Components/AdminUI/ReportedHostsList/ReportedHostsList";
 import ReportedPostsList from "./Components/AdminUI/ReportedPostsList/ReportedPostsList";
 

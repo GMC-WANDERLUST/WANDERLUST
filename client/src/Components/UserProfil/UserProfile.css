@@ -149,7 +149,7 @@
     top: 200px;
     /* z-index: 1; */
 }
-input[type="radio"] {
+.wl-input-add-post {
     display: none;
     cursor: pointer;
 }
