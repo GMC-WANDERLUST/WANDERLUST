@@ -13,15 +13,21 @@
     margin-top: 22px;
     color: rgb(32, 32, 32);
 }
+@media only screen and (max-width: 1120px) {
+    .wl-newUserProfile-container {
+        width: 100%;
+    }
+}
 .wl-newUserProfile-leftBox {
     background-color: #f0efef94;
     height: 100%;
-    flex: 1;
+    flex: 20%;
     display: flex;
     flex-direction: column;
     border-radius: 5px 5px;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.377);
 }
+
 .wl-user-infos {
     color: #171810;
     flex: 1;
@@ -47,15 +53,23 @@
     color: #6c676d;
     font-size: 1em;
 }
+@media only screen and (max-width: 850px) {
+    .wl-newUserProfile-leftBox {
+        width: 35%;
+    }
+    .wl-user-infos {
+        font-size: 0.85em;
+    }
+}
 .wl-newUserProfile-rightBox {
     height: auto;
-    flex: 2;
+    flex: 80%;
     display: flex;
     flex-direction: column;
     margin-left: 20px;
 }
 .wl-user-photoBox {
-    flex: 1;
+    flex: 20%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -64,8 +78,34 @@
     /* box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.377); */
     border-radius: 10px 10px;
 }
+.wl-user-photoBox-responsive {
+    display: none;
+    flex: 20%;
+}
+@media only screen and (max-width: 850px) {
+    .wl-user-photoBox {
+        display: none;
+    }
+    .wl-user-photoBox-responsive {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        /* box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.377); */
+        border-radius: 10px 10px;
+    }
+    .wl-newUserProfile-rightBox {
+        height: auto;
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+    }
+}
 
 .wl-user-infos > h6 {
+    width: auto;
     color: #171810;
     font-weight: bold;
     font-size: 1.1em;
@@ -77,22 +117,25 @@
     font-size: 1.05em;
 } */
 .wl-user-infos > h5 {
+    width: auto;
     color: #ff0bac;
     border-bottom: 1px #ff0bac solid;
     padding: 0 0 5px 5px;
     margin-bottom: 20px;
     font-size: 0.9em;
 }
-.wl-user-hobbies {
+/* .wl-user-hobbies {
     flex: 1;
-}
+} */
 .wl-NameAndSomeIformations {
+    width: auto;
     color: black;
     padding: 20px;
     height: auto !important;
     padding-bottom: 0px;
     margin-bottom: 70px;
 }
+
 .firstName-lastName {
     text-align: left;
     display: flex;
@@ -101,7 +144,7 @@
 .firstName-box {
     width: auto;
     margin-right: 20px;
-    display: flex;
+    /* display: flex; */
 }
 .modal-firstName {
     width: 20px;
@@ -121,10 +164,34 @@
 }
 .wl-country-birthday-occupation {
     margin-top: 25px;
+    width: auto;
     height: auto;
+    padding-left: 25px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+}
+@media only screen and (max-width: 850px) {
+    .wl-NameAndSomeIformations {
+        width: 100%;
+    }
+    .wl-country-birthday-occupation {
+        font-size: 0.8em;
+        margin-top: 25px;
+        width: 100%;
+        height: auto;
+        padding-left: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .firstName-box > h1,
+    .lastName-box > h1 {
+        font-size: 1.8em;
+    }
+}
+.wl-profile-postsLists {
+    height: auto;
 }
 .wl-info-element {
     display: flex;
@@ -139,14 +206,17 @@
     height: auto;
     /* background-color: rgba(220, 220, 220, 0.384); */
 }
-.PostsAndHostsAndReview {
-    height: auto !important;
-    /* overflow: auto; */
+@media only screen and (max-width: 850px) {
+    .PostsAndHosts {
+        font-size: 0.75em;
+    }
 }
 .wl-add-post {
-    position: relative;
-    left: 550px;
-    top: 200px;
+    width: 10%;
+    align-self: flex-end;
+    /* position: relative; */
+    /* left: 550px; */
+    /* top: 200px; */
     /* z-index: 1; */
 }
 .wl-input-add-post {

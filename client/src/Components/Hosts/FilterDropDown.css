@@ -8,3 +8,12 @@
     display: flex;
     align-items: baseline;
 }
+.dateFilterBox {
+    width: auto;
+    margin: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #eff1db9c;
+    box-shadow: 1px 1px 20px rgba(165, 165, 165, 0.973);
+}

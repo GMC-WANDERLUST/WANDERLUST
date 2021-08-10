@@ -95,6 +95,18 @@ function FilterDropdown() {
             <div className="cityFilter">
                 {showCityFilter ? (
                     <div className="cityFilterBox">
+                        <div className="close-btn">
+                            <CloseButton onClick={handleClose} />
+                        </div>
+                        <div className="city">
+                            <input
+                                type="text"
+                                placeholder="Enter City"
+                                name="city"
+                                onChange={handelCityChange}
+                            />
+                        </div>
+
                         <div className="wl-ok-button">
                             <Button
                                 variant="contained"
@@ -103,17 +115,6 @@ function FilterDropdown() {
                             >
                                 OK
                             </Button>
-                        </div>
-                        <div className="city">
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter City"
-                                name="city"
-                                onChange={handelCityChange}
-                            />
-                        </div>
-                        <div className="close-btn">
-                            <CloseButton onClick={handleClose} />
                         </div>
                     </div>
                 ) : null}
@@ -124,7 +125,7 @@ function FilterDropdown() {
                         </div>
                         <div className="date">
                             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                <Grid container alignItems="center">
+                                <Grid xm={12} sm={8} alignItems="center">
                                     <KeyboardDatePicker
                                         disableToolbar
                                         variant="inline"
