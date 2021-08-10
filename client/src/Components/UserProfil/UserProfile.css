@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Tajawal&display=swap");
+/* ////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////// */
 .background {
     background-color: rgb(243, 243, 243);
     height: auto !important;
@@ -26,6 +30,7 @@
     flex-direction: column;
     border-radius: 5px 5px;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.377);
+    font-family: "Tajawal", sans-serif;
 }
 
 .wl-user-infos {
@@ -44,13 +49,14 @@
     display: flex;
     align-items: center;
     font-size: 1.14em;
+    font-weight: bold;
     margin-left: 10px;
     margin-right: 5px;
 }
 .wl-leftInfos-item > h6 {
     display: flex;
     align-items: center;
-    color: #6c676d;
+    color: #161516;
     font-size: 1em;
 }
 @media only screen and (max-width: 850px) {
@@ -106,8 +112,7 @@
 
 .wl-user-infos > h6 {
     width: auto;
-    color: #171810;
-    font-weight: bold;
+    color: black;
     font-size: 1.1em;
 }
 /* .wl-user-infos > p {
@@ -134,6 +139,7 @@
     height: auto !important;
     padding-bottom: 0px;
     margin-bottom: 70px;
+    font-family: "Tajawal", sans-serif;
 }
 
 .firstName-lastName {
@@ -144,6 +150,7 @@
 .firstName-box {
     width: auto;
     margin-right: 20px;
+    font-weight: bold;
     /* display: flex; */
 }
 .modal-firstName {
@@ -195,7 +202,7 @@
 }
 .wl-info-element {
     display: flex;
-    align-items: center;
+    align-items: baseline;
 }
 .wl-info-element > h3 {
     margin-left: 10px;
@@ -229,4 +236,7 @@
 }
 .btn-add-post {
     color: #9b9999;
+}
+.wl-hide-rate {
+    display: none;
 }

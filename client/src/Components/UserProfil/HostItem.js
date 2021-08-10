@@ -13,15 +13,15 @@ import {
 import moment from "moment-timezone";
 import SaveIcon from "@material-ui/icons/Save";
 import Button from "@material-ui/core/Button";
-import { red, pink } from "@material-ui/core/colors";
+import { grey, red, blue, blueGrey } from "@material-ui/core/colors";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import "./HostItem.css";
 
-const ColorButton = withStyles((theme) => ({
+const ColorButtonEdit = withStyles((theme) => ({
     root: {
-        color: theme.palette.getContrastText(pink[50]),
-        backgroundColor: pink[50],
+        color: theme.palette.getContrastText(grey[200]),
+        backgroundColor: grey[200],
         "&:hover": {
             backgroundColor: "#fcc500",
             color: "white",
@@ -30,10 +30,30 @@ const ColorButton = withStyles((theme) => ({
 }))(Button);
 const ColorButtonDelete = withStyles((theme) => ({
     root: {
-        color: theme.palette.getContrastText(red[50]),
-        backgroundColor: red[50],
+        color: theme.palette.getContrastText(grey[200]),
+        backgroundColor: grey[200],
         "&:hover": {
             backgroundColor: red["A700"],
+            color: "white",
+        },
+    },
+}))(Button);
+const ColorButtonComment = withStyles((theme) => ({
+    root: {
+        color: theme.palette.getContrastText(grey[200]),
+        backgroundColor: grey[200],
+        "&:hover": {
+            backgroundColor: blueGrey[600],
+            color: "white",
+        },
+    },
+}))(Button);
+const ColorButtonLike = withStyles((theme) => ({
+    root: {
+        color: theme.palette.getContrastText(grey[200]),
+        backgroundColor: grey[200],
+        "&:hover": {
+            backgroundColor: blue["A700"],
             color: "white",
         },
     },
@@ -242,14 +262,14 @@ function HostItem({ host }) {
                                 </div>
                             </div>
                             <div className="wl-hostItem-buttons">
-                                <ColorButton
+                                <ColorButtonEdit
                                     variant="contained"
                                     color="primary"
                                     className={classes.margin}
                                     onClick={showEditHost}
                                 >
                                     Edit
-                                </ColorButton>
+                                </ColorButtonEdit>
                                 <ColorButtonDelete
                                     variant="contained"
                                     color="primary"
@@ -258,22 +278,22 @@ function HostItem({ host }) {
                                 >
                                     Delete
                                 </ColorButtonDelete>
-                                <ColorButtonDelete
+                                <ColorButtonComment
                                     variant="contained"
                                     color="primary"
                                     className={classes.margin}
                                     onClick={handelDeleteHost}
                                 >
                                     Comment
-                                </ColorButtonDelete>
-                                <ColorButtonDelete
+                                </ColorButtonComment>
+                                <ColorButtonLike
                                     variant="contained"
                                     color="primary"
                                     className={classes.margin}
                                     onClick={handelDeleteHost}
                                 >
                                     Like
-                                </ColorButtonDelete>
+                                </ColorButtonLike>
                             </div>
                         </div>
                     )}

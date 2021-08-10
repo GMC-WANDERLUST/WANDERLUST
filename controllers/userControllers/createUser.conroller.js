@@ -4,7 +4,6 @@ const { InfosValidation } = require("../../config/validation");
 module.exports = {
     async CreateUser(req, res) {
         let {
-            Rating,
             Gender,
             Country,
             PhoneNumber,
@@ -23,7 +22,6 @@ module.exports = {
             try {
                 const newUser =
                     await services.userService.createUser.CreateUser(
-                        Rating,
                         Gender,
                         Country,
                         PhoneNumber,

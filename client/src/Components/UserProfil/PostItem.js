@@ -6,7 +6,7 @@ import Avatar from "@material-ui/core/Avatar";
 import "./PostItem.css";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import { pink, red } from "@material-ui/core/colors";
+import { grey, red, blue, blueGrey } from "@material-ui/core/colors";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -20,8 +20,8 @@ import SaveIcon from "@material-ui/icons/Save";
 
 const ColorButton = withStyles((theme) => ({
     root: {
-        color: theme.palette.getContrastText(red[50]),
-        backgroundColor: red[50],
+        color: theme.palette.getContrastText(grey[200]),
+        backgroundColor: grey[200],
         "&:hover": {
             backgroundColor: "#fcc500",
             color: "white",
@@ -30,10 +30,30 @@ const ColorButton = withStyles((theme) => ({
 }))(Button);
 const ColorButtonDelete = withStyles((theme) => ({
     root: {
-        color: theme.palette.getContrastText(red[50]),
-        backgroundColor: red[50],
+        color: theme.palette.getContrastText(grey[200]),
+        backgroundColor: grey[200],
         "&:hover": {
             backgroundColor: red["A700"],
+            color: "white",
+        },
+    },
+}))(Button);
+const ColorButtonComment = withStyles((theme) => ({
+    root: {
+        color: theme.palette.getContrastText(grey[200]),
+        backgroundColor: grey[200],
+        "&:hover": {
+            backgroundColor: blueGrey[600],
+            color: "white",
+        },
+    },
+}))(Button);
+const ColorButtonLike = withStyles((theme) => ({
+    root: {
+        color: theme.palette.getContrastText(grey[200]),
+        backgroundColor: grey[200],
+        "&:hover": {
+            backgroundColor: blue["A700"],
             color: "white",
         },
     },
@@ -273,22 +293,22 @@ function PostItem({ post }) {
                                 >
                                     Delete
                                 </ColorButtonDelete>
-                                <ColorButtonDelete
+                                <ColorButtonComment
                                     variant="contained"
                                     color="primary"
                                     className={classes.margin}
                                     onClick={handelDeletePost}
                                 >
                                     Comment
-                                </ColorButtonDelete>
-                                <ColorButtonDelete
+                                </ColorButtonComment>
+                                <ColorButtonLike
                                     variant="contained"
                                     color="primary"
                                     className={classes.margin}
                                     onClick={handelDeletePost}
                                 >
                                     Like
-                                </ColorButtonDelete>
+                                </ColorButtonLike>
                             </div>
                         </div>
                     )}
