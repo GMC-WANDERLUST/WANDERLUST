@@ -29,7 +29,8 @@ module.exports = {
                 { $set: { img: photoUrl } }
             );
             await Host.updateMany({ host: id }, { $set: { img: photoUrl } });
-            const updatedUser = await UserInfos.findOne({ user: id });
+            let updatedUser = await UserInfos.find({ user: id });
+            console.log("updated user",updatedUser);
             res.status(206).json({
                 status: true,
                 message: "Your profile photo was updated seccussfully",

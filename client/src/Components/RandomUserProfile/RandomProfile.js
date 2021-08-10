@@ -8,10 +8,7 @@ import {
 } from "../../redux/actions/userActions";
 import { getRandomUserHosts } from "../../redux/actions/hostActions";
 import { userId, getToken } from "../../utils";
-import ModalEditFirstName from "../UserProfil/ModalEditFirstName";
-import ModalEditLastName from "../UserProfil/ModalEditLastName";
 import ModalEditPhoto from "../UserProfil/ModalEditPhoto";
-import ModalAddPost from "../UserProfil/ModalAddPost";
 import "../UserProfil/UserProfile.css";
 import RandomPostItem from "./RandomPostItem";
 import RandomHostItem from "./RandomHostItem";
@@ -19,7 +16,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Avatar from "@material-ui/core/Avatar";
 import { FaMapMarkerAlt, FaSuitcase, FaPhoneAlt } from "react-icons/fa";
-import { RiCake2Fill, RiFileAddFill } from "react-icons/ri";
+import { RiCake2Fill } from "react-icons/ri";
 import { IoLanguage, IoPeople, IoSchool, IoFootball } from "react-icons/io5";
 import { BiWorld } from "react-icons/bi";
 import AppBar from "@material-ui/core/AppBar";
@@ -28,6 +25,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import PropTypes from "prop-types";
+import Rating from "@material-ui/lab/Rating";
 
 ////////////////FUNCTIONS//////////////////////////////////////
 function TabPanel(props) {
@@ -89,15 +87,23 @@ const useStyles = makeStyles((theme) => ({
         width: theme.spacing(40),
         height: theme.spacing(40),
     },
+    small: {
+        width: theme.spacing(20),
+        height: theme.spacing(20),
+    },
 }));
 
 function RandomProfile() {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
+    const [valueStar, setValueStar] = React.useState(0);
+    const [verifyId, setVerifyId] = useState();
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+    console.log("value star", valueStar);
+    console.log("verify Id", verifyId);
     let id = userId();
     let rId = sessionStorage.getItem("randomId");
     let token = getToken();
@@ -115,14 +121,9 @@ function RandomProfile() {
     const userHosts = useSelector(
         (state) => state.hostingReducer.randomUserHost
     );
-    const openPostModal = () => {
-        dispatch(addPost());
-    };
-    const handleMyPosts = () => {
-        setShowPost(!showPost);
-    };
-    const handleMyHosts = () => {
-        setShowHosts(!showHosts);
+    const handleRateChange = (event, newValue) => {
+        setValueStar(newValue);
+        setVerifyId(id);
     };
     return (
         <React.Fragment>
@@ -140,6 +141,17 @@ function RandomProfile() {
                                     />
                                 </a>
                             </div>
+                            <div className="wl-user-photoBox-responsive">
+                                <a href={randomUser.photo}>
+                                    <Avatar
+                                        alt="Profile_Photo"
+                                        src={randomUser.photo}
+                                        className={classes.small}
+                                    />
+                                </a>
+                                <ModalEditPhoto data={randomUser.photo} />
+                            </div>
+
                             <div className="wl-user-infos">
                                 <h5>About</h5>
                                 <div className="wl-leftInfos-item">
@@ -206,6 +218,61 @@ function RandomProfile() {
                                         <FaSuitcase size="20px" color="grey" />
                                         <h3>{randomUser.Occupation} </h3>
                                     </div>
+                                    {verifyId === id ? (
+                                        <div>
+                                            <Box
+                                                component="fieldset"
+                                                mb={3}
+                                                borderColor="transparent"
+                                            >
+                                                <Typography component="legend">
+                                                    Ranking
+                                                </Typography>
+                                                <Rating
+                                                    name="read-only"
+                                                    value={valueStar}
+                                                    readOnly
+                                                />
+                                            </Box>
+                                        </div>
+                                    ) : (
+                                        <div
+                                            className={
+                                                verifyId ? "wl-hide-rate" : null
+                                            }
+                                        >
+                                            <Box
+                                                component="fieldset"
+                                                mb={3}
+                                                borderColor="transparent"
+                                            >
+                                                <Typography component="legend">
+                                                    Rate
+                                                </Typography>
+                                                <Rating
+                                                    name="simple-controlled"
+                                                    value={valueStar}
+                                                    onChange={handleRateChange}
+                                                    // onClick={setRateRanking}
+                                                />
+                                            </Box>
+                                        </div>
+                                    )}
+
+                                    <Box
+                                        component="fieldset"
+                                        mb={3}
+                                        borderColor="transparent"
+                                    >
+                                        <Typography component="legend">
+                                            Ranking
+                                        </Typography>
+                                        <Rating
+                                            name="read-only"
+                                            value={valueStar}
+                                            readOnly
+                                        />
+                                    </Box>
                                 </div>
                             </div>
                             <div className="PostsAndHosts">

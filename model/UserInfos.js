@@ -18,9 +18,6 @@ const userInfosSchema = new Schema(
             type: "string",
             default: "/uploads/user.png",
         },
-        Rating: {
-            type: "string",
-        },
         DayOfBirth: {
             type: "string",
             required: true,
@@ -52,6 +49,10 @@ const userInfosSchema = new Schema(
         Hobbies: "string",
         AboutMe: "string",
         CountriesIvisited: "string",
+        Ratings: {
+            type: ["string"],
+            defaul: ["0000"],
+        },
         date: {
             type: Date,
             dafault: Date.now,
