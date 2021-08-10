@@ -23,6 +23,11 @@
     font-size: 1.5rem;
     margin: 0 20px 18px;
 }
+.u-btn:hover {
+    background-color: #f1960d;
+    color: white;
+    border: 2px white solid;
+}
 @media (max-width: 1199px) {
     .u-section-1-1 .u-sheet-1 {
         min-height: 786px;
@@ -106,6 +111,7 @@
 }
 
 .u-section-1-2 .u-btn-1 {
+
     background-image: none;
     text-transform: uppercase;
     font-weight: 700;
@@ -873,6 +879,7 @@
     min-height: 484px;
     background-image: url("images/pexelsphoto414171.jpeg");
     background-position: 50% 50%;
+    margin-bottom: 50px
 }
 
 .u-section-5 .u-container-layout-1 {
@@ -882,7 +889,7 @@
 
 .u-section-5 .u-text-1 {
     font-size: 3.75rem;
-    margin: 245px 20px 41px 55px;
+    margin: 2px 20px 41px 55px;
 }
 
 .u-section-5 .u-layout-cell-2 {
