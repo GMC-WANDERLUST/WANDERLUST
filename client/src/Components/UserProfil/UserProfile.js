@@ -90,6 +90,11 @@ const useStyles = makeStyles((theme) => ({
         width: theme.spacing(35),
         height: theme.spacing(35),
     },
+
+    small: {
+        width: theme.spacing(20),
+        height: theme.spacing(20),
+    },
 }));
 
 function UserProfile() {
@@ -145,6 +150,16 @@ function UserProfile() {
                                     </a>
                                     <ModalEditPhoto data={user.photo} />
                                 </div>
+                                <div className="wl-user-photoBox-responsive">
+                                    <a href={user.photo}>
+                                        <Avatar
+                                            alt="Profile_Photo"
+                                            src={user.photo}
+                                            className={classes.small}
+                                        />
+                                    </a>
+                                    <ModalEditPhoto data={user.photo} />
+                                </div>
                                 <div className="wl-user-infos">
                                     <h5>About</h5>
                                     <div className="wl-leftInfos-item">
@@ -184,24 +199,6 @@ function UserProfile() {
                             </div>
                             <div className="wl-newUserProfile-rightBox">
                                 <div className="wl-NameAndSomeIformations">
-                                    <div
-                                        className="wl-add-post"
-                                        title="Add post"
-                                    >
-                                        <label className="btn-add-post">
-                                            <input
-                                                type="radio"
-                                                value="Add Post"
-                                                className="wl-input-add-post"
-                                                onClick={openPostModal}
-                                            />
-                                            <RiFileAddFill
-                                                size="40px"
-                                                // color="#f2e6e6"
-                                            />
-                                        </label>
-                                        <ModalAddPost />
-                                    </div>
                                     <div className="firstName-lastName">
                                         <div className="modal-firstName">
                                             <ModalEditFirstName
@@ -241,6 +238,24 @@ function UserProfile() {
                                                 color="grey"
                                             />
                                             <h3>{user.Occupation} </h3>
+                                        </div>
+                                        <div
+                                            className="wl-add-post"
+                                            title="Add post"
+                                        >
+                                            <label className="btn-add-post">
+                                                <input
+                                                    type="radio"
+                                                    value="Add Post"
+                                                    className="wl-input-add-post"
+                                                    onClick={openPostModal}
+                                                />
+                                                <RiFileAddFill
+                                                    size="40px"
+                                                    // color="#f2e6e6"
+                                                />
+                                            </label>
+                                            <ModalAddPost />
                                         </div>
                                     </div>
                                 </div>
@@ -319,61 +334,6 @@ function UserProfile() {
                                             REVIEWS
                                         </TabPanel>
                                     </SwipeableViews>
-                                    {/* <AppBar color="default" position="static">
-                                        <Tabs
-                                            variant="fullWidth"
-                                            value={value}
-                                            onChange={handleChange}
-                                            aria-label="nav tabs example"
-                                        >
-                                            <LinkTab
-                                                label="My Posts"
-                                                href="/drafts"
-                                                {...a11yProps(0)}
-                                            />
-                                            <LinkTab
-                                                label="My Hosting Posts"
-                                                href="/trash"
-                                                {...a11yProps(1)}
-                                            />
-                                            <LinkTab
-                                                label="Reviews"
-                                                href="/spam"
-                                                {...a11yProps(2)}
-                                            />
-                                        </Tabs>
-                                    </AppBar>
-                                    <div className="PostsAndHostsAndReview">
-                                        <TabPanel value={value} index={0}>
-                                            <article className="wl-profile-postsLists">
-                                                {userPost
-                                                    .map((post) => (
-                                                        <div key={post._id}>
-                                                            <PostItem
-                                                                post={post}
-                                                            />
-                                                        </div>
-                                                    ))
-                                                    .reverse()}
-                                            </article>
-                                        </TabPanel>
-                                        <TabPanel value={value} index={1}>
-                                            <article className="wl-profile-hostPostsLists">
-                                                {userHosts
-                                                    .map((host) => (
-                                                        <div key={host._id}>
-                                                            <HostItem
-                                                                host={host}
-                                                            />
-                                                        </div>
-                                                    ))
-                                                    .reverse()}
-                                            </article>
-                                        </TabPanel>
-                                        <TabPanel value={value} index={2}>
-                                            REVIEWS
-                                        </TabPanel>
-                                    </div> */}
                                 </div>
                             </div>
                         </div>

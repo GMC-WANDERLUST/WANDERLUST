@@ -1,7 +1,20 @@
 .wl-signup-container {
-   background: url("bg.png") no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+    background: url("bg.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: auto;
+    height: auto;
+}
+@media only screen and (max-width: 770px) and (min-height: 1020px) {
+    .wl-signup-container {
+        background: url("bg.png") no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        width: auto;
+        height: 1030px;
+    }
 }

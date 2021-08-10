@@ -20,10 +20,10 @@ import SaveIcon from "@material-ui/icons/Save";
 
 const ColorButton = withStyles((theme) => ({
     root: {
-        color: theme.palette.getContrastText(pink[50]),
-        backgroundColor: pink[50],
+        color: theme.palette.getContrastText(red[50]),
+        backgroundColor: red[50],
         "&:hover": {
-            backgroundColor: "#FF0BAC",
+            backgroundColor: "#fcc500",
             color: "white",
         },
     },
@@ -55,7 +55,8 @@ const useStyles = makeStyles((theme) => ({
         height: theme.spacing(7),
     },
     margin: {
-        margin: theme.spacing(1),
+        margin: theme.spacing(0),
+        width: "100%",
         fontSize: "0.7em",
     },
     paper: {
@@ -271,6 +272,22 @@ function PostItem({ post }) {
                                     onClick={handelDeletePost}
                                 >
                                     Delete
+                                </ColorButtonDelete>
+                                <ColorButtonDelete
+                                    variant="contained"
+                                    color="primary"
+                                    className={classes.margin}
+                                    onClick={handelDeletePost}
+                                >
+                                    Comment
+                                </ColorButtonDelete>
+                                <ColorButtonDelete
+                                    variant="contained"
+                                    color="primary"
+                                    className={classes.margin}
+                                    onClick={handelDeletePost}
+                                >
+                                    Like
                                 </ColorButtonDelete>
                             </div>
                         </div>

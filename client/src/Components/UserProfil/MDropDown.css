@@ -1,3 +1,9 @@
-.settings {
-    border: 1px green solid;
+.wl-nav-menu-settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.wl-nav-dropdown {
+    position: absolute;
+    right: 100px;
 }

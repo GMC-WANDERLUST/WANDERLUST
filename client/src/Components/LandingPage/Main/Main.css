@@ -3,11 +3,11 @@
 .wl-container {
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
-    height: 100vh;
+    height: 110vh;
 }
 section {
     scroll-snap-align: start;
-    height: 100vh;
+    height: 110vh;
 }
 /* .wl-section-navbar {
     height: 15vh;
