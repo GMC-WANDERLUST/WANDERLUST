@@ -10,7 +10,6 @@ import {
     NavDropdown,
 } from "react-bootstrap";
 import Button from "@material-ui/core/Button";
-import { logout } from "../../utils";
 import { useHistory } from "react-router-dom";
 import {
     userId,
@@ -36,17 +35,28 @@ import {
 import { RiCompassDiscoverLine } from "react-icons/ri";
 import { IoTicket } from "react-icons/io5";
 import { IoIosPerson } from "react-icons/io";
-import { FiLogOut } from "react-icons/fi";
 import { FaSearch } from "react-icons/fa";
+import { HiViewList } from "react-icons/hi";
 import { RiAdminFill } from "react-icons/ri";
 import { purple, red } from "@material-ui/core/colors";
 import logo from "../NavBar/logo.png";
+import IconButton from "@material-ui/core/IconButton";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+
+const ITEM_HEIGHT = 48;
 
 const useStyles = makeStyles((theme) => ({
     button: {
         margin: theme.spacing(0),
-        fontSize: "0.6em",
+        fontSize: "0.7em",
         width: "100px",
+    },
+    rspButton: {
+        margin: theme.spacing(0),
+        fontSize: "0.5em",
+        width: "10px",
     },
     root: {
         display: "flex",
@@ -64,12 +74,12 @@ const ColorButton = withStyles((theme) => ({
         },
     },
 }))(Button);
-const LogOutButton = withStyles((theme) => ({
+const SearchButtonResponsive = withStyles((theme) => ({
     root: {
-        color: theme.palette.getContrastText(red[500]),
-        backgroundColor: red[500],
+        color: theme.palette.getContrastText(purple[500]),
+        backgroundColor: purple[500],
         "&:hover": {
-            backgroundColor: red[700],
+            backgroundColor: purple[700],
         },
     },
 }))(Button);
@@ -82,10 +92,7 @@ function NavBar({ rId }) {
     let token = getToken();
     let isHost = getIsHost();
     const dispatch = useDispatch();
-    const handleLogout = () => {
-        logout();
-        history.push("/");
-    };
+
     useEffect(() => {
         dispatch(getUserProfile({ id, token }));
     }, [id, token, dispatch]);
@@ -194,115 +201,134 @@ function NavBar({ rId }) {
             openHosting();
         }
     };
+
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+
+    const handleClick = (event) => {
+        console.log("click", event.currentTarget);
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
     return (
         <div className="wl-NavBar-container">
-            <div>
-                <Navbar
-                    bg="light"
-                    variant="light"
-                    expand
-                    fixed="top"
-                    className="navbar"
-                >
-                    <a className={classes.root} href="/home">
-                        <Avatar alt="logo" src={logo} />
-                    </a>
-                    <Container className="navBar">
-                        <Navbar.Brand href="/home">
+            <Navbar
+                bg="light"
+                variant="light"
+                expand
+                fixed="top"
+                className="navbar-box"
+            >
+                <a className={classes.root} href="/home">
+                    <Avatar alt="logo" src={logo} />
+                </a>
+                <Container className="navBar">
+                    <Navbar.Brand href="/home">
+                        <span className="wl-navbar-items">
+                            <FaHome />
+                            <span className="item">Home</span>
+                        </span>
+                    </Navbar.Brand>
+                    <Navbar.Brand href={`/adminUi/${id}`}>
+                        {isAdmin === "true" ? (
                             <span className="wl-navbar-items">
-                                <FaHome />
-                                <span className="item">Home</span>
+                                <RiAdminFill />
+                                <span className="item">Admin</span>
                             </span>
-                        </Navbar.Brand>
-                        <Navbar.Brand href={`/adminUi/${id}`}>
-                            {isAdmin === "true" ? (
-                                <span className="wl-navbar-items">
-                                    <RiAdminFill />
-                                    <span className="item">Admin</span>
-                                </span>
-                            ) : null}
-                        </Navbar.Brand>
-                        <Navbar.Brand href={`/profile/${id}`}>
-                            <Avatar alt="Remy Sharp" src={user.photo} />
-                        </Navbar.Brand>
-                        <Nav className="me-auto">
-                            <NavDropdown
-                                title={
-                                    travellerSelected ? (
-                                        <span>
-                                            <IoTicket size="25px" /> Find
-                                            Travellers
-                                        </span>
-                                    ) : hostSelected ? (
-                                        <span>
-                                            <IoIosPerson size="25px" /> Find
-                                            Hosts
-                                        </span>
-                                    ) : discoverSelected ? (
-                                        <span>
-                                            <RiCompassDiscoverLine size="25px" />
-                                            Discover
-                                        </span>
-                                    ) : null
-                                }
-                                id="collasible-nav-dropdown"
+                        ) : null}
+                    </Navbar.Brand>
+                    <Navbar.Brand href={`/profile/${id}`}>
+                        <Avatar alt="Remy Sharp" src={user.photo} />
+                    </Navbar.Brand>
+                    <Nav className="me-auto">
+                        <NavDropdown
+                            title={
+                                travellerSelected ? (
+                                    <span>
+                                        <IoTicket size="25px" /> Find Travellers
+                                    </span>
+                                ) : hostSelected ? (
+                                    <span>
+                                        <IoIosPerson size="25px" /> Find Hosts
+                                    </span>
+                                ) : discoverSelected ? (
+                                    <span>
+                                        <RiCompassDiscoverLine size="25px" />
+                                        Discover
+                                    </span>
+                                ) : null
+                            }
+                            id="collasible-nav-dropdown"
+                        >
+                            <NavDropdown.Item
+                                href="#action/3.1"
+                                onClick={handelDiscover}
                             >
-                                <NavDropdown.Item
-                                    href="#action/3.1"
-                                    onClick={handelDiscover}
-                                >
-                                    <RiCompassDiscoverLine
-                                        size="25px"
-                                        color="grey"
-                                    />
-                                    Discover
-                                </NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item
-                                    href="#action/3.1"
-                                    onClick={findTravellers}
-                                >
-                                    <IoTicket size="25px" color="grey" />
-                                    Find Travellers
-                                </NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item
-                                    href="#action/3.2"
-                                    onClick={findHosts}
-                                >
-                                    <IoIosPerson size="25px" color="grey" />
-                                    Find Hosts
-                                </NavDropdown.Item>
-                            </NavDropdown>
-                            <Form className="d-flex">
-                                <div className="inputSearch">
-                                    <FormControl
-                                        type="search"
-                                        placeholder={
-                                            travellerSelected
-                                                ? "Enter your residence"
-                                                : hostSelected
-                                                ? "Enter your destination"
-                                                : "Search"
-                                        }
-                                        className="mr-2"
-                                        aria-label="Search"
-                                        name="destination"
-                                        onChange={handelChange}
-                                    />
-                                </div>
-                            </Form>
-                            <div className="searchButton">
-                                <ColorButton
-                                    variant="contained"
-                                    size="small"
-                                    className={classes.button}
-                                    startIcon={<FaSearch />}
-                                    onClick={handleSearch}
-                                >
-                                    Search
-                                </ColorButton>
+                                <RiCompassDiscoverLine
+                                    size="25px"
+                                    color="grey"
+                                />
+                                Discover
+                            </NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item
+                                href="#action/3.1"
+                                onClick={findTravellers}
+                            >
+                                <IoTicket size="25px" color="grey" />
+                                Find Travellers
+                            </NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item
+                                href="#action/3.2"
+                                onClick={findHosts}
+                            >
+                                <IoIosPerson size="25px" color="grey" />
+                                Find Hosts
+                            </NavDropdown.Item>
+                        </NavDropdown>
+                        <Form className="d-flex">
+                            <div className="inputSearch">
+                                <FormControl
+                                    type="search"
+                                    placeholder={
+                                        travellerSelected
+                                            ? "Enter your residence"
+                                            : hostSelected
+                                            ? "Enter your destination"
+                                            : "Search"
+                                    }
+                                    className="mr-2"
+                                    aria-label="Search"
+                                    name="destination"
+                                    onChange={handelChange}
+                                />
                             </div>
+                        </Form>
+                        <div className="searchButton">
+                            <ColorButton
+                                variant="contained"
+                                size="small"
+                                className={classes.button}
+                                startIcon={<FaSearch />}
+                                onClick={handleSearch}
+                            >
+                                Search
+                            </ColorButton>
+                        </div>
+                        <div className="searchButton-responsive">
+                            <SearchButtonResponsive
+                                variant="contained"
+                                size="small"
+                                className={classes.rspButton}
+                                startIcon={<FaSearch size="15px" />}
+                                onClick={handleSearch}
+                            ></SearchButtonResponsive>
+                        </div>
+                        <div>
                             <FormGroup>
                                 <FormControlLabel
                                     control={
@@ -315,28 +341,23 @@ function NavBar({ rId }) {
                                     }
                                     label={
                                         initState
-                                            ? "Stop Accepting Guests"
+                                            ? "Stop Hosting"
                                             : "Accept Guests"
                                     }
                                 />
                             </FormGroup>
+                        </div>
+                        <div className="settigns-dropdown">
                             <MDropDown />
-                            <div className="searchButton">
-                                <LogOutButton
-                                    variant="contained"
-                                    size="small"
-                                    type="button"
-                                    startIcon={<FiLogOut />}
-                                    className={classes.button}
-                                    onClick={handleLogout}
-                                >
-                                    Log Out
-                                </LogOutButton>
-                            </div>
-                        </Nav>
-                    </Container>
-                </Navbar>
-            </div>
+                        </div>
+                    </Nav>
+                </Container>
+                {/* <div className="wl-responsive-menu">
+                    <Button>
+                        <HiViewList size="35px" />
+                    </Button>
+                </div> */}
+            </Navbar>
         </div>
     );
 }

@@ -23,7 +23,7 @@ const ColorButton = withStyles((theme) => ({
         color: theme.palette.getContrastText(pink[50]),
         backgroundColor: pink[50],
         "&:hover": {
-            backgroundColor: "#FF0BAC",
+            backgroundColor: "#fcc500",
             color: "white",
         },
     },
@@ -55,7 +55,8 @@ const useStyles = makeStyles((theme) => ({
         height: theme.spacing(7),
     },
     margin: {
-        margin: theme.spacing(1),
+        margin: theme.spacing(0),
+        width: "100%",
         fontSize: "0.7em",
     },
     paper: {
@@ -256,6 +257,22 @@ function HostItem({ host }) {
                                     onClick={handelDeleteHost}
                                 >
                                     Delete
+                                </ColorButtonDelete>
+                                <ColorButtonDelete
+                                    variant="contained"
+                                    color="primary"
+                                    className={classes.margin}
+                                    onClick={handelDeleteHost}
+                                >
+                                    Comment
+                                </ColorButtonDelete>
+                                <ColorButtonDelete
+                                    variant="contained"
+                                    color="primary"
+                                    className={classes.margin}
+                                    onClick={handelDeleteHost}
+                                >
+                                    Like
                                 </ColorButtonDelete>
                             </div>
                         </div>

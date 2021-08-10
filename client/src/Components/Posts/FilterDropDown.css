@@ -14,14 +14,16 @@
 }
 .cityFilterBox {
     height: auto;
-    width: 20%;
+    width: auto;
     margin-top: 25px;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     /* margin: auto; */
 }
 .dateFilterBox {
-    width: 70%;
+    width: auto;
     margin: auto;
     padding: 10px;
     display: flex;
@@ -32,7 +34,7 @@
 }
 .wl-ok-button {
     margin-left: 25px;
-    width: 30%;
+    width: auto;
     margin: auto;
     text-align: center;
 }
@@ -46,4 +48,29 @@
 .date {
     display: flex;
     justify-content: center;
+}
+.city {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+}
+input[type="text"] {
+    padding-left: 10px;
+    margin-bottom: 15px;
+}
+.close-btn {
+    display: flex;
+    align-self: flex-end;
+}
+@media only screen and (max-width: 830px) {
+    .cityFilter {
+        width: 100%;
+        height: auto;
+        margin: auto;
+    }
+    .city {
+        width: 100%;
+    }
 }

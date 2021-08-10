@@ -45,6 +45,8 @@ const useStyles = makeStyles((theme) => ({
     },
     margin: {
         margin: theme.spacing(1),
+        width: "50%",
+        fontSize: "0.7em",
     },
     paper: {
         marginTop: theme.spacing(1),
@@ -193,9 +195,9 @@ function HostDestinationItem({ host }) {
                         </div>
                     </div>
                 </div>
-                <div className="wl-hostDestinationItem-buttons">
+                <div>
                     {id === host.host ? null : (
-                        <div>
+                        <div className="wl-hostDestinationItem-buttons">
                             <ColorButton
                                 variant="contained"
                                 color="primary"

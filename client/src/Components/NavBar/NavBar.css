@@ -1,6 +1,11 @@
 .wl-NavBar-container {
     margin-bottom: 65px;
 }
+.navBar {
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+}
 .wl-navbar-items {
     display: flex;
     align-items: center;
@@ -17,8 +22,16 @@
     margin-left: 8px;
     margin-right: 15px;
 }
+.searchButton-responsive {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    top: 4px;
+    margin-left: 8px;
+    margin-right: 15px;
+    display: none;
+}
 .navbar-profile-name {
-    border: 1px solid red;
     display: block;
     display: flex;
     align-items: center;
@@ -26,4 +39,21 @@
 .navbar-profile-name > p {
     margin-left: 3px;
     font-size: 0.6em;
+}
+.settigns-dropdown {
+    margin-right: 100px;
+}
+
+/* .wl-responsive-view-1 {
+    display: inline;
+    display: flex;
+} */
+@media only screen and (max-width: 985px) {
+    .searchButton {
+        display: none;
+    }
+    .searchButton-responsive {
+        display: inline;
+        width: 20% !important;
+    }
 }

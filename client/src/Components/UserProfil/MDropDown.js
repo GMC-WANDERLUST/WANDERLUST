@@ -11,11 +11,43 @@ import { IoSettings } from "react-icons/io5";
 import { GrUpdate, GrMail } from "react-icons/gr";
 import { RiLockPasswordFill } from "react-icons/ri";
 import "./MDropDown.css";
+import { useHistory } from "react-router-dom";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { red } from "@material-ui/core/colors";
+import Button from "@material-ui/core/Button";
+import { FiLogOut } from "react-icons/fi";
+import { logout } from "../../utils";
+
+const useStyles = makeStyles((theme) => ({
+    button: {
+        margin: theme.spacing(0),
+        fontSize: "0.6em",
+        width: "100px",
+    },
+    root: {
+        display: "flex",
+        "& > *": {
+            margin: theme.spacing(0),
+        },
+    },
+}));
+
+const LogOutButton = withStyles((theme) => ({
+    root: {
+        color: theme.palette.getContrastText(red[500]),
+        backgroundColor: red[500],
+        "&:hover": {
+            backgroundColor: red[700],
+        },
+    },
+}))(Button);
 
 function MDropDown() {
+    const classes = useStyles();
     let id = userId();
     let token = getToken();
     let isHost = getIsHost();
+    const history = useHistory();
     const dispatch = useDispatch();
     const handleopenModal = () => {
         dispatch(openModal());
@@ -25,6 +57,10 @@ function MDropDown() {
     };
     const openHosting = () => {
         dispatch(openHostingModal());
+    };
+    const handleLogout = () => {
+        logout();
+        history.push("/");
     };
     return (
         <div>
@@ -51,12 +87,18 @@ function MDropDown() {
                         <GrMail /> Change E-mail
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-
-                    {/* <NavDropdown.Item onClick={acceptGuests}>
-                        {isHost === "true"
-                            ? "Accept Guests"
-                            : "Stop Accepting Guests"}
-                    </NavDropdown.Item> */}
+                    <div className="searchButton">
+                        <LogOutButton
+                            variant="contained"
+                            size="small"
+                            type="button"
+                            startIcon={<FiLogOut />}
+                            className={classes.button}
+                            onClick={handleLogout}
+                        >
+                            Log Out
+                        </LogOutButton>
+                    </div>
                 </NavDropdown>
             </Nav>
         </div>
