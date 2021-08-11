@@ -80,6 +80,10 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(3),
         marginLeft: theme.spacing(1),
     },
+    title: {
+        display: "flex",
+        justifyContent: "center",
+    },
 }));
 
 function UserUpdateProfile() {
@@ -134,7 +138,9 @@ function UserUpdateProfile() {
                             WANDERLUST
                         </Typography>
                     </Toolbar>
-                    <h1>Update your Personal Informations</h1>
+                    <h1 className={classes.title}>
+                        Update your Personal Informations
+                    </h1>
                     <main className={classes.layout}>
                         <Paper
                             className={classes.paper}

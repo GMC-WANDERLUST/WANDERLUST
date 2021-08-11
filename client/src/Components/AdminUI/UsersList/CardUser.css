@@ -1,3 +1,9 @@
-.wl-card-item{
+.wl-user-card-item {
     padding-right: 10px;
+    transition: transform 0.2s;
+}
+.wl-user-card-item:hover {
+    -ms-transform: scale(1.04); /* IE 9 */
+    -webkit-transform: scale(1.04); /* Safari 3-8 */
+    transform: scale(1.04);
 }

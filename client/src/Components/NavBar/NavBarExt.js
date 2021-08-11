@@ -12,12 +12,12 @@ function NavBarExt() {
                             <h6
                                 style={{
                                     fontSize: "3em",
-                                    fontFamily: "Aguafina Script",
+                                    fontFamily: "Courgette",
                                     color: "#efb96e",
                                     fontWeight: "bold",
                                 }}
                             >
-                                WANDERLUST
+                                wanderlust
                             </h6>
                         </Nav.Link>
                         <Nav.Link href="/login">

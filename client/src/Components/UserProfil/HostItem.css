@@ -10,6 +10,12 @@
     background-color: white;
     font-family: "Tajawal", sans-serif;
     font-size: 1.1em;
+    transition: transform 0.2s;
+}
+.wl-hostItem-container:hover {
+    -ms-transform: scale(1.03); /* IE 9 */
+    -webkit-transform: scale(1.03); /* Safari 3-8 */
+    transform: scale(1.03);
 }
 @media only screen and (max-width: 850px) {
     .wl-hostItem-container {
@@ -24,6 +30,12 @@
     margin-right: 15px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.411);
     background-color: white;
+    transition: transform 0.2s;
+}
+.wl-hostDestinationItem-container:hover {
+    -ms-transform: scale(1.03); /* IE 9 */
+    -webkit-transform: scale(1.03); /* Safari 3-8 */
+    transform: scale(1.03);
 }
 .wl-hostItem-box {
     color: black;

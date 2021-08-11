@@ -15,9 +15,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { login, saveId, saveIsHost, saveIsAdmin } from "../../utils";
+import { red } from "@material-ui/core/colors";
 import NavBarExt from "../NavBar/NavBarExt";
 import Swal from "sweetalert2";
 import "./Login.css";
+import backgroundImg from "./backgroundImg.png";
 
 function Copyright() {
     return (
@@ -35,22 +37,33 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
     root: {
         height: "100vh",
-    },
-    image: {
-        backgroundImage: "url(https://source.unsplash.com/random)",
+        backgroundImage: `url(${backgroundImg})`,
         backgroundRepeat: "no-repeat",
-        backgroundColor:
-            theme.palette.type === "light"
-                ? theme.palette.grey[50]
-                : theme.palette.grey[900],
+        // backgroundColor:
+        //     theme.palette.type === "light"
+        //         ? theme.palette.grey[50]
+        //         : theme.palette.grey[900],
         backgroundSize: "cover",
         backgroundPosition: "center",
     },
+    // image: {
+    //     backgroundImage: `url(${backgroundImg})`,
+    //     backgroundRepeat: "no-repeat",
+    //     backgroundColor:
+    //         theme.palette.type === "light"
+    //             ? theme.palette.grey[50]
+    //             : theme.palette.grey[900],
+    //     backgroundSize: "cover",
+    //     backgroundPosition: "center",
+    // },
     paper: {
-        margin: theme.spacing(8, 4),
+        margin: theme.spacing(0, 0),
+        height: "100vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        backgroundColor: "rgba(255, 255, 255, 0.6) ",
+        padding: "25px",
     },
     avatar: {
         margin: theme.spacing(1),
@@ -58,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
     },
     form: {
         width: "100%", // Fix IE 11 issue.
-        marginTop: theme.spacing(1),
+        marginTop: theme.spacing(0),
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
@@ -114,14 +127,14 @@ function LogInSide() {
 
     return (
         <Grid container component="main" className={classes.root}>
-            <CssBaseline />
-            <Grid item xs={false} sm={4} md={7} className={classes.image} />
+            {/* <CssBaseline /> */}
+            <Grid item xs={false} sm={4} md={7} />
             <Grid
                 item
                 xs={12}
                 sm={8}
                 md={5}
-                component={Paper}
+                // component={Paper}
                 elevation={6}
                 square
             >
@@ -134,18 +147,21 @@ function LogInSide() {
                     </Typography>
                     <form className={classes.form} noValidate>
                         <TextField
+                            size="medium"
                             variant="outlined"
                             margin="normal"
                             required
                             fullWidth
-                            id="email"
-                            label="Email Address"
                             name="email"
-                            autoComplete="email"
-                            autoFocus
+                            label="Email Address"
+                            type="email"
+                            id="email"
+                            // autoFocus
+                            // autoComplete="email"
                             onChange={handleChange}
                         />
                         <TextField
+                            size="medium"
                             variant="outlined"
                             margin="normal"
                             required
@@ -154,6 +170,7 @@ function LogInSide() {
                             label="Password"
                             type="password"
                             id="password"
+                            autoFocus
                             autoComplete="current-password"
                             onChange={handleChange}
                         />
@@ -185,10 +202,10 @@ function LogInSide() {
                                 </Link>
                             </Grid>
                         </Grid>
-                        <Box mt={5}>
-                            <Copyright />
-                        </Box>
                     </form>
+                    <Box mt={5}>
+                        <Copyright />
+                    </Box>
                 </div>
             </Grid>
         </Grid>

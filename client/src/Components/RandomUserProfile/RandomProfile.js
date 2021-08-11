@@ -218,7 +218,7 @@ function RandomProfile() {
                                         <FaSuitcase size="20px" color="grey" />
                                         <h3>{randomUser.Occupation} </h3>
                                     </div>
-                                    {verifyId === id ? (
+                                    {/* {verifyId === id ? (
                                         <div>
                                             <Box
                                                 component="fieldset"
@@ -257,9 +257,9 @@ function RandomProfile() {
                                                 />
                                             </Box>
                                         </div>
-                                    )}
+                                    )} */}
 
-                                    <Box
+                                    {/* <Box
                                         component="fieldset"
                                         mb={3}
                                         borderColor="transparent"
@@ -272,7 +272,7 @@ function RandomProfile() {
                                             value={valueStar}
                                             readOnly
                                         />
-                                    </Box>
+                                    </Box> */}
                                 </div>
                             </div>
                             <div className="PostsAndHosts">

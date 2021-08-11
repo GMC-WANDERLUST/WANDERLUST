@@ -17,31 +17,39 @@ import { grey, red, blue, blueGrey } from "@material-ui/core/colors";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import "./HostItem.css";
+import IconButton from "@material-ui/core/IconButton";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { AiOutlineLike } from "react-icons/ai";
+import { VscComment } from "react-icons/vsc";
 
-const ColorButtonEdit = withStyles((theme) => ({
-    root: {
-        color: theme.palette.getContrastText(grey[200]),
-        backgroundColor: grey[200],
-        "&:hover": {
-            backgroundColor: "#fcc500",
-            color: "white",
-        },
-    },
-}))(Button);
-const ColorButtonDelete = withStyles((theme) => ({
-    root: {
-        color: theme.palette.getContrastText(grey[200]),
-        backgroundColor: grey[200],
-        "&:hover": {
-            backgroundColor: red["A700"],
-            color: "white",
-        },
-    },
-}))(Button);
+const ITEM_HEIGHT = 45;
+
+// const ColorButtonEdit = withStyles((theme) => ({
+//     root: {
+//         color: theme.palette.getContrastText(grey[200]),
+//         backgroundColor: grey[200],
+//         "&:hover": {
+//             backgroundColor: "#fcc500",
+//             color: "white",
+//         },
+//     },
+// }))(Button);
+// const ColorButtonDelete = withStyles((theme) => ({
+//     root: {
+//         color: theme.palette.getContrastText(grey[200]),
+//         backgroundColor: grey[200],
+//         "&:hover": {
+//             backgroundColor: red["A700"],
+//             color: "white",
+//         },
+//     },
+// }))(Button);
 const ColorButtonComment = withStyles((theme) => ({
     root: {
-        color: theme.palette.getContrastText(grey[200]),
-        backgroundColor: grey[200],
+        color: theme.palette.getContrastText("#ffffff"),
+        backgroundColor: "#ffffff",
         "&:hover": {
             backgroundColor: blueGrey[600],
             color: "white",
@@ -50,8 +58,8 @@ const ColorButtonComment = withStyles((theme) => ({
 }))(Button);
 const ColorButtonLike = withStyles((theme) => ({
     root: {
-        color: theme.palette.getContrastText(grey[200]),
-        backgroundColor: grey[200],
+        color: theme.palette.getContrastText("#ffffff"),
+        backgroundColor: "#ffffff",
         "&:hover": {
             backgroundColor: blue["A700"],
             color: "white",
@@ -108,6 +116,16 @@ function HostItem({ host }) {
     const token = getToken();
     const [editHost, setEditHost] = useState({});
     const [showEdit, setShowEdit] = useState(false);
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
     var n = Date.now();
     const [selectedDate, setSelectedDate] = React.useState(
         moment(n).format("YYYY-MM-DD")
@@ -124,6 +142,7 @@ function HostItem({ host }) {
     };
     const showEditHost = () => {
         setShowEdit(true);
+        setAnchorEl(null);
     };
     const cancelEdit = () => {
         setShowEdit(false);
@@ -163,6 +182,7 @@ function HostItem({ host }) {
             .catch((error) => console.dir(error));
     };
     const handelDeleteHost = () => {
+        setAnchorEl(null);
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -208,6 +228,49 @@ function HostItem({ host }) {
                 <div className="wl-hostItem-box">
                     {showEdit ? null : (
                         <div className="wl-hostItem-dataList">
+                            <div className="wl-postItem-dots">
+                                <IconButton
+                                    className={classes.dots}
+                                    aria-label="more"
+                                    aria-controls="long-menu"
+                                    aria-haspopup="true"
+                                    onClick={handleClick}
+                                >
+                                    <MoreVertIcon />
+                                </IconButton>
+                                <Menu
+                                    id="long-menu"
+                                    anchorEl={anchorEl}
+                                    keepMounted
+                                    open={open}
+                                    onClose={handleClose}
+                                    PaperProps={{
+                                        style: {
+                                            maxHeight: ITEM_HEIGHT * 2,
+                                            width: "20ch",
+                                        },
+                                    }}
+                                >
+                                    <MenuItem onClick={showEditHost}>
+                                        {/* <ColorButton
+                                            variant="contained"
+                                            color="primary"
+                                            className={classes.margin}
+                                        > */}
+                                        Edit
+                                        {/* </ColorButton> */}
+                                    </MenuItem>
+                                    <MenuItem onClick={handelDeleteHost}>
+                                        {/* <ColorButtonDelete
+                                            variant="contained"
+                                            color="primary"
+                                            className={classes.margin}
+                                        > */}
+                                        Delete
+                                        {/* </ColorButtonDelete> */}
+                                    </MenuItem>
+                                </Menu>
+                            </div>
                             <h6>
                                 {dateTab[0]} at {dateTab[1].split(".")[0]}
                             </h6>
@@ -262,38 +325,22 @@ function HostItem({ host }) {
                                 </div>
                             </div>
                             <div className="wl-hostItem-buttons">
-                                <ColorButtonEdit
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.margin}
-                                    onClick={showEditHost}
-                                >
-                                    Edit
-                                </ColorButtonEdit>
-                                <ColorButtonDelete
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.margin}
-                                    onClick={handelDeleteHost}
-                                >
-                                    Delete
-                                </ColorButtonDelete>
-                                <ColorButtonComment
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.margin}
-                                    onClick={handelDeleteHost}
-                                >
-                                    Comment
-                                </ColorButtonComment>
                                 <ColorButtonLike
                                     variant="contained"
                                     color="primary"
                                     className={classes.margin}
-                                    onClick={handelDeleteHost}
+                                    startIcon={<AiOutlineLike />}
                                 >
                                     Like
                                 </ColorButtonLike>
+                                <ColorButtonComment
+                                    variant="contained"
+                                    color="primary"
+                                    className={classes.margin}
+                                    startIcon={<VscComment />}
+                                >
+                                    Comment
+                                </ColorButtonComment>
                             </div>
                         </div>
                     )}
