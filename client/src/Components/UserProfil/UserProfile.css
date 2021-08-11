@@ -46,6 +46,7 @@
 }
 .wl-leftInfos-item > h5 {
     color: black;
+    display: inline;
     display: flex;
     align-items: center;
     font-size: 1.14em;
@@ -54,6 +55,7 @@
     margin-right: 5px;
 }
 .wl-leftInfos-item > h6 {
+    display: inline;
     display: flex;
     align-items: center;
     color: #161516;

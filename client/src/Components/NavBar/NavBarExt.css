@@ -1,5 +1,9 @@
 .Container {
-    width: 100%;
+    position: fixed;
+    /* right: 0px; */
+    width: 80%;
+    margin: auto;
+    margin-top: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;

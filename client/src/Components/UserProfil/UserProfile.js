@@ -163,31 +163,58 @@ function UserProfile() {
                                 <div className="wl-user-infos">
                                     <h5>About</h5>
                                     <div className="wl-leftInfos-item">
-                                        <IoLanguage size="18px" color="grey" />
+                                        <span>
+                                            <IoLanguage
+                                                size="18px"
+                                                color="grey"
+                                            />
+                                        </span>
                                         <h5>Languages:</h5>
                                         <h6> {user.Languages}</h6>
                                     </div>
                                     <div className="wl-leftInfos-item">
-                                        <IoPeople size="18px" color="grey" />
+                                        <span>
+                                            <IoPeople
+                                                size="18px"
+                                                color="grey"
+                                            />
+                                        </span>
                                         <h5>Gender:</h5> <h6>{user.Gender}</h6>
                                     </div>
                                     <div className="wl-leftInfos-item">
-                                        <FaPhoneAlt size="18px" color="grey" />
+                                        <span>
+                                            <FaPhoneAlt
+                                                size="18px"
+                                                color="grey"
+                                            />
+                                        </span>
                                         <h5>Phone:</h5>
                                         <h6>{user.PhoneNumber}</h6>
                                     </div>
                                     <div className="wl-leftInfos-item">
-                                        <BiWorld size="18px" color="grey" />
+                                        <span>
+                                            <BiWorld size="18px" color="grey" />
+                                        </span>
                                         <h5>Visited countries:</h5>
                                         <h6>{user.CountriesIvisited}</h6>
                                     </div>
                                     <div className="wl-leftInfos-item">
-                                        <IoSchool size="27px" color="grey" />
+                                        <span>
+                                            <IoSchool
+                                                size="18px"
+                                                color="grey"
+                                            />
+                                        </span>
                                         <h5>Education:</h5>
                                         <h6>{user.Education}</h6>
                                     </div>
                                     <div className="wl-leftInfos-item">
-                                        <IoFootball size="18px" color="grey" />
+                                        <span>
+                                            <IoFootball
+                                                size="18px"
+                                                color="grey"
+                                            />
+                                        </span>
                                         <h5>Hobbies:</h5>
                                         <h6> {user.Hobbies} </h6>
                                     </div>

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Courgette&display=swap");
 .u-nav-item:hover {
     background-color: #f1960d;
     color: white;
@@ -15,4 +16,11 @@
     /* position: fixed; */
     margin-bottom: 20px;
     overflow: hidden;
+}
+.u-headline {
+    font-size: 3.5em !important;
+    font-family: "Courgette", cursive !important;
+}
+.u-headline:hover {
+    color: rgb(255, 138, 96) !important;
 }

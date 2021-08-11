@@ -37,7 +37,7 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
     paper: {
-        marginTop: theme.spacing(3),
+        marginTop: theme.spacing(0),
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -108,8 +108,9 @@ function SignUp() {
                 </Typography>
                 <form className={classes.form} noValidate>
                     <Grid container spacing={2}>
-                        <Grid item xs={6} sm={6}>
+                        <Grid item xs={12} sm={6}>
                             <TextField
+                                size="small"
                                 autoComplete="FirstName"
                                 name="FirstName"
                                 variant="outlined"
@@ -123,6 +124,7 @@ function SignUp() {
                         </Grid>
                         <Grid item xs={6} sm={6}>
                             <TextField
+                                size="small"
                                 variant="outlined"
                                 required={true}
                                 fullWidth
@@ -135,6 +137,7 @@ function SignUp() {
                         </Grid>
                         <Grid item xs={3} sm={3}>
                             <TextField
+                                // size="small"
                                 variant="outlined"
                                 required={true}
                                 fullWidth
@@ -221,6 +224,7 @@ function SignUp() {
                         </Grid>
                         <Grid item xs={3} sm={3}>
                             <TextField
+                                size="medium"
                                 variant="outlined"
                                 required={true}
                                 fullWidth
@@ -237,6 +241,7 @@ function SignUp() {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
+                                size="small"
                                 variant="outlined"
                                 required={true}
                                 fullWidth
@@ -249,6 +254,7 @@ function SignUp() {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
+                                // size="small"
                                 variant="outlined"
                                 required={true}
                                 fullWidth
@@ -262,6 +268,7 @@ function SignUp() {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
+                                size="medium"
                                 variant="outlined"
                                 required={true}
                                 fullWidth
@@ -304,10 +311,10 @@ function SignUp() {
                         </Grid>
                     </Grid>
                 </form>
+                {/* <Box mt={0}>
+                    <Copyright />
+                </Box> */}
             </Container>
-            <Box mt={5}>
-                <Copyright />
-            </Box>
         </div>
     );
 }

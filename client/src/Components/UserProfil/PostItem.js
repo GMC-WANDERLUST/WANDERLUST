@@ -17,31 +17,39 @@ import {
 } from "@material-ui/pickers";
 import moment from "moment-timezone";
 import SaveIcon from "@material-ui/icons/Save";
+import IconButton from "@material-ui/core/IconButton";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { AiOutlineLike } from "react-icons/ai";
+import { VscComment } from "react-icons/vsc";
 
-const ColorButton = withStyles((theme) => ({
-    root: {
-        color: theme.palette.getContrastText(grey[200]),
-        backgroundColor: grey[200],
-        "&:hover": {
-            backgroundColor: "#fcc500",
-            color: "white",
-        },
-    },
-}))(Button);
-const ColorButtonDelete = withStyles((theme) => ({
-    root: {
-        color: theme.palette.getContrastText(grey[200]),
-        backgroundColor: grey[200],
-        "&:hover": {
-            backgroundColor: red["A700"],
-            color: "white",
-        },
-    },
-}))(Button);
+const ITEM_HEIGHT = 45;
+
+// const ColorButton = withStyles((theme) => ({
+//     root: {
+//         color: theme.palette.getContrastText(grey[200]),
+//         backgroundColor: grey[200],
+//         "&:hover": {
+//             backgroundColor: "#fcc500",
+//             color: "white",
+//         },
+//     },
+// }))(Button);
+// const ColorButtonDelete = withStyles((theme) => ({
+//     root: {
+//         color: theme.palette.getContrastText(grey[200]),
+//         backgroundColor: grey[200],
+//         "&:hover": {
+//             backgroundColor: red["A700"],
+//             color: "white",
+//         },
+//     },
+// }))(Button);
 const ColorButtonComment = withStyles((theme) => ({
     root: {
-        color: theme.palette.getContrastText(grey[200]),
-        backgroundColor: grey[200],
+        color: theme.palette.getContrastText("#ffffff"),
+        backgroundColor: "#ffffff",
         "&:hover": {
             backgroundColor: blueGrey[600],
             color: "white",
@@ -50,8 +58,8 @@ const ColorButtonComment = withStyles((theme) => ({
 }))(Button);
 const ColorButtonLike = withStyles((theme) => ({
     root: {
-        color: theme.palette.getContrastText(grey[200]),
-        backgroundColor: grey[200],
+        color: theme.palette.getContrastText("#ffffff"),
+        backgroundColor: "#ffffff",
         "&:hover": {
             backgroundColor: blue["A700"],
             color: "white",
@@ -89,6 +97,9 @@ const useStyles = makeStyles((theme) => ({
             padding: theme.spacing(3),
         },
     },
+    dots: {
+        height: "15px",
+    },
     layout: {
         width: "auto",
         // height: "100px",
@@ -108,6 +119,16 @@ function PostItem({ post }) {
     const token = getToken();
     const [editPost, setEditPost] = useState({});
     const [showEdit, setShowEdit] = useState(false);
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
     // const [newData, setNewData] = useState("");
     var n = Date.now();
     const [selectedDate, setSelectedDate] = React.useState(
@@ -135,6 +156,7 @@ function PostItem({ post }) {
     };
     const showEditPost = () => {
         setShowEdit(true);
+        setAnchorEl(null);
     };
     const cancelEdit = () => {
         setShowEdit(false);
@@ -179,6 +201,7 @@ function PostItem({ post }) {
             .catch((error) => console.dir(error));
     };
     const handelDeletePost = () => {
+        setAnchorEl(null);
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -221,12 +244,56 @@ function PostItem({ post }) {
         });
     };
     let dateTab = post.date.split("T");
+
     return (
         <React.Fragment>
             <section className="wl-postItem-container">
                 <div className="wl-postItem-box">
                     {showEdit ? null : (
                         <div className="wl-postItem-dataList">
+                            <div className="wl-postItem-dots">
+                                <IconButton
+                                    className={classes.dots}
+                                    aria-label="more"
+                                    aria-controls="long-menu"
+                                    aria-haspopup="true"
+                                    onClick={handleClick}
+                                >
+                                    <MoreVertIcon />
+                                </IconButton>
+                                <Menu
+                                    id="long-menu"
+                                    anchorEl={anchorEl}
+                                    keepMounted
+                                    open={open}
+                                    onClose={handleClose}
+                                    PaperProps={{
+                                        style: {
+                                            maxHeight: ITEM_HEIGHT * 2,
+                                            width: "20ch",
+                                        },
+                                    }}
+                                >
+                                    <MenuItem onClick={showEditPost}>
+                                        {/* <ColorButton
+                                            variant="contained"
+                                            color="primary"
+                                            className={classes.margin}
+                                        > */}
+                                        Edit
+                                        {/* </ColorButton> */}
+                                    </MenuItem>
+                                    <MenuItem onClick={handelDeletePost}>
+                                        {/* <ColorButtonDelete
+                                            variant="contained"
+                                            color="primary"
+                                            className={classes.margin}
+                                        > */}
+                                        Delete
+                                        {/* </ColorButtonDelete> */}
+                                    </MenuItem>
+                                </Menu>
+                            </div>
                             <h6>
                                 {dateTab[0]} at {dateTab[1].split(".")[0]}
                             </h6>
@@ -277,38 +344,22 @@ function PostItem({ post }) {
                                 </div>
                             </div>
                             <div className="wl-postItem-buttons">
-                                <ColorButton
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.margin}
-                                    onClick={showEditPost}
-                                >
-                                    Edit
-                                </ColorButton>
-                                <ColorButtonDelete
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.margin}
-                                    onClick={handelDeletePost}
-                                >
-                                    Delete
-                                </ColorButtonDelete>
-                                <ColorButtonComment
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.margin}
-                                    onClick={handelDeletePost}
-                                >
-                                    Comment
-                                </ColorButtonComment>
                                 <ColorButtonLike
                                     variant="contained"
                                     color="primary"
                                     className={classes.margin}
-                                    onClick={handelDeletePost}
+                                    startIcon={<AiOutlineLike />}
                                 >
                                     Like
                                 </ColorButtonLike>
+                                <ColorButtonComment
+                                    variant="contained"
+                                    color="primary"
+                                    className={classes.margin}
+                                    startIcon={<VscComment />}
+                                >
+                                    Comment
+                                </ColorButtonComment>
                             </div>
                         </div>
                     )}

@@ -44,12 +44,12 @@
     flex-wrap: wrap;
 }
 .hostsList {
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-bottom: 20px;
-    padding-top: 10px;
-    padding-left: 20px;
+    padding: 20px;
     box-shadow: 0px 5px 15px rgb(80, 76, 76);
 }
 .admin-wl-hostItem {
@@ -66,7 +66,11 @@
     box-shadow: 0px 5px 15px rgb(80, 76, 76);
 }
 .admin-wl-reportedHostItem {
-     color: black;
+    color: black;
     display: flex;
     flex-wrap: wrap;
+}
+.container-fluid {
+    display: flex;
+    flex-direction: row;
 }
