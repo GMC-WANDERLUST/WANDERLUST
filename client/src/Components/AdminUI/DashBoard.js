@@ -13,13 +13,14 @@ import {
     adminGetHosts,
     adminGetReportedPosts,
     adminGetReportedHosts,
+    adminGetMessages,
 } from "../../redux/actions/adminActions";
 import "./Dashbord.css";
 import CardHost from "./HostsList/CardHost";
 import CardUser from "./UsersList/CardUser";
 import CardPost from "./PostsList/CardPost";
 import Button from "@material-ui/core/Button";
-import { MdReport } from "react-icons/md";
+import { MdReport, MdMessage } from "react-icons/md";
 
 function DashBoard() {
     // const show = useSelector((state) => state.adminReducer.show);
@@ -33,17 +34,12 @@ function DashBoard() {
         dispatch(adminGetHosts({ id, token }));
         dispatch(adminGetReportedPosts({ id, token }));
         dispatch(adminGetReportedHosts({ id, token }));
+        dispatch(adminGetMessages({ id, token }));
     }, [id, token, dispatch]);
-    // const [showUsers, setShowUsers] = useState(false);
-    // const [showUPosts, setShowPosts] = useState(false);
-    // const handelShow = () => {
-    //     setShowUsers(!showUsers);
-    // };
-    // const handelShowPosts = () => {
-    //     setShowPosts(!showUPosts);
-    // };
+
     const users = useSelector((state) => state.adminReducer.usersList);
     const posts = useSelector((state) => state.adminReducer.adminPostsList);
+    console.log("posts", posts);
     const reportedPosts = useSelector(
         (state) => state.adminReducer.adminReportedPosts
     );
@@ -51,11 +47,13 @@ function DashBoard() {
         (state) => state.adminReducer.adminReportedHosts
     );
     const hosts = useSelector((state) => state.adminReducer.adminHostsList);
+    const messages = useSelector((state) => state.adminReducer.messages);
     let numberOfPosts = posts.length;
     let numberOfUsers = users.length;
     let numberOfHosts = hosts.length;
     let numberOfReportedPosts = reportedPosts.length;
     let numberOfReportedHosts = reportedHosts.length;
+    let numberOfMessages = messages.length;
 
     const viewAllUsers = () => {
         // dispatch(showUsersList())
@@ -182,6 +180,23 @@ function DashBoard() {
                                     </span>
                                 </div>
                             </div>
+                        </div>
+                        <div className="messages col-12 col-sm-6 col-md-3">
+                            <a href="/messages/list">
+                                <div className="info-box mb-3">
+                                    <span className="info-box-icon bg-success elevation-1">
+                                        <MdMessage />
+                                    </span>
+                                    <div className="info-box-content">
+                                        <span className="info-box-text">
+                                            Messages:
+                                        </span>
+                                        <span className="info-box-number">
+                                            {numberOfMessages}
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>

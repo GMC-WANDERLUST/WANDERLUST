@@ -242,3 +242,15 @@
 .wl-hide-rate {
     display: none;
 }
+.wl-rightBox-buttons {
+    border: 1px red solid;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 25px;
+}
+.rating {
+    border: 1px blue solid;
+    display: flex;
+    align-items: center;
+}

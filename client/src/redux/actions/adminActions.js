@@ -6,6 +6,7 @@ import {
     ADMIN_GET_HOSTS_LIST,
     ADMIN_GET_REPORTED_POSTS_LIST,
     ADMIN_GET_REPORTED_HOSTS_LIST,
+    ADMIN_GET_MESSAGES,
 } from "../constants/action-types";
 import axios from "axios";
 
@@ -53,6 +54,8 @@ export const adminGetUsersPosts = (payload) => (dispatch) => {
         })
         .catch((err) => console.dir(err));
 };
+//Admin GETs All Reported Posts
+
 export const adminGetReportedPosts = (payload) => (dispatch) => {
     axios
         .get(`/api/admin/reportedPosts/${payload.id}`, {
@@ -61,14 +64,16 @@ export const adminGetReportedPosts = (payload) => (dispatch) => {
             },
         })
         .then((response) => {
-            console.log(response)
+            // console.log(response);
             dispatch({
                 type: ADMIN_GET_REPORTED_POSTS_LIST,
                 payload: response.data.data,
             });
         })
-        .catch((err) => console.dir("reported error",err));
+        .catch((err) => console.dir("reported error", err));
 };
+//Admin GETs All Reported Hosts
+
 export const adminGetReportedHosts = (payload) => (dispatch) => {
     axios
         .get(`/api/admin/reportedHosts/${payload.id}`, {
@@ -77,7 +82,7 @@ export const adminGetReportedHosts = (payload) => (dispatch) => {
             },
         })
         .then((response) => {
-            console.log(response);
+            // console.log(response);
             dispatch({
                 type: ADMIN_GET_REPORTED_HOSTS_LIST,
                 payload: response.data.data,
@@ -85,6 +90,8 @@ export const adminGetReportedHosts = (payload) => (dispatch) => {
         })
         .catch((err) => console.dir("reported error", err));
 };
+//Admin GETs All Hosts
+
 export const adminGetHosts = (payload) => (dispatch) => {
     axios
         .get(`/api/admin/allHosts/${payload.id}`, {
@@ -93,10 +100,27 @@ export const adminGetHosts = (payload) => (dispatch) => {
             },
         })
         .then((response) => {
-            console.log(response)
+            // console.log(response);
             dispatch({
                 type: ADMIN_GET_HOSTS_LIST,
                 payload: response.data.hosts,
+            });
+        })
+        .catch((err) => console.dir(err));
+};
+//Admin GETS All Messages
+export const adminGetMessages = (payload) => (dispatch) => {
+    axios
+        .get(`/api/admin/messages/${payload.id}`, {
+            headers: {
+                jwt: payload.token,
+            },
+        })
+        .then((response) => {
+            // console.log(response);
+            dispatch({
+                type: ADMIN_GET_MESSAGES,
+                payload: response.data.data,
             });
         })
         .catch((err) => console.dir(err));

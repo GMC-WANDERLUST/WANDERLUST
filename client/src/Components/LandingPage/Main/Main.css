@@ -27,3 +27,11 @@ section {
 .wl-footer-scroll {
     height: 10vh;
 }
+.wl-box-items {
+    transition: transform 0.2s;
+}
+.wl-box-items:hover {
+    -ms-transform: scale(1.03); /* IE 9 */
+    -webkit-transform: scale(1.03); /* Safari 3-8 */
+    transform: scale(1.05);
+}

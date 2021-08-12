@@ -26,7 +26,7 @@ router.get(
 router.get("/reportedPosts/:id", verify, verifyAdmin, async (req, res) => {
     let { id } = req.params;
     try {
-        const reportedPosts = await Posts.find({isReported : 1});
+        const reportedPosts = await Posts.find({ isReported: 1 });
         // console.log(reportedPosts);
         res.status(201).json({
             status: true,
@@ -42,7 +42,7 @@ router.get("/reportedPosts/:id", verify, verifyAdmin, async (req, res) => {
 router.get("/reportedHosts/:id", verify, verifyAdmin, async (req, res) => {
     let { id } = req.params;
     try {
-        const reportedHosts = await Hosts.find({isReported : 1});
+        const reportedHosts = await Hosts.find({ isReported: 1 });
         // console.log(reportedPosts);
         res.status(201).json({
             status: true,
@@ -73,6 +73,20 @@ router.get(
     verifyAdmin,
     controller.userManagementController.getUsers.getUserById
 );
+//GET MESSAGES
+router.get("/messages/:id", verify, verifyAdmin, async (req, res) => {
+    try {
+        let messages = await Messages.find();
+        res.status(201).json({
+            status: true,
+            message: "Messages",
+            data: messages,
+        });
+    } catch (error) {
+        console.log(error)
+        res.status(401).json({ status: false, error });
+    }
+});
 // ADD Admin
 router.put("/addAdmin/:id", verify, verifyAdmin, async (req, res) => {
     try {
