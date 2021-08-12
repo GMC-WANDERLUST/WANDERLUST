@@ -86,6 +86,7 @@ function ModalEditPhoto({ action, data }) {
                     }),
             })
             .then((response) => {
+                console.log(response.data);
                 setUrl(response.data.url);
             })
             .catch((error) => {

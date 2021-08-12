@@ -12,7 +12,7 @@ import ModalEditPhoto from "../UserProfil/ModalEditPhoto";
 import "../UserProfil/UserProfile.css";
 import RandomPostItem from "./RandomPostItem";
 import RandomHostItem from "./RandomHostItem";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Avatar from "@material-ui/core/Avatar";
 import { FaMapMarkerAlt, FaSuitcase, FaPhoneAlt } from "react-icons/fa";
@@ -26,6 +26,10 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import PropTypes from "prop-types";
 import Rating from "@material-ui/lab/Rating";
+import Button from "@material-ui/core/Button";
+import SendIcon from "@material-ui/icons/Send";
+import FlagIcon from "@material-ui/icons/Flag";
+import { grey } from "@material-ui/core/colors";
 
 ////////////////FUNCTIONS//////////////////////////////////////
 function TabPanel(props) {
@@ -91,8 +95,20 @@ const useStyles = makeStyles((theme) => ({
         width: theme.spacing(20),
         height: theme.spacing(20),
     },
+    button: {
+        margin: theme.spacing(1),
+        // textTransform: "none",
+    },
 }));
-
+const ButtonReport = withStyles((theme) => ({
+    root: {
+        color: theme.palette.getContrastText(grey[100]),
+        backgroundColor: grey[100],
+        "&:hover": {
+            backgroundColor: grey[300],
+        },
+    },
+}))(Button);
 function RandomProfile() {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
@@ -218,37 +234,16 @@ function RandomProfile() {
                                         <FaSuitcase size="20px" color="grey" />
                                         <h3>{randomUser.Occupation} </h3>
                                     </div>
-                                    {/* {verifyId === id ? (
-                                        <div>
+                                    <div className="wl-rightBox-buttons">
+                                        <div className="rating">
                                             <Box
                                                 component="fieldset"
                                                 mb={3}
                                                 borderColor="transparent"
                                             >
-                                                <Typography component="legend">
-                                                    Ranking
-                                                </Typography>
-                                                <Rating
-                                                    name="read-only"
-                                                    value={valueStar}
-                                                    readOnly
-                                                />
-                                            </Box>
-                                        </div>
-                                    ) : (
-                                        <div
-                                            className={
-                                                verifyId ? "wl-hide-rate" : null
-                                            }
-                                        >
-                                            <Box
-                                                component="fieldset"
-                                                mb={3}
-                                                borderColor="transparent"
-                                            >
-                                                <Typography component="legend">
+                                                {/* <Typography component="legend">
                                                     Rate
-                                                </Typography>
+                                                </Typography> */}
                                                 <Rating
                                                     name="simple-controlled"
                                                     value={valueStar}
@@ -257,22 +252,29 @@ function RandomProfile() {
                                                 />
                                             </Box>
                                         </div>
-                                    )} */}
-
-                                    {/* <Box
-                                        component="fieldset"
-                                        mb={3}
-                                        borderColor="transparent"
-                                    >
-                                        <Typography component="legend">
-                                            Ranking
-                                        </Typography>
-                                        <Rating
-                                            name="read-only"
-                                            value={valueStar}
-                                            readOnly
-                                        />
-                                    </Box> */}
+                                        <div>
+                                            <Button
+                                                size="small"
+                                                variant="contained"
+                                                color="primary"
+                                                className={classes.button}
+                                                endIcon={<SendIcon />}
+                                            >
+                                                Message
+                                            </Button>
+                                        </div>
+                                        <div>
+                                            <ButtonReport
+                                                size="small"
+                                                variant="contained"
+                                                color="primary"
+                                                className={classes.button}
+                                                endIcon={<FlagIcon />}
+                                            >
+                                                Report
+                                            </ButtonReport>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="PostsAndHosts">

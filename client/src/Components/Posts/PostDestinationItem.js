@@ -193,11 +193,12 @@ function PostDestinationItem({ post }) {
                         {id === post.user ? null : (
                             <div className="wl-postDestinationItem-buttons">
                                 <ColorButtonRequest
+                                    size="small"
                                     variant="contained"
                                     color="primary"
                                     className={classes.margin}
                                 >
-                                    Send a hosting request
+                                    Host {post.firstName}
                                 </ColorButtonRequest>
                                 {post.isReported === 1 ? (
                                     <div>

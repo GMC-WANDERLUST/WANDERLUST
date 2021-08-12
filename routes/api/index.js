@@ -36,6 +36,7 @@ router.put(
     upload.single("photo"),
     controllers.userControllers.updatePhoto.UpdateUserPhoto
 );
+//RATE USER
 router.put("/saveUserId/:id", verify, userAccess, async (req, res) => {
     try {
         let { id } = req.params;

@@ -7,7 +7,8 @@ const Host = require("../model/Hosting");
 const verify = require("../middlewares/verifyToken");
 const userAccess = require("../middlewares/verifyUserAccess");
 const bcrypt = require("bcryptjs");
-const adminAcess = require('../middlewares/Admin')
+const adminAcess = require("../middlewares/Admin");
+const Messages = require("../model/Messages.js");
 const {
     NewPasswordValidation,
     NewEmailValidation,
@@ -24,10 +25,10 @@ router.put("/editUserFirstName/:id", verify, userAccess, async (req, res) => {
     try {
         let { FirstName } = req.body;
         let { id } = req.params;
-        let {error} = await NewFirstNameValidation(req.body)
-         if (error) {
-             return res.status(400).json({ message: error.details[0].message });
-         }
+        let { error } = await NewFirstNameValidation(req.body);
+        if (error) {
+            return res.status(400).json({ message: error.details[0].message });
+        }
         await User.findByIdAndUpdate(id, {
             $set: { FirstName },
         });
@@ -197,21 +198,40 @@ router.put("/editStatus/:id", verify, userAccess, async (req, res) => {
     }
 });
 //Report USER
-router.put('/report/:id', verify, adminAcess, async (req,res) => {
+router.put("/report/:id", verify, adminAcess, async (req, res) => {
     try {
-        let {id} = req.params;
-        console.log(id)
-        await User.findByIdAndUpdate(id, { isReported : 1  });
-        let reportedUser = await User.findById(id)
+        let { id } = req.params;
+        console.log(id);
+        await User.findByIdAndUpdate(id, { isReported: 1 });
+        let reportedUser = await User.findById(id);
         res.status(201).json({
             status: true,
             message: "user was reported!",
             reportedUser,
         });
-
     } catch (error) {
-        res.status(401).json({message : "data not found", error})
+        res.status(401).json({ message: "data not found", error });
     }
-})
+});
+
+//SEND MESSAGE
+
+router.post("/contact", async (req, res) => {
+    let { name, email, message } = req.body;
+    const newMessage = new Messages({
+        name,
+        email,
+        message,
+    });
+    try {
+        const savedMessage = await newMessage.save();
+        res.status(201).json({
+            message: "New message is recieved",
+            savedMessage,
+        });
+    } catch (error) {
+        res.status(401).json({ status: false, error });
+    }
+});
 
 module.exports = router;
