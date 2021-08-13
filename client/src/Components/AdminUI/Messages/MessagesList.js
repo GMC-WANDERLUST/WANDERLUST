@@ -29,7 +29,7 @@ function MessagesList() {
     };
 
     return (
-        <div className="container">
+        <div className="wl-messages-container">
             <h1>MESSAGES LIST</h1>
             {messages.map((message) => (
                 <div key={message._id}>

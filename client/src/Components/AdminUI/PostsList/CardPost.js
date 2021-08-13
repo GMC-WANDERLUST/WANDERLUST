@@ -18,6 +18,7 @@ import "./CardPost.css";
 const useStyles = makeStyles((theme) => ({
     root: {
         width: "100%",
+        height: "100%",
         maxWidth: 400,
         backgroundColor: "none",
         display: "flex",
@@ -25,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "center",
     },
     item: {
-        boxShadow: "2px 2px 2px black",
+        // boxShadow: "2px 2px 2px black",
+        height: "100%",
     },
     titre: {
         fontWeight: "bold",
@@ -38,7 +40,7 @@ const defaultProps = {
     bgcolor: "background.paper",
     m: 1,
     margin: "10px",
-    style: { width: "18rem", height: "21rem" },
+    style: { width: "18rem", height: "25rem" },
     borderColor: "none",
     boxShadow:
         "rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px",
@@ -68,7 +70,10 @@ function CardPost({ token, post, id }) {
             <Box display="flex" justifyContent="center">
                 <Box border={0} {...defaultProps}>
                     <List className={classes.root}>
-                        <ListItem alignItems="flex-start">
+                        <ListItem
+                            alignItems="flex-start"
+                            className={classes.item}
+                        >
                             <ListItemAvatar>
                                 <Avatar alt="Remy Sharp" src={post.img} />
                             </ListItemAvatar>
