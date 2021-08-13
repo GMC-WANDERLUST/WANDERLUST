@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import { red, yellow } from "@material-ui/core/colors";
+import { grey, red, blue, blueGrey } from "@material-ui/core/colors";
+import { VscComment } from "react-icons/vsc";
+import { AiOutlineLike } from "react-icons/ai";
 import "../UserProfil/PostItem.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -12,6 +14,11 @@ const useStyles = makeStyles((theme) => ({
             width: "25ch",
         },
     },
+    margin: {
+        margin: theme.spacing(0),
+        width: "100%",
+        fontSize: "0.7em",
+    },
     small: {
         width: theme.spacing(3),
         height: theme.spacing(3),
@@ -20,9 +27,9 @@ const useStyles = makeStyles((theme) => ({
         width: theme.spacing(7),
         height: theme.spacing(7),
     },
-    margin: {
-        margin: theme.spacing(1),
-    },
+    // margin: {
+    //     margin: theme.spacing(1),
+    // },
     paper: {
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1),
@@ -45,7 +52,26 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 }));
-
+const ColorButtonLike = withStyles((theme) => ({
+    root: {
+        color: theme.palette.getContrastText("#ffffff"),
+        backgroundColor: "#ffffff",
+        "&:hover": {
+            backgroundColor: blue["A700"],
+            color: "white",
+        },
+    },
+}))(Button);
+const ColorButtonComment = withStyles((theme) => ({
+    root: {
+        color: theme.palette.getContrastText("#ffffff"),
+        backgroundColor: "#ffffff",
+        "&:hover": {
+            backgroundColor: blueGrey[600],
+            color: "white",
+        },
+    },
+}))(Button);
 function PostItem({ post }) {
     const classes = useStyles();
     const [editPost, setEditPost] = useState({});
@@ -103,6 +129,24 @@ function PostItem({ post }) {
                                 <h5 className="t5">Decsription :</h5>
                                 <h6>" {post.description} "</h6>
                             </div>
+                        </div>
+                        <div className="wl-postItem-buttons">
+                            <ColorButtonLike
+                                variant="contained"
+                                color="primary"
+                                className={classes.margin}
+                                startIcon={<AiOutlineLike />}
+                            >
+                                Like
+                            </ColorButtonLike>
+                            <ColorButtonComment
+                                variant="contained"
+                                color="primary"
+                                className={classes.margin}
+                                startIcon={<VscComment />}
+                            >
+                                Comment
+                            </ColorButtonComment>
                         </div>
                     </div>
                 </div>

@@ -4,9 +4,11 @@ import { userId, getToken } from "../../utils";
 import Swal from "sweetalert2";
 import moment from "moment-timezone";
 import Button from "@material-ui/core/Button";
-import { red, yellow } from "@material-ui/core/colors";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
+import { grey, red, blue, blueGrey, yellow } from "@material-ui/core/colors";
+import { VscComment } from "react-icons/vsc";
+import { AiOutlineLike } from "react-icons/ai";
 import "../UserProfil/HostItem.css";
 
 const ColorButton = withStyles((theme) => ({
@@ -27,6 +29,26 @@ const ColorButtonDelete = withStyles((theme) => ({
         },
     },
 }))(Button);
+const ColorButtonLike = withStyles((theme) => ({
+    root: {
+        color: theme.palette.getContrastText("#ffffff"),
+        backgroundColor: "#ffffff",
+        "&:hover": {
+            backgroundColor: blue["A700"],
+            color: "white",
+        },
+    },
+}))(Button);
+const ColorButtonComment = withStyles((theme) => ({
+    root: {
+        color: theme.palette.getContrastText("#ffffff"),
+        backgroundColor: "#ffffff",
+        "&:hover": {
+            backgroundColor: blueGrey[600],
+            color: "white",
+        },
+    },
+}))(Button);
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -44,7 +66,9 @@ const useStyles = makeStyles((theme) => ({
         height: theme.spacing(7),
     },
     margin: {
-        margin: theme.spacing(1),
+        margin: theme.spacing(0),
+        width: "100%",
+        fontSize: "0.7em",
     },
     paper: {
         marginTop: theme.spacing(1),
@@ -131,6 +155,24 @@ function HostItem({ host }) {
                                 <h5 className="t5"> Description:</h5>
                                 <h6>{host.description}</h6>
                             </div>
+                        </div>
+                        <div className="wl-postItem-buttons">
+                            <ColorButtonLike
+                                variant="contained"
+                                color="primary"
+                                className={classes.margin}
+                                startIcon={<AiOutlineLike />}
+                            >
+                                Like
+                            </ColorButtonLike>
+                            <ColorButtonComment
+                                variant="contained"
+                                color="primary"
+                                className={classes.margin}
+                                startIcon={<VscComment />}
+                            >
+                                Comment
+                            </ColorButtonComment>
                         </div>
                     </div>
                 </div>

@@ -58,7 +58,8 @@
 }
 
 .u-section-1 .u-layout-cell-1 {
-    height: 600px;
+    /* border: 1px red solid !important; */
+    height: 605px;
 }
 .u-section-1 .u-container-layout-1 {
     box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, 0.4);

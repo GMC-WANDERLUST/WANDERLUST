@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NavBarPhoto from "../NavBar/NavBarPhoto";
+import NavBar from "../NavBar/NavBar";
 import { userId, getToken } from "../../utils";
 import { useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
@@ -69,7 +69,7 @@ function AddProfilePhoto() {
 
     return (
         <div className="wl-ap-container">
-            <NavBarPhoto />
+            <NavBar />
             <div>
                 <main className="ap-main">
                     <div className="body">

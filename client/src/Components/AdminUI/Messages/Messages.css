@@ -1,4 +1,4 @@
-.container {
+.wl-messages-container {
     display: flex;
     flex-direction: column;
 }
