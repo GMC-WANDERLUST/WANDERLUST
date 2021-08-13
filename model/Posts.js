@@ -38,6 +38,10 @@ const PostSchema = new Schema(
             type: "string",
             required: true,
         },
+        phone:{
+            type:"string",
+            required:true,
+        },
         description: {
             type: "string",
             required: true,

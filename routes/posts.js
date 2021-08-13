@@ -24,6 +24,7 @@ router.post("/addnewpost/:id", verify, verifyUserAccess, async (req, res) => {
             lastName: user.LastName,
             img: userInfos.photo,
             languages: userInfos.Languages,
+            phone:userInfos.PhoneNumber,
             destination: destination.toLowerCase(),
             city: city.toLowerCase(),
             check_in,

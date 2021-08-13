@@ -98,7 +98,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     dots: {
-        height: "15px",
+        // height: "15px",
     },
     layout: {
         width: "auto",
@@ -251,61 +251,63 @@ function PostItem({ post }) {
                 <div className="wl-postItem-box">
                     {showEdit ? null : (
                         <div className="wl-postItem-dataList">
-                            <div className="wl-postItem-dots">
-                                <IconButton
-                                    className={classes.dots}
-                                    aria-label="more"
-                                    aria-controls="long-menu"
-                                    aria-haspopup="true"
-                                    onClick={handleClick}
-                                >
-                                    <MoreVertIcon />
-                                </IconButton>
-                                <Menu
-                                    id="long-menu"
-                                    anchorEl={anchorEl}
-                                    keepMounted
-                                    open={open}
-                                    onClose={handleClose}
-                                    PaperProps={{
-                                        style: {
-                                            maxHeight: ITEM_HEIGHT * 2,
-                                            width: "20ch",
-                                        },
-                                    }}
-                                >
-                                    <MenuItem onClick={showEditPost}>
-                                        {/* <ColorButton
-                                            variant="contained"
-                                            color="primary"
-                                            className={classes.margin}
-                                        > */}
-                                        Edit
-                                        {/* </ColorButton> */}
-                                    </MenuItem>
-                                    <MenuItem onClick={handelDeletePost}>
-                                        {/* <ColorButtonDelete
-                                            variant="contained"
-                                            color="primary"
-                                            className={classes.margin}
-                                        > */}
-                                        Delete
-                                        {/* </ColorButtonDelete> */}
-                                    </MenuItem>
-                                </Menu>
-                            </div>
                             <h6>
                                 {dateTab[0]} at {dateTab[1].split(".")[0]}
                             </h6>
-                            <div className="wl-postItem-header">
-                                <Avatar
-                                    alt="profil_photo"
-                                    src={post.img}
-                                    className={classes.large}
-                                />
-                                <h6>
-                                    {post.firstName} {post.lastName}
-                                </h6>
+                            <div className="en-tete">
+                                <div className="wl-postItem-header">
+                                    <Avatar
+                                        alt="profil_photo"
+                                        src={post.img}
+                                        className={classes.large}
+                                    />
+                                    <h6>
+                                        {post.firstName} {post.lastName}
+                                    </h6>
+                                </div>
+                                <div className="wl-postItem-dots">
+                                    <IconButton
+                                        className={classes.dots}
+                                        aria-label="more"
+                                        aria-controls="long-menu"
+                                        aria-haspopup="true"
+                                        onClick={handleClick}
+                                    >
+                                        <MoreVertIcon />
+                                    </IconButton>
+                                    <Menu
+                                        id="long-menu"
+                                        anchorEl={anchorEl}
+                                        keepMounted
+                                        open={open}
+                                        onClose={handleClose}
+                                        PaperProps={{
+                                            style: {
+                                                maxHeight: ITEM_HEIGHT * 2,
+                                                width: "20ch",
+                                            },
+                                        }}
+                                    >
+                                        <MenuItem onClick={showEditPost}>
+                                            {/* <ColorButton
+                                            variant="contained"
+                                            color="primary"
+                                            className={classes.margin}
+                                        > */}
+                                            Edit
+                                            {/* </ColorButton> */}
+                                        </MenuItem>
+                                        <MenuItem onClick={handelDeletePost}>
+                                            {/* <ColorButtonDelete
+                                            variant="contained"
+                                            color="primary"
+                                            className={classes.margin}
+                                        > */}
+                                            Delete
+                                            {/* </ColorButtonDelete> */}
+                                        </MenuItem>
+                                    </Menu>
+                                </div>
                             </div>
                             <div className="wl-postItem-body">
                                 <div className="wl-postItem-row">
@@ -335,12 +337,16 @@ function PostItem({ post }) {
                                     <h6> {post.languages}</h6>
                                 </div>
                                 <div className="wl-postItem-line">
+                                    <h5 className="t5">Phone:</h5>
+                                    <h6> {post.phone}</h6>
+                                </div>
+                                <div className="wl-postItem-line">
                                     <h5 className="t5"> Nombres of Guests:</h5>
                                     <h6>{post.nbreOfGuests[0]} </h6>
                                 </div>
                                 <div className="wl-postItem-line">
-                                    <h5 className="t5">Decsription :</h5>
-                                    <h6>" {post.description} "</h6>
+                                    <h5 className="t5">Decsription:</h5>
+                                    <h6>{post.description}</h6>
                                 </div>
                             </div>
                             <div className="wl-postItem-buttons">

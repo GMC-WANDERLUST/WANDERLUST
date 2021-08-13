@@ -27,6 +27,10 @@ const hostingSchema = new mongoose.Schema({
         type: ["string"],
         required: true,
     },
+    phone: {
+        type: "string",
+        required: true,
+    },
     nbreOfRooms: {
         type: "string",
         required: true,
@@ -39,9 +43,9 @@ const hostingSchema = new mongoose.Schema({
         type: "string",
         required: true,
     },
-    available : {
-        type:"string",
-        required: true
+    available: {
+        type: "string",
+        required: true,
     },
     description: {
         type: "string",

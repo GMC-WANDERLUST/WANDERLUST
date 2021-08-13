@@ -19,6 +19,14 @@ import Typography from "@material-ui/core/Typography";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import "./Modals.css";
+import FormControl from "@material-ui/core/FormControl";
+import clsx from "clsx";
+import InputLabel from "@material-ui/core/InputLabel";
+import Input from "@material-ui/core/Input";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 ///////////////////////////////////////////////////////////////////
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -48,6 +56,12 @@ const useStyles = makeStyles((theme) => ({
             marginRight: "auto",
         },
     },
+    margin: {
+        margin: theme.spacing(1),
+    },
+    textField: {
+        width: "25ch",
+    },
 }));
 
 const customStyles = {
@@ -59,7 +73,7 @@ const customStyles = {
         marginRight: "-50%",
         transform: "translate(-50%, -50%)",
         width: "50%",
-        height: "50%",
+        height: "55%",
         backgroundColor: "whitesmoke",
     },
 };
@@ -70,11 +84,20 @@ function ModalEditPassword({ open }) {
     ///////////////////////////////////////////////////////////////////////////////////
     // DECLARATIONS
     const classes = useStyles();
+    const [values, setValues] = React.useState({
+        password: "",
+    });
+    const handleClickShowPassword = () => {
+        setValues({ ...values, showPassword: !values.showPassword });
+    };
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
     let id = userId();
     let token = getToken();
     let subtitle;
     const [newData, setNewData] = useState("");
-    const [show, setShow] = useState(false);
     const test = useSelector((state) => state.modalReducer.test);
     const dispatch = useDispatch();
     const history = useHistory();
@@ -129,13 +152,7 @@ function ModalEditPassword({ open }) {
             }
         });
     };
-    const showPasswords = () => {
-        setShow(!show);
-    };
-    // window.onload = (e) => {
-    //     const myInput = document.getElementById("myInput");
-    //     myInput.onpaste = (e) => e.preventDefault();
-    // };
+
     ///////////////////////////////////////////////////////////////////////////////////
 
     return (
@@ -158,22 +175,142 @@ function ModalEditPassword({ open }) {
                 <div className="wl-modal-edit-password-container">
                     <main className={classes.layout}>
                         <div className="edit-password-body">
-                            <Paper
-                                className={classes.paper}
-                                onChange={handleChange}
-                            >
+                            <Paper className={classes.paper}>
                                 <Typography
                                     component="h1"
                                     variant="h4"
                                     align="center"
                                 ></Typography>
                                 <React.Fragment>
-                                    <Grid container spacing={1}>
+                                    <FormControl
+                                        className={clsx(
+                                            classes.margin,
+                                            classes.textField
+                                        )}
+                                        onChange={handleChange}
+                                    >
+                                        <InputLabel htmlFor="standard-adornment-password">
+                                            Old Password
+                                        </InputLabel>
+                                        <Input
+                                            required
+                                            name="oldPassword"
+                                            id="standard-adornment-password"
+                                            type={
+                                                values.showPassword
+                                                    ? "text"
+                                                    : "password"
+                                            }
+                                            // value={values.password}
+                                            // onChange={handleChange("password")}
+                                            endAdornment={
+                                                <InputAdornment position="end">
+                                                    <IconButton
+                                                        aria-label="toggle password visibility"
+                                                        onClick={
+                                                            handleClickShowPassword
+                                                        }
+                                                        onMouseDown={
+                                                            handleMouseDownPassword
+                                                        }
+                                                    >
+                                                        {values.showPassword ? (
+                                                            <Visibility />
+                                                        ) : (
+                                                            <VisibilityOff />
+                                                        )}
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            }
+                                        />
+                                    </FormControl>
+                                    <FormControl
+                                        className={clsx(
+                                            classes.margin,
+                                            classes.textField
+                                        )}
+                                        onChange={handleChange}
+                                    >
+                                        <InputLabel htmlFor="standard-adornment-password">
+                                            New Password
+                                        </InputLabel>
+                                        <Input
+                                            required
+                                            name="newpassword"
+                                            id="standard-adornment-password"
+                                            type={
+                                                values.showPassword
+                                                    ? "text"
+                                                    : "password"
+                                            }
+                                            // value={values.password}
+                                            // onChange={handleChange("password")}
+                                            endAdornment={
+                                                <InputAdornment position="end">
+                                                    <IconButton
+                                                        aria-label="toggle password visibility"
+                                                        onClick={
+                                                            handleClickShowPassword
+                                                        }
+                                                        onMouseDown={
+                                                            handleMouseDownPassword
+                                                        }
+                                                    >
+                                                        {values.showPassword ? (
+                                                            <Visibility />
+                                                        ) : (
+                                                            <VisibilityOff />
+                                                        )}
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            }
+                                        />
+                                    </FormControl>
+                                    <FormControl
+                                        className={clsx(
+                                            classes.margin,
+                                            classes.textField
+                                        )}
+                                        onChange={handleChange}
+                                    >
+                                        <InputLabel htmlFor="standard-adornment-password">
+                                            Confirm New Password
+                                        </InputLabel>
+                                        <Input
+                                            required
+                                            name="repeat_newpassword"
+                                            id="standard-adornment-password"
+                                            type={
+                                                values.showPassword
+                                                    ? "text"
+                                                    : "password"
+                                            }
+                                            // value={values.password}
+                                            // onChange={handleChange("password")}
+                                            endAdornment={
+                                                <InputAdornment position="end">
+                                                    <IconButton
+                                                        aria-label="toggle password visibility"
+                                                        onClick={
+                                                            handleClickShowPassword
+                                                        }
+                                                        onMouseDown={
+                                                            handleMouseDownPassword
+                                                        }
+                                                    >
+                                                        {values.showPassword ? (
+                                                            <Visibility />
+                                                        ) : (
+                                                            <VisibilityOff />
+                                                        )}
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            }
+                                        />
+                                    </FormControl>
+                                    {/* <Grid container spacing={1}>
                                         <div className="button">
                                             <Button
-                                                // variant="contained"
-                                                // color="primary"
-                                                size="small"
                                                 className={classes.button}
                                                 startIcon={
                                                     show ? (
@@ -184,7 +321,6 @@ function ModalEditPassword({ open }) {
                                                 }
                                                 onClick={showPasswords}
                                             >
-                                                {/* {show ? "Hide":""} */}
                                             </Button>
                                         </div>
                                         <div className="box">
@@ -215,10 +351,8 @@ function ModalEditPassword({ open }) {
                                                     }
                                                     label="New Password"
                                                     fullWidth
-                                                    // autoComplete="family-name"
                                                 />
                                             </Grid>
-                                            {/* <Grid item xs={4} sm={4}></Grid> */}
                                             <Grid item xs={6} sm={4}>
                                                 <TextField
                                                     required
@@ -231,11 +365,10 @@ function ModalEditPassword({ open }) {
                                                     }
                                                     label="Confirm"
                                                     fullWidth
-                                                    // autoComplete="Occupation"
                                                 />
                                             </Grid>
                                         </div>
-                                    </Grid>
+                                    </Grid> */}
                                 </React.Fragment>
                             </Paper>
                         </div>

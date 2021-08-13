@@ -181,8 +181,8 @@ function DashBoard() {
                                 </div>
                             </div>
                         </div>
-                        <div className="messages col-12 col-sm-6 col-md-3">
-                            <a href="/messages/list">
+                        {/* <div className="messages col-12 col-sm-6 col-md-3">
+                            <a href="/adminUi/admin/messages/list">
                                 <div className="info-box mb-3">
                                     <span className="info-box-icon bg-success elevation-1">
                                         <MdMessage />
@@ -197,7 +197,7 @@ function DashBoard() {
                                     </div>
                                 </div>
                             </a>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className="card">

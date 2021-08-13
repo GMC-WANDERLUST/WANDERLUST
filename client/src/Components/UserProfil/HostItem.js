@@ -228,61 +228,63 @@ function HostItem({ host }) {
                 <div className="wl-hostItem-box">
                     {showEdit ? null : (
                         <div className="wl-hostItem-dataList">
-                            <div className="wl-postItem-dots">
-                                <IconButton
-                                    className={classes.dots}
-                                    aria-label="more"
-                                    aria-controls="long-menu"
-                                    aria-haspopup="true"
-                                    onClick={handleClick}
-                                >
-                                    <MoreVertIcon />
-                                </IconButton>
-                                <Menu
-                                    id="long-menu"
-                                    anchorEl={anchorEl}
-                                    keepMounted
-                                    open={open}
-                                    onClose={handleClose}
-                                    PaperProps={{
-                                        style: {
-                                            maxHeight: ITEM_HEIGHT * 2,
-                                            width: "20ch",
-                                        },
-                                    }}
-                                >
-                                    <MenuItem onClick={showEditHost}>
-                                        {/* <ColorButton
-                                            variant="contained"
-                                            color="primary"
-                                            className={classes.margin}
-                                        > */}
-                                        Edit
-                                        {/* </ColorButton> */}
-                                    </MenuItem>
-                                    <MenuItem onClick={handelDeleteHost}>
-                                        {/* <ColorButtonDelete
-                                            variant="contained"
-                                            color="primary"
-                                            className={classes.margin}
-                                        > */}
-                                        Delete
-                                        {/* </ColorButtonDelete> */}
-                                    </MenuItem>
-                                </Menu>
-                            </div>
                             <h6>
                                 {dateTab[0]} at {dateTab[1].split(".")[0]}
                             </h6>
-                            <div className="wl-hostItem-header">
-                                <Avatar
-                                    alt="profil_photo"
-                                    src={host.img}
-                                    className={classes.large}
-                                />
-                                <h6>
-                                    {host.firstName} {host.lastName}
-                                </h6>
+                            <div className="en-tete">
+                                <div className="wl-hostItem-header">
+                                    <Avatar
+                                        alt="profil_photo"
+                                        src={host.img}
+                                        className={classes.large}
+                                    />
+                                    <h6>
+                                        {host.firstName} {host.lastName}
+                                    </h6>
+                                </div>
+                                <div className="wl-postItem-dots">
+                                    <IconButton
+                                        className={classes.dots}
+                                        aria-label="more"
+                                        aria-controls="long-menu"
+                                        aria-haspopup="true"
+                                        onClick={handleClick}
+                                    >
+                                        <MoreVertIcon />
+                                    </IconButton>
+                                    <Menu
+                                        id="long-menu"
+                                        anchorEl={anchorEl}
+                                        keepMounted
+                                        open={open}
+                                        onClose={handleClose}
+                                        PaperProps={{
+                                            style: {
+                                                maxHeight: ITEM_HEIGHT * 2,
+                                                width: "20ch",
+                                            },
+                                        }}
+                                    >
+                                        <MenuItem onClick={showEditHost}>
+                                            {/* <ColorButton
+                                            variant="contained"
+                                            color="primary"
+                                            className={classes.margin}
+                                        > */}
+                                            Edit
+                                            {/* </ColorButton> */}
+                                        </MenuItem>
+                                        <MenuItem onClick={handelDeleteHost}>
+                                            {/* <ColorButtonDelete
+                                            variant="contained"
+                                            color="primary"
+                                            className={classes.margin}
+                                        > */}
+                                            Delete
+                                            {/* </ColorButtonDelete> */}
+                                        </MenuItem>
+                                    </Menu>
+                                </div>
                             </div>
                             <div className="wl-hostItem-body">
                                 <div className="wl-hostItem-row">
@@ -299,9 +301,15 @@ function HostItem({ host }) {
                                     <h5 className="t5">Available on :</h5>
                                     <h6>{host.available}</h6>
                                 </div>
-                                <div className="wl-hostItem-line">
-                                    <h5 className="t5">Languages :</h5>
-                                    <h6> {host.languages}</h6>
+                                <div className="wl-hostItem-row">
+                                    <div className="wl-hostItem-line">
+                                        <h5 className="t5">Languages:</h5>
+                                        <h6> {host.languages}</h6>
+                                    </div>
+                                    <div className="wl-hostItem-first-line">
+                                        <h5 className="t5">Phone:</h5>
+                                        <h6> {host.phone}</h6>
+                                    </div>
                                 </div>
                                 <div className="wl-hostItem-row">
                                     <div className="wl-hostItem-line">

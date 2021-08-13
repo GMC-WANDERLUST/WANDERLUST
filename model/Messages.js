@@ -7,6 +7,9 @@ const MessagesSchema = new Schema(
             type: "string",
             required: true,
         },
+        photo:{
+            type:"string"
+        },
         email: {
             type: "string",
             required: true,

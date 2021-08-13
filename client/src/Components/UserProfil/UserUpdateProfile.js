@@ -139,7 +139,7 @@ function UserUpdateProfile() {
                         </Typography>
                     </Toolbar>
                     <h1 className={classes.title}>
-                        Update your Personal Informations
+                        Update your personal informations
                     </h1>
                     <main className={classes.layout}>
                         <Paper

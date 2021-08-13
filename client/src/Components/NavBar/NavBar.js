@@ -331,6 +331,12 @@ function NavBar({ rId }) {
                         <div>
                             <FormGroup>
                                 <FormControlLabel
+                                    labelPlacement={initState ? "end" : "start"}
+                                    label={
+                                        initState
+                                            ? "Accept Guests"
+                                            : "Stop Hosting"
+                                    }
                                     control={
                                         <Switch
                                             checked={initState}
@@ -338,11 +344,6 @@ function NavBar({ rId }) {
                                             // onClick={acceptGuests}
                                             // value={isHost ? "on" : "off"}
                                         />
-                                    }
-                                    label={
-                                        initState
-                                            ? "Stop Hosting"
-                                            : "Accept Guests"
                                     }
                                 />
                             </FormGroup>
