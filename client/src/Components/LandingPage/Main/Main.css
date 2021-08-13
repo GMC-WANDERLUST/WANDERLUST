@@ -35,3 +35,9 @@ section {
     -webkit-transform: scale(1.03); /* Safari 3-8 */
     transform: scale(1.05);
 }
+.link-up {
+    background-color: gold;
+    position: absolute;
+    right: 25px;
+    bottom: 0px;
+}

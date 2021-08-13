@@ -61,6 +61,7 @@ function MDropDown() {
     const handleLogout = () => {
         logout();
         history.push("/");
+        window.location.reload();
     };
     return (
         <div>

@@ -169,9 +169,9 @@ function UserProfile() {
                                                 color="grey"
                                             />
                                         </span>
-                                        <h5>Languages:</h5>
-                                        <h6> {user.Languages}</h6>
+                                        <h5>Languages</h5>
                                     </div>
+                                    <h6> {user.Languages}</h6>
                                     <div className="wl-leftInfos-item">
                                         <span>
                                             <IoPeople
@@ -179,8 +179,9 @@ function UserProfile() {
                                                 color="grey"
                                             />
                                         </span>
-                                        <h5>Gender:</h5> <h6>{user.Gender}</h6>
+                                        <h5>Gender</h5>
                                     </div>
+                                    <h6>{user.Gender}</h6>
                                     <div className="wl-leftInfos-item">
                                         <span>
                                             <FaPhoneAlt
@@ -188,16 +189,16 @@ function UserProfile() {
                                                 color="grey"
                                             />
                                         </span>
-                                        <h5>Phone:</h5>
-                                        <h6>{user.PhoneNumber}</h6>
+                                        <h5>Phone</h5>
                                     </div>
+                                    <h6>{user.PhoneNumber}</h6>
                                     <div className="wl-leftInfos-item">
                                         <span>
                                             <BiWorld size="18px" color="grey" />
                                         </span>
-                                        <h5>Visited countries:</h5>
-                                        <h6>{user.CountriesIvisited}</h6>
+                                        <h5>Visited countries</h5>
                                     </div>
+                                    <h6>{user.CountriesIvisited}</h6>
                                     <div className="wl-leftInfos-item">
                                         <span>
                                             <IoSchool
@@ -205,9 +206,9 @@ function UserProfile() {
                                                 color="grey"
                                             />
                                         </span>
-                                        <h5>Education:</h5>
-                                        <h6>{user.Education}</h6>
+                                        <h5>Education</h5>
                                     </div>
+                                    <h6>{user.Education}</h6>
                                     <div className="wl-leftInfos-item">
                                         <span>
                                             <IoFootball
@@ -215,9 +216,9 @@ function UserProfile() {
                                                 color="grey"
                                             />
                                         </span>
-                                        <h5>Hobbies:</h5>
-                                        <h6> {user.Hobbies} </h6>
+                                        <h5>Hobbies</h5>
                                     </div>
+                                    <h6> {user.Hobbies} </h6>
                                 </div>
                                 <div className="wl-user-infos">
                                     <h5>About me</h5>

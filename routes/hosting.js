@@ -22,6 +22,7 @@ router.post("/newHosting/:id", verify, async (req, res) => {
             residence: userinfos.Country.toLowerCase(),
             city: city.toLowerCase(),
             languages: userinfos.Languages,
+            phone: userinfos.PhoneNumber,
             nbreOfRooms,
             nbreOfBeds,
             price,

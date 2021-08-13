@@ -181,52 +181,52 @@ function PostDestinationItem({ post }) {
                             <h6> {post.languages}</h6>
                         </div>
                         <div className="wl-postItem-line">
+                            <h5 className="t5">Phone :</h5>
+                            <h6> {post.languages}</h6>
+                        </div>
+                        <div className="wl-postItem-line">
                             <h5 className="t5"> Nombres of Guests:</h5>
                             <h6>{post.nbreOfGuests[0]} </h6>
                         </div>
                         <div className="wl-postItem-line">
-                            <h5 className="t5">Decsription :</h5>
+                            <h5 className="t5">Decsription:</h5>
                             <h6>{post.description}</h6>
                         </div>
                     </div>
-                    <div>
-                        {id === post.user ? null : (
-                            <div className="wl-postDestinationItem-buttons">
-                                <ColorButtonRequest
-                                    size="small"
+                </div>
+                <div>
+                    {id === post.user ? null : (
+                        <div className="wl-postDestinationItem-buttons">
+                            <ColorButtonRequest
+                                size="small"
+                                variant="contained"
+                                color="primary"
+                                className={classes.margin}
+                            >
+                                Host {post.firstName}
+                            </ColorButtonRequest>
+                            {post.isReported === 1 ? (
+                                <ColorButtonReport
+                                    disabled
                                     variant="contained"
                                     color="primary"
                                     className={classes.margin}
+                                    onClick={handleReport}
                                 >
-                                    Host {post.firstName}
-                                </ColorButtonRequest>
-                                {post.isReported === 1 ? (
-                                    <div>
-                                        <ColorButtonReport
-                                            disabled
-                                            variant="contained"
-                                            color="primary"
-                                            className={classes.margin}
-                                            onClick={handleReport}
-                                        >
-                                            Report
-                                        </ColorButtonReport>
-                                    </div>
-                                ) : (
-                                    <div>
-                                        <ColorButtonReport
-                                            variant="contained"
-                                            color="secondary"
-                                            onClick={handleReport}
-                                            className={classes.margin}
-                                        >
-                                            Report
-                                        </ColorButtonReport>
-                                    </div>
-                                )}
-                            </div>
-                        )}
-                    </div>
+                                    Report
+                                </ColorButtonReport>
+                            ) : (
+                                <ColorButtonReport
+                                    variant="contained"
+                                    color="secondary"
+                                    onClick={handleReport}
+                                    className={classes.margin}
+                                >
+                                    Report
+                                </ColorButtonReport>
+                            )}
+                        </div>
+                    )}
                 </div>
             </section>
         </div>

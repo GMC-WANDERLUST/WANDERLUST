@@ -19,6 +19,7 @@ import Admin from "./Components/AdminUI/Admin";
 import UsersList from "./Components/AdminUI/UsersList/UsersList";
 import UserPostsList from "./Components/AdminUI/PostsList/UsersPostsList";
 import AdminHostsList from "./Components/AdminUI/HostsList/AdminHostsList";
+import MessagesList from "./Components/AdminUI/Messages/MessagesList";
 import RandomProfile from "./Components/RandomUserProfile/RandomProfile";
 import LandingPage from "./Components/LandingPage/Main/LandingPage";
 import ReportedHostsList from "./Components/AdminUI/ReportedHostsList/ReportedHostsList";
@@ -92,6 +93,11 @@ function App() {
                     path="/adminUi/admin/allReportedPosts"
                     restricted={true}
                     component={ReportedPostsList}
+                />
+                <AdminRoute
+                    path="/adminUi/admin/messages/list"
+                    restricted={true}
+                    component={MessagesList}
                 />
             </Switch>
         </div>

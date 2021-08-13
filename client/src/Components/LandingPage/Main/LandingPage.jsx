@@ -3,32 +3,49 @@ import "../Home.css";
 import "./Main.css";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
-import { useDispatch } from "react-redux";
 import axios from "axios";
+import Swal from "sweetalert2";
+import { IoIosArrowUp } from "react-icons/io";
 function LandingPage() {
     const [dataMessage, setDataMessage] = React.useState({});
     // const dispatch = useDispatch();
     const handleChange = (e) => {
         setDataMessage({ ...dataMessage, [e.target.name]: e.target.value });
     };
+    const scrollTop = () => {
+        window.scrollTo(0, 0);
+    };
     const handleSend = () => {
         axios
             .post("/api/user/contact", dataMessage)
             .then((response) => {
                 console.log(response);
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Message was sent succesfully",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                setDataMessage({
+                    ...dataMessage,
+                    name: "",
+                    email: "",
+                    message: "",
+                });
                 // window.location.reload();
             })
             .catch((error) => console.dir(error));
     };
     return (
         <React.Fragment>
-            <div className="wl-container">
+            <div id="mon_ancre" className="wl-container">
                 <section className="wl-section-navbar">
                     <NavBar />
                 </section>
                 <section
                     className="u-carousel u-slide u-block-1c51-1 wl-section-one"
-                    id="carousel_af2d"
+                    id=" carousel_af2d"
                     data-interval={5000}
                     data-u-ride="carousel"
                 >
@@ -465,6 +482,9 @@ function LandingPage() {
                                                             placeholder="Enter your Name"
                                                             id="name-bd75"
                                                             name="name"
+                                                            value={
+                                                                dataMessage.name
+                                                            }
                                                             className="u-border-1 u-border-white u-input u-input-rectangle u-text-body-alt-color"
                                                             required
                                                             onChange={
@@ -481,6 +501,9 @@ function LandingPage() {
                                                             Email
                                                         </label>
                                                         <input
+                                                            value={
+                                                                dataMessage.email
+                                                            }
                                                             type="email"
                                                             placeholder="Enter a valid email address"
                                                             id="email-bd75"
@@ -505,6 +528,9 @@ function LandingPage() {
                                                             cols={50}
                                                             id="message-bd75"
                                                             name="message"
+                                                            value={
+                                                                dataMessage.message
+                                                            }
                                                             className="u-border-1 u-border-white u-input u-input-rectangle u-text-body-alt-color"
                                                             required
                                                             onChange={

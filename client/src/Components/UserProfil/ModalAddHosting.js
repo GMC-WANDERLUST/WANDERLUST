@@ -232,19 +232,22 @@ function ModalAddHosting({ open }) {
                                     </Grid>
                                     <Grid item xs={4} sm={4}>
                                         <TextField
-                                            id="price"
+                                            id="standard-multiline-static"
+                                            multiline
                                             name="price"
                                             label="Price"
                                             placeholder="Price $"
                                             fullWidth
                                         />
                                     </Grid>
-                                    <Grid item xs={4} sm={4}>
+                                    <Grid item xs={12} sm={6}>
                                         <TextField
-                                            id="description"
+                                            id="standard-multiline-static"
+                                            multiline
+                                            maxRows={4}
                                             name="description"
                                             label="Description"
-                                            placeholder="A brief description"
+                                            // placeholder="A brief description"
                                             fullWidth
                                         />
                                     </Grid>

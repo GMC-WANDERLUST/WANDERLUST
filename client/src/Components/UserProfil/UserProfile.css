@@ -45,13 +45,14 @@
     align-items: baseline;
 }
 .wl-leftInfos-item > h5 {
+    width: auto;
     color: black;
     display: inline;
     display: flex;
     align-items: center;
     font-size: 1.14em;
     font-weight: bold;
-    margin-left: 10px;
+    margin-left: 5px;
     margin-right: 5px;
 }
 .wl-leftInfos-item > h6 {

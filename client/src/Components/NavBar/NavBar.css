@@ -57,3 +57,8 @@
         width: 20% !important;
     }
 }
+.searchButton-logout {
+    border: 1px red solid;
+    position: absolute;
+    left: 1200px;
+}

@@ -213,14 +213,16 @@ function ModalAddPost() {
                                             required
                                             id="nbreOfGuests"
                                             name="nbreOfGuests"
-                                            label="Nombre of Guests"
+                                            label="Numbre of Guests"
                                             fullWidth
                                             // autoComplete="Occupation"
                                         />
                                     </Grid>
                                     <Grid item xs={12} sm={6}>
                                         <TextField
-                                            id="Hobbies"
+                                            id="standard-multiline-static"
+                                            multiline
+                                            maxRows={4}
                                             name="description"
                                             label="A brief description"
                                             fullWidth

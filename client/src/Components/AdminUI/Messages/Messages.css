@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+h1 {
+    text-align: center;
+}
+.message-container {
+    padding-left: 30px;
+    height: 15%;
+    width: 75%;
+    margin: auto;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.219);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.second-title {
+    color: rgb(117, 115, 115);
+    font-size: 0.82em;
+}

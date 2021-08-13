@@ -5,6 +5,7 @@ const verifyAdmin = require("../middlewares/Admin");
 const User = require("../model/User");
 const Posts = require("../model/Posts");
 const Hosts = require("../model/Hosting");
+const Messages = require("../model/Messages");
 
 //GET Users List
 router.get(
@@ -83,7 +84,7 @@ router.get("/messages/:id", verify, verifyAdmin, async (req, res) => {
             data: messages,
         });
     } catch (error) {
-        console.log(error)
+        console.log(error);
         res.status(401).json({ status: false, error });
     }
 });
@@ -171,6 +172,20 @@ router.delete("/deleteHost/:id", verify, verifyAdmin, async (req, res) => {
         res.status(201).json({
             message: "Host was deleted successfully",
             deletedPost,
+        });
+    } catch (err) {
+        res.status(500).send(err);
+        console.log(err);
+    }
+});
+// delete user message
+router.delete("/deleteMessage/:id", verify, verifyAdmin, async (req, res) => {
+    try {
+        let id = req.header("data");
+        let deletedMsg = await Messages.findByIdAndRemove(id);
+        res.status(201).json({
+            message: "Host was deleted successfully",
+            deletedMsg,
         });
     } catch (err) {
         res.status(500).send(err);
