@@ -31,7 +31,7 @@ exports.register = async (req, res) => {
     // Hash the password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-    
+
     // Create new user
     const newUser = new User({
         FirstName,
@@ -53,6 +53,7 @@ exports.register = async (req, res) => {
     }
 };
 exports.login = async (req, res) => {
+    // let TOKEN_SECRET = aefbkjufekigveieivgeniveikonvefnoi;
     let { email, password } = req.body;
 
     // Checking if the email exists
@@ -70,10 +71,16 @@ exports.login = async (req, res) => {
             .json({ message: "Invalid password, please check again" });
 
     // Create and assign a token
-
+    // let secretTOKEN = "aefbkjufekigveieivgeniveikonvefnoi";
+    // const TOKEN_SECRET=
     const token = jwt.sign(
-        { id: user._id, email: user.email, password: user.password, isReported : user.isReported },
-        process.env.TOKEN_SECRET,
+        {
+            id: user._id,
+            email: user.email,
+            password: user.password,
+            isReported: user.isReported,
+        },
+        "aefbkjufekigveieivgeniveikonvefnoi",
         {
             expiresIn: "1d",
         }
@@ -91,7 +98,7 @@ exports.login = async (req, res) => {
         id,
         isHost: user.isHost,
         check,
-        isAdmin:user.isAdmin,
+        isAdmin: user.isAdmin,
         msg: `WELCOME ${user.FirstName}! HAVE A NICE TIME `,
         message: `HI ${user.FirstName}! GOOD TO SEE YOU AGAIN`,
     });

@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.947e40f2.chunk.css",
+    "main.js": "/static/js/main.b031e191.chunk.js",
+    "main.js.map": "/static/js/main.b031e191.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.7545a8a1.js",
+    "runtime-main.js.map": "/static/js/runtime-main.7545a8a1.js.map",
+    "static/css/2.081f420c.chunk.css": "/static/css/2.081f420c.chunk.css",
+    "static/js/2.74e5d54a.chunk.js": "/static/js/2.74e5d54a.chunk.js",
+    "static/js/2.74e5d54a.chunk.js.map": "/static/js/2.74e5d54a.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.081f420c.chunk.css.map": "/static/css/2.081f420c.chunk.css.map",
+    "static/css/main.947e40f2.chunk.css.map": "/static/css/main.947e40f2.chunk.css.map",
+    "static/js/2.74e5d54a.chunk.js.LICENSE.txt": "/static/js/2.74e5d54a.chunk.js.LICENSE.txt",
+    "static/media/Home.css": "/static/media/wl-cover5.49feedd4.png",
+    "static/media/HomePage.css": "/static/media/____444_.8f27e8f7.jpg",
+    "static/media/backgroundImg.5b0f9f57.png": "/static/media/backgroundImg.5b0f9f57.png",
+    "static/media/Register.css": "/static/media/bg.9e5020ab.png",
+    "static/media/AddPhoto.css": "/static/media/wl-cover2.69f3fefb.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7545a8a1.js",
+    "static/css/2.081f420c.chunk.css",
+    "static/js/2.74e5d54a.chunk.js",
+    "static/css/main.947e40f2.chunk.css",
+    "static/js/main.b031e191.chunk.js"
+  ]
+}
